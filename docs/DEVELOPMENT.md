@@ -38,24 +38,33 @@ src/
     ShopEditor/                    店舗の追加・編集フォーム（shopForm.ts で入力値と Shop を相互変換）
     ConfirmDialog/                 削除確認
     StatusBar/                     視点情報と出典
+    DensityLegend/                 表示モードごとの凡例と、データの限界の注意書き
+    ComparePanel/                  市区町村別・駅周辺の集計、調査済みエリアの管理
+    StationSelect/                 駅名で絞り込める駅の選択
   domain/                          React・MapLibre・IndexedDB に依存しない純粋なロジック
     shop.ts                        Shop / Station / DataSource 型、表示ラベル、検証、重複判定
     hours.ts                       営業時間の判定（日本時間、深夜営業、判定不能は unknown）
     search.ts                      検索・絞り込み、適用中条件の表示
     dataset.ts                     初期データ JSON の検証、参照切れ検出、初期データとユーザーデータの統合
+    density.ts                     格子集計（調査済み・0件の区別）、市区町村別・駅周辺の集計、近くの駅
+    survey.ts                      調査済みエリアの型・検証・範囲判定
     geo.ts / format.ts             距離計算、表示書式（円・日本時間）
   data/                            初期データ JSON（shops / sources / stations）
   hooks/useShopStore.ts            初期データ＋IndexedDB を統合した店舗ストア
+  hooks/useSurveyAreas.ts          調査済みエリアのストア
   services/
     map/
       mapConfig.ts                 スタイル・初期視点・地域プリセット
       layers.ts                    スタイル加工（3D建物・日本語ラベル・簡易スタイル）
       shopLayers.ts                店舗レイヤー（GeoJSON・クラスタ・ジャンルアイコン・クリック判定用レイヤー）
+      densityLayers.ts             表示モード、ヒートマップ・3D柱・分布の点・調査済みエリア・駅のレイヤー
       mapErrors.ts                 エラーの分類と日本語メッセージ
       mapAdapter.ts                MapLibre を包む MapController
     storage/
       database.ts                  IndexedDB 接続（バージョン管理・移行の入口）
       shopRepository.ts            店舗・出典の保存／削除（トランザクションで原子的に更新）
+      surveyAreaRepository.ts      調査済みエリアの保存／削除
+scripts/build-stations.mjs         国土数値情報から駅データを生成
   styles/global.css
   tests/                           テスト設定と架空の店舗データ
 e2e/                               Playwright（外部通信なしのテストと、外部接続テストを分離）
@@ -69,13 +78,16 @@ e2e/                               Playwright（外部通信なしのテスト�
 4. `filterShops` で検索条件を適用し、結果を一覧と地図（GeoJSON ソース）に渡す。
    検索条件・店舗データが変わったときだけ再計算し、地図の移動では再計算しない。地図は `setData` で更新し再生成しない。
 
-### IndexedDB（DB名 `tachinomi-atlas`、バージョン 1）
+### IndexedDB（DB名 `tachinomi-atlas`、バージョン 2）
 
 | ストア           | キー | 内容                                        |
 | ---------------- | ---- | ------------------------------------------- |
 | `shops`          | `id` | ユーザーが追加・編集した店舗（完全な Shop） |
 | `shopTombstones` | `id` | 削除した初期データ店舗のID と削除日時       |
 | `sources`        | `id` | ユーザーが追加した出典                      |
+| `surveyAreas`    | `id` | 調査済みエリア（バージョン 2 で追加）       |
+
+バージョン 1 → 2 の移行では `surveyAreas` ストアのみを追加し、既存データは保持する（`database.test.ts` で検証）。
 
 スキーマ変更時は `DB_VERSION` を上げ、`onupgradeneeded` に `oldVersion` ごとの移行処理を追加する。
 訪問記録・お気に入り・ルート（Phase 4・5）は別ストアとして追加し、店舗データ本体には混在させない。
@@ -130,7 +142,18 @@ e2e/                               Playwright（外部通信なしのテスト�
 ダーク・標準スタイルでの3D建物、日本語の地名、店舗マーカー・まとめ表示・店名ラベルの表示を画面で確認した。
 ダークスタイル読み込み時に、スタイル自体が参照する画像「wood-pattern」が無いという警告がブラウザのコンソールに出る（OpenFreeMap 側のスタイルの問題で、表示への影響は確認されていない）。
 
-### Phase 3：密度・比較 — 未着手
+### Phase 3：密度・比較 — ✅ 完了
+
+- [x] 表示モードの切り替え：店舗マーカー／密度（ヒートマップ）／密度（3D柱）／ジャンル別／予算帯別
+- [x] 「訪問済み店舗の分布」は選択肢として表示し、Phase 4 まで無効化
+- [x] 密度は検索条件を反映し、色・高さは固定の目盛り（件数の少ない地域を相対的に強調しない）
+- [x] 調査済みエリア（IndexedDB v2）：エリア内の店舗0件のマスを「調査済み・0件」として「データなし」と区別
+- [x] 凡例（モードごとの色・高さの意味、対象件数、データの限界の注意書き）
+- [x] 駅データ（国土数値情報、884駅）と駅レイヤー
+- [x] 駅周辺の集計（300/500/800m）と、駅を起点とした探索（F-14）
+- [x] 市区町村別の集計（件数・確認済み・主なジャンル）
+- [x] 店舗詳細に近くの駅（直線距離）、編集フォームに近い駅を最寄り駅の候補として表示
+- 格子集計は3D柱表示のときだけ計算し、地図の移動では再計算しない。駅周辺の集計は「比較・集計」タブを開いているときだけ計算する。
 
 ### Phase 4：個人記録 — 未着手
 

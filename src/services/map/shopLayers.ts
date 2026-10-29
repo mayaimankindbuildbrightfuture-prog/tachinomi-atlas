@@ -25,6 +25,7 @@ export type ShopFeatureProperties = {
   name: string;
   category: string;
   status: Shop['status'];
+  priceLevel: Shop['priceLevel'];
 };
 
 export type ShopFeatureCollection = GeoJSON.FeatureCollection<GeoJSON.Point, ShopFeatureProperties>;
@@ -36,7 +37,7 @@ export function shopsToFeatureCollection(shops: readonly Shop[]): ShopFeatureCol
     features: shops.map((s) => ({
       type: 'Feature',
       geometry: { type: 'Point', coordinates: [s.longitude, s.latitude] },
-      properties: { id: s.id, name: s.name, category: primaryCategory(s), status: s.status },
+      properties: { id: s.id, name: s.name, category: primaryCategory(s), status: s.status, priceLevel: s.priceLevel },
     })),
   };
 }

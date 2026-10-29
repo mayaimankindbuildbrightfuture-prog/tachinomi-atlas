@@ -1,10 +1,16 @@
-import { useState, type ReactNode } from 'react';
+import type { ReactNode } from 'react';
+import { GRID_SIZES_M, type GridSizeM } from '../../domain/density';
+import { DISPLAY_MODES, type DisplayMode } from '../../services/map/densityLayers';
 import type { BuildingsAvailability } from '../../services/map/mapAdapter';
 import { BUILDING_MIN_ZOOM } from '../../services/map/mapConfig';
+
+export type SidebarTab = 'shops' | 'map' | 'compare';
 
 type Props = {
   open: boolean;
   onToggle: () => void;
+  tab: SidebarTab;
+  onTabChange: (tab: SidebarTab) => void;
   showBuildings: boolean;
   onShowBuildingsChange: (visible: boolean) => void;
   buildingsAvailability: BuildingsAvailability;
@@ -13,16 +19,28 @@ type Props = {
   onShowAll: () => void;
   onViewMode: (mode: '2d' | '3d') => void;
   onResetNorth: () => void;
-  /** 「店舗」タブの中身（検索条件と結果） */
+  displayMode: DisplayMode;
+  onDisplayModeChange: (mode: DisplayMode) => void;
+  gridSizeM: GridSizeM;
+  onGridSizeChange: (size: GridSizeM) => void;
+  showStations: boolean;
+  onShowStationsChange: (visible: boolean) => void;
+  stationCount: number;
+  /** 「店舗を探す」タブの中身（検索条件と結果） */
   shopPanel: ReactNode;
+  /** 「比較・集計」タブの中身 */
+  comparePanel: ReactNode;
 };
 
-type Tab = 'shops' | 'map';
+const TABS: readonly { id: SidebarTab; label: string }[] = [
+  { id: 'shops', label: '店舗を探す' },
+  { id: 'map', label: '地図の表示' },
+  { id: 'compare', label: '比較・集計' },
+];
 
-/** 左側パネル：店舗の検索（店舗タブ）と、表示レイヤー・地図操作（地図タブ） */
+/** 左側パネル：店舗の検索、地図の表示設定、比較・集計 */
 export function Sidebar(props: Props) {
-  const { open, onToggle, mapUsable } = props;
-  const [tab, setTab] = useState<Tab>('shops');
+  const { open, onToggle, mapUsable, tab } = props;
   return (
     <aside className={`sidebar ${open ? '' : 'is-collapsed'}`} aria-label="表示設定と地図操作">
       <button
@@ -38,34 +56,70 @@ export function Sidebar(props: Props) {
       {open && (
         <div id="sidebar-content" className="sidebar__content">
           <div className="tabs" role="tablist" aria-label="パネルの切り替え">
-            <button
-              type="button"
-              role="tab"
-              id="tab-shops"
-              aria-selected={tab === 'shops'}
-              aria-controls="tabpanel-shops"
-              onClick={() => setTab('shops')}
-            >
-              店舗を探す
-            </button>
-            <button
-              type="button"
-              role="tab"
-              id="tab-map"
-              aria-selected={tab === 'map'}
-              aria-controls="tabpanel-map"
-              onClick={() => setTab('map')}
-            >
-              地図の表示
-            </button>
+            {TABS.map((t) => (
+              <button
+                key={t.id}
+                type="button"
+                role="tab"
+                id={`tab-${t.id}`}
+                aria-selected={tab === t.id}
+                aria-controls={`tabpanel-${t.id}`}
+                onClick={() => props.onTabChange(t.id)}
+              >
+                {t.label}
+              </button>
+            ))}
           </div>
           {tab === 'shops' && (
             <div role="tabpanel" id="tabpanel-shops" aria-labelledby="tab-shops">
               {props.shopPanel}
             </div>
           )}
+          {tab === 'compare' && (
+            <div role="tabpanel" id="tabpanel-compare" aria-labelledby="tab-compare">
+              {props.comparePanel}
+            </div>
+          )}
           {tab === 'map' && (
             <div role="tabpanel" id="tabpanel-map" aria-labelledby="tab-map">
+              <section className="panel-section">
+                <h2>表示モード</h2>
+                <div className="checks checks--column" role="radiogroup" aria-label="表示モード">
+                  {DISPLAY_MODES.map((m) => (
+                    <label key={m.id} className="check" title={m.description}>
+                      <input
+                        type="radio"
+                        name="display-mode"
+                        checked={props.displayMode === m.id}
+                        onChange={() => props.onDisplayModeChange(m.id)}
+                        disabled={!mapUsable}
+                      />
+                      {m.label}
+                    </label>
+                  ))}
+                  <label className="check is-disabled" title="訪問記録の機能（今後のフェーズ）の実装後に利用できます">
+                    <input type="radio" name="display-mode" disabled />
+                    訪問済み店舗の分布（訪問記録の実装後に利用可）
+                  </label>
+                </div>
+                <p className="hint">{DISPLAY_MODES.find((m) => m.id === props.displayMode)?.description}</p>
+                {props.displayMode === 'grid' && (
+                  <label className="form-field form-field--inline">
+                    <span className="form-field__label">マスの大きさ</span>
+                    <select
+                      value={props.gridSizeM}
+                      onChange={(e) => props.onGridSizeChange(Number(e.target.value) as GridSizeM)}
+                    >
+                      {GRID_SIZES_M.map((s) => (
+                        <option key={s} value={s}>
+                          {s >= 1000 ? `${s / 1000}km` : `${s}m`}四方
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                )}
+              </section>
+
               <section className="panel-section">
                 <h2>表示レイヤー</h2>
                 <label className="check">
@@ -82,6 +136,16 @@ export function Sidebar(props: Props) {
                     ? 'この地図スタイルには建物データがないため、3D建物を表示できません。'
                     : `建物はズーム ${BUILDING_MIN_ZOOM} 以上で立体表示されます。`}
                 </p>
+                <label className="check">
+                  <input
+                    type="checkbox"
+                    checked={props.showStations}
+                    onChange={(e) => props.onShowStationsChange(e.target.checked)}
+                    disabled={!mapUsable || props.stationCount === 0}
+                  />
+                  駅（{props.stationCount}駅）
+                </label>
+                <p className="hint">駅はズーム12以上で表示されます（国土数値情報）。</p>
               </section>
 
               <section className="panel-section">
@@ -117,14 +181,6 @@ export function Sidebar(props: Props) {
                   <dt>傾きのみ</dt>
                   <dd>Shift＋↑↓キー</dd>
                 </dl>
-              </section>
-
-              <section className="panel-section panel-section--muted">
-                <h2>マーカーの見方</h2>
-                <p className="hint">
-                  丸の中の文字が料理ジャンル（焼＝焼きとん・焼き鳥、煮＝煮込み、お＝おでん、魚＝刺身・海鮮、酒＝日本酒、麦＝ビール・ホッピー、角＝角打ち、他＝その他）。
-                  オレンジの大きな丸は複数店舗のまとまりで、クリックすると拡大します。半透明は閉店（可能性含む）の店舗です。
-                </p>
               </section>
             </div>
           )}

@@ -4,6 +4,7 @@
  * 訪問済み・お気に入り・予算内の注文モデルによる絞り込みは、個人記録（Phase 4）と
  * 注文モデル（F-18）の実装時に追加する。
  */
+import { distanceMeters } from './geo';
 import { openStateAt, openStateOnDay, parseMinutes, formatDay } from './hours';
 import {
   PRICE_LEVEL_LABELS,
@@ -23,7 +24,9 @@ export type ShopFilter = {
   keyword: string;
   prefectures: Prefecture[];
   municipality: string;
+  /** 駅を起点とした探索：この駅に最寄り駅として登録された店舗、または駅から stationRadiusM 以内の店舗 */
   stationId: string;
+  stationRadiusM: number;
   categories: string[];
   drinkTags: string[];
   priceLevels: PriceLevel[];
@@ -42,6 +45,7 @@ export const EMPTY_FILTER: ShopFilter = {
   prefectures: [],
   municipality: '',
   stationId: '',
+  stationRadiusM: 500,
   categories: [],
   drinkTags: [],
   priceLevels: [],
@@ -69,12 +73,20 @@ function matchesHours(shop: Shop, filter: ShopFilter): boolean {
   return state === 'unknown' && filter.includeUnknownHours;
 }
 
-export function matchesFilter(shop: Shop, filter: ShopFilter): boolean {
+function matchesStation(shop: Shop, filter: ShopFilter, stations: readonly Station[]): boolean {
+  if (filter.stationId === '') return true;
+  if (shop.stationIds.includes(filter.stationId)) return true;
+  const station = stations.find((s) => s.id === filter.stationId);
+  if (!station) return false;
+  return distanceMeters(station.latitude, station.longitude, shop.latitude, shop.longitude) <= filter.stationRadiusM;
+}
+
+export function matchesFilter(shop: Shop, filter: ShopFilter, stations: readonly Station[] = []): boolean {
   if (!matchesKeyword(shop, filter.keyword)) return false;
   if (filter.prefectures.length > 0 && (shop.prefecture === null || !filter.prefectures.includes(shop.prefecture)))
     return false;
   if (filter.municipality !== '' && shop.municipality !== filter.municipality) return false;
-  if (filter.stationId !== '' && !shop.stationIds.includes(filter.stationId)) return false;
+  if (!matchesStation(shop, filter, stations)) return false;
   if (filter.categories.length > 0 && !shop.categories.some((c) => filter.categories.includes(c))) return false;
   if (filter.drinkTags.length > 0 && !shop.drinkTags.some((d) => filter.drinkTags.includes(d))) return false;
   if (filter.priceLevels.length > 0 && !filter.priceLevels.includes(shop.priceLevel)) return false;
@@ -85,8 +97,8 @@ export function matchesFilter(shop: Shop, filter: ShopFilter): boolean {
   return true;
 }
 
-export function filterShops(shops: readonly Shop[], filter: ShopFilter): Shop[] {
-  return shops.filter((s) => matchesFilter(s, filter));
+export function filterShops(shops: readonly Shop[], filter: ShopFilter, stations: readonly Station[] = []): Shop[] {
+  return shops.filter((s) => matchesFilter(s, filter, stations));
 }
 
 export function isFilterActive(filter: ShopFilter): boolean {
@@ -110,7 +122,7 @@ export function activeFilterChips(filter: ShopFilter, stations: readonly Station
   if (filter.municipality) chips.push({ label: filter.municipality, clear: (f) => ({ ...f, municipality: '' }) });
   if (filter.stationId) {
     const name = stations.find((s) => s.id === filter.stationId)?.name ?? filter.stationId;
-    chips.push({ label: `${name}駅`, clear: (f) => ({ ...f, stationId: '' }) });
+    chips.push({ label: `${name}駅から${filter.stationRadiusM}m以内`, clear: (f) => ({ ...f, stationId: '' }) });
   }
   for (const c of filter.categories) {
     chips.push({
