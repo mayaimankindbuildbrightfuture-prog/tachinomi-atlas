@@ -1,7 +1,15 @@
 {
   "schemaVersion": 1,
-  "attribution": "店舗の名称・位置・住所は OpenStreetMap より取得（© OpenStreetMap contributors、ODbL 1.0 / https://www.openstreetmap.org/copyright）。取得日 2026-10-29。",
+  "attribution": "店舗の名称・位置・住所は OpenStreetMap より取得（© OpenStreetMap contributors、ODbL 1.0 / https://www.openstreetmap.org/copyright）。取得日 2026-10-29。 駅データは国土数値情報（国土交通省、CC BY 4.0）を加工して作成。",
   "sources": [
+    {
+      "id": "src-ksj-n02-2024",
+      "type": "open_data",
+      "name": "国土数値情報 鉄道データ（N02 令和6年度）・行政区域データ（N03 令和7年）",
+      "url": "https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N02-2024.html",
+      "accessedAt": "2026-10-29",
+      "notes": "駅の名称・位置・路線（N02）と、駅の所在する都道府県・市区町村の判定（N03）に使用。出典：国土交通省 国土数値情報（CC BY 4.0）。scripts/build-stations.mjs で加工。"
+    },
     {
       "id": "src-official-banpaiya-musashino",
       "type": "official_site",

@@ -3,6 +3,12 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import { createMapController, type MapController, type MapEventHandlers } from '../../services/map/mapAdapter';
 import type { MapStyleId } from '../../services/map/mapConfig';
 import type { ShopFeatureCollection } from '../../services/map/shopLayers';
+import type {
+  DisplayMode,
+  StationFeatureCollection,
+  SurveyAreaFeatureCollection,
+} from '../../services/map/densityLayers';
+import type { GridFeatureCollection } from '../../domain/density';
 import './MapView.css';
 
 type Props = MapEventHandlers & {
@@ -12,6 +18,12 @@ type Props = MapEventHandlers & {
   selectedShopId: string | null;
   pickMode: boolean;
   draftPosition: { latitude: number; longitude: number } | null;
+  displayMode: DisplayMode;
+  densityGrid: GridFeatureCollection;
+  gridSizeM: number;
+  surveyAreas: SurveyAreaFeatureCollection;
+  stations: StationFeatureCollection;
+  showStations: boolean;
   /** 親コンポーネントが地図を操作するためのコントローラー参照 */
   controllerRef: RefObject<MapController | null>;
 };
@@ -27,6 +39,12 @@ export function MapView({
   selectedShopId,
   pickMode,
   draftPosition,
+  displayMode,
+  densityGrid,
+  gridSizeM,
+  surveyAreas,
+  stations,
+  showStations,
   controllerRef,
   ...handlers
 }: Props) {
@@ -77,6 +95,26 @@ export function MapView({
   useEffect(() => {
     controllerRef.current?.setDraftPosition(draftPosition);
   }, [draftPosition, controllerRef]);
+
+  useEffect(() => {
+    controllerRef.current?.setDisplayMode(displayMode);
+  }, [displayMode, controllerRef]);
+
+  useEffect(() => {
+    controllerRef.current?.setDensityGrid(densityGrid, gridSizeM);
+  }, [densityGrid, gridSizeM, controllerRef]);
+
+  useEffect(() => {
+    controllerRef.current?.setSurveyAreas(surveyAreas);
+  }, [surveyAreas, controllerRef]);
+
+  useEffect(() => {
+    controllerRef.current?.setStations(stations);
+  }, [stations, controllerRef]);
+
+  useEffect(() => {
+    controllerRef.current?.setStationsVisible(showStations);
+  }, [showStations, controllerRef]);
 
   return <div ref={containerRef} className="map-view" data-testid="map-container" aria-label="3D地図" role="region" />;
 }

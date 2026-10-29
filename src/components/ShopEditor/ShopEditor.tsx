@@ -1,4 +1,5 @@
 import { useEffect, useId, useMemo, useState, type ReactNode } from 'react';
+import { nearestStations, stationLabel } from '../../domain/density';
 import { todayJst } from '../../domain/format';
 import {
   CATEGORIES,
@@ -118,6 +119,18 @@ export function ShopEditor(props: Props) {
   useEffect(() => () => onDraftPositionChange(null), [onDraftPositionChange]);
 
   const coordWarnings = coordsValid ? validateCoordinates(lat, lng).warnings : [];
+
+  // 最寄り駅の候補：入力中の位置から近い駅と、すでに選択済みの駅
+  const stationChoices = useMemo(() => {
+    const near = coordsValid ? nearestStations({ latitude: lat, longitude: lng }, stations, 6) : [];
+    const choices: { station: Station; distanceM: number | null }[] = near.map((n) => ({ ...n }));
+    for (const id of form.stationIds) {
+      if (choices.some((c) => c.station.id === id)) continue;
+      const st = stations.find((s) => s.id === id);
+      if (st) choices.push({ station: st, distanceM: null });
+    }
+    return choices;
+  }, [coordsValid, lat, lng, stations, form.stationIds]);
 
   const addSource = () => {
     const src: DataSource = {
@@ -244,30 +257,33 @@ export function ShopEditor(props: Props) {
             />
           </Field>
         </div>
-        <Field
-          label="最寄り駅"
-          hint={
-            stations.length === 0 ? '駅データが未登録のため選択できません。' : 'Ctrl キーを押しながら複数選択できます。'
-          }
-        >
-          <select
-            multiple
-            value={form.stationIds}
-            disabled={stations.length === 0}
-            onChange={(e) =>
-              set(
-                'stationIds',
-                [...e.target.selectedOptions].map((o) => o.value),
-              )
-            }
-          >
-            {stations.map((s) => (
-              <option key={s.id} value={s.id}>
-                {s.name}（{s.lines.join('・') || '路線未登録'}）
-              </option>
-            ))}
-          </select>
-        </Field>
+        <div className="form-field">
+          <span className="form-field__label">
+            最寄り駅<span className="optional">任意・複数可</span>
+          </span>
+          {stationChoices.length === 0 ? (
+            <span className="hint">
+              {stations.length === 0 ? '駅データがありません。' : '座標を入力すると、近くの駅（2km以内）から選べます。'}
+            </span>
+          ) : (
+            <div className="checks checks--column">
+              {stationChoices.map(({ station, distanceM }) => (
+                <label key={station.id} className="check">
+                  <input
+                    type="checkbox"
+                    checked={form.stationIds.includes(station.id)}
+                    onChange={() => set('stationIds', toggle(form.stationIds, station.id))}
+                  />
+                  {stationLabel(station)}
+                  {distanceM !== null && <span className="hint">約{Math.round(distanceM / 10) * 10}m</span>}
+                </label>
+              ))}
+            </div>
+          )}
+          <span className="hint">
+            店舗の位置から近い駅を表示しています（直線距離）。最寄り駅かどうかはご自身で判断してください。
+          </span>
+        </div>
       </fieldset>
 
       <fieldset className="form-group">
