@@ -9,7 +9,8 @@ import {
 } from './mapConfig';
 
 const all = getRegionPreset('all').bounds;
-const inside = (lng: number, lat: number) => lng >= all[0][0] && lng <= all[1][0] && lat >= all[0][1] && lat <= all[1][1];
+const inside = (lng: number, lat: number) =>
+  lng >= all[0][0] && lng <= all[1][0] && lat >= all[0][1] && lat <= all[1][1];
 
 describe('mapConfig', () => {
   it('既定スタイルが一覧に存在し、URL は HTTPS で APIキーを含まない', () => {

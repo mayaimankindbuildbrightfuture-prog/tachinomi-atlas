@@ -17,6 +17,7 @@ test.describe('地図の基礎（外部通信なし）', () => {
     await expect(page.getByText('地図表示中')).toBeVisible({ timeout: 20_000 });
     await expect(page.getByRole('alert')).toHaveCount(0);
 
+    await page.getByRole('tab', { name: '地図の表示' }).click();
     // 初期表示は斜め（3D）視点
     await page.getByRole('button', { name: '初期表示に戻る' }).click();
     await expect.poll(() => readPitch(page), { timeout: 10_000 }).toBeGreaterThan(30);
@@ -63,6 +64,7 @@ test.describe('地図の基礎（外部通信なし）', () => {
     await serveFixtureStyleWithBuildings(page);
     await page.goto('/');
     await expect(page.getByText('地図表示中')).toBeVisible({ timeout: 20_000 });
+    await page.getByRole('tab', { name: '地図の表示' }).click();
 
     const checkbox = page.getByRole('checkbox', { name: '3D建物' });
     await expect(checkbox).toBeEnabled();
@@ -81,6 +83,7 @@ test.describe('地図の基礎（外部通信なし）', () => {
     await serveFixtureStyle(page);
     await page.goto('/');
     await expect(page.getByText('地図表示中')).toBeVisible({ timeout: 20_000 });
+    await page.getByRole('tab', { name: '地図の表示' }).click();
     await expect(page.getByRole('checkbox', { name: '3D建物' })).toBeDisabled();
     await expect(page.getByText('この地図スタイルには建物データがないため')).toBeVisible();
   });
@@ -93,7 +96,7 @@ test.describe('地図の基礎（外部通信なし）', () => {
     await page.getByRole('button', { name: '◀ 閉じる' }).click();
     await expect.poll(async () => (await mapBox())?.width ?? 0).toBeGreaterThan((before?.width ?? 0) + 100);
     await page.getByRole('button', { name: '▶' }).click();
-    await expect(page.getByRole('heading', { name: '表示レイヤー' })).toBeVisible();
+    await expect(page.getByRole('tab', { name: '店舗を探す' })).toBeVisible();
   });
 
   test('地図サービスに接続できない場合、原因と対処を表示し、地図操作は続けられる', async ({ page }) => {
