@@ -5,6 +5,7 @@
  * 注文モデル（F-18）の実装時に追加する。
  */
 import { distanceMeters } from './geo';
+import { MARK_LABELS, type MarkKind, type ShopMark } from './visit';
 import { openStateAt, openStateOnDay, parseMinutes, formatDay } from './hours';
 import {
   PRICE_LEVEL_LABELS,
@@ -19,6 +20,16 @@ import {
 } from './shop';
 
 export type SeatingStyle = 'any' | 'standingOnly' | 'withSeating';
+
+export type VisitedFilter = 'any' | 'visited' | 'unvisited';
+
+/** 個人記録による絞り込みに使う情報（店舗データとは別に管理されている） */
+export type PersonalContext = {
+  visitedShopIds: ReadonlySet<string>;
+  marks: ReadonlyMap<string, ShopMark>;
+};
+
+const EMPTY_PERSONAL: PersonalContext = { visitedShopIds: new Set(), marks: new Map() };
 
 export type ShopFilter = {
   keyword: string;
@@ -38,6 +49,10 @@ export type ShopFilter = {
   /** 営業時間が未登録・不明な店舗も結果に含めるか */
   includeUnknownHours: boolean;
   statuses: ShopStatus[];
+  /** 訪問済み・未訪問 */
+  visited: VisitedFilter;
+  /** お気に入り・行きたい店・再訪したい（いずれかに当てはまる） */
+  marks: MarkKind[];
 };
 
 export const EMPTY_FILTER: ShopFilter = {
@@ -54,6 +69,8 @@ export const EMPTY_FILTER: ShopFilter = {
   openTime: '',
   includeUnknownHours: false,
   statuses: [],
+  visited: 'any',
+  marks: [],
 };
 
 function matchesKeyword(shop: Shop, keyword: string): boolean {
@@ -81,7 +98,23 @@ function matchesStation(shop: Shop, filter: ShopFilter, stations: readonly Stati
   return distanceMeters(station.latitude, station.longitude, shop.latitude, shop.longitude) <= filter.stationRadiusM;
 }
 
-export function matchesFilter(shop: Shop, filter: ShopFilter, stations: readonly Station[] = []): boolean {
+function matchesPersonal(shop: Shop, filter: ShopFilter, personal: PersonalContext): boolean {
+  const visited = personal.visitedShopIds.has(shop.id);
+  if (filter.visited === 'visited' && !visited) return false;
+  if (filter.visited === 'unvisited' && visited) return false;
+  if (filter.marks.length > 0) {
+    const mark = personal.marks.get(shop.id);
+    if (!mark || !filter.marks.some((k) => mark[k])) return false;
+  }
+  return true;
+}
+
+export function matchesFilter(
+  shop: Shop,
+  filter: ShopFilter,
+  stations: readonly Station[] = [],
+  personal: PersonalContext = EMPTY_PERSONAL,
+): boolean {
   if (!matchesKeyword(shop, filter.keyword)) return false;
   if (filter.prefectures.length > 0 && (shop.prefecture === null || !filter.prefectures.includes(shop.prefecture)))
     return false;
@@ -94,11 +127,17 @@ export function matchesFilter(shop: Shop, filter: ShopFilter, stations: readonly
   if (filter.seating === 'withSeating' && shop.hasSeating !== true) return false;
   if (!matchesHours(shop, filter)) return false;
   if (filter.statuses.length > 0 && !filter.statuses.includes(shop.status)) return false;
+  if (!matchesPersonal(shop, filter, personal)) return false;
   return true;
 }
 
-export function filterShops(shops: readonly Shop[], filter: ShopFilter, stations: readonly Station[] = []): Shop[] {
-  return shops.filter((s) => matchesFilter(s, filter, stations));
+export function filterShops(
+  shops: readonly Shop[],
+  filter: ShopFilter,
+  stations: readonly Station[] = [],
+  personal: PersonalContext = EMPTY_PERSONAL,
+): Shop[] {
+  return shops.filter((s) => matchesFilter(s, filter, stations, personal));
 }
 
 export function isFilterActive(filter: ShopFilter): boolean {
@@ -152,6 +191,15 @@ export function activeFilterChips(filter: ShopFilter, stations: readonly Station
   }
   for (const s of filter.statuses) {
     chips.push({ label: STATUS_LABELS[s], clear: (f) => ({ ...f, statuses: f.statuses.filter((x) => x !== s) }) });
+  }
+  if (filter.visited !== 'any') {
+    chips.push({
+      label: filter.visited === 'visited' ? '訪問済み' : '未訪問',
+      clear: (f) => ({ ...f, visited: 'any' }),
+    });
+  }
+  for (const k of filter.marks) {
+    chips.push({ label: MARK_LABELS[k], clear: (f) => ({ ...f, marks: f.marks.filter((x) => x !== k) }) });
   }
   return chips;
 }

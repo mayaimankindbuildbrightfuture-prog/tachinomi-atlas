@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { formatDay, formatHoursEntry, entryForDay, openStateAt, tokyoNow, type TokyoNow } from '../../domain/hours';
 import { nearestStations } from '../../domain/density';
 import { formatDate, formatDateTime, formatTriState, formatYen, hostnameOf } from '../../domain/format';
@@ -21,6 +22,8 @@ type Props = {
   onEdit: () => void;
   onDelete: () => void;
   onShowOnMap: () => void;
+  /** 個人記録（お気に入り・訪問記録）。店舗の事実情報とは分けて表示する */
+  personalSection?: ReactNode;
 };
 
 /** 月曜始まりで表示する */
@@ -49,6 +52,7 @@ export function ShopDetail({
   onEdit,
   onDelete,
   onShowOnMap,
+  personalSection,
 }: Props) {
   const sourceById = new Map(sources.map((s) => [s.id, s]));
   const shopSources = shop.sourceIds.map((id) => sourceById.get(id) ?? null);
@@ -92,6 +96,10 @@ export function ShopDetail({
           削除
         </button>
       </div>
+
+      {personalSection}
+
+      <h3 className="detail__facts-title">店舗の情報</h3>
 
       <dl className="detail__list">
         <dt>住所</dt>
@@ -264,7 +272,6 @@ export function ShopDetail({
         <div>登録：{formatDateTime(shop.createdAt)}</div>
         <div>更新：{formatDateTime(shop.updatedAt)}</div>
         <div>{isSeedShop ? '初期データの店舗' : '自分で追加した店舗'}</div>
-        <div>お気に入り・行きたい店・訪問記録は今後のフェーズで追加予定です。</div>
       </footer>
     </article>
   );

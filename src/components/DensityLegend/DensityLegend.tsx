@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { DENSITY_STEPS, SURVEYED_ZERO_COLOR, gridHeightPerShop, priceLevelLegend } from '../../domain/density';
 import { CATEGORIES } from '../../domain/shop';
-import { DISPLAY_MODES, type DisplayMode } from '../../services/map/densityLayers';
+import { DISPLAY_MODES, UNVISITED_COLOR, VISITED_COLOR, type DisplayMode } from '../../services/map/densityLayers';
 
 type Props = {
   mode: DisplayMode;
@@ -11,6 +11,8 @@ type Props = {
   priceCounts: Record<string, number>;
   gridSizeM: number;
   surveyAreaCount: number;
+  /** 表示対象のうち訪問済みの店舗数 */
+  visitedCount: number;
 };
 
 function Swatch({ color, round }: { color: string; round?: boolean }) {
@@ -18,7 +20,15 @@ function Swatch({ color, round }: { color: string; round?: boolean }) {
 }
 
 /** 地図下部の凡例。色・高さが何を表すか、データの網羅性の限界とあわせて示す（仕様書 4.5） */
-export function DensityLegend({ mode, shownCount, categoryCounts, priceCounts, gridSizeM, surveyAreaCount }: Props) {
+export function DensityLegend({
+  mode,
+  shownCount,
+  categoryCounts,
+  priceCounts,
+  gridSizeM,
+  surveyAreaCount,
+  visitedCount,
+}: Props) {
   const [open, setOpen] = useState(true);
   const label = DISPLAY_MODES.find((m) => m.id === mode)?.label ?? '';
   const size = gridSizeM >= 1000 ? `${gridSizeM / 1000}km` : `${gridSizeM}m`;
@@ -99,6 +109,22 @@ export function DensityLegend({ mode, shownCount, categoryCounts, priceCounts, g
                 ))}
               </ul>
               <p className="hint">複数ジャンルの店舗は、最初に登録したジャンルの色で表示します。</p>
+            </>
+          )}
+
+          {mode === 'visited' && (
+            <>
+              <ul className="legend__items">
+                <li>
+                  <Swatch color={VISITED_COLOR} round />
+                  訪問済み（{visitedCount}）
+                </li>
+                <li>
+                  <Swatch color={UNVISITED_COLOR} round />
+                  未訪問（{shownCount - visitedCount}）
+                </li>
+              </ul>
+              <p className="hint">自分の訪問記録がある店舗を明るい色で表示します。</p>
             </>
           )}
 

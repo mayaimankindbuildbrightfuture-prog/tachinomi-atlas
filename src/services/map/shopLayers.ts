@@ -26,18 +26,30 @@ export type ShopFeatureProperties = {
   category: string;
   status: Shop['status'];
   priceLevel: Shop['priceLevel'];
+  /** 自分の訪問記録があるか */
+  visited: boolean;
 };
 
 export type ShopFeatureCollection = GeoJSON.FeatureCollection<GeoJSON.Point, ShopFeatureProperties>;
 
 /** 店舗を GeoJSON に変換する。MapLibre は [経度, 緯度] の順で座標を受け取る */
-export function shopsToFeatureCollection(shops: readonly Shop[]): ShopFeatureCollection {
+export function shopsToFeatureCollection(
+  shops: readonly Shop[],
+  visitedShopIds: ReadonlySet<string> = new Set(),
+): ShopFeatureCollection {
   return {
     type: 'FeatureCollection',
     features: shops.map((s) => ({
       type: 'Feature',
       geometry: { type: 'Point', coordinates: [s.longitude, s.latitude] },
-      properties: { id: s.id, name: s.name, category: primaryCategory(s), status: s.status, priceLevel: s.priceLevel },
+      properties: {
+        id: s.id,
+        name: s.name,
+        category: primaryCategory(s),
+        status: s.status,
+        priceLevel: s.priceLevel,
+        visited: visitedShopIds.has(s.id),
+      },
     })),
   };
 }
