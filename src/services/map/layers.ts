@@ -51,9 +51,17 @@ export function findExistingBuildingExtrusionIds(style: StyleSpecification): str
     .map((l) => l.id);
 }
 
-/** 文字ラベルより下に建物を描くため、最初の symbol レイヤーのIDを返す */
-export function findFirstSymbolLayerId(style: StyleSpecification): string | undefined {
-  return style.layers.find((l) => l.type === 'symbol')?.id;
+/**
+ * 3D建物レイヤーの挿入位置（このIDのレイヤーの直前に入れる）。
+ * スタイル側の平面の建物レイヤーより後（上）に、かつ文字ラベルより前（下）に描く。
+ * 平面の建物レイヤーが後にあると、立体の建物を上から塗りつぶしてしまうため。
+ */
+export function findBuildingInsertBeforeId(style: StyleSpecification): string | undefined {
+  let lastBuildingIndex = -1;
+  style.layers.forEach((l, i) => {
+    if (sourceLayerOf(l) === BUILDING_SOURCE_LAYER && l.id !== BUILDINGS_3D_LAYER_ID) lastBuildingIndex = i;
+  });
+  return style.layers.find((l, i) => i > lastBuildingIndex && l.type === 'symbol')?.id;
 }
 
 export function buildBuildings3DLayer(sourceId: string): FillExtrusionLayerSpecification {

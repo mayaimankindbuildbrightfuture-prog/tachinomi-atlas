@@ -36,7 +36,7 @@ import {
   buildBuildings3DLayer,
   findBuildingSourceId,
   findExistingBuildingExtrusionIds,
-  findFirstSymbolLayerId,
+  findBuildingInsertBeforeId,
   localizeLabelLayers,
 } from './layers';
 import {
@@ -241,7 +241,7 @@ export function createMapController(
 
     const sourceId = findBuildingSourceId(style);
     if (sourceId && !map.getLayer(BUILDINGS_3D_LAYER_ID)) {
-      map.addLayer(buildBuildings3DLayer(sourceId), findFirstSymbolLayerId(style));
+      map.addLayer(buildBuildings3DLayer(sourceId), findBuildingInsertBeforeId(style));
     }
     applyBuildingsVisibility();
     handlers.onBuildingsAvailability?.(sourceId ? 'available' : 'unavailable');

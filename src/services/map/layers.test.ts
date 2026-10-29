@@ -7,7 +7,7 @@ import {
   buildBuildings3DLayer,
   findBuildingSourceId,
   findExistingBuildingExtrusionIds,
-  findFirstSymbolLayerId,
+  findBuildingInsertBeforeId,
   localizeLabelLayers,
 } from './layers';
 import { BUILDING_MIN_ZOOM } from './mapConfig';
@@ -51,18 +51,32 @@ describe('findExistingBuildingExtrusionIds', () => {
   });
 });
 
-describe('findFirstSymbolLayerId', () => {
-  it('最初の symbol レイヤーを返す', () => {
+describe('findBuildingInsertBeforeId', () => {
+  it('平面の建物レイヤーより後で、最初の文字ラベルの前に入れる', () => {
+    const s = style(
+      [
+        { id: 'bg', type: 'background' },
+        { id: 'label-early', type: 'symbol', source: 'openmaptiles', 'source-layer': 'water_name' },
+        { id: 'building', type: 'fill', source: 'openmaptiles', 'source-layer': 'building' },
+        { id: 'road', type: 'line', source: 'openmaptiles', 'source-layer': 'transportation' },
+        { id: 'label-a', type: 'symbol', source: 'openmaptiles', 'source-layer': 'place' },
+        { id: 'label-b', type: 'symbol', source: 'openmaptiles', 'source-layer': 'place' },
+      ],
+      omtSources,
+    );
+    expect(findBuildingInsertBeforeId(s)).toBe('label-a');
+  });
+
+  it('建物レイヤーが無ければ最初の文字ラベルの前', () => {
     const s = style([
       { id: 'bg', type: 'background' },
       { id: 'label-a', type: 'symbol', source: 'openmaptiles', 'source-layer': 'place' },
-      { id: 'label-b', type: 'symbol', source: 'openmaptiles', 'source-layer': 'place' },
     ]);
-    expect(findFirstSymbolLayerId(s)).toBe('label-a');
+    expect(findBuildingInsertBeforeId(s)).toBe('label-a');
   });
 
-  it('symbol が無ければ undefined（最前面に追加）', () => {
-    expect(findFirstSymbolLayerId(OFFLINE_FALLBACK_STYLE)).toBeUndefined();
+  it('後ろに文字ラベルが無ければ undefined（最前面に追加）', () => {
+    expect(findBuildingInsertBeforeId(OFFLINE_FALLBACK_STYLE)).toBeUndefined();
   });
 });
 

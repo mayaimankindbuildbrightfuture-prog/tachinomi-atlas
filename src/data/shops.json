@@ -1,54 +1,148 @@
 {
   "schemaVersion": 1,
-  "attribution": "店舗の名称・位置・住所は OpenStreetMap より取得（© OpenStreetMap contributors、ODbL 1.0 / https://www.openstreetmap.org/copyright）。取得日 2026-10-29。",
+  "attribution": "店舗の名称・位置・住所は OpenStreetMap より取得（© OpenStreetMap contributors、ODbL 1.0 / https://www.openstreetmap.org/copyright）。取得日 2026-10-29。 一部店舗の住所・営業時間は各店の運営会社の公式サイトで確認（各店舗の出典を参照）。",
   "shops": [
     {
       "id": "osm-node-5861166285",
-      "name": "立ち飲み日高",
+      "name": "焼鳥日高 大宮一番街店",
       "latitude": 35.9081792,
       "longitude": 139.6258428,
-      "address": null,
+      "address": "埼玉県さいたま市大宮区宮町1丁目83-2",
       "prefecture": "埼玉県",
       "municipality": "さいたま市大宮区",
       "stationIds": [],
-      "categories": [],
+      "categories": ["yakitori"],
       "drinkTags": [],
       "standingOnly": null,
       "hasSeating": null,
       "priceLevel": "unknown",
       "priceExamples": [],
-      "openingHours": [],
-      "officialUrl": null,
-      "status": "unverified",
-      "sourceIds": ["src-osm-node-5861166285"],
+      "openingHours": [
+        {
+          "dayOfWeek": 1,
+          "opensAt": "11:00",
+          "closesAt": "23:30",
+          "isClosed": false
+        },
+        {
+          "dayOfWeek": 2,
+          "opensAt": "11:00",
+          "closesAt": "23:30",
+          "isClosed": false
+        },
+        {
+          "dayOfWeek": 3,
+          "opensAt": "11:00",
+          "closesAt": "23:30",
+          "isClosed": false
+        },
+        {
+          "dayOfWeek": 4,
+          "opensAt": "11:00",
+          "closesAt": "23:30",
+          "isClosed": false
+        },
+        {
+          "dayOfWeek": 5,
+          "opensAt": "11:00",
+          "closesAt": "24:00",
+          "isClosed": false
+        },
+        {
+          "dayOfWeek": 6,
+          "opensAt": "11:00",
+          "closesAt": "24:00",
+          "isClosed": false
+        },
+        {
+          "dayOfWeek": 0,
+          "opensAt": "11:00",
+          "closesAt": "23:00",
+          "isClosed": false
+        }
+      ],
+      "officialUrl": "https://hidakaya.hiday.co.jp/hits/ja/shop/6/detail/266.html",
+      "status": "verified",
+      "sourceIds": [
+        "src-official-yakitorihidaka-omiya-ichibangai",
+        "src-official-yakitorihidaka-brand",
+        "src-osm-node-5861166285"
+      ],
       "createdAt": "2026-10-29T00:00:00.000Z",
-      "updatedAt": "2026-10-29T00:00:00.000Z",
-      "lastVerifiedAt": null,
-      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: さいたま市大宮区宮町一丁目\nOSM上の情報は 2018-08-27 以降更新されていないため、現在の営業は特に要確認。\nOSM上に同名の地点が約140m離れて2件ある。別の店舗か重複登録かは未確認。"
+      "updatedAt": "2026-10-29T12:00:00.000Z",
+      "lastVerifiedAt": "2026-10-29",
+      "notes": "公式サイトで店名・住所・営業時間を確認（2026-10-29）。L.O.は閉店30分前。\n公式記載の特別営業時間：2026/11/03・2026/11/23 は 11:00-23:00。\n座標は OpenStreetMap の地点。公式サイトの住所を国土地理院の住所検索で照合し、約30m以内で一致することを確認（2026-10-29）。\nOSM上の名称は「立ち飲み日高」。公式サイトの業態紹介に「立ち飲みも」とあるが、立ち呑み専業かは未確認。価格は未確認。"
     },
     {
       "id": "osm-node-7473026944",
-      "name": "立ち飲み日高",
+      "name": "焼鳥日高 大宮すずらん通店",
       "latitude": 35.9069292,
       "longitude": 139.6256914,
-      "address": null,
+      "address": "埼玉県さいたま市大宮区大門町1-20",
       "prefecture": "埼玉県",
       "municipality": "さいたま市大宮区",
       "stationIds": [],
-      "categories": [],
+      "categories": ["yakitori"],
       "drinkTags": [],
       "standingOnly": null,
       "hasSeating": null,
       "priceLevel": "unknown",
       "priceExamples": [],
-      "openingHours": [],
-      "officialUrl": null,
-      "status": "unverified",
-      "sourceIds": ["src-osm-node-7473026944"],
+      "openingHours": [
+        {
+          "dayOfWeek": 1,
+          "opensAt": "11:00",
+          "closesAt": "24:00",
+          "isClosed": false
+        },
+        {
+          "dayOfWeek": 2,
+          "opensAt": "11:00",
+          "closesAt": "24:00",
+          "isClosed": false
+        },
+        {
+          "dayOfWeek": 3,
+          "opensAt": "11:00",
+          "closesAt": "24:00",
+          "isClosed": false
+        },
+        {
+          "dayOfWeek": 4,
+          "opensAt": "11:00",
+          "closesAt": "24:00",
+          "isClosed": false
+        },
+        {
+          "dayOfWeek": 5,
+          "opensAt": "11:00",
+          "closesAt": "24:00",
+          "isClosed": false
+        },
+        {
+          "dayOfWeek": 6,
+          "opensAt": "11:00",
+          "closesAt": "24:00",
+          "isClosed": false
+        },
+        {
+          "dayOfWeek": 0,
+          "opensAt": "11:00",
+          "closesAt": "24:00",
+          "isClosed": false
+        }
+      ],
+      "officialUrl": "https://hidakaya.hiday.co.jp/hits/ja/shop/6/detail/200.html",
+      "status": "verified",
+      "sourceIds": [
+        "src-official-yakitorihidaka-omiya-suzuran",
+        "src-official-yakitorihidaka-brand",
+        "src-osm-node-7473026944"
+      ],
       "createdAt": "2026-10-29T00:00:00.000Z",
-      "updatedAt": "2026-10-29T00:00:00.000Z",
-      "lastVerifiedAt": null,
-      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: さいたま市大宮区大門町一丁目\nOSM上の情報は 2020-05-02 以降更新されていないため、現在の営業は特に要確認。\nOSM上に同名の地点が約140m離れて2件ある。別の店舗か重複登録かは未確認。"
+      "updatedAt": "2026-10-29T12:00:00.000Z",
+      "lastVerifiedAt": "2026-10-29",
+      "notes": "公式サイトで店名・住所・営業時間を確認（2026-10-29）。L.O.は閉店30分前。\n座標は OpenStreetMap の地点。公式サイトの住所を国土地理院の住所検索で照合し、約35m以内で一致することを確認（2026-10-29）。\nOSM上の名称は「立ち飲み日高」。公式サイトの業態紹介に「立ち飲みも」とあるが、立ち呑み専業かは未確認。価格は未確認。\n以前は同名の2地点として重複の可能性を記載していたが、公式サイトで別店舗（一番街店・すずらん通店）と確認できた。"
     },
     {
       "id": "osm-node-14065412306",
@@ -70,9 +164,9 @@
       "status": "unverified",
       "sourceIds": ["src-osm-node-14065412306"],
       "createdAt": "2026-10-29T00:00:00.000Z",
-      "updatedAt": "2026-10-29T00:00:00.000Z",
+      "updatedAt": "2026-10-29T12:00:00.000Z",
       "lastVerifiedAt": null,
-      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 所沢市東所沢和田一丁目\nOSMの階数情報（level）: 0"
+      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 所沢市東所沢和田一丁目\nOSMの階数情報（level）: 0\n2026-10-29 に公式サイト・公式SNSを検索したが見つからなかった（グルメサイト等の掲載情報は公式ではないため採用していない）。"
     },
     {
       "id": "osm-node-13285092518",
@@ -94,9 +188,9 @@
       "status": "unverified",
       "sourceIds": ["src-osm-node-13285092518"],
       "createdAt": "2026-10-29T00:00:00.000Z",
-      "updatedAt": "2026-10-29T00:00:00.000Z",
+      "updatedAt": "2026-10-29T12:00:00.000Z",
       "lastVerifiedAt": null,
-      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 中野区鷺宮三丁目"
+      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 中野区鷺宮三丁目\n2026-10-29 に公式サイト・公式SNSを検索したが見つからなかった（グルメサイト等の掲載情報は公式ではないため採用していない）。"
     },
     {
       "id": "osm-node-7909088673",
@@ -118,9 +212,9 @@
       "status": "unverified",
       "sourceIds": ["src-osm-node-7909088673"],
       "createdAt": "2026-10-29T00:00:00.000Z",
-      "updatedAt": "2026-10-29T00:00:00.000Z",
+      "updatedAt": "2026-10-29T12:00:00.000Z",
       "lastVerifiedAt": null,
-      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 北区上中里二丁目\nOSM上の情報は 2020-09-15 以降更新されていないため、現在の営業は特に要確認。"
+      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 北区上中里二丁目\nOSM上の情報は 2020-09-15 以降更新されていないため、現在の営業は特に要確認。\n2026-10-29 に公式情報を検索。同名店の公式とみられる Instagram・X はログインが必要で内容を確認できなかった。また掲載サイト上の同名店（赤羽）とOSMの位置（上中里）が一致せず、同じ店かは不明。"
     },
     {
       "id": "osm-node-10130572550",
@@ -142,9 +236,9 @@
       "status": "unverified",
       "sourceIds": ["src-osm-node-10130572550"],
       "createdAt": "2026-10-29T00:00:00.000Z",
-      "updatedAt": "2026-10-29T00:00:00.000Z",
+      "updatedAt": "2026-10-29T12:00:00.000Z",
       "lastVerifiedAt": null,
-      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 北区十条仲原一丁目"
+      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 北区十条仲原一丁目\n2026-10-29 に公式サイト・公式SNSを検索したが見つからなかった（グルメサイト等の掲載情報は公式ではないため採用していない）。"
     },
     {
       "id": "osm-node-2383032943",
@@ -166,9 +260,9 @@
       "status": "unverified",
       "sourceIds": ["src-osm-node-2383032943"],
       "createdAt": "2026-10-29T00:00:00.000Z",
-      "updatedAt": "2026-10-29T00:00:00.000Z",
+      "updatedAt": "2026-10-29T12:00:00.000Z",
       "lastVerifiedAt": null,
-      "notes": "OpenStreetMap の登録内容（名称・位置・住所）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 千代田区神田佐久間町一丁目\nOSMの階数情報（level）: 1"
+      "notes": "OpenStreetMap の登録内容（名称・位置・住所）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 千代田区神田佐久間町一丁目\nOSMの階数情報（level）: 1\n2026-10-29 に公式サイト・公式SNSを検索したが見つからなかった（グルメサイト等の掲載情報は公式ではないため採用していない）。"
     },
     {
       "id": "osm-node-9459285069",
@@ -190,9 +284,9 @@
       "status": "unverified",
       "sourceIds": ["src-osm-node-9459285069"],
       "createdAt": "2026-10-29T00:00:00.000Z",
-      "updatedAt": "2026-10-29T00:00:00.000Z",
+      "updatedAt": "2026-10-29T12:00:00.000Z",
       "lastVerifiedAt": null,
-      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 台東区上野三丁目"
+      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 台東区上野三丁目\n2026-10-29 に公式サイト・公式SNSを検索したが見つからなかった（グルメサイト等の掲載情報は公式ではないため採用していない）。"
     },
     {
       "id": "osm-node-5151350785",
@@ -214,9 +308,9 @@
       "status": "unverified",
       "sourceIds": ["src-osm-node-5151350785"],
       "createdAt": "2026-10-29T00:00:00.000Z",
-      "updatedAt": "2026-10-29T00:00:00.000Z",
+      "updatedAt": "2026-10-29T12:00:00.000Z",
       "lastVerifiedAt": null,
-      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 台東区上野七丁目\nOSMの階数情報（level）: 0"
+      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 台東区上野七丁目\nOSMの階数情報（level）: 0\n2026-10-29 に公式サイト・公式SNSを検索したが見つからなかった（グルメサイト等の掲載情報は公式ではないため採用していない）。"
     },
     {
       "id": "osm-node-5246789886",
@@ -238,9 +332,9 @@
       "status": "unverified",
       "sourceIds": ["src-osm-node-5246789886"],
       "createdAt": "2026-10-29T00:00:00.000Z",
-      "updatedAt": "2026-10-29T00:00:00.000Z",
+      "updatedAt": "2026-10-29T12:00:00.000Z",
       "lastVerifiedAt": null,
-      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 台東区上野六丁目\nOSMの階数情報（level）: 0"
+      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 台東区上野六丁目\nOSMの階数情報（level）: 0\n2026-10-29 に公式サイト・公式SNSを検索したが見つからなかった（グルメサイト等の掲載情報は公式ではないため採用していない）。"
     },
     {
       "id": "osm-node-1130419715",
@@ -262,9 +356,9 @@
       "status": "unverified",
       "sourceIds": ["src-osm-node-1130419715"],
       "createdAt": "2026-10-29T00:00:00.000Z",
-      "updatedAt": "2026-10-29T00:00:00.000Z",
+      "updatedAt": "2026-10-29T12:00:00.000Z",
       "lastVerifiedAt": null,
-      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 品川区南品川三丁目\nOSM上の情報は 2011-02-01 以降更新されていないため、現在の営業は特に要確認。"
+      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 品川区南品川三丁目\nOSM上の情報は 2011-02-01 以降更新されていないため、現在の営業は特に要確認。\n2026-10-29 に公式サイト・公式SNSを検索したが見つからなかった（グルメサイト等の掲載情報は公式ではないため採用していない）。"
     },
     {
       "id": "osm-node-11811371062",
@@ -286,9 +380,9 @@
       "status": "unverified",
       "sourceIds": ["src-osm-node-11811371062"],
       "createdAt": "2026-10-29T00:00:00.000Z",
-      "updatedAt": "2026-10-29T00:00:00.000Z",
+      "updatedAt": "2026-10-29T12:00:00.000Z",
       "lastVerifiedAt": null,
-      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 墨田区錦糸四丁目"
+      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 墨田区錦糸四丁目\n2026-10-29 に公式サイト・公式SNSを検索したが見つからなかった（グルメサイト等の掲載情報は公式ではないため採用していない）。"
     },
     {
       "id": "osm-node-540816357",
@@ -310,9 +404,9 @@
       "status": "unverified",
       "sourceIds": ["src-osm-node-540816357"],
       "createdAt": "2026-10-29T00:00:00.000Z",
-      "updatedAt": "2026-10-29T00:00:00.000Z",
+      "updatedAt": "2026-10-29T12:00:00.000Z",
       "lastVerifiedAt": null,
-      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 大田区西蒲田七丁目\nOSM上の情報は 2009-10-26 以降更新されていないため、現在の営業は特に要確認。"
+      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 大田区西蒲田七丁目\nOSM上の情報は 2009-10-26 以降更新されていないため、現在の営業は特に要確認。\n2026-10-29 に公式サイト・公式SNSを検索したが見つからなかった（グルメサイト等の掲載情報は公式ではないため採用していない）。"
     },
     {
       "id": "osm-node-9556441533",
@@ -334,16 +428,16 @@
       "status": "unverified",
       "sourceIds": ["src-osm-node-9556441533"],
       "createdAt": "2026-10-29T00:00:00.000Z",
-      "updatedAt": "2026-10-29T00:00:00.000Z",
+      "updatedAt": "2026-10-29T12:00:00.000Z",
       "lastVerifiedAt": null,
-      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 府中市片町二丁目\nOSMの階数情報（level）: 0"
+      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 府中市片町二丁目\nOSMの階数情報（level）: 0\n2026-10-29 に公式サイト・公式SNSを検索したが見つからなかった（グルメサイト等の掲載情報は公式ではないため採用していない）。"
     },
     {
       "id": "osm-node-14134404904",
-      "name": "立呑み晩杯屋",
+      "name": "立呑み晩杯屋 吉祥寺店",
       "latitude": 35.7035627,
       "longitude": 139.5790588,
-      "address": null,
+      "address": "東京都武蔵野市吉祥寺本町1-1-3 ハモニカ横丁",
       "prefecture": "東京都",
       "municipality": "武蔵野市",
       "stationIds": [],
@@ -353,14 +447,57 @@
       "hasSeating": null,
       "priceLevel": "unknown",
       "priceExamples": [],
-      "openingHours": [],
-      "officialUrl": null,
-      "status": "unverified",
-      "sourceIds": ["src-osm-node-14134404904"],
+      "openingHours": [
+        {
+          "dayOfWeek": 1,
+          "opensAt": "13:00",
+          "closesAt": "22:30",
+          "isClosed": false
+        },
+        {
+          "dayOfWeek": 2,
+          "opensAt": "13:00",
+          "closesAt": "22:30",
+          "isClosed": false
+        },
+        {
+          "dayOfWeek": 3,
+          "opensAt": "13:00",
+          "closesAt": "22:30",
+          "isClosed": false
+        },
+        {
+          "dayOfWeek": 4,
+          "opensAt": "13:00",
+          "closesAt": "22:30",
+          "isClosed": false
+        },
+        {
+          "dayOfWeek": 5,
+          "opensAt": "13:00",
+          "closesAt": "23:00",
+          "isClosed": false
+        },
+        {
+          "dayOfWeek": 6,
+          "opensAt": "11:00",
+          "closesAt": "23:00",
+          "isClosed": false
+        },
+        {
+          "dayOfWeek": 0,
+          "opensAt": "11:00",
+          "closesAt": "22:30",
+          "isClosed": false
+        }
+      ],
+      "officialUrl": "https://active-source.co.jp/area/musashino-shi/",
+      "status": "verified",
+      "sourceIds": ["src-official-banpaiya-musashino", "src-osm-node-14134404904"],
       "createdAt": "2026-10-29T00:00:00.000Z",
-      "updatedAt": "2026-10-29T00:00:00.000Z",
-      "lastVerifiedAt": null,
-      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 武蔵野市吉祥寺本町一丁目"
+      "updatedAt": "2026-10-29T12:00:00.000Z",
+      "lastVerifiedAt": "2026-10-29",
+      "notes": "公式サイトで店名・住所・営業時間を確認（2026-10-29）。\n公式記載の営業時間：平日13:00-22:30（L.O.22:00）、土日祝11:00-22:30（L.O.22:00）、金曜・土曜は23時閉店、連休最終日は21時30分閉店。\n公式記載の電話番号：0422-27-2255。\n座標は OpenStreetMap の地点。公式サイトの住所を国土地理院の住所検索で照合し、約20m以内で一致することを確認（2026-10-29）。\nOSM上の名称は「立呑み晩杯屋」。立ち呑み専業か・座席の有無・価格は未確認。"
     },
     {
       "id": "osm-node-6919578585",
@@ -382,9 +519,9 @@
       "status": "unverified",
       "sourceIds": ["src-osm-node-6919578585"],
       "createdAt": "2026-10-29T00:00:00.000Z",
-      "updatedAt": "2026-10-29T00:00:00.000Z",
+      "updatedAt": "2026-10-29T12:00:00.000Z",
       "lastVerifiedAt": null,
-      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 渋谷区円山町\nOSM上の情報は 2019-10-27 以降更新されていないため、現在の営業は特に要確認。"
+      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 渋谷区円山町\nOSM上の情報は 2019-10-27 以降更新されていないため、現在の営業は特に要確認。\n2026-10-29 に公式サイト・公式SNSを検索したが見つからなかった（グルメサイト等の掲載情報は公式ではないため採用していない）。"
     },
     {
       "id": "osm-node-6028951389",
@@ -406,9 +543,9 @@
       "status": "unverified",
       "sourceIds": ["src-osm-node-6028951389"],
       "createdAt": "2026-10-29T00:00:00.000Z",
-      "updatedAt": "2026-10-29T00:00:00.000Z",
+      "updatedAt": "2026-10-29T12:00:00.000Z",
       "lastVerifiedAt": null,
-      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 港区新橋二丁目\nOSM上の情報は 2018-11-01 以降更新されていないため、現在の営業は特に要確認。"
+      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 港区新橋二丁目\nOSM上の情報は 2018-11-01 以降更新されていないため、現在の営業は特に要確認。\n2026-10-29 に公式サイト・公式SNSを検索したが見つからなかった（グルメサイト等の掲載情報は公式ではないため採用していない）。"
     },
     {
       "id": "osm-node-14173060827",
@@ -430,9 +567,9 @@
       "status": "unverified",
       "sourceIds": ["src-osm-node-14173060827"],
       "createdAt": "2026-10-29T00:00:00.000Z",
-      "updatedAt": "2026-10-29T00:00:00.000Z",
+      "updatedAt": "2026-10-29T12:00:00.000Z",
       "lastVerifiedAt": null,
-      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 港区新橋三丁目"
+      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 港区新橋三丁目\n2026-10-29 に公式サイト・公式SNSを検索したが見つからなかった（グルメサイト等の掲載情報は公式ではないため採用していない）。"
     },
     {
       "id": "osm-node-5677086207",
@@ -454,9 +591,9 @@
       "status": "unverified",
       "sourceIds": ["src-osm-node-5677086207"],
       "createdAt": "2026-10-29T00:00:00.000Z",
-      "updatedAt": "2026-10-29T00:00:00.000Z",
+      "updatedAt": "2026-10-29T12:00:00.000Z",
       "lastVerifiedAt": null,
-      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 港区芝四丁目\nOSMでは酒屋（shop=alcohol）として登録され、店名に「立飲み」を含む。"
+      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 港区芝四丁目\nOSMでは酒屋（shop=alcohol）として登録され、店名に「立飲み」を含む。\n2026-10-29 に公式サイト・公式SNSを検索したが見つからなかった（グルメサイト等の掲載情報は公式ではないため採用していない）。"
     },
     {
       "id": "osm-node-12878617519",
@@ -478,9 +615,9 @@
       "status": "unverified",
       "sourceIds": ["src-osm-node-12878617519"],
       "createdAt": "2026-10-29T00:00:00.000Z",
-      "updatedAt": "2026-10-29T00:00:00.000Z",
+      "updatedAt": "2026-10-29T12:00:00.000Z",
       "lastVerifiedAt": null,
-      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 目黒区北千束一丁目"
+      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 目黒区北千束一丁目\n2026-10-29 に公式サイト・公式SNSを検索したが見つからなかった（グルメサイト等の掲載情報は公式ではないため採用していない）。"
     },
     {
       "id": "osm-node-9364756650",
@@ -502,9 +639,9 @@
       "status": "unverified",
       "sourceIds": ["src-osm-node-9364756650"],
       "createdAt": "2026-10-29T00:00:00.000Z",
-      "updatedAt": "2026-10-29T00:00:00.000Z",
+      "updatedAt": "2026-10-29T12:00:00.000Z",
       "lastVerifiedAt": null,
-      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 荒川区西日暮里二丁目\nOSMの階数情報（level）: 2"
+      "notes": "OpenStreetMap の登録内容（名称・位置）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 荒川区西日暮里二丁目\nOSMの階数情報（level）: 2\n2026-10-29 に公式サイト・公式SNSを検索したが見つからなかった（グルメサイト等の掲載情報は公式ではないため採用していない）。"
     },
     {
       "id": "osm-node-11403074383",
@@ -526,9 +663,9 @@
       "status": "unverified",
       "sourceIds": ["src-osm-node-11403074383"],
       "createdAt": "2026-10-29T00:00:00.000Z",
-      "updatedAt": "2026-10-29T00:00:00.000Z",
+      "updatedAt": "2026-10-29T12:00:00.000Z",
       "lastVerifiedAt": null,
-      "notes": "OpenStreetMap の登録内容（名称・位置・住所）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 調布市仙川町一丁目"
+      "notes": "OpenStreetMap の登録内容（名称・位置・住所）のみを転記。営業状況・営業時間・価格は未確認。\n所在地域（OSMの境界データから算出、住所ではない）: 調布市仙川町一丁目\n2026-10-29 に公式サイト・公式SNSを検索したが見つからなかった（グルメサイト等の掲載情報は公式ではないため採用していない）。"
     }
   ]
 }

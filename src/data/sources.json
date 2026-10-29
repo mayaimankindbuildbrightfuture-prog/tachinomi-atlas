@@ -3,6 +3,38 @@
   "attribution": "店舗の名称・位置・住所は OpenStreetMap より取得（© OpenStreetMap contributors、ODbL 1.0 / https://www.openstreetmap.org/copyright）。取得日 2026-10-29。",
   "sources": [
     {
+      "id": "src-official-banpaiya-musashino",
+      "type": "official_site",
+      "name": "晩杯屋 公式サイト（株式会社アクティブソース）店舗一覧・武蔵野市",
+      "url": "https://active-source.co.jp/area/musashino-shi/",
+      "accessedAt": "2026-10-29",
+      "notes": "店名・住所・営業時間・電話番号を確認。"
+    },
+    {
+      "id": "src-official-yakitorihidaka-brand",
+      "type": "official_site",
+      "name": "ハイデイ日高 公式サイト 焼鳥日高 業態紹介",
+      "url": "https://hidakaya.hiday.co.jp/service/yakitorihidaka.html",
+      "accessedAt": "2026-10-29",
+      "notes": "「ランチも立ち飲みも気軽に入れる日高屋の焼き鳥」との記載を確認（各店が立ち呑み専業かどうかの記載はない）。"
+    },
+    {
+      "id": "src-official-yakitorihidaka-omiya-ichibangai",
+      "type": "official_site",
+      "name": "ハイデイ日高 公式サイト 店舗情報（焼鳥日高 大宮一番街店）",
+      "url": "https://hidakaya.hiday.co.jp/hits/ja/shop/6/detail/266.html",
+      "accessedAt": "2026-10-29",
+      "notes": "店名・住所・曜日別営業時間を確認。特別営業時間：2026/11/03・2026/11/23 は 11:00-23:00。"
+    },
+    {
+      "id": "src-official-yakitorihidaka-omiya-suzuran",
+      "type": "official_site",
+      "name": "ハイデイ日高 公式サイト 店舗情報（焼鳥日高 大宮すずらん通店）",
+      "url": "https://hidakaya.hiday.co.jp/hits/ja/shop/6/detail/200.html",
+      "accessedAt": "2026-10-29",
+      "notes": "店名・住所・曜日別営業時間を確認。"
+    },
+    {
       "id": "src-osm-node-10130572550",
       "type": "open_data",
       "name": "OpenStreetMap（立ち飲み 勝）",
