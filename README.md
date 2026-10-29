@@ -7,7 +7,8 @@
 > 3D地図の表示・操作に加え、店舗の登録・編集・削除、地図上のマーカー表示（まとめ表示つき）、店舗詳細、検索・絞り込みが動作します。
 > 酒場密度の表示（Phase 3）、訪問記録・お気に入り・JSONバックアップ（Phase 4）、はしご酒プランナー（Phase 5）は**未実装**です。
 >
-> **初期店舗データは0件です。** 実在店舗の情報は出典を確認できたものだけを登録する方針ですが、開発環境から出典サイトに接続できず確認できなかったため、まだ登録していません（[docs/DATA_SOURCES.md](docs/DATA_SOURCES.md)）。画面の「＋ 店舗を追加」から自分で登録できます。
+> **初期店舗データは OpenStreetMap 由来の22件（東京都19・埼玉県3）です。** すべて「未確認」です。
+> 名称と位置（2件は住所も）を OpenStreetMap から出典・取得日つきで登録しました。営業状況・営業時間・価格は確認できていません。詳細は [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md) を参照してください。
 
 操作方法の詳細は [docs/USER_GUIDE.md](docs/USER_GUIDE.md) を参照してください。
 
@@ -129,4 +130,6 @@ $env:E2E_EXTERNAL=1; npm run test:e2e
 ## ライセンス・出典
 
 地図：[OpenFreeMap](https://openfreemap.org/) © [OpenMapTiles](https://www.openmaptiles.org/) Data from [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors。
+
+同梱の店舗データ（`src/data/shops.json`・`sources.json`）は © OpenStreetMap contributors、[ODbL 1.0](https://opendatacommons.org/licenses/odbl/1-0/) です。再配布時の条件は [src/data/LICENSE-DATA.md](src/data/LICENSE-DATA.md) を参照してください。
 詳細は [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md) を参照してください。

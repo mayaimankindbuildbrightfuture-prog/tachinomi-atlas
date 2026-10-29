@@ -32,6 +32,23 @@ describe('parseShopsJson', () => {
   });
 });
 
+describe('同梱の初期データの品質', () => {
+  it('すべての店舗に、参照日つきの出典が1件以上ある', async () => {
+    const shops = parseShopsJson((await import('../data/shops.json')).default).items;
+    const sources = parseSourcesJson((await import('../data/sources.json')).default).items;
+    const byId = new Map(sources.map((s) => [s.id, s]));
+    for (const shop of shops) {
+      expect(shop.sourceIds.length, shop.name).toBeGreaterThan(0);
+      for (const id of shop.sourceIds) expect(byId.get(id)?.accessedAt, `${shop.name} の出典 ${id}`).toBeTruthy();
+    }
+  });
+
+  it('確認済みでない店舗に確認日を付けていない', async () => {
+    const shops = parseShopsJson((await import('../data/shops.json')).default).items;
+    for (const shop of shops.filter((s) => s.status !== 'verified')) expect(shop.lastVerifiedAt, shop.name).toBeNull();
+  });
+});
+
 describe('parseSourcesJson / parseStationsJson', () => {
   it('出典と駅を検証する', () => {
     expect(parseSourcesJson({ schemaVersion: 1, sources: [testSource, { id: 'x' }] }).items).toHaveLength(1);

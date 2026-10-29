@@ -112,6 +112,8 @@ export interface MapController {
   setPickMode(enabled: boolean): void;
   /** 編集中の店舗位置を仮マーカーで示す（null で消す） */
   setDraftPosition(position: { latitude: number; longitude: number } | null): void;
+  /** パネルの開閉で地図の大きさが変わったとき、地図の中心地点を保ったまま大きさを反映する */
+  resizeKeepingCenter(): void;
   destroy(): void;
 }
 
@@ -384,6 +386,16 @@ export function createMapController(
       // パネルの開閉で地図の大きさが変わった直後でも正しく中央に来るよう、先に大きさを反映する
       map.resize();
       map.flyTo({ center: [longitude, latitude], zoom: Math.max(map.getZoom(), minZoom), duration: 1000 });
+    },
+    resizeKeepingCenter() {
+      // 移動アニメーション中に中心を設定するとアニメーションが止まるため、大きさの反映のみ行う
+      if (map.isMoving()) {
+        map.resize();
+        return;
+      }
+      const center = map.getCenter();
+      map.resize();
+      map.setCenter(center);
     },
     setDraftPosition(position) {
       if (!position) {

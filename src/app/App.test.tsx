@@ -22,6 +22,7 @@ const controller: MapController = {
   flyToPoint: vi.fn(),
   setPickMode: vi.fn(),
   setDraftPosition: vi.fn(),
+  resizeKeepingCenter: vi.fn(),
 };
 let handlers: MapEventHandlers = {};
 const createMapController = vi.fn((_el: HTMLElement, _opts: unknown, h: MapEventHandlers): MapController | null => {

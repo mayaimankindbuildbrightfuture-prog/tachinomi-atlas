@@ -29,7 +29,8 @@ test.describe('店舗の登録・表示・編集・削除（外部通信なし�
     await serveFixtureStyle(page);
     await page.goto('/');
     await expect(page.getByText('地図表示中')).toBeVisible({ timeout: 20_000 });
-    await expect(page.getByText('店舗データがまだ登録されていません。')).toBeVisible();
+    // 初期データの件数（同梱の shops.json）を基準に、追加・削除による増減を確認する
+    const baseCount = Number(await page.getByTestId('result-count').textContent());
 
     // ---- 追加（地図クリックで位置を選択）----
     await page.getByRole('button', { name: '＋ 店舗を追加' }).click();
@@ -53,7 +54,7 @@ test.describe('店舗の登録・表示・編集・削除（外部通信なし�
     await expect(detail.getByRole('heading', { name: 'E2Eテスト用の架空店' })).toBeVisible();
     await expect(detail.getByText('16:00〜23:00')).toBeVisible();
     await expect(detail.getByText('未確認').first()).toBeVisible();
-    await expect(page.getByTestId('result-count')).toHaveText('1');
+    await expect(page.getByTestId('result-count')).toHaveText(String(baseCount + 1));
     await expect(page.locator('.draft-marker')).toHaveCount(0);
 
     // ---- 一覧から選ぶと店舗へ移動する ----
@@ -63,14 +64,12 @@ test.describe('店舗の登録・表示・編集・削除（外部通信なし�
     await expect(page.getByText('中心 35.7700, 139.7200')).toBeVisible({ timeout: 10_000 });
 
     // ---- 地図のマーカーをクリックして選択 ----
+    // パネルを閉じても地図の中心地点は保たれるため、店舗は地図の中央にある
     await detail.getByRole('button', { name: '詳細パネルを閉じる' }).click();
     await expect(detail).toHaveCount(0);
-    await page.getByRole('tab', { name: '地図の表示' }).click();
-    await page.getByRole('button', { name: '初期表示に戻る' }).click(); // 店舗の座標が地図の中央に来る
-    await waitMapIdle(page);
+    await expect(page.getByText('中心 35.7700, 139.7200')).toBeVisible({ timeout: 10_000 });
     await clickMapCenter(page);
     await expect(detail.getByRole('heading', { name: 'E2Eテスト用の架空店' })).toBeVisible();
-    await page.getByRole('tab', { name: '店舗を探す' }).click();
 
     // ---- 再読み込みしても残る（IndexedDB）----
     await page.reload();
@@ -85,17 +84,21 @@ test.describe('店舗の登録・表示・編集・削除（外部通信なし�
     await expect(detail.getByRole('heading', { name: 'E2Eテスト用の架空店（改）' })).toBeVisible();
 
     // ---- 検索 ----
+    await page.getByRole('searchbox', { name: '店名・住所で検索' }).fill('E2Eテスト用');
+    await expect(page.getByTestId('result-count')).toHaveText('1');
     await page.getByRole('searchbox', { name: '店名・住所で検索' }).fill('存在しない名前');
     await expect(page.getByText('条件に合う店舗がありません。')).toBeVisible();
     await page.getByRole('button', { name: '条件をすべて解除' }).click();
-    await expect(page.getByTestId('result-count')).toHaveText('1');
+    await expect(page.getByTestId('result-count')).toHaveText(String(baseCount + 1));
 
     // ---- 削除 ----
     await detail.getByRole('button', { name: '削除' }).click();
     await page.getByRole('dialog').getByRole('button', { name: '削除する' }).click();
-    await expect(page.getByText('店舗データがまだ登録されていません。')).toBeVisible();
+    await expect(page.getByTestId('result-count')).toHaveText(String(baseCount));
+    await expect(page.getByRole('button', { name: /E2Eテスト用の架空店/ })).toHaveCount(0);
     await page.reload();
-    await expect(page.getByText('店舗データがまだ登録されていません。')).toBeVisible({ timeout: 20_000 });
+    await expect(page.getByTestId('result-count')).toHaveText(String(baseCount), { timeout: 20_000 });
+    await expect(page.getByRole('button', { name: /E2Eテスト用の架空店/ })).toHaveCount(0);
 
     expect(pageErrors).toEqual([]);
   });

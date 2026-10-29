@@ -65,6 +65,14 @@ export function App({ useStore = useShopStore }: Props) {
     if (id) controllerRef.current?.flyToRegion(id);
   }, []);
 
+  const rightPanelOpen = panel.kind !== 'none' && (panel.kind !== 'detail' || selectedShop !== null);
+
+  // 左右のパネルを開閉しても、地図の中心地点がずれないようにする。
+  // 下の移動処理より先に実行されるよう、ここで宣言する（effect は宣言順に実行される）
+  useEffect(() => {
+    controllerRef.current?.resizeKeepingCenter();
+  }, [rightPanelOpen, sidebarOpen]);
+
   // 詳細パネルを開くと地図の幅が変わるため、移動はレイアウト確定後（effect）で行う
   const [flyTarget, setFlyTarget] = useState<{ latitude: number; longitude: number } | null>(null);
   useEffect(() => {
@@ -123,8 +131,6 @@ export function App({ useStore = useShopStore }: Props) {
       setDeleting(false);
     }
   };
-
-  const rightPanelOpen = panel.kind !== 'none' && (panel.kind !== 'detail' || selectedShop !== null);
 
   return (
     <div className={`app ${sidebarOpen ? '' : 'is-sidebar-collapsed'} ${rightPanelOpen ? 'has-right-panel' : ''}`}>
