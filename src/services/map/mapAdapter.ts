@@ -8,10 +8,13 @@ import {
   AttributionControl,
   FullscreenControl,
   Map as MapLibreMap,
+  Marker,
   NavigationControl,
   ScaleControl,
   setWorkerUrl,
   type ErrorEvent,
+  type GeoJSONSource,
+  type MapMouseEvent,
 } from 'maplibre-gl';
 // MapLibre v6 はワーカーをモジュールの相対パスから読み込むため、Vite の依存最適化・ビルド後も
 // 正しく解決できるよう、ワーカーファイルをアセットとして明示的に指定する。
@@ -45,6 +48,22 @@ import {
   webglUnavailableIssue,
   type MapIssue,
 } from './mapErrors';
+import {
+  CATEGORY_ICONS,
+  SHOP_LAYER_IDS,
+  SHOP_SOURCE_ID,
+  buildClusterCountLayer,
+  buildClusterLayer,
+  buildHitLayer,
+  buildLabelLayer,
+  buildPointLayer,
+  buildSelectedHaloLayer,
+  buildShopSource,
+  drawCategoryIcon,
+  pickTextFont,
+  selectedFilter,
+  type ShopFeatureCollection,
+} from './shopLayers';
 
 export type CameraState = {
   lng: number;
@@ -64,6 +83,10 @@ export type MapEventHandlers = {
   onIssue?: (issue: MapIssue | null) => void;
   onCameraChange?: (camera: CameraState) => void;
   onBuildingsAvailability?: (availability: BuildingsAvailability) => void;
+  /** 店舗マーカーがクリックされた */
+  onShopClick?: (shopId: string) => void;
+  /** 位置選択モードで地図がクリックされた */
+  onMapPick?: (position: { latitude: number; longitude: number }) => void;
 };
 
 export type MapControllerOptions = {
@@ -80,6 +103,15 @@ export interface MapController {
   setBuildingsVisible(visible: boolean): void;
   retry(): void;
   getCamera(): CameraState;
+  /** 表示する店舗を差し替える（地図は再生成しない） */
+  setShops(data: ShopFeatureCollection): void;
+  setSelectedShop(shopId: string | null): void;
+  /** 指定地点へ移動する（ズームは現在より寄る方向にのみ変える） */
+  flyToPoint(latitude: number, longitude: number, minZoom?: number): void;
+  /** true の間は地図クリックを位置選択として扱う */
+  setPickMode(enabled: boolean): void;
+  /** 編集中の店舗位置を仮マーカーで示す（null で消す） */
+  setDraftPosition(position: { latitude: number; longitude: number } | null): void;
   destroy(): void;
 }
 
@@ -127,6 +159,10 @@ export function createMapController(
   let failedTileCount = 0;
   let lastTileIssueAt = 0;
   let destroyed = false;
+  let shopData: ShopFeatureCollection = { type: 'FeatureCollection', features: [] };
+  let selectedShopId: string | null = null;
+  let pickMode = false;
+  let draftMarker: Marker | null = null;
 
   const online = () => (typeof navigator === 'undefined' ? true : navigator.onLine !== false);
 
@@ -164,6 +200,27 @@ export function createMapController(
     }
   };
 
+  /** 店舗レイヤーを追加する。スタイルを切り替えるとレイヤーと画像は消えるため、読み込みのたびに呼ぶ */
+  const addShopLayers = () => {
+    if (map.getLayer(SHOP_LAYER_IDS.points)) return;
+    const style = map.getStyle();
+    const pixelRatio = typeof window !== 'undefined' ? Math.min(window.devicePixelRatio || 1, 3) : 1;
+    for (const icon of CATEGORY_ICONS) {
+      if (map.hasImage(icon.id)) continue;
+      const image = drawCategoryIcon(icon.color, icon.label, pixelRatio);
+      if (image) map.addImage(icon.id, image, { pixelRatio });
+    }
+    if (!map.getSource(SHOP_SOURCE_ID)) map.addSource(SHOP_SOURCE_ID, buildShopSource(shopData));
+    // 文字を描くには glyphs（フォント）の配信元が必要。簡易表示では文字ラベルを省略する
+    const textFont = pickTextFont(style.layers);
+    map.addLayer(buildClusterLayer());
+    if (style.glyphs) map.addLayer(buildClusterCountLayer(textFont));
+    map.addLayer(buildSelectedHaloLayer(selectedShopId));
+    map.addLayer(buildPointLayer());
+    map.addLayer(buildHitLayer());
+    if (style.glyphs) map.addLayer(buildLabelLayer(textFont));
+  };
+
   /** スタイル読み込み完了ごとに、日本語ラベル化と3D建物レイヤーの追加を行う */
   const customizeStyle = () => {
     const style = map.getStyle();
@@ -197,6 +254,11 @@ export function createMapController(
       // スタイルの加工に失敗しても地図自体は表示を続ける
       handlers.onIssue?.(unknownIssue(error));
     }
+    try {
+      addShopLayers();
+    } catch (error) {
+      handlers.onIssue?.(unknownIssue(error));
+    }
     handlers.onStatusChange?.(usingFallback ? 'fallback' : 'ready');
     if (!usingFallback) {
       failedTileCount = 0;
@@ -228,6 +290,38 @@ export function createMapController(
     }
 
     if (!usingFallback) handlers.onIssue?.(unknownIssue(error));
+  });
+
+  const shopFeatureAt = (e: MapMouseEvent) => {
+    const layers = [SHOP_LAYER_IDS.hit, SHOP_LAYER_IDS.clusters].filter((id) => map.getLayer(id));
+    if (layers.length === 0) return undefined;
+    return map.queryRenderedFeatures(e.point, { layers })[0];
+  };
+
+  map.on('click', (e) => {
+    if (destroyed) return;
+    if (pickMode) {
+      handlers.onMapPick?.({ latitude: e.lngLat.lat, longitude: e.lngLat.lng });
+      return;
+    }
+    const feature = shopFeatureAt(e);
+    if (!feature) return;
+    const props = feature.properties as Record<string, unknown>;
+    if (typeof props.cluster_id === 'number' && feature.geometry.type === 'Point') {
+      const center = feature.geometry.coordinates as [number, number];
+      const source = map.getSource<GeoJSONSource>(SHOP_SOURCE_ID);
+      source
+        ?.getClusterExpansionZoom(props.cluster_id)
+        .then((zoom) => map.easeTo({ center, zoom: zoom + 0.5, duration: 600 }))
+        .catch(() => undefined);
+      return;
+    }
+    if (typeof props.id === 'string') handlers.onShopClick?.(props.id);
+  });
+
+  map.on('mousemove', (e) => {
+    if (destroyed) return;
+    map.getCanvas().style.cursor = pickMode ? 'crosshair' : shopFeatureAt(e) ? 'pointer' : '';
   });
 
   // カメラ情報は操作終了時のみ通知し、ドラッグ中に React の再描画を繰り返さない
@@ -276,8 +370,42 @@ export function createMapController(
     getCamera() {
       return readCamera(map);
     },
+    setShops(data) {
+      shopData = data;
+      map.getSource<GeoJSONSource>(SHOP_SOURCE_ID)?.setData(data);
+    },
+    setSelectedShop(shopId) {
+      selectedShopId = shopId;
+      if (map.getLayer(SHOP_LAYER_IDS.selectedHalo)) {
+        map.setFilter(SHOP_LAYER_IDS.selectedHalo, selectedFilter(shopId));
+      }
+    },
+    flyToPoint(latitude, longitude, minZoom = 16) {
+      // パネルの開閉で地図の大きさが変わった直後でも正しく中央に来るよう、先に大きさを反映する
+      map.resize();
+      map.flyTo({ center: [longitude, latitude], zoom: Math.max(map.getZoom(), minZoom), duration: 1000 });
+    },
+    setDraftPosition(position) {
+      if (!position) {
+        draftMarker?.remove();
+        draftMarker = null;
+        return;
+      }
+      if (!draftMarker) {
+        const el = document.createElement('div');
+        el.className = 'draft-marker';
+        el.title = '編集中の店舗の位置';
+        draftMarker = new Marker({ element: el, anchor: 'bottom' });
+      }
+      draftMarker.setLngLat([position.longitude, position.latitude]).addTo(map);
+    },
+    setPickMode(enabled) {
+      pickMode = enabled;
+      map.getCanvas().style.cursor = enabled ? 'crosshair' : '';
+    },
     destroy() {
       destroyed = true;
+      draftMarker?.remove();
       map.remove();
     },
   };

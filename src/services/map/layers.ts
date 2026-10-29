@@ -46,9 +46,7 @@ export function findExistingBuildingExtrusionIds(style: StyleSpecification): str
   return style.layers
     .filter(
       (l) =>
-        l.type === 'fill-extrusion' &&
-        sourceLayerOf(l) === BUILDING_SOURCE_LAYER &&
-        l.id !== BUILDINGS_3D_LAYER_ID,
+        l.type === 'fill-extrusion' && sourceLayerOf(l) === BUILDING_SOURCE_LAYER && l.id !== BUILDINGS_3D_LAYER_ID,
     )
     .map((l) => l.id);
 }
@@ -59,18 +57,8 @@ export function findFirstSymbolLayerId(style: StyleSpecification): string | unde
 }
 
 export function buildBuildings3DLayer(sourceId: string): FillExtrusionLayerSpecification {
-  const height: ExpressionSpecification = [
-    'coalesce',
-    ['get', 'render_height'],
-    ['get', 'height'],
-    6,
-  ];
-  const base: ExpressionSpecification = [
-    'coalesce',
-    ['get', 'render_min_height'],
-    ['get', 'min_height'],
-    0,
-  ];
+  const height: ExpressionSpecification = ['coalesce', ['get', 'render_height'], ['get', 'height'], 6];
+  const base: ExpressionSpecification = ['coalesce', ['get', 'render_min_height'], ['get', 'min_height'], 0];
   return {
     id: BUILDINGS_3D_LAYER_ID,
     type: 'fill-extrusion',
@@ -100,15 +88,7 @@ export function buildBuildings3DLayer(sourceId: string): FillExtrusionLayerSpeci
         BUILDING_MIN_ZOOM + 1.5,
         height,
       ],
-      'fill-extrusion-base': [
-        'interpolate',
-        ['linear'],
-        ['zoom'],
-        BUILDING_MIN_ZOOM,
-        0,
-        BUILDING_MIN_ZOOM + 1.5,
-        base,
-      ],
+      'fill-extrusion-base': ['interpolate', ['linear'], ['zoom'], BUILDING_MIN_ZOOM, 0, BUILDING_MIN_ZOOM + 1.5, base],
       'fill-extrusion-opacity': 0.85,
       'fill-extrusion-vertical-gradient': true,
     },
@@ -116,11 +96,7 @@ export function buildBuildings3DLayer(sourceId: string): FillExtrusionLayerSpeci
 }
 
 /** 日本語の地名を優先し、無ければ既定の名称を使う式 */
-export const JAPANESE_NAME_EXPRESSION: ExpressionSpecification = [
-  'coalesce',
-  ['get', 'name:ja'],
-  ['get', 'name'],
-];
+export const JAPANESE_NAME_EXPRESSION: ExpressionSpecification = ['coalesce', ['get', 'name:ja'], ['get', 'name']];
 
 /**
  * 地名ラベルが日本語表記を優先するよう text-field を置き換えた layer 配列を返す。

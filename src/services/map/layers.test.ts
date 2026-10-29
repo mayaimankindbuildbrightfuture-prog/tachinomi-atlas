@@ -22,10 +22,9 @@ const omtSources: StyleSpecification['sources'] = {
 
 describe('findBuildingSourceId', () => {
   it('building ソースレイヤーを参照しているレイヤーからソースIDを得る', () => {
-    const s = style(
-      [{ id: 'b', type: 'fill', source: 'omt2', 'source-layer': 'building' }],
-      { omt2: { type: 'vector', url: 'https://example.invalid/x' } },
-    );
+    const s = style([{ id: 'b', type: 'fill', source: 'omt2', 'source-layer': 'building' }], {
+      omt2: { type: 'vector', url: 'https://example.invalid/x' },
+    });
     expect(findBuildingSourceId(s)).toBe('omt2');
   });
 

@@ -5,16 +5,16 @@
 
 ## 地図タイル：OpenFreeMap
 
-| 項目 | 内容 |
-|---|---|
-| 提供元 | OpenFreeMap（https://openfreemap.org/） |
-| 使用URL | `https://tiles.openfreemap.org/styles/{dark,liberty,positron}` |
-| データ | OpenStreetMap（ODbL）を OpenMapTiles スキーマでタイル化したもの |
-| APIキー・登録 | 不要 |
-| 利用制限 | 公式サイトの記載では、表示回数・リクエスト数の上限なし |
-| 帰属表示 | **必須**。「OpenFreeMap © OpenMapTiles Data from OpenStreetMap」。MapLibre の帰属表示コントロールがスタイル内の表記を自動表示する（本アプリは `AttributionControl` を常時展開表示）。画面下部のステータスバーにも併記 |
-| 保証 | SLA なし。提供内容は予告なく変更・終了される可能性がある |
-| 確認日 | 2026-10-29（Web検索結果による。開発用クラウド環境からは openfreemap.org へ直接接続できなかったため、公式ページの原文は未確認） |
+| 項目          | 内容                                                                                                                                                                                                                  |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 提供元        | OpenFreeMap（https://openfreemap.org/）                                                                                                                                                                               |
+| 使用URL       | `https://tiles.openfreemap.org/styles/{dark,liberty,positron}`                                                                                                                                                        |
+| データ        | OpenStreetMap（ODbL）を OpenMapTiles スキーマでタイル化したもの                                                                                                                                                       |
+| APIキー・登録 | 不要                                                                                                                                                                                                                  |
+| 利用制限      | 公式サイトの記載では、表示回数・リクエスト数の上限なし                                                                                                                                                                |
+| 帰属表示      | **必須**。「OpenFreeMap © OpenMapTiles Data from OpenStreetMap」。MapLibre の帰属表示コントロールがスタイル内の表記を自動表示する（本アプリは `AttributionControl` を常時展開表示）。画面下部のステータスバーにも併記 |
+| 保証          | SLA なし。提供内容は予告なく変更・終了される可能性がある                                                                                                                                                              |
+| 確認日        | 2026-10-29（Web検索結果による。開発用クラウド環境からは openfreemap.org へ直接接続できなかったため、公式ページの原文は未確認）                                                                                        |
 
 ### 停止時の扱い
 
@@ -27,12 +27,76 @@ OpenMapTiles の `name:ja` 属性を優先し、無い場合は `name` を表示
 
 ## 店舗データ
 
-Phase 1 では店舗データを持たない。Phase 2 以降で初期データを登録する際は、以下を守る。
+### 登録の方針
 
 - 実在店舗の情報は、出典（公式サイト・オープンデータ・現地確認など）と確認日を必ず記録する。
 - 出典の利用規約・ライセンス・出典表示義務を確認し、この文書に追記する。
-- 確認できない情報は登録しない。動作確認用のデータは「デモデータ」であることが分かるIDと名称を付ける。
+- 確認できない情報は登録しない（不明な項目は `null`・空配列・`"unknown"` のまま）。
+- 動作確認用のデータを入れる場合は、「デモデータ」であることが分かるIDと名称を付ける。
 - ウェブサイトの無断スクレイピングや規約に反する大量取得は行わない。
+
+### 現在の登録状況（2026-10-29）
+
+**初期データ（`src/data/shops.json`）の実在店舗は 0 件です。**
+
+実在店舗を出典・確認日つきで登録する作業を試みましたが、開発に使用したクラウド環境のネットワーク制限により、
+出典となるサイト（店舗の公式サイト、OpenStreetMap、Wikipedia 等）に接続できず、内容を確認できませんでした。
+検索エンジンの要約文だけを根拠に店舗の存在・住所・座標・営業時間を登録することは、「確認済み」の基準を満たさないため行っていません。
+
+登録を進めるには、次のいずれかが必要です。
+
+1. 開発環境のネットワーク設定で、出典サイトへの接続を許可する（下記「候補となる出典」参照）。
+2. 開発者本人が現地確認や公式サイトで確認した情報を、画面の「＋ 店舗を追加」から登録する（出典の種類「現地確認」「公式サイト」）。
+
+### 候補となる出典と利用条件の論点
+
+| 出典                                      | 用途                       | 確認が必要な点                                                                                                                                                                                 |
+| ----------------------------------------- | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 店舗の公式サイト・公式SNS                 | 店名・住所・営業時間・価格 | 各サイトの利用規約。事実情報の転記にとどめ、文章や写真は転載しない                                                                                                                             |
+| OpenStreetMap（Overpass API / Nominatim） | 店舗の存在・座標・住所     | ODbL：出典表示「© OpenStreetMap contributors」が必要。抽出したデータベースを公開・配布する場合は同じライセンスでの提供（継承）が必要。Nominatim は利用規約上、1秒1リクエスト以下・大量取得禁止 |
+| 国土数値情報（駅データ）                  | 駅の名称・座標・路線       | 利用規約（出典表示）。商用利用の可否はデータごとに確認                                                                                                                                         |
+| 現地確認                                  | すべて                     | 確認日を記録する                                                                                                                                                                               |
+
+### JSON の形式
+
+`src/data/shops.json`
+
+```json
+{
+  "schemaVersion": 1,
+  "shops": [
+    {
+      "id": "tokyo-kita-xxxx",
+      "name": "店名",
+      "latitude": 35.0,
+      "longitude": 139.0,
+      "address": null,
+      "prefecture": "東京都",
+      "municipality": null,
+      "stationIds": [],
+      "categories": ["yakitori"],
+      "drinkTags": [],
+      "standingOnly": null,
+      "hasSeating": null,
+      "priceLevel": "unknown",
+      "priceExamples": [],
+      "openingHours": [],
+      "officialUrl": null,
+      "status": "verified",
+      "sourceIds": ["src-xxxx"],
+      "createdAt": "2026-10-29T00:00:00.000Z",
+      "updatedAt": "2026-10-29T00:00:00.000Z",
+      "lastVerifiedAt": "2026-10-29"
+    }
+  ]
+}
+```
+
+- `categories` のキー：`yakitori` `nikomi` `oden` `seafood` `sake` `beer` `kakuuchi` `other`
+- `status` が `verified` の場合、`sourceIds` 1件以上と `lastVerifiedAt` が必須（検証で弾かれる）。
+- `src/data/sources.json` に `{ "schemaVersion": 1, "sources": [DataSource...] }`、`src/data/stations.json` に `{ "schemaVersion": 1, "stations": [Station...] }` を置く。
+- 起動時に全件を検証し、不正なデータ・重複ID・存在しない出典や駅への参照は画面左下に一覧表示する（不正なデータは読み込まない）。
+- `npm test` でも同梱データの検証を行う（`src/domain/dataset.test.ts`）。
 
 ## 徒歩経路（未定）
 
