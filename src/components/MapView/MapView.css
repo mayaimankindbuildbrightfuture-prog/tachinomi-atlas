@@ -1,0 +1,9 @@
+.map-view {
+  position: absolute;
+  inset: 0;
+  background: var(--map-bg);
+}
+
+.map-view .maplibregl-ctrl-attrib {
+  font-size: 11px;
+}
