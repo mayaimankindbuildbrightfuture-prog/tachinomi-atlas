@@ -25,17 +25,18 @@ describe('buildBackup', () => {
   it('種類ごとに含める内容を変える', () => {
     const all = [makeShop({ id: 'seed-1' }), makeShop({ id: 'u1' })];
     expect(Object.keys(buildBackup('full', user, all, [testSource], NOW).data).sort()).toEqual(
-      ['deletedShopIds', 'marks', 'shops', 'sources', 'surveyAreas', 'visits'].sort(),
+      ['deletedShopIds', 'marks', 'routes', 'shops', 'sources', 'surveyAreas', 'visits'].sort(),
     );
     const shops = buildBackup('shops', user, all, [testSource], NOW);
     expect(shops.data.shops).toHaveLength(2);
     expect(shops.data.visits).toBeUndefined();
     const personal = buildBackup('personal', user, all, [testSource], NOW);
-    expect(Object.keys(personal.data).sort()).toEqual(['marks', 'surveyAreas', 'visits']);
+    expect(Object.keys(personal.data).sort()).toEqual(['marks', 'routes', 'surveyAreas', 'visits']);
     expect(describeBackup(personal).map((d) => `${d.label}${d.count}`)).toEqual([
       '訪問記録1',
       'お気に入り等1',
       '調査済みエリア0',
+      'はしご酒ルート0',
     ]);
   });
 

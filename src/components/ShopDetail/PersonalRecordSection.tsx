@@ -8,6 +8,9 @@ type Props = {
   onAddVisit: () => void;
   onEditVisit: (visit: Visit) => void;
   onDeleteVisit: (visit: Visit) => void;
+  /** はしご酒プラン（現在のルート）に入っているか */
+  routeInfo: { routeName: string | null; order: number | null; full: boolean };
+  onToggleRoute: () => void;
 };
 
 const MARK_ICONS: Record<MarkKind, string> = { favorite: '♥', wantToGo: '⚑', revisit: '↻' };
@@ -23,7 +26,16 @@ export function Stars({ rating }: { rating: number | null }) {
 }
 
 /** 店舗詳細内の「自分の記録」（お気に入り等と訪問記録）。店舗の事実情報とは分けて表示する */
-export function PersonalRecordSection({ mark, visits, onToggleMark, onAddVisit, onEditVisit, onDeleteVisit }: Props) {
+export function PersonalRecordSection({
+  mark,
+  visits,
+  onToggleMark,
+  onAddVisit,
+  onEditVisit,
+  onDeleteVisit,
+  routeInfo,
+  onToggleRoute,
+}: Props) {
   const sorted = sortVisitsDesc(visits);
   return (
     <section className="personal" aria-label="自分の記録">
@@ -40,6 +52,26 @@ export function PersonalRecordSection({ mark, visits, onToggleMark, onAddVisit, 
             <span aria-hidden="true">{MARK_ICONS[k]}</span> {MARK_LABELS[k]}
           </button>
         ))}
+      </div>
+
+      <div className="route-add">
+        <button
+          type="button"
+          className={`btn btn--small ${routeInfo.order !== null ? '' : 'btn--route'}`}
+          onClick={onToggleRoute}
+          disabled={routeInfo.order === null && routeInfo.full}
+        >
+          {routeInfo.order !== null ? 'はしご酒プランから外す' : '＋ はしご酒に追加'}
+        </button>
+        <span className="hint">
+          {routeInfo.order !== null
+            ? `「${routeInfo.routeName}」の${routeInfo.order + 1}軒目`
+            : routeInfo.full
+              ? 'ルートが上限の軒数に達しています'
+              : routeInfo.routeName
+                ? `「${routeInfo.routeName}」に追加します`
+                : '新しいルートを作って追加します'}
+        </span>
       </div>
 
       <div className="personal__visits-header">

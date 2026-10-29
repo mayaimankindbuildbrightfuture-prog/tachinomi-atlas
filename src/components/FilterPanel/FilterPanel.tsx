@@ -1,5 +1,12 @@
 import { STATION_RADII_M } from '../../domain/density';
 import { MARK_KINDS, MARK_LABELS } from '../../domain/visit';
+import {
+  BUDGET_PRESETS_YEN,
+  ORDER_MODEL_ITEM_COUNTS,
+  ORDER_MODEL_LABELS,
+  PRICE_CAVEAT,
+  type OrderModelItemCount,
+} from '../../domain/budget';
 import { StationSelect } from '../StationSelect/StationSelect';
 import { useMemo } from 'react';
 import {
@@ -224,7 +231,63 @@ export function FilterPanel({
               </label>
             ))}
           </div>
-          <p className="hint">予算内の注文モデルでの絞り込みは今後追加予定です。</p>
+        </fieldset>
+
+        <fieldset className="filter-group">
+          <legend>予算内で飲める店（注文モデル）</legend>
+          <div className="checks">
+            <label className="check">
+              <input
+                type="radio"
+                name="budget"
+                checked={filter.budgetYen === null}
+                onChange={() => set('budgetYen', null)}
+              />
+              指定なし
+            </label>
+            {BUDGET_PRESETS_YEN.map((b) => (
+              <label key={b} className="check">
+                <input
+                  type="radio"
+                  name="budget"
+                  checked={filter.budgetYen === b}
+                  onChange={() => set('budgetYen', b)}
+                />
+                {b.toLocaleString('ja-JP')}円以内
+              </label>
+            ))}
+          </div>
+          <div className="form-row">
+            <label className="form-field">
+              <span className="form-field__label">任意の予算（円）</span>
+              <input
+                type="number"
+                min={0}
+                step={100}
+                value={filter.budgetYen ?? ''}
+                onChange={(e) =>
+                  set('budgetYen', e.target.value === '' ? null : Math.max(0, Math.floor(Number(e.target.value))))
+                }
+              />
+            </label>
+            <label className="form-field">
+              <span className="form-field__label">注文モデル</span>
+              <select
+                value={filter.budgetItemCount}
+                onChange={(e) => set('budgetItemCount', Number(e.target.value) as OrderModelItemCount)}
+              >
+                {ORDER_MODEL_ITEM_COUNTS.map((n) => (
+                  <option key={n} value={n}>
+                    {ORDER_MODEL_LABELS[n]}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+          <p className="hint">
+            登録された価格例を安い順に選んだ合計で判定します。価格例が足りない店舗は対象外です（予算内と断定できないため）。
+            {PRICE_CAVEAT}
+          </p>
         </fieldset>
 
         <fieldset className="filter-group">

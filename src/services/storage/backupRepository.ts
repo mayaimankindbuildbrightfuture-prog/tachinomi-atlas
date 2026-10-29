@@ -12,6 +12,7 @@ const DATA_STORES = [
   STORES.visits,
   STORES.shopMarks,
   STORES.surveyAreas,
+  STORES.routes,
 ] as const;
 
 const LAST_BACKUP_KEY = 'lastBackupAt';
@@ -22,15 +23,16 @@ export const backupRepository = {
     const db = await openDatabase();
     const tx = db.transaction([...DATA_STORES], 'readonly');
     const get = <T>(store: string) => requestToPromise(tx.objectStore(store).getAll() as IDBRequest<T[]>);
-    const [shops, tombstones, sources, visits, marks, surveyAreas] = await Promise.all([
+    const [shops, tombstones, sources, visits, marks, surveyAreas, routes] = await Promise.all([
       get<UserData['shops'][number]>(STORES.shops),
       get<{ id: string }>(STORES.shopTombstones),
       get<UserData['sources'][number]>(STORES.sources),
       get<UserData['visits'][number]>(STORES.visits),
       get<UserData['marks'][number]>(STORES.shopMarks),
       get<UserData['surveyAreas'][number]>(STORES.surveyAreas),
+      get<UserData['routes'][number]>(STORES.routes),
     ]);
-    return { shops, deletedShopIds: tombstones.map((t) => t.id), sources, visits, marks, surveyAreas };
+    return { shops, deletedShopIds: tombstones.map((t) => t.id), sources, visits, marks, surveyAreas, routes };
   },
 
   /**
@@ -56,6 +58,7 @@ export const backupRepository = {
       for (const v of data.visits) tx.objectStore(STORES.visits).put(v);
       for (const m of data.marks) tx.objectStore(STORES.shopMarks).put(m);
       for (const a of data.surveyAreas) tx.objectStore(STORES.surveyAreas).put(a);
+      for (const r of data.routes) tx.objectStore(STORES.routes).put(r);
       tx.objectStore(STORES.meta).put({ key: 'lastImportAt', value: importedAt });
     });
     await done;
