@@ -7,6 +7,7 @@
 import { validateDataSource, validateShop, type DataSource, type Shop } from './shop';
 import { validateSurveyArea, type SurveyArea } from './survey';
 import { validateMark, validateVisit, type ShopMark, type Visit } from './visit';
+import { validateRoute, type PlannedRoute } from './route';
 
 export const BACKUP_FORMAT = 'tachinomi-atlas-backup';
 export const BACKUP_VERSION = 1;
@@ -30,6 +31,7 @@ export type UserData = {
   visits: Visit[];
   marks: ShopMark[];
   surveyAreas: SurveyArea[];
+  routes: PlannedRoute[];
 };
 
 export type BackupFile = {
@@ -49,6 +51,7 @@ export const EMPTY_USER_DATA: UserData = {
   visits: [],
   marks: [],
   surveyAreas: [],
+  routes: [],
 };
 
 /**
@@ -68,7 +71,7 @@ export function buildBackup(
     kind === 'shops'
       ? { shops: [...allShops], sources: [...allSources], deletedShopIds: user.deletedShopIds }
       : kind === 'personal'
-        ? { visits: user.visits, marks: user.marks, surveyAreas: user.surveyAreas }
+        ? { visits: user.visits, marks: user.marks, surveyAreas: user.surveyAreas, routes: user.routes }
         : { ...user };
   return { format: BACKUP_FORMAT, version: BACKUP_VERSION, kind, exportedAt, app: 'Tachinomi Atlas', data };
 }
@@ -211,6 +214,13 @@ export function parseBackup(text: string, knownShopIds: ReadonlySet<string>): Im
     validateSurveyArea,
     errors,
   );
+  const routes = checkItems<PlannedRoute>(
+    list(raw.routes, 'はしご酒ルート', errors),
+    'はしご酒ルート',
+    (x) => x.id,
+    validateRoute,
+    errors,
+  );
   const deletedRaw = list(raw.deletedShopIds, '削除記録', errors);
   if (!deletedRaw.every((x) => typeof x === 'string')) errors.push('削除記録の形式が不正です。');
   const deletedShopIds = deletedRaw.filter((x): x is string => typeof x === 'string');
@@ -237,7 +247,14 @@ export function parseBackup(text: string, knownShopIds: ReadonlySet<string>): Im
   }
   if (
     !errors.length &&
-    shops.length + sources.length + visits.length + marks.length + surveyAreas.length + deletedShopIds.length === 0
+    shops.length +
+      sources.length +
+      visits.length +
+      marks.length +
+      surveyAreas.length +
+      routes.length +
+      deletedShopIds.length ===
+      0
   ) {
     warnings.push('読み込むデータがありません。');
   }
@@ -245,7 +262,7 @@ export function parseBackup(text: string, knownShopIds: ReadonlySet<string>): Im
   return {
     kind,
     exportedAt,
-    data: { shops, deletedShopIds, sources, visits, marks, surveyAreas },
+    data: { shops, deletedShopIds, sources, visits, marks, surveyAreas, routes },
     errors,
     warnings,
     danglingVisitIds,
@@ -274,6 +291,7 @@ export function countUserData(d: UserData) {
     visits: d.visits.length,
     marks: d.marks.length,
     surveyAreas: d.surveyAreas.length,
+    routes: d.routes.length,
   };
 }
 
@@ -284,6 +302,7 @@ export const USER_DATA_LABELS: Record<keyof UserData, string> = {
   visits: '訪問記録',
   marks: 'お気に入り等',
   surveyAreas: '調査済みエリア',
+  routes: 'はしご酒ルート',
 };
 
 /** 書き出す前に、どの種類のデータを何件含むかを返す */
