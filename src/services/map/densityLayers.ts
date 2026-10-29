@@ -22,7 +22,7 @@ import type { SurveyArea } from '../../domain/survey';
 import { SHOP_LAYER_IDS } from './shopLayers';
 
 /** 地図の表示モード（仕様書 4.5） */
-export type DisplayMode = 'markers' | 'heatmap' | 'grid' | 'category' | 'priceLevel';
+export type DisplayMode = 'markers' | 'heatmap' | 'grid' | 'category' | 'priceLevel' | 'visited';
 
 export const DISPLAY_MODES: readonly { id: DisplayMode; label: string; description: string }[] = [
   { id: 'markers', label: '店舗マーカー', description: '店舗を1件ずつ表示（近い店はまとめて表示）' },
@@ -30,7 +30,15 @@ export const DISPLAY_MODES: readonly { id: DisplayMode; label: string; descripti
   { id: 'grid', label: '密度（3D柱）', description: '一定の大きさのマスごとの店舗数を柱の高さと色で表示' },
   { id: 'category', label: 'ジャンル別の分布', description: '代表ジャンルで色分けした点を表示' },
   { id: 'priceLevel', label: '予算帯別の分布', description: '予算帯で色分けした点を表示' },
+  {
+    id: 'visited',
+    label: '訪問済み店舗の分布',
+    description: '自分が訪問した店舗と、まだ訪問していない店舗を色分けして表示',
+  },
 ];
+
+export const VISITED_COLOR = '#f2c14e';
+export const UNVISITED_COLOR = '#5d6575';
 
 export const RAW_SOURCE_ID = 'atlas-shops-raw';
 export const GRID_SOURCE_ID = 'atlas-density-grid';
@@ -47,6 +55,7 @@ export const DENSITY_LAYER_IDS = {
   stationLabels: 'atlas-station-labels',
   categoryPoints: 'atlas-category-points',
   pricePoints: 'atlas-price-points',
+  visitedPoints: 'atlas-visited-points',
 } as const;
 
 // ---------------------------------------------------------------------------
@@ -211,6 +220,32 @@ export function buildPricePointLayer(): CircleLayerSpecification {
   };
 }
 
+export function buildVisitedPointLayer(): CircleLayerSpecification {
+  return {
+    id: DENSITY_LAYER_IDS.visitedPoints,
+    type: 'circle',
+    source: RAW_SOURCE_ID,
+    // 訪問済みの点を上に描く
+    layout: { 'circle-sort-key': ['case', ['get', 'visited'], 1, 0] },
+    paint: {
+      'circle-color': ['case', ['get', 'visited'], VISITED_COLOR, UNVISITED_COLOR],
+      'circle-radius': [
+        'interpolate',
+        ['linear'],
+        ['zoom'],
+        8,
+        ['case', ['get', 'visited'], 5, 3],
+        14,
+        ['case', ['get', 'visited'], 9, 6],
+        17,
+        ['case', ['get', 'visited'], 12, 8],
+      ],
+      'circle-stroke-color': '#1b1f27',
+      'circle-stroke-width': 1.5,
+    },
+  };
+}
+
 export const STATION_MIN_ZOOM = 12;
 
 export function buildStationLayer(): CircleLayerSpecification {
@@ -264,6 +299,7 @@ export function layerVisibility(mode: DisplayMode, showStations: boolean): Recor
     [DENSITY_LAYER_IDS.heatmap]: mode === 'heatmap',
     [DENSITY_LAYER_IDS.categoryPoints]: mode === 'category',
     [DENSITY_LAYER_IDS.pricePoints]: mode === 'priceLevel',
+    [DENSITY_LAYER_IDS.visitedPoints]: mode === 'visited',
     [DENSITY_LAYER_IDS.stations]: showStations,
     [DENSITY_LAYER_IDS.stationLabels]: showStations,
   };
@@ -274,5 +310,6 @@ export function clickableShopLayers(mode: DisplayMode): string[] {
   if (mode === 'markers') return [SHOP_LAYER_IDS.hit, SHOP_LAYER_IDS.clusters];
   if (mode === 'category') return [DENSITY_LAYER_IDS.categoryPoints];
   if (mode === 'priceLevel') return [DENSITY_LAYER_IDS.pricePoints];
+  if (mode === 'visited') return [DENSITY_LAYER_IDS.visitedPoints];
   return [];
 }

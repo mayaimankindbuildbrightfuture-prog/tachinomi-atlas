@@ -50,8 +50,11 @@ export type ShopStore = {
   /** 初期データ由来の店舗ID（削除時の扱いに使う） */
   seedShopIds: ReadonlySet<string>;
   saveShop: (shop: Shop, newSources: DataSource[]) => Promise<void>;
-  deleteShop: (id: string) => Promise<void>;
+  /** deleteVisits が true なら、その店舗の訪問記録も削除する */
+  deleteShop: (id: string, options?: { deleteVisits?: boolean }) => Promise<void>;
   clearError: () => void;
+  /** 保存済みデータを読み込み直す（バックアップの読み込み後など） */
+  reload: () => void;
 };
 
 function describeError(e: unknown): string {
@@ -76,6 +79,7 @@ export function useShopStore(
   const [error, setError] = useState<string | null>(
     seed.error ? `初期データを読み込めませんでした：${seed.error}` : null,
   );
+  const [reloadKey, setReloadKey] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
@@ -99,7 +103,7 @@ export function useShopStore(
     return () => {
       cancelled = true;
     };
-  }, [repository]);
+  }, [repository, reloadKey]);
 
   const shops = useMemo(() => mergeById(seed.data.shops, userShops, deletedIds), [seed, userShops, deletedIds]);
   const sources = useMemo(() => mergeById(seed.data.sources, userSources), [seed, userSources]);
@@ -131,9 +135,9 @@ export function useShopStore(
   );
 
   const deleteShop = useCallback(
-    async (id: string) => {
+    async (id: string, options: { deleteVisits?: boolean } = {}) => {
       try {
-        await repository.deleteShop(id, seedShopIds.has(id), new Date().toISOString());
+        await repository.deleteShop(id, seedShopIds.has(id), new Date().toISOString(), options);
       } catch (e) {
         const message = `店舗を削除できませんでした：${describeError(e)}`;
         setError(message);
@@ -156,5 +160,6 @@ export function useShopStore(
     saveShop,
     deleteShop,
     clearError: useCallback(() => setError(null), []),
+    reload: useCallback(() => setReloadKey((k) => k + 1), []),
   };
 }

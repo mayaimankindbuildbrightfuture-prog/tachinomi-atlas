@@ -77,6 +77,7 @@ import {
   buildGridZeroLayer,
   buildHeatmapLayer,
   buildPricePointLayer,
+  buildVisitedPointLayer,
   buildStationLabelLayer,
   buildStationLayer,
   buildSurveyFillLayer,
@@ -270,6 +271,7 @@ export function createMapController(
     if (style.glyphs) map.addLayer(buildStationLabelLayer(pickTextFont(style.layers)));
     map.addLayer(buildCategoryPointLayer());
     map.addLayer(buildPricePointLayer());
+    map.addLayer(buildVisitedPointLayer());
 
     const pixelRatio = typeof window !== 'undefined' ? Math.min(window.devicePixelRatio || 1, 3) : 1;
     for (const icon of CATEGORY_ICONS) {

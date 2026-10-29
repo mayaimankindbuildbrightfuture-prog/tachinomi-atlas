@@ -5,7 +5,7 @@
 
 export const DB_NAME = 'tachinomi-atlas';
 /** スキーマを変える場合は番号を上げ、upgrade 内に移行処理を追加する */
-export const DB_VERSION = 2;
+export const DB_VERSION = 3;
 
 export const STORES = {
   /** ユーザーが追加・編集した店舗（完全な Shop レコード） */
@@ -16,6 +16,12 @@ export const STORES = {
   sources: 'sources',
   /** 調査済みエリア（バージョン2で追加） */
   surveyAreas: 'surveyAreas',
+  /** 訪問記録（バージョン3で追加。shopId の索引つき） */
+  visits: 'visits',
+  /** お気に入り・行きたい店・再訪したい（バージョン3で追加。キーは shopId） */
+  shopMarks: 'shopMarks',
+  /** 最終バックアップ日時などの設定値（バージョン3で追加） */
+  meta: 'meta',
 } as const;
 
 export type StoreName = (typeof STORES)[keyof typeof STORES];
@@ -53,6 +59,12 @@ export function openDatabase(factory: IDBFactory | undefined = globalThis.indexe
       }
       if (oldVersion < 2) {
         db.createObjectStore(STORES.surveyAreas, { keyPath: 'id' });
+      }
+      if (oldVersion < 3) {
+        const visits = db.createObjectStore(STORES.visits, { keyPath: 'id' });
+        visits.createIndex('shopId', 'shopId', { unique: false });
+        db.createObjectStore(STORES.shopMarks, { keyPath: 'shopId' });
+        db.createObjectStore(STORES.meta, { keyPath: 'key' });
       }
     };
     req.onsuccess = () => {

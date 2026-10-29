@@ -4,7 +4,7 @@ import { DISPLAY_MODES, type DisplayMode } from '../../services/map/densityLayer
 import type { BuildingsAvailability } from '../../services/map/mapAdapter';
 import { BUILDING_MIN_ZOOM } from '../../services/map/mapConfig';
 
-export type SidebarTab = 'shops' | 'map' | 'compare';
+export type SidebarTab = 'shops' | 'map' | 'compare' | 'records';
 
 type Props = {
   open: boolean;
@@ -30,12 +30,15 @@ type Props = {
   shopPanel: ReactNode;
   /** 「比較・集計」タブの中身 */
   comparePanel: ReactNode;
+  /** 「記録」タブの中身 */
+  recordsPanel: ReactNode;
 };
 
 const TABS: readonly { id: SidebarTab; label: string }[] = [
   { id: 'shops', label: '店舗を探す' },
   { id: 'map', label: '地図の表示' },
   { id: 'compare', label: '比較・集計' },
+  { id: 'records', label: '記録' },
 ];
 
 /** 左側パネル：店舗の検索、地図の表示設定、比較・集計 */
@@ -75,6 +78,11 @@ export function Sidebar(props: Props) {
               {props.shopPanel}
             </div>
           )}
+          {tab === 'records' && (
+            <div role="tabpanel" id="tabpanel-records" aria-labelledby="tab-records">
+              {props.recordsPanel}
+            </div>
+          )}
           {tab === 'compare' && (
             <div role="tabpanel" id="tabpanel-compare" aria-labelledby="tab-compare">
               {props.comparePanel}
@@ -97,10 +105,6 @@ export function Sidebar(props: Props) {
                       {m.label}
                     </label>
                   ))}
-                  <label className="check is-disabled" title="訪問記録の機能（今後のフェーズ）の実装後に利用できます">
-                    <input type="radio" name="display-mode" disabled />
-                    訪問済み店舗の分布（訪問記録の実装後に利用可）
-                  </label>
                 </div>
                 <p className="hint">{DISPLAY_MODES.find((m) => m.id === props.displayMode)?.description}</p>
                 {props.displayMode === 'grid' && (

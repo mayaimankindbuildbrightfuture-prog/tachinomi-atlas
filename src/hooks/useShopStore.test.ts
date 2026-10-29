@@ -47,7 +47,7 @@ describe('useShopStore', () => {
     await act(() => result.current.saveShop(makeShop({ id: 'new', latitude: 35.75 }), []));
     expect(result.current.shops.map((s) => s.id)).toContain('new');
     await act(() => result.current.deleteShop('seed-1'));
-    expect(repo.deleteShop).toHaveBeenCalledWith('seed-1', true, expect.any(String));
+    expect(repo.deleteShop).toHaveBeenCalledWith('seed-1', true, expect.any(String), {});
     expect(result.current.shops.map((s) => s.id)).not.toContain('seed-1');
   });
 
