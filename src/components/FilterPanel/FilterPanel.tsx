@@ -1,4 +1,5 @@
 import { STATION_RADII_M } from '../../domain/density';
+import { MARK_KINDS, MARK_LABELS } from '../../domain/visit';
 import { StationSelect } from '../StationSelect/StationSelect';
 import { useMemo } from 'react';
 import {
@@ -6,6 +7,7 @@ import {
   collectOptions,
   EMPTY_FILTER,
   type SeatingStyle,
+  type VisitedFilter,
   type ShopFilter,
 } from '../../domain/search';
 import {
@@ -82,6 +84,42 @@ export function FilterPanel({
 
       <details className="filter-groups">
         <summary>絞り込み条件</summary>
+
+        <fieldset className="filter-group">
+          <legend>自分の記録</legend>
+          <div className="checks">
+            {(
+              [
+                ['any', '指定なし'],
+                ['visited', '訪問済み'],
+                ['unvisited', '未訪問'],
+              ] as [VisitedFilter, string][]
+            ).map(([value, label]) => (
+              <label key={value} className="check">
+                <input
+                  type="radio"
+                  name="visited"
+                  checked={filter.visited === value}
+                  onChange={() => set('visited', value)}
+                />
+                {label}
+              </label>
+            ))}
+          </div>
+          <div className="checks">
+            {MARK_KINDS.map((k) => (
+              <label key={k} className="check">
+                <input
+                  type="checkbox"
+                  checked={filter.marks.includes(k)}
+                  onChange={() => set('marks', toggle(filter.marks, k))}
+                />
+                {MARK_LABELS[k]}
+              </label>
+            ))}
+          </div>
+          <p className="hint">お気に入り等を複数選ぶと、いずれかに当てはまる店舗が対象です。</p>
+        </fieldset>
 
         <fieldset className="filter-group">
           <legend>地域</legend>
@@ -270,7 +308,6 @@ export function FilterPanel({
             ))}
           </div>
         </fieldset>
-        <p className="hint">訪問済み・お気に入りでの絞り込みは、個人記録機能（今後のフェーズ）で追加予定です。</p>
       </details>
 
       {loading ? (

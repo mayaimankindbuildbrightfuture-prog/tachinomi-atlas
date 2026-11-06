@@ -48,3 +48,21 @@ export const testStation: Station = {
   municipality: '架空区',
   lines: ['架空線'],
 };
+
+export function makeVisit(overrides: Partial<import('../domain/visit').Visit> = {}): import('../domain/visit').Visit {
+  return {
+    id: 'visit-1',
+    shopId: 'test-shop-a',
+    visitedAt: '2026-10-20T19:30:00+09:00',
+    orderedItems: ['ホッピーセット', '煮込み'],
+    amountYen: 1500,
+    rating: 4,
+    atmosphereTags: ['一人飲み向き'],
+    memo: '架空の感想',
+    photoRefs: [],
+    createdAt: '2026-10-20T12:00:00.000Z',
+    updatedAt: '2026-10-20T12:00:00.000Z',
+    shopNameAtVisit: '架空酒場テストA',
+    ...overrides,
+  };
+}

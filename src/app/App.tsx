@@ -6,6 +6,13 @@ import { MapView } from '../components/MapView/MapView';
 import { ShopDetail } from '../components/ShopDetail/ShopDetail';
 import { ShopEditor } from '../components/ShopEditor/ShopEditor';
 import { ComparePanel } from '../components/ComparePanel/ComparePanel';
+import { DataManager } from '../components/DataManager/DataManager';
+import { RecordsPanel } from '../components/RecordsPanel/RecordsPanel';
+import { PersonalRecordSection } from '../components/ShopDetail/PersonalRecordSection';
+import { VisitEditor } from '../components/VisitEditor/VisitEditor';
+import { usePersonalStore, type PersonalStore } from '../hooks/usePersonalStore';
+import type { Visit } from '../domain/visit';
+import type { BackupRepository } from '../services/storage/backupRepository';
 import { DensityLegend } from '../components/DensityLegend/DensityLegend';
 import { Sidebar, type SidebarTab } from '../components/Sidebar/Sidebar';
 import { StatusBar } from '../components/StatusBar/StatusBar';
@@ -42,14 +49,24 @@ type Props = {
   useStore?: () => ShopStore;
   /** テスト用に差し替え可能な調査済みエリアのストア */
   useSurveyStore?: () => SurveyAreaStore;
+  /** テスト用に差し替え可能な個人記録のストア */
+  usePersonal?: () => PersonalStore;
+  /** テスト用に差し替え可能なバックアップの保存先 */
+  backupRepository?: BackupRepository;
 };
 
 /** 地図クリックで位置を選ぶ対象 */
 type PickTarget = 'shop' | 'survey' | null;
 
-export function App({ useStore = useShopStore, useSurveyStore = useSurveyAreas }: Props) {
+export function App({
+  useStore = useShopStore,
+  useSurveyStore = useSurveyAreas,
+  usePersonal = usePersonalStore,
+  backupRepository,
+}: Props) {
   const store = useStore();
   const survey = useSurveyStore();
+  const personal = usePersonal();
   const controllerRef = useRef<MapController | null>(null);
   const [status, setStatus] = useState<MapStatus>('loading');
   const [issue, setIssue] = useState<MapIssue | null>(null);
@@ -74,15 +91,24 @@ export function App({ useStore = useShopStore, useSurveyStore = useSurveyAreas }
   const [draftPosition, setDraftPosition] = useState<LatLng | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<Shop | null>(null);
   const [deleting, setDeleting] = useState(false);
+  const [deleteVisitsWithShop, setDeleteVisitsWithShop] = useState(false);
+  const [visitEdit, setVisitEdit] = useState<{ shop: Shop; visit: Visit | null } | null>(null);
+  const [visitDeleteTarget, setVisitDeleteTarget] = useState<Visit | null>(null);
+  const [dataManagerOpen, setDataManagerOpen] = useState(false);
 
   const mapUsable = status !== 'failed';
 
   // 検索条件や店舗データが変わったときだけ再計算する（地図の移動では再計算しない）
+  const visitedShopIds = useMemo(() => new Set(personal.visitsByShop.keys()), [personal.visitsByShop]);
   const results = useMemo(
-    () => filterShops(store.shops, filter, store.stations),
-    [store.shops, filter, store.stations],
+    () => filterShops(store.shops, filter, store.stations, { visitedShopIds, marks: personal.marks }),
+    [store.shops, filter, store.stations, visitedShopIds, personal.marks],
   );
-  const featureCollection = useMemo(() => shopsToFeatureCollection(results), [results]);
+  const featureCollection = useMemo(() => shopsToFeatureCollection(results, visitedShopIds), [results, visitedShopIds]);
+  const visitedResultCount = useMemo(
+    () => results.filter((s) => visitedShopIds.has(s.id)).length,
+    [results, visitedShopIds],
+  );
   // 密度の集計も検索条件を反映する。格子は3D柱表示のときだけ計算する
   const densityGrid = useMemo(
     () => (displayMode === 'grid' ? buildDensityGrid(results, gridSizeM, survey.areas) : EMPTY_GRID),
@@ -189,7 +215,9 @@ export function App({ useStore = useShopStore, useSurveyStore = useSurveyAreas }
     if (!deleteTarget) return;
     setDeleting(true);
     try {
-      await store.deleteShop(deleteTarget.id);
+      const deleteVisits = deleteVisitsWithShop && (personal.visitsByShop.get(deleteTarget.id)?.length ?? 0) > 0;
+      await store.deleteShop(deleteTarget.id, { deleteVisits });
+      personal.forgetShop(deleteTarget.id, deleteVisits);
       setPanel({ kind: 'none' });
       setDeleteTarget(null);
     } catch {
@@ -221,6 +249,9 @@ export function App({ useStore = useShopStore, useSurveyStore = useSurveyAreas }
         </div>
         <button type="button" className="btn btn--primary" onClick={startCreate}>
           ＋ 店舗を追加
+        </button>
+        <button type="button" className="btn" onClick={() => setDataManagerOpen(true)}>
+          データ管理
         </button>
         <div className="app-header__controls">
           <label className="field">
@@ -268,6 +299,16 @@ export function App({ useStore = useShopStore, useSurveyStore = useSurveyAreas }
         showStations={showStations}
         onShowStationsChange={setShowStations}
         stationCount={store.stations.length}
+        recordsPanel={
+          <RecordsPanel
+            visits={personal.visits}
+            marks={personal.marks}
+            shops={store.shops}
+            loading={personal.status === 'loading'}
+            onSelectShop={(id) => showShop(id, true)}
+            onOpenDataManager={() => setDataManagerOpen(true)}
+          />
+        }
         comparePanel={
           <ComparePanel
             shops={results}
@@ -344,6 +385,7 @@ export function App({ useStore = useShopStore, useSurveyStore = useSurveyAreas }
           priceCounts={legendCounts.priceCounts}
           gridSizeM={gridSizeM}
           surveyAreaCount={survey.areas.length}
+          visitedCount={visitedResultCount}
         />
         {pickMode && (
           <div className="pick-hint" role="status">
@@ -352,8 +394,13 @@ export function App({ useStore = useShopStore, useSurveyStore = useSurveyAreas }
               : '地図上で店舗の位置をクリックしてください（中止はフォームのボタンから）'}
           </div>
         )}
-        {(store.error || survey.error || store.dataIssues.length > 0) && (
+        {(store.error || survey.error || personal.error || store.dataIssues.length > 0) && (
           <div className="app-notices">
+            {personal.error && (
+              <div className="notice notice--danger" role="alert">
+                <p>{personal.error}</p>
+              </div>
+            )}
             {survey.error && (
               <div className="notice notice--danger" role="alert">
                 <p>{survey.error}</p>
@@ -401,7 +448,20 @@ export function App({ useStore = useShopStore, useSurveyStore = useSurveyAreas }
                 setPickedPosition(null);
                 setPanel({ kind: 'edit', mode: 'edit', base: selectedShop });
               }}
-              onDelete={() => setDeleteTarget(selectedShop)}
+              onDelete={() => {
+                setDeleteVisitsWithShop(false);
+                setDeleteTarget(selectedShop);
+              }}
+              personalSection={
+                <PersonalRecordSection
+                  mark={personal.marks.get(selectedShop.id)}
+                  visits={personal.visitsByShop.get(selectedShop.id) ?? []}
+                  onToggleMark={(kind) => personal.toggle(selectedShop.id, kind)}
+                  onAddVisit={() => setVisitEdit({ shop: selectedShop, visit: null })}
+                  onEditVisit={(visit) => setVisitEdit({ shop: selectedShop, visit })}
+                  onDeleteVisit={setVisitDeleteTarget}
+                />
+              }
               onShowOnMap={() => controllerRef.current?.flyToPoint(selectedShop.latitude, selectedShop.longitude)}
             />
           )}
@@ -452,10 +512,77 @@ export function App({ useStore = useShopStore, useSurveyStore = useSurveyAreas }
             {store.seedShopIds.has(deleteTarget.id) &&
               ' 初期データの店舗のため、削除した記録を保存し、次回以降も表示しません。'}
           </p>
-          <p className="hint">
-            訪問記録の機能は今後のフェーズで追加予定のため、現在この店舗に紐づく個人記録はありません。
-          </p>
+          {(personal.visitsByShop.get(deleteTarget.id)?.length ?? 0) > 0 ? (
+            <fieldset className="filter-group">
+              <legend>この店舗の訪問記録（{personal.visitsByShop.get(deleteTarget.id)?.length}件）の扱い</legend>
+              <label className="check">
+                <input
+                  type="radio"
+                  name="delete-visits"
+                  checked={!deleteVisitsWithShop}
+                  onChange={() => setDeleteVisitsWithShop(false)}
+                />
+                訪問記録を残す（記録時の店名で「記録」タブに表示されます）
+              </label>
+              <label className="check">
+                <input
+                  type="radio"
+                  name="delete-visits"
+                  checked={deleteVisitsWithShop}
+                  onChange={() => setDeleteVisitsWithShop(true)}
+                />
+                訪問記録も削除する
+              </label>
+            </fieldset>
+          ) : (
+            <p className="hint">この店舗の訪問記録はありません。お気に入り等の登録は削除されます。</p>
+          )}
         </ConfirmDialog>
+      )}
+
+      {visitEdit && (
+        <VisitEditor
+          shopId={visitEdit.shop.id}
+          shopName={visitEdit.shop.name}
+          visit={visitEdit.visit}
+          onSave={async (v) => {
+            await personal.saveVisit(v);
+            setVisitEdit(null);
+          }}
+          onCancel={() => setVisitEdit(null)}
+        />
+      )}
+
+      {visitDeleteTarget && (
+        <ConfirmDialog
+          title="訪問記録を削除しますか？"
+          confirmLabel="削除する"
+          danger
+          onConfirm={async () => {
+            try {
+              await personal.deleteVisit(visitDeleteTarget.id);
+            } finally {
+              setVisitDeleteTarget(null);
+            }
+          }}
+          onCancel={() => setVisitDeleteTarget(null)}
+        >
+          <p>この訪問記録を削除します。この操作は取り消せません。</p>
+        </ConfirmDialog>
+      )}
+
+      {dataManagerOpen && (
+        <DataManager
+          allShops={store.shops}
+          allSources={store.sources}
+          onClose={() => setDataManagerOpen(false)}
+          repository={backupRepository}
+          onImported={() => {
+            store.reload();
+            survey.reload();
+            personal.reload();
+          }}
+        />
       )}
     </div>
   );

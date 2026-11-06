@@ -4,8 +4,12 @@ import type { MapController, MapEventHandlers } from '../services/map/mapAdapter
 import { styleLoadFailedIssue, webglUnavailableIssue } from '../services/map/mapErrors';
 import type { ShopRepository } from '../services/storage/shopRepository';
 import { useShopStore, type SeedData } from '../hooks/useShopStore';
-import { makeShop, testSource, testStation } from '../tests/fixtures';
+import { makeShop, makeVisit, testSource, testStation } from '../tests/fixtures';
 import { useSurveyAreas } from '../hooks/useSurveyAreas';
+import { usePersonalStore } from '../hooks/usePersonalStore';
+import type { PersonalRepository } from '../services/storage/personalRepository';
+import type { BackupRepository } from '../services/storage/backupRepository';
+import { BACKUP_FORMAT } from '../domain/backup';
 import type { SurveyAreaRepository } from '../services/storage/surveyAreaRepository';
 import type { SurveyArea } from '../domain/survey';
 
@@ -42,6 +46,11 @@ vi.mock('../services/map/mapAdapter', () => ({
   createMapController: (el: HTMLElement, opts: unknown, h: MapEventHandlers) => createMapController(el, opts, h),
 }));
 vi.mock('maplibre-gl/dist/maplibre-gl.css', () => ({}));
+const downloadJson = vi.fn();
+vi.mock('../services/importExport/fileIO', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('../services/importExport/fileIO')>()),
+  downloadJson: (...args: unknown[]) => downloadJson(...args),
+}));
 
 const { App: AppImpl } = await import('./App');
 
@@ -80,14 +89,48 @@ function useTestSurveyStore() {
   return useSurveyAreas(surveyRepo);
 }
 
+// 個人記録もメモリ上の偽ストア
+let personalRepo: PersonalRepository;
+function useTestPersonalStore() {
+  return usePersonalStore(personalRepo);
+}
+
+let backupRepo: BackupRepository;
+
 function App() {
-  return <AppImpl useStore={useTestStore} useSurveyStore={useTestSurveyStore} />;
+  return (
+    <AppImpl
+      useStore={useTestStore}
+      useSurveyStore={useTestSurveyStore}
+      usePersonal={useTestPersonalStore}
+      backupRepository={backupRepo}
+    />
+  );
 }
 
 beforeEach(() => {
   vi.clearAllMocks();
   handlers = {};
   seedData = seed;
+  backupRepo = {
+    exportUserData: vi.fn(async () => ({
+      shops: [],
+      deletedShopIds: [],
+      sources: [],
+      visits: [makeVisit({ shopId: 'seed-1' })],
+      marks: [],
+      surveyAreas: [],
+    })),
+    importUserData: vi.fn(async () => undefined),
+    getLastBackupAt: vi.fn(async () => null),
+    setLastBackupAt: vi.fn(async () => undefined),
+  };
+  personalRepo = {
+    loadAll: vi.fn(async () => ({ visits: [], marks: [] })),
+    saveVisit: vi.fn(async () => undefined),
+    deleteVisit: vi.fn(async () => undefined),
+    saveMark: vi.fn(async () => undefined),
+  };
   const saved: SurveyArea[] = [];
   surveyRepo = {
     loadAll: vi.fn(async () => [...saved]),
@@ -344,7 +387,7 @@ describe('店舗の追加・編集・削除', () => {
 
     await user.click(screen.getByRole('button', { name: '削除' }));
     await user.click(within(screen.getByRole('dialog')).getByRole('button', { name: '削除する' }));
-    expect(repo.deleteShop).toHaveBeenCalledWith('seed-1', true, expect.any(String));
+    expect(repo.deleteShop).toHaveBeenCalledWith('seed-1', true, expect.any(String), { deleteVisits: false });
     expect(screen.queryByRole('button', { name: /架空酒場ひとつめ/ })).not.toBeInTheDocument();
     expect(screen.getByTestId('result-count')).toHaveTextContent('1');
   });
@@ -388,7 +431,9 @@ describe('密度・比較（Phase 3）', () => {
 
     await user.click(screen.getByRole('radio', { name: 'ジャンル別の分布' }));
     expect(screen.getByRole('region', { name: '凡例' })).toHaveTextContent('焼きとん・焼き鳥（1）');
-    expect(screen.getByRole('radio', { name: /訪問済み店舗の分布/ })).toBeDisabled();
+    await user.click(screen.getByRole('radio', { name: '訪問済み店舗の分布' }));
+    expect(controller.setDisplayMode).toHaveBeenLastCalledWith('visited');
+    expect(screen.getByRole('region', { name: '凡例' })).toHaveTextContent('訪問済み（0）');
   });
 
   it('密度の集計に検索条件が反映される', async () => {
@@ -471,5 +516,253 @@ describe('密度・比較（Phase 3）', () => {
     const detail = screen.getByRole('complementary', { name: '店舗の詳細' });
     expect(within(detail).getByText(/架空（約140m）/)).toBeInTheDocument();
     expect(within(detail).getByText('（直線距離・参考）')).toBeInTheDocument();
+  });
+});
+
+describe('個人記録（Phase 4）', () => {
+  async function openShop(user: ReturnType<typeof userEvent.setup>, name: RegExp) {
+    await user.click(await screen.findByRole('button', { name }));
+    return screen.getByRole('complementary', { name: '店舗の詳細' });
+  }
+
+  it('お気に入り・行きたい店・再訪したいを登録・解除でき、店舗データ本体には混ぜない', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    const detail = await openShop(user, /架空酒場ひとつめ/);
+    const fav = within(detail).getByRole('button', { name: /お気に入り/ });
+    expect(fav).toHaveAttribute('aria-pressed', 'false');
+    await user.click(fav);
+    expect(fav).toHaveAttribute('aria-pressed', 'true');
+    expect(personalRepo.saveMark).toHaveBeenLastCalledWith(
+      expect.objectContaining({ shopId: 'seed-1', favorite: true }),
+    );
+    await user.click(within(detail).getByRole('button', { name: /行きたい店/ }));
+    await user.click(fav);
+    expect(personalRepo.saveMark).toHaveBeenLastCalledWith(
+      expect.objectContaining({ shopId: 'seed-1', favorite: false, wantToGo: true }),
+    );
+    expect(repo.saveShop).not.toHaveBeenCalled();
+  });
+
+  it('訪問記録を追加・編集・削除でき、記録タブの履歴に表示される', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    const detail = await openShop(user, /架空酒場ひとつめ/);
+    await user.click(within(detail).getByRole('button', { name: '＋ 訪問記録を追加' }));
+    const dialog = screen.getByRole('dialog', { name: '訪問記録を追加' });
+    fireEvent.change(within(dialog).getByLabelText(/訪問日時/), { target: { value: '2026-10-28T19:30' } });
+    await user.type(within(dialog).getByLabelText(/支払った金額/), '1,800円');
+    await user.click(within(dialog).getByRole('radio', { name: /★★★★4/ }));
+    await user.type(within(dialog).getByLabelText(/注文した品/), 'ホッピーセット{enter}もつ煮込み');
+    await user.click(within(dialog).getByRole('checkbox', { name: '一人飲み向き' }));
+    await user.type(within(dialog).getByLabelText(/感想・メモ/), '架空の感想');
+    await user.click(within(dialog).getByRole('button', { name: '保存' }));
+
+    expect(personalRepo.saveVisit).toHaveBeenCalledWith(
+      expect.objectContaining({
+        shopId: 'seed-1',
+        visitedAt: '2026-10-28T19:30:00+09:00',
+        amountYen: 1800,
+        rating: 4,
+        orderedItems: ['ホッピーセット', 'もつ煮込み'],
+        atmosphereTags: ['一人飲み向き'],
+        memo: '架空の感想',
+        shopNameAtVisit: '架空酒場ひとつめ',
+      }),
+    );
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    expect(within(detail).getByText('訪問記録（1件）')).toBeInTheDocument();
+    expect(within(detail).getByText('注文：ホッピーセット、もつ煮込み')).toBeInTheDocument();
+
+    // 編集
+    // 1つ目は店舗の「編集」、2つ目が訪問記録の「編集」
+    await user.click(within(detail).getAllByRole('button', { name: '編集' })[1]!);
+    const edit = screen.getByRole('dialog', { name: '訪問記録を編集' });
+    await user.clear(within(edit).getByLabelText(/感想・メモ/));
+    await user.type(within(edit).getByLabelText(/感想・メモ/), '書き直した');
+    await user.click(within(edit).getByRole('button', { name: '保存' }));
+    expect(within(detail).getByText('書き直した')).toBeInTheDocument();
+    expect(within(detail).getByText('訪問記録（1件）')).toBeInTheDocument();
+
+    // 記録タブ
+    await user.click(screen.getByRole('tab', { name: '記録' }));
+    const history = screen.getByRole('list', { name: '訪問履歴' });
+    expect(within(history).getByText('2026年10月')).toBeInTheDocument();
+    expect(within(history).getByRole('button', { name: '架空酒場ひとつめ' })).toBeInTheDocument();
+    expect(screen.getByText('訪問').nextSibling).toHaveTextContent('1回');
+
+    // 削除
+    await user.click(within(detail).getAllByRole('button', { name: '削除' })[1]!);
+    await user.click(
+      within(screen.getByRole('dialog', { name: '訪問記録を削除しますか？' })).getByRole('button', {
+        name: '削除する',
+      }),
+    );
+    expect(personalRepo.deleteVisit).toHaveBeenCalled();
+    expect(within(detail).getByText('訪問記録（0件）')).toBeInTheDocument();
+  });
+
+  it('評価や日時の不正は保存しない', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    const detail = await openShop(user, /架空酒場ひとつめ/);
+    await user.click(within(detail).getByRole('button', { name: '＋ 訪問記録を追加' }));
+    const dialog = screen.getByRole('dialog', { name: '訪問記録を追加' });
+    fireEvent.change(within(dialog).getByLabelText(/訪問日時/), { target: { value: '' } });
+    await user.type(within(dialog).getByLabelText(/支払った金額/), 'たくさん');
+    await user.click(within(dialog).getByRole('button', { name: '保存' }));
+    expect(within(dialog).getByRole('alert')).toHaveTextContent('訪問日時を入力してください');
+    expect(within(dialog).getByRole('alert')).toHaveTextContent('金額は0以上の整数');
+    expect(personalRepo.saveVisit).not.toHaveBeenCalled();
+  });
+
+  it('訪問済み・お気に入りで絞り込め、訪問済みの分布に反映される', async () => {
+    vi.mocked(personalRepo.loadAll).mockResolvedValue({
+      visits: [makeVisit({ shopId: 'seed-2' })],
+      marks: [
+        { shopId: 'seed-1', favorite: true, wantToGo: false, revisit: false, updatedAt: '2026-10-29T00:00:00.000Z' },
+      ],
+    });
+    const user = userEvent.setup();
+    render(<App />);
+    await screen.findByRole('button', { name: /架空酒場ひとつめ/ });
+    await user.click(screen.getByText('絞り込み条件'));
+    const records = screen.getByRole('group', { name: '自分の記録' });
+    await user.click(within(records).getByRole('radio', { name: '訪問済み' }));
+    expect(screen.getByTestId('result-count')).toHaveTextContent('1');
+    expect(screen.getByRole('button', { name: /架空角打ちふたつめ/ })).toBeInTheDocument();
+    await user.click(within(records).getByRole('radio', { name: '未訪問' }));
+    expect(screen.getByRole('button', { name: /架空酒場ひとつめ/ })).toBeInTheDocument();
+    await user.click(within(records).getByRole('radio', { name: '指定なし' }));
+    await user.click(within(records).getByRole('checkbox', { name: 'お気に入り' }));
+    expect(screen.getByTestId('result-count')).toHaveTextContent('1');
+    expect(screen.getByRole('button', { name: 'お気に入り ✕' })).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: '条件をすべて解除' }));
+
+    const fc = vi.mocked(controller.setShops).mock.lastCall![0];
+    expect(fc.features.find((f) => f.properties.id === 'seed-2')!.properties.visited).toBe(true);
+    expect(fc.features.find((f) => f.properties.id === 'seed-1')!.properties.visited).toBe(false);
+  });
+
+  it('訪問記録のある店舗を削除するとき、記録を残すか選べる', async () => {
+    vi.mocked(personalRepo.loadAll).mockResolvedValue({ visits: [makeVisit({ shopId: 'seed-1' })], marks: [] });
+    const user = userEvent.setup();
+    render(<App />);
+    await openShop(user, /架空酒場ひとつめ/);
+    await user.click(screen.getAllByRole('button', { name: '削除' })[0]!);
+    const dialog = screen.getByRole('dialog', { name: '店舗を削除しますか？' });
+    expect(within(dialog).getByRole('radio', { name: /訪問記録を残す/ })).toBeChecked();
+    await user.click(within(dialog).getByRole('radio', { name: '訪問記録も削除する' }));
+    await user.click(within(dialog).getByRole('button', { name: '削除する' }));
+    expect(repo.deleteShop).toHaveBeenCalledWith('seed-1', true, expect.any(String), { deleteVisits: true });
+  });
+
+  it('削除した店舗の訪問記録は、記録時の店名で履歴に残る', async () => {
+    vi.mocked(personalRepo.loadAll).mockResolvedValue({
+      visits: [makeVisit({ shopId: 'deleted-shop', shopNameAtVisit: '閉じた架空店' })],
+      marks: [],
+    });
+    const user = userEvent.setup();
+    render(<App />);
+    await user.click(screen.getByRole('tab', { name: '記録' }));
+    expect(await screen.findByText('閉じた架空店')).toBeInTheDocument();
+    expect(screen.getByText('（削除された店舗）')).toBeInTheDocument();
+  });
+});
+
+describe('データ管理（JSON の書き出し・読み込み）', () => {
+  const backupText = (data: unknown) =>
+    JSON.stringify({ format: BACKUP_FORMAT, version: 1, kind: 'full', exportedAt: '2026-10-01T00:00:00.000Z', data });
+
+  async function openManager(user: ReturnType<typeof userEvent.setup>) {
+    await screen.findByRole('button', { name: /架空酒場ひとつめ/ });
+    await user.click(screen.getByRole('button', { name: 'データ管理' }));
+    return screen.getByRole('dialog', { name: 'データ管理' });
+  }
+
+  it('全データを書き出し、最終バックアップ日時を記録する', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    const dialog = await openManager(user);
+    expect(await within(dialog).findByTestId('last-backup')).toHaveTextContent('まだありません');
+    expect(within(dialog).getByText(/個人的なメモが含まれます/)).toBeInTheDocument();
+    await user.click(within(dialog).getByRole('button', { name: '全データのバックアップを書き出す' }));
+    expect(downloadJson).toHaveBeenCalledWith(
+      expect.stringMatching(/^tachinomi-atlas-backup-\d{12}\.json$/),
+      expect.objectContaining({ format: BACKUP_FORMAT, kind: 'full' }),
+    );
+    expect(backupRepo.setLastBackupAt).toHaveBeenCalled();
+    expect(within(dialog).getByRole('status')).toHaveTextContent('訪問記録1件');
+  });
+
+  it('店舗データの書き出しには初期データを含む', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    const dialog = await openManager(user);
+    await user.click(within(dialog).getByRole('button', { name: '店舗データを書き出す' }));
+    const [, file] = downloadJson.mock.lastCall!;
+    expect((file as { data: { shops: unknown[] } }).data.shops).toHaveLength(2);
+  });
+
+  it('読み込みは検証結果を見せてから、確認後に実行する', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    const dialog = await openManager(user);
+    const file = new File(
+      [backupText({ visits: [makeVisit({ shopId: 'seed-1' }), makeVisit({ id: 'v2', shopId: 'nowhere' })] })],
+      'b.json',
+      {
+        type: 'application/json',
+      },
+    );
+    await user.upload(within(dialog).getByLabelText('書き出した JSON ファイルを選ぶ'), file);
+    const preview = await within(dialog).findByLabelText('読み込む内容');
+    expect(preview).toHaveTextContent('訪問記録2件');
+    expect(preview).toHaveTextContent('店舗が見つからない訪問記録が 1 件');
+    expect(backupRepo.importUserData).not.toHaveBeenCalled();
+
+    await user.click(within(preview).getByRole('checkbox', { name: '店舗が見つからない記録も読み込む' }));
+    expect(preview).toHaveTextContent('訪問記録1件');
+    await user.click(within(preview).getByRole('radio', { name: /置き換える/ }));
+    await user.click(within(preview).getByRole('button', { name: '読み込む…' }));
+    expect(within(preview).getByRole('alertdialog')).toHaveTextContent('すべて削除');
+    await user.click(within(preview).getByRole('button', { name: '置き換えて読み込む' }));
+    expect(backupRepo.importUserData).toHaveBeenCalledWith(
+      expect.objectContaining({ visits: [expect.objectContaining({ id: 'visit-1' })] }),
+      'replace',
+      expect.any(String),
+    );
+    expect(await within(dialog).findByText('読み込みが完了しました。')).toBeInTheDocument();
+    // 読み込み後に各データを読み込み直す
+    expect(personalRepo.loadAll).toHaveBeenCalledTimes(2);
+    expect(repo.loadUserData).toHaveBeenCalledTimes(2);
+  });
+
+  it('不正なファイルはエラーを表示し、読み込まない', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    const dialog = await openManager(user);
+    await user.upload(
+      within(dialog).getByLabelText('書き出した JSON ファイルを選ぶ'),
+      new File(['{"format":"other"}'], 'x.json', { type: 'application/json' }),
+    );
+    expect(
+      await within(dialog).findByText('このファイルは読み込めません。データは変更していません。'),
+    ).toBeInTheDocument();
+    expect(within(dialog).queryByRole('button', { name: '読み込む…' })).not.toBeInTheDocument();
+  });
+
+  it('保存に失敗した場合は、データが変更されていないことを伝える', async () => {
+    vi.mocked(backupRepo.importUserData).mockRejectedValueOnce(new Error('QuotaExceededError'));
+    const user = userEvent.setup();
+    render(<App />);
+    const dialog = await openManager(user);
+    await user.upload(
+      within(dialog).getByLabelText('書き出した JSON ファイルを選ぶ'),
+      new File([backupText({ visits: [makeVisit({ shopId: 'seed-1' })] })], 'b.json', { type: 'application/json' }),
+    );
+    await user.click(await within(dialog).findByRole('button', { name: '読み込む…' }));
+    await user.click(within(dialog).getByRole('button', { name: '統合して読み込む' }));
+    expect(await within(dialog).findByRole('alert')).toHaveTextContent('データは変更されていません');
   });
 });

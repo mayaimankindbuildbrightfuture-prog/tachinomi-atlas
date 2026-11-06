@@ -13,6 +13,7 @@ export type SurveyAreaStore = {
   error: string | null;
   save: (area: SurveyArea) => Promise<void>;
   remove: (id: string) => Promise<void>;
+  reload: () => void;
 };
 
 const describe = (e: unknown) => (e instanceof Error ? e.message : String(e));
@@ -20,6 +21,7 @@ const describe = (e: unknown) => (e instanceof Error ? e.message : String(e));
 export function useSurveyAreas(repository: SurveyAreaRepository = defaultRepository): SurveyAreaStore {
   const [areas, setAreas] = useState<SurveyArea[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [reloadKey, setReloadKey] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
@@ -34,7 +36,7 @@ export function useSurveyAreas(repository: SurveyAreaRepository = defaultReposit
     return () => {
       cancelled = true;
     };
-  }, [repository]);
+  }, [repository, reloadKey]);
 
   const save = useCallback(
     async (area: SurveyArea) => {
@@ -62,5 +64,7 @@ export function useSurveyAreas(repository: SurveyAreaRepository = defaultReposit
     [repository],
   );
 
-  return { areas, error, save, remove };
+  const reload = useCallback(() => setReloadKey((k) => k + 1), []);
+
+  return { areas, error, save, remove, reload };
 }
