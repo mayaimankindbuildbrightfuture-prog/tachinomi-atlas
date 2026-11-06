@@ -4,6 +4,7 @@
  * 訪問済み・お気に入り・予算内の注文モデルによる絞り込みは、個人記録（Phase 4）と
  * 注文モデル（F-18）の実装時に追加する。
  */
+import { cheapestOrderTotal, type OrderModelItemCount } from './budget';
 import { distanceMeters } from './geo';
 import { MARK_LABELS, type MarkKind, type ShopMark } from './visit';
 import { openStateAt, openStateOnDay, parseMinutes, formatDay } from './hours';
@@ -53,6 +54,9 @@ export type ShopFilter = {
   visited: VisitedFilter;
   /** お気に入り・行きたい店・再訪したい（いずれかに当てはまる） */
   marks: MarkKind[];
+  /** 予算（円）。注文モデル（価格例の安い順に budgetItemCount 品）の合計が予算内の店舗に絞る */
+  budgetYen: number | null;
+  budgetItemCount: OrderModelItemCount;
 };
 
 export const EMPTY_FILTER: ShopFilter = {
@@ -71,6 +75,8 @@ export const EMPTY_FILTER: ShopFilter = {
   statuses: [],
   visited: 'any',
   marks: [],
+  budgetYen: null,
+  budgetItemCount: 2,
 };
 
 function matchesKeyword(shop: Shop, keyword: string): boolean {
@@ -128,6 +134,11 @@ export function matchesFilter(
   if (!matchesHours(shop, filter)) return false;
   if (filter.statuses.length > 0 && !filter.statuses.includes(shop.status)) return false;
   if (!matchesPersonal(shop, filter, personal)) return false;
+  if (filter.budgetYen !== null) {
+    // 価格例が足りない店舗は「予算内」と断定できないため含めない（仕様書 9.2）
+    const total = cheapestOrderTotal(shop, filter.budgetItemCount);
+    if (total === null || total > filter.budgetYen) return false;
+  }
   return true;
 }
 
@@ -191,6 +202,12 @@ export function activeFilterChips(filter: ShopFilter, stations: readonly Station
   }
   for (const s of filter.statuses) {
     chips.push({ label: STATUS_LABELS[s], clear: (f) => ({ ...f, statuses: f.statuses.filter((x) => x !== s) }) });
+  }
+  if (filter.budgetYen !== null) {
+    chips.push({
+      label: `予算${filter.budgetYen.toLocaleString('ja-JP')}円以内（安い${filter.budgetItemCount}品）`,
+      clear: (f) => ({ ...f, budgetYen: null }),
+    });
   }
   if (filter.visited !== 'any') {
     chips.push({

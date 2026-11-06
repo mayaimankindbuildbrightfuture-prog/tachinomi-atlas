@@ -8,6 +8,23 @@ import { ShopEditor } from '../components/ShopEditor/ShopEditor';
 import { ComparePanel } from '../components/ComparePanel/ComparePanel';
 import { DataManager } from '../components/DataManager/DataManager';
 import { RecordsPanel } from '../components/RecordsPanel/RecordsPanel';
+import { RoutePlanner } from '../components/RoutePlanner/RoutePlanner';
+import { useRoutes, type RouteStore } from '../hooks/useRoutes';
+import {
+  MAX_ROUTE_SHOPS,
+  addShopToRoute,
+  createRoute,
+  removeShopFromRoute,
+  routePoints,
+  type PlannedRoute,
+} from '../domain/route';
+import { buildRouteFeatures } from '../services/map/routeLayers';
+import {
+  RoutingError,
+  fetchOrsWalkingRoute,
+  routeCacheKey,
+  type WalkingRoute,
+} from '../services/routing/routingService';
 import { PersonalRecordSection } from '../components/ShopDetail/PersonalRecordSection';
 import { VisitEditor } from '../components/VisitEditor/VisitEditor';
 import { usePersonalStore, type PersonalStore } from '../hooks/usePersonalStore';
@@ -18,7 +35,7 @@ import { Sidebar, type SidebarTab } from '../components/Sidebar/Sidebar';
 import { StatusBar } from '../components/StatusBar/StatusBar';
 import { EMPTY_FILTER, filterShops, type ShopFilter } from '../domain/search';
 import { buildDensityGrid, DEFAULT_GRID_SIZE_M, type GridSizeM } from '../domain/density';
-import { createEmptyShop, primaryCategory, type DataSource, type Shop } from '../domain/shop';
+import { createEmptyShop, createId, primaryCategory, type DataSource, type Shop } from '../domain/shop';
 import type { SurveyArea } from '../domain/survey';
 import { useShopStore, type ShopStore } from '../hooks/useShopStore';
 import { useSurveyAreas, type SurveyAreaStore } from '../hooks/useSurveyAreas';
@@ -53,6 +70,10 @@ type Props = {
   usePersonal?: () => PersonalStore;
   /** テスト用に差し替え可能なバックアップの保存先 */
   backupRepository?: BackupRepository;
+  /** テスト用に差し替え可能なルートのストア */
+  useRouteStore?: () => RouteStore;
+  /** テスト用に差し替え可能な通信関数（徒歩経路の取得） */
+  fetchImpl?: typeof fetch;
 };
 
 /** 地図クリックで位置を選ぶ対象 */
@@ -63,10 +84,13 @@ export function App({
   useSurveyStore = useSurveyAreas,
   usePersonal = usePersonalStore,
   backupRepository,
+  useRouteStore = useRoutes,
+  fetchImpl,
 }: Props) {
   const store = useStore();
   const survey = useSurveyStore();
   const personal = usePersonal();
+  const routeStore = useRouteStore();
   const controllerRef = useRef<MapController | null>(null);
   const [status, setStatus] = useState<MapStatus>('loading');
   const [issue, setIssue] = useState<MapIssue | null>(null);
@@ -95,6 +119,13 @@ export function App({
   const [visitEdit, setVisitEdit] = useState<{ shop: Shop; visit: Visit | null } | null>(null);
   const [visitDeleteTarget, setVisitDeleteTarget] = useState<Visit | null>(null);
   const [dataManagerOpen, setDataManagerOpen] = useState(false);
+  const [currentRouteId, setCurrentRouteId] = useState<string | null>(null);
+  const [routeDeleteTarget, setRouteDeleteTarget] = useState<PlannedRoute | null>(null);
+  const [walkingRoutes, setWalkingRoutes] = useState<ReadonlyMap<string, WalkingRoute>>(new Map());
+  const [walkingStatus, setWalkingStatus] = useState<{ loading: boolean; error: string | null }>({
+    loading: false,
+    error: null,
+  });
 
   const mapUsable = status !== 'failed';
 
@@ -116,6 +147,66 @@ export function App({
   );
   const surveyFeatures = useMemo(() => surveyAreasToFeatureCollection(survey.areas), [survey.areas]);
   const stationFeatures = useMemo(() => stationsToFeatureCollection(store.stations), [store.stations]);
+  // はしご酒ルート：選択中のルートの地点と、取得済みの徒歩経路（同じ地点の並びのときだけ使う）
+  const currentRoute = routeStore.routes.find((r) => r.id === currentRouteId) ?? null;
+  const currentRoutePoints = useMemo(
+    () => (currentRoute ? routePoints(currentRoute, store.shops, store.stations) : []),
+    [currentRoute, store.shops, store.stations],
+  );
+  const routeKey = routeCacheKey(currentRoutePoints);
+  const currentWalkingRoute = walkingRoutes.get(routeKey) ?? null;
+  const routeFeatures = useMemo(
+    () => buildRouteFeatures(currentRoutePoints, currentWalkingRoute?.geometry ?? null),
+    [currentRoutePoints, currentWalkingRoute],
+  );
+
+  const changeRoute = useCallback(
+    (route: PlannedRoute) => {
+      setWalkingStatus((s) => (s.error ? { ...s, error: null } : s));
+      routeStore.save(route).catch(() => undefined); // エラーは routeStore.error として表示する
+    },
+    [routeStore],
+  );
+
+  const createNewRoute = useCallback(() => {
+    const now = new Date().toISOString();
+    const route = createRoute(createId('route'), now, `はしご酒 ${routeStore.routes.length + 1}`);
+    changeRoute(route);
+    setCurrentRouteId(route.id);
+    return route;
+  }, [changeRoute, routeStore.routes.length]);
+
+  const toggleShopInRoute = useCallback(
+    (shopId: string) => {
+      const now = new Date().toISOString();
+      if (currentRoute?.shopIds.includes(shopId)) {
+        changeRoute(removeShopFromRoute(currentRoute, shopId, now));
+        return;
+      }
+      const base = currentRoute ?? createNewRoute();
+      changeRoute(addShopToRoute(base, shopId, now));
+    },
+    [currentRoute, changeRoute, createNewRoute],
+  );
+
+  const fetchWalkingRoute = async () => {
+    if (routeStore.routing.provider !== 'openrouteservice' || currentRoutePoints.length < 2) return;
+    setWalkingStatus({ loading: true, error: null });
+    try {
+      const result = await fetchOrsWalkingRoute(currentRoutePoints, routeStore.routing.orsApiKey, fetchImpl);
+      setWalkingRoutes((prev) => new Map(prev).set(routeKey, result));
+      setWalkingStatus({ loading: false, error: null });
+    } catch (e) {
+      setWalkingStatus({
+        loading: false,
+        error:
+          e instanceof RoutingError
+            ? e.message
+            : `徒歩ルートを取得できませんでした：${e instanceof Error ? e.message : String(e)}`,
+      });
+    }
+  };
+
   const legendCounts = useMemo(() => {
     const categoryCounts: Record<string, number> = {};
     const priceCounts: Record<string, number> = {};
@@ -299,6 +390,32 @@ export function App({
         showStations={showStations}
         onShowStationsChange={setShowStations}
         stationCount={store.stations.length}
+        routePanel={
+          <RoutePlanner
+            routes={routeStore.routes}
+            current={currentRoute}
+            shops={store.shops}
+            stations={store.stations}
+            onSelectRoute={(id) => {
+              setCurrentRouteId(id);
+              setWalkingStatus({ loading: false, error: null });
+            }}
+            onCreateRoute={createNewRoute}
+            onChange={changeRoute}
+            onDelete={setRouteDeleteTarget}
+            onSelectShop={(id) => showShop(id, true)}
+            onShowOnMap={() => controllerRef.current?.fitPoints(currentRoutePoints)}
+            routing={routeStore.routing}
+            onSaveRouting={(s) => {
+              routeStore.saveRouting(s);
+              setWalkingStatus({ loading: false, error: null });
+            }}
+            walkingRoute={currentWalkingRoute}
+            onFetchWalkingRoute={fetchWalkingRoute}
+            walkingStatus={walkingStatus}
+            saveError={routeStore.error}
+          />
+        }
         recordsPanel={
           <RecordsPanel
             visits={personal.visits}
@@ -362,6 +479,7 @@ export function App({
           surveyAreas={surveyFeatures}
           stations={stationFeatures}
           showStations={showStations}
+          route={routeFeatures}
           controllerRef={controllerRef}
           onStatusChange={setStatus}
           onIssue={setIssue}
@@ -460,6 +578,15 @@ export function App({
                   onAddVisit={() => setVisitEdit({ shop: selectedShop, visit: null })}
                   onEditVisit={(visit) => setVisitEdit({ shop: selectedShop, visit })}
                   onDeleteVisit={setVisitDeleteTarget}
+                  routeInfo={{
+                    routeName: currentRoute?.name ?? null,
+                    order:
+                      currentRoute && currentRoute.shopIds.includes(selectedShop.id)
+                        ? currentRoute.shopIds.indexOf(selectedShop.id)
+                        : null,
+                    full: (currentRoute?.shopIds.length ?? 0) >= MAX_ROUTE_SHOPS,
+                  }}
+                  onToggleRoute={() => toggleShopInRoute(selectedShop.id)}
                 />
               }
               onShowOnMap={() => controllerRef.current?.flyToPoint(selectedShop.latitude, selectedShop.longitude)}
@@ -571,6 +698,25 @@ export function App({
         </ConfirmDialog>
       )}
 
+      {routeDeleteTarget && (
+        <ConfirmDialog
+          title="はしご酒ルートを削除しますか？"
+          confirmLabel="削除する"
+          danger
+          onConfirm={async () => {
+            try {
+              await routeStore.remove(routeDeleteTarget.id);
+              if (currentRouteId === routeDeleteTarget.id) setCurrentRouteId(null);
+            } finally {
+              setRouteDeleteTarget(null);
+            }
+          }}
+          onCancel={() => setRouteDeleteTarget(null)}
+        >
+          <p>「{routeDeleteTarget.name}」を削除します。店舗や訪問記録は削除されません。</p>
+        </ConfirmDialog>
+      )}
+
       {dataManagerOpen && (
         <DataManager
           allShops={store.shops}
@@ -581,6 +727,7 @@ export function App({
             store.reload();
             survey.reload();
             personal.reload();
+            routeStore.reload();
           }}
         />
       )}

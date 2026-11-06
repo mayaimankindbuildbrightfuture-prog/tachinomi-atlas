@@ -126,7 +126,7 @@ export function localizeLabelLayers(layers: LayerSpecification[]): LayerSpecific
 
 /**
  * 地図スタイルの取得に失敗したときに使う、外部通信なしで描画できる最小スタイル。
- * 背景のみだが、今後のフェーズで追加する店舗レイヤー（GeoJSON）はこの上でも表示できる。
+ * 背景のみだが、店舗・密度・ルートのレイヤー（GeoJSON）はこの上でも表示できる。
  */
 export const OFFLINE_FALLBACK_STYLE: StyleSpecification = {
   version: 8,

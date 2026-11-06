@@ -4,7 +4,7 @@ import { DISPLAY_MODES, type DisplayMode } from '../../services/map/densityLayer
 import type { BuildingsAvailability } from '../../services/map/mapAdapter';
 import { BUILDING_MIN_ZOOM } from '../../services/map/mapConfig';
 
-export type SidebarTab = 'shops' | 'map' | 'compare' | 'records';
+export type SidebarTab = 'shops' | 'map' | 'compare' | 'records' | 'route';
 
 type Props = {
   open: boolean;
@@ -32,6 +32,8 @@ type Props = {
   comparePanel: ReactNode;
   /** 「記録」タブの中身 */
   recordsPanel: ReactNode;
+  /** 「はしご酒」タブの中身 */
+  routePanel: ReactNode;
 };
 
 const TABS: readonly { id: SidebarTab; label: string }[] = [
@@ -39,6 +41,7 @@ const TABS: readonly { id: SidebarTab; label: string }[] = [
   { id: 'map', label: '地図の表示' },
   { id: 'compare', label: '比較・集計' },
   { id: 'records', label: '記録' },
+  { id: 'route', label: 'はしご酒' },
 ];
 
 /** 左側パネル：店舗の検索、地図の表示設定、比較・集計 */
@@ -76,6 +79,11 @@ export function Sidebar(props: Props) {
           {tab === 'shops' && (
             <div role="tabpanel" id="tabpanel-shops" aria-labelledby="tab-shops">
               {props.shopPanel}
+            </div>
+          )}
+          {tab === 'route' && (
+            <div role="tabpanel" id="tabpanel-route" aria-labelledby="tab-route">
+              {props.routePanel}
             </div>
           )}
           {tab === 'records' && (

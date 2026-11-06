@@ -5,11 +5,15 @@ import { styleLoadFailedIssue, webglUnavailableIssue } from '../services/map/map
 import type { ShopRepository } from '../services/storage/shopRepository';
 import { useShopStore, type SeedData } from '../hooks/useShopStore';
 import { makeShop, makeVisit, testSource, testStation } from '../tests/fixtures';
+import { createRoute } from '../domain/route';
 import { useSurveyAreas } from '../hooks/useSurveyAreas';
 import { usePersonalStore } from '../hooks/usePersonalStore';
 import type { PersonalRepository } from '../services/storage/personalRepository';
 import type { BackupRepository } from '../services/storage/backupRepository';
 import { BACKUP_FORMAT } from '../domain/backup';
+import { useRoutes } from '../hooks/useRoutes';
+import type { RouteRepository } from '../services/storage/routeRepository';
+import type { SettingsRepository } from '../services/storage/settingsRepository';
 import type { SurveyAreaRepository } from '../services/storage/surveyAreaRepository';
 import type { SurveyArea } from '../domain/survey';
 
@@ -35,6 +39,8 @@ const controller: MapController = {
   setSurveyAreas: vi.fn(),
   setStations: vi.fn(),
   setStationsVisible: vi.fn(),
+  setRoute: vi.fn(),
+  fitPoints: vi.fn(),
 };
 let handlers: MapEventHandlers = {};
 const createMapController = vi.fn((_el: HTMLElement, _opts: unknown, h: MapEventHandlers): MapController | null => {
@@ -96,6 +102,12 @@ function useTestPersonalStore() {
 }
 
 let backupRepo: BackupRepository;
+let routeRepo: RouteRepository;
+let settingsRepo: SettingsRepository;
+let fetchMock: ReturnType<typeof vi.fn>;
+function useTestRouteStore() {
+  return useRoutes(routeRepo, settingsRepo);
+}
 
 function App() {
   return (
@@ -104,6 +116,8 @@ function App() {
       useSurveyStore={useTestSurveyStore}
       usePersonal={useTestPersonalStore}
       backupRepository={backupRepo}
+      useRouteStore={useTestRouteStore}
+      fetchImpl={fetchMock as unknown as typeof fetch}
     />
   );
 }
@@ -112,6 +126,19 @@ beforeEach(() => {
   vi.clearAllMocks();
   handlers = {};
   seedData = seed;
+  routeRepo = {
+    loadAll: vi.fn(async () => []),
+    save: vi.fn(async () => undefined),
+    delete: vi.fn(async () => undefined),
+  };
+  let routing = { provider: 'none' as 'none' | 'openrouteservice', orsApiKey: '' };
+  settingsRepo = {
+    loadRouting: vi.fn(async () => routing),
+    saveRouting: vi.fn(async (r) => {
+      routing = r;
+    }),
+  };
+  fetchMock = vi.fn();
   backupRepo = {
     exportUserData: vi.fn(async () => ({
       shops: [],
@@ -120,6 +147,7 @@ beforeEach(() => {
       visits: [makeVisit({ shopId: 'seed-1' })],
       marks: [],
       surveyAreas: [],
+      routes: [],
     })),
     importUserData: vi.fn(async () => undefined),
     getLastBackupAt: vi.fn(async () => null),
@@ -764,5 +792,163 @@ describe('データ管理（JSON の書き出し・読み込み）', () => {
     await user.click(await within(dialog).findByRole('button', { name: '読み込む…' }));
     await user.click(within(dialog).getByRole('button', { name: '統合して読み込む' }));
     expect(await within(dialog).findByRole('alert')).toHaveTextContent('データは変更されていません');
+  });
+});
+
+describe('はしご酒プランナー（Phase 5）', () => {
+  async function addFromDetail(user: ReturnType<typeof userEvent.setup>, name: RegExp) {
+    await user.click(screen.getByRole('tab', { name: '店舗を探す' }));
+    await user.click(await screen.findByRole('button', { name }));
+    const detail = screen.getByRole('complementary', { name: '店舗の詳細' });
+    await user.click(within(detail).getByRole('button', { name: '＋ はしご酒に追加' }));
+    return detail;
+  }
+
+  it('店舗詳細から追加すると新しいルートが作られ、順番・距離（概算）を表示し、並べ替え・削除できる', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    const detail = await addFromDetail(user, /架空酒場ひとつめ/);
+    expect(within(detail).getByText('「はしご酒 1」の1軒目')).toBeInTheDocument();
+    expect(routeRepo.save).toHaveBeenLastCalledWith(
+      expect.objectContaining({ name: 'はしご酒 1', shopIds: ['seed-1'] }),
+    );
+    await addFromDetail(user, /架空角打ちふたつめ/);
+
+    await user.click(screen.getByRole('tab', { name: 'はしご酒' }));
+    const itinerary = screen.getByRole('list', { name: '行程' });
+    expect(
+      within(itinerary)
+        .getAllByRole('group', { name: /軒目/ })
+        .map((g) => g.getAttribute('aria-label')),
+    ).toEqual(['1軒目 架空酒場ひとつめ', '2軒目 架空角打ちふたつめ']);
+    // 直線距離と概算であることを明示する
+    expect(within(itinerary).getByText(/直線 11\.1km・徒歩の目安 約139分（概算）/)).toBeInTheDocument();
+    expect(screen.getByText(/直線距離の合計。実際の道のりはこれより長くなります/)).toBeInTheDocument();
+    // 地図に番号付きで表示（経路未取得なので直線）
+    const [line, stops] = vi.mocked(controller.setRoute).mock.lastCall!;
+    expect(stops.features.map((f) => f.properties.label)).toEqual(['1', '2']);
+    expect(line.features[0]!.properties.kind).toBe('straight');
+
+    await user.click(screen.getByRole('button', { name: '架空角打ちふたつめを前へ' }));
+    expect(
+      within(screen.getByRole('list', { name: '行程' })).getAllByRole('group', { name: /軒目/ })[0],
+    ).toHaveAttribute('aria-label', '1軒目 架空角打ちふたつめ');
+    await user.click(screen.getByRole('button', { name: '架空酒場ひとつめをルートから外す' }));
+    expect(within(screen.getByRole('list', { name: '行程' })).getAllByRole('group', { name: /軒目/ })).toHaveLength(1);
+    expect(routeRepo.save).toHaveBeenLastCalledWith(expect.objectContaining({ shopIds: ['seed-2'] }));
+
+    await user.click(screen.getByRole('button', { name: '地図でルート全体を表示' }));
+    expect(controller.fitPoints).toHaveBeenCalled();
+  });
+
+  it('予定日・開始時刻・滞在時間から到着時刻を計算し、営業時間・予算・所要時間と比べる', async () => {
+    seedData = {
+      ...seed,
+      shops: seed.shops.map((s) =>
+        s.id === 'seed-1'
+          ? { ...s, openingHours: [{ dayOfWeek: 5, opensAt: '16:00', closesAt: '19:00', isClosed: false }] }
+          : s,
+      ),
+    };
+    const user = userEvent.setup();
+    render(<App />);
+    await addFromDetail(user, /架空酒場ひとつめ/);
+    await user.click(screen.getByRole('tab', { name: 'はしご酒' }));
+    fireEvent.change(screen.getByLabelText('予定日'), { target: { value: '2026-10-30' } });
+    fireEvent.change(screen.getByLabelText('開始時刻'), { target: { value: '18:30' } });
+    const stop = screen.getByRole('group', { name: '1軒目 架空酒場ひとつめ' });
+    expect(within(stop).getByText('営業時間（金曜）：16:00〜19:00')).toBeInTheDocument();
+    expect(within(stop).getByText(/18:30〜19:15/)).toBeInTheDocument();
+    expect(within(stop).getByText('営業時間外を含む')).toBeInTheDocument();
+
+    fireEvent.change(within(stop).getByLabelText('架空酒場ひとつめの滞在時間（分）'), { target: { value: '20' } });
+    expect(within(stop).getByText('営業時間内（登録情報）')).toBeInTheDocument();
+
+    // 頼む予定の品と予算
+    fireEvent.change(screen.getByLabelText('予算（円）'), { target: { value: '400' } });
+    await user.click(within(stop).getByText(/頼む予定の品/));
+    await user.click(within(stop).getByRole('checkbox', { name: 'ホッピーセット（￥500）' }));
+    const totals = screen.getByRole('region', { name: 'ルートの合計' });
+    expect(totals).toHaveTextContent('予算 ￥400 に対して ￥100 超過');
+    expect(totals).toHaveTextContent('お通し・チャージ・税・サービス料は含みません');
+
+    fireEvent.change(screen.getByLabelText('想定所要時間（分）'), { target: { value: '15' } });
+    expect(totals).toHaveTextContent('5分 超過');
+  });
+
+  it('外部サービスは設定するまで使わず、設定後は取得した徒歩ルートを表示する', async () => {
+    fetchMock.mockResolvedValue(
+      new Response(
+        JSON.stringify({
+          features: [
+            {
+              geometry: {
+                type: 'LineString',
+                coordinates: [
+                  [139.7, 35.7],
+                  [139.705, 35.75],
+                  [139.7, 35.8],
+                ],
+              },
+              properties: { segments: [{ distance: 13500, duration: 9600 }] },
+            },
+          ],
+        }),
+        { status: 200 },
+      ),
+    );
+    const user = userEvent.setup();
+    render(<App />);
+    await addFromDetail(user, /架空酒場ひとつめ/);
+    await addFromDetail(user, /架空角打ちふたつめ/);
+    await user.click(screen.getByRole('tab', { name: 'はしご酒' }));
+    expect(screen.getByRole('button', { name: '徒歩ルートを取得' })).toBeDisabled();
+
+    await user.click(screen.getByText('徒歩ルートの設定'));
+    await user.click(screen.getByRole('radio', { name: /openrouteservice で徒歩ルートを取得する/ }));
+    expect(screen.getByText(/店舗・駅の座標を openrouteservice に送信します/)).toBeInTheDocument();
+    await user.type(screen.getByLabelText('openrouteservice の API キー'), 'test-key');
+    await user.click(screen.getByRole('button', { name: '設定を保存' }));
+    expect(settingsRepo.saveRouting).toHaveBeenCalledWith({ provider: 'openrouteservice', orsApiKey: 'test-key' });
+
+    await user.click(screen.getByRole('button', { name: '徒歩ルートを取得' }));
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(await screen.findByText(/徒歩 13\.5km・約160分（経路検索）/)).toBeInTheDocument();
+    expect(screen.getByText(/^徒歩ルートを取得済み。経路：openrouteservice\.org by HeiGIT/)).toBeInTheDocument();
+    expect(vi.mocked(controller.setRoute).mock.lastCall![0].features[0]!.properties.kind).toBe('routed');
+
+    // 順番を変えると取得済みの経路は使わず、直線（概算）に戻る
+    await user.click(screen.getByRole('button', { name: '架空角打ちふたつめを前へ' }));
+    expect(screen.getByText(/徒歩の目安 約139分（概算）/)).toBeInTheDocument();
+    expect(vi.mocked(controller.setRoute).mock.lastCall![0].features[0]!.properties.kind).toBe('straight');
+  });
+
+  it('経路の取得に失敗した場合は原因を表示し、概算のまま使える', async () => {
+    fetchMock.mockResolvedValue(new Response('{}', { status: 401 }));
+    vi.mocked(settingsRepo.loadRouting).mockResolvedValue({ provider: 'openrouteservice', orsApiKey: 'bad' });
+    const user = userEvent.setup();
+    render(<App />);
+    await addFromDetail(user, /架空酒場ひとつめ/);
+    await addFromDetail(user, /架空角打ちふたつめ/);
+    await user.click(screen.getByRole('tab', { name: 'はしご酒' }));
+    await user.click(screen.getByRole('button', { name: '徒歩ルートを取得' }));
+    expect(await screen.findByRole('alert')).toHaveTextContent('API キーが正しくない');
+    expect(screen.getByText(/（概算）/)).toBeInTheDocument();
+  });
+
+  it('保存済みのルートを選び直し、削除できる', async () => {
+    vi.mocked(routeRepo.loadAll).mockResolvedValue([
+      { ...createRoute('saved', '2026-10-01T00:00:00.000Z', '保存済みルート'), shopIds: ['seed-2'] },
+    ]);
+    const user = userEvent.setup();
+    render(<App />);
+    await user.click(screen.getByRole('tab', { name: 'はしご酒' }));
+    expect(screen.getByText('はしご酒のルートがありません。')).toBeInTheDocument();
+    await user.selectOptions(await screen.findByLabelText('ルート'), 'saved');
+    expect(screen.getByLabelText('ルート名')).toHaveValue('保存済みルート');
+    await user.click(screen.getByRole('button', { name: 'このルートを削除' }));
+    await user.click(within(screen.getByRole('dialog')).getByRole('button', { name: '削除する' }));
+    expect(routeRepo.delete).toHaveBeenCalledWith('saved');
+    expect(screen.getByText('はしご酒のルートがありません。')).toBeInTheDocument();
   });
 });

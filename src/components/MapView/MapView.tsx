@@ -9,6 +9,7 @@ import type {
   SurveyAreaFeatureCollection,
 } from '../../services/map/densityLayers';
 import type { GridFeatureCollection } from '../../domain/density';
+import type { RouteLineCollection, RouteStopCollection } from '../../services/map/routeLayers';
 import './MapView.css';
 
 type Props = MapEventHandlers & {
@@ -24,6 +25,7 @@ type Props = MapEventHandlers & {
   surveyAreas: SurveyAreaFeatureCollection;
   stations: StationFeatureCollection;
   showStations: boolean;
+  route: { line: RouteLineCollection; stops: RouteStopCollection };
   /** 親コンポーネントが地図を操作するためのコントローラー参照 */
   controllerRef: RefObject<MapController | null>;
 };
@@ -45,6 +47,7 @@ export function MapView({
   surveyAreas,
   stations,
   showStations,
+  route,
   controllerRef,
   ...handlers
 }: Props) {
@@ -115,6 +118,10 @@ export function MapView({
   useEffect(() => {
     controllerRef.current?.setStationsVisible(showStations);
   }, [showStations, controllerRef]);
+
+  useEffect(() => {
+    controllerRef.current?.setRoute(route.line, route.stops);
+  }, [route, controllerRef]);
 
   return <div ref={containerRef} className="map-view" data-testid="map-container" aria-label="3D地図" role="region" />;
 }

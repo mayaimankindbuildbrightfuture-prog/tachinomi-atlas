@@ -89,6 +89,21 @@ import {
   type SurveyAreaFeatureCollection,
 } from './densityLayers';
 import type { GridFeatureCollection } from '../../domain/density';
+import {
+  EMPTY_ROUTE_LINE,
+  EMPTY_ROUTE_STOPS,
+  ROUTE_ICON_LABELS,
+  ROUTE_LINE_SOURCE_ID,
+  ROUTE_STOP_SOURCE_ID,
+  buildRouteNumberLayer,
+  buildRouteRoutedLayer,
+  buildRouteStopHaloLayer,
+  buildRouteStraightLayer,
+  drawRouteIcon,
+  routeIconId,
+  type RouteLineCollection,
+  type RouteStopCollection,
+} from './routeLayers';
 
 export type CameraState = {
   lng: number;
@@ -146,6 +161,10 @@ export interface MapController {
   setSurveyAreas(data: SurveyAreaFeatureCollection): void;
   setStations(data: StationFeatureCollection): void;
   setStationsVisible(visible: boolean): void;
+  /** はしご酒ルートを表示する（空のデータで非表示） */
+  setRoute(line: RouteLineCollection, stops: RouteStopCollection): void;
+  /** 指定した地点がすべて入るように表示範囲を合わせる */
+  fitPoints(points: readonly { latitude: number; longitude: number }[]): void;
   destroy(): void;
 }
 
@@ -203,6 +222,8 @@ export function createMapController(
   let surveyData: SurveyAreaFeatureCollection = { type: 'FeatureCollection', features: [] };
   let stationData: StationFeatureCollection = { type: 'FeatureCollection', features: [] };
   let showStations = false;
+  let routeLine: RouteLineCollection = EMPTY_ROUTE_LINE;
+  let routeStops: RouteStopCollection = EMPTY_ROUTE_STOPS;
   const popup = new Popup({ closeButton: true, closeOnClick: true, maxWidth: '260px' });
 
   const online = () => (typeof navigator === 'undefined' ? true : navigator.onLine !== false);
@@ -288,6 +309,19 @@ export function createMapController(
     map.addLayer(buildPointLayer());
     map.addLayer(buildHitLayer());
     if (style.glyphs) map.addLayer(buildLabelLayer(textFont));
+    // はしご酒ルートは最前面に描く
+    for (const label of ROUTE_ICON_LABELS) {
+      const id = routeIconId(label);
+      if (map.hasImage(id)) continue;
+      const image = drawRouteIcon(label, pixelRatio);
+      if (image) map.addImage(id, image, { pixelRatio });
+    }
+    map.addSource(ROUTE_LINE_SOURCE_ID, { type: 'geojson', data: routeLine });
+    map.addSource(ROUTE_STOP_SOURCE_ID, { type: 'geojson', data: routeStops });
+    map.addLayer(buildRouteStraightLayer());
+    map.addLayer(buildRouteRoutedLayer());
+    map.addLayer(buildRouteStopHaloLayer());
+    map.addLayer(buildRouteNumberLayer());
     applyLayerVisibility();
   };
 
@@ -482,6 +516,33 @@ export function createMapController(
     setStations(data) {
       stationData = data;
       setSourceData(STATION_SOURCE_ID, data);
+    },
+    setRoute(line, stops) {
+      routeLine = line;
+      routeStops = stops;
+      setSourceData(ROUTE_LINE_SOURCE_ID, line);
+      setSourceData(ROUTE_STOP_SOURCE_ID, stops);
+    },
+    fitPoints(points) {
+      if (points.length === 0) return;
+      if (points.length === 1) {
+        map.flyTo({
+          center: [points[0]!.longitude, points[0]!.latitude],
+          zoom: Math.max(map.getZoom(), 15),
+          duration: 1000,
+        });
+        return;
+      }
+      const lngs = points.map((p) => p.longitude);
+      const lats = points.map((p) => p.latitude);
+      map.resize();
+      map.fitBounds(
+        [
+          [Math.min(...lngs), Math.min(...lats)],
+          [Math.max(...lngs), Math.max(...lats)],
+        ],
+        { padding: 80, maxZoom: 17, duration: 1000 },
+      );
     },
     setStationsVisible(visible) {
       showStations = visible;
