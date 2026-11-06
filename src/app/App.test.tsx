@@ -4,7 +4,10 @@ import type { MapController, MapEventHandlers } from '../services/map/mapAdapter
 import { styleLoadFailedIssue, webglUnavailableIssue } from '../services/map/mapErrors';
 import type { ShopRepository } from '../services/storage/shopRepository';
 import { useShopStore, type SeedData } from '../hooks/useShopStore';
-import { makeShop, testSource } from '../tests/fixtures';
+import { makeShop, testSource, testStation } from '../tests/fixtures';
+import { useSurveyAreas } from '../hooks/useSurveyAreas';
+import type { SurveyAreaRepository } from '../services/storage/surveyAreaRepository';
+import type { SurveyArea } from '../domain/survey';
 
 // 地図ライブラリ（WebGL）は jsdom で動かないため、アダプター層をモックする
 const controller: MapController = {
@@ -23,6 +26,11 @@ const controller: MapController = {
   setPickMode: vi.fn(),
   setDraftPosition: vi.fn(),
   resizeKeepingCenter: vi.fn(),
+  setDisplayMode: vi.fn(),
+  setDensityGrid: vi.fn(),
+  setSurveyAreas: vi.fn(),
+  setStations: vi.fn(),
+  setStationsVisible: vi.fn(),
 };
 let handlers: MapEventHandlers = {};
 const createMapController = vi.fn((_el: HTMLElement, _opts: unknown, h: MapEventHandlers): MapController | null => {
@@ -57,7 +65,7 @@ const seed: SeedData = {
     }),
   ],
   sources: [testSource],
-  stations: [],
+  stations: [testStation, { ...testStation, id: 'test-station-far', name: '遠方', latitude: 35.9, longitude: 139.6 }],
   issues: [],
 };
 
@@ -66,14 +74,28 @@ let seedData: SeedData = seed;
 function useTestStore() {
   return useShopStore(repo, () => seedData);
 }
+// 調査済みエリアはメモリ上の偽ストア
+let surveyRepo: SurveyAreaRepository;
+function useTestSurveyStore() {
+  return useSurveyAreas(surveyRepo);
+}
+
 function App() {
-  return <AppImpl useStore={useTestStore} />;
+  return <AppImpl useStore={useTestStore} useSurveyStore={useTestSurveyStore} />;
 }
 
 beforeEach(() => {
   vi.clearAllMocks();
   handlers = {};
   seedData = seed;
+  const saved: SurveyArea[] = [];
+  surveyRepo = {
+    loadAll: vi.fn(async () => [...saved]),
+    save: vi.fn(async (a: SurveyArea) => {
+      saved.push(a);
+    }),
+    delete: vi.fn(async () => undefined),
+  };
   repo = {
     loadUserData: vi.fn(async () => ({ shops: [], deletedShopIds: [], sources: [] })),
     saveShop: vi.fn(async () => undefined),
@@ -218,7 +240,7 @@ describe('店舗の表示・検索', () => {
       'rel',
       'noopener noreferrer',
     );
-    expect(controller.flyToPoint).toHaveBeenCalledWith(35.7, 139.7);
+    expect(controller.flyToPoint).toHaveBeenCalledWith(35.7, 139.7, undefined);
     expect(controller.setSelectedShop).toHaveBeenLastCalledWith('seed-1');
 
     act(() => handlers.onShopClick?.('seed-2'));
@@ -336,5 +358,118 @@ describe('店舗の追加・編集・削除', () => {
     const editor = screen.getByRole('complementary', { name: '店舗の編集' });
     await user.click(within(editor).getByRole('button', { name: '保存' }));
     expect(await within(editor).findByText(/店舗データを保存できませんでした：QuotaExceededError/)).toBeInTheDocument();
+  });
+});
+
+describe('密度・比較（Phase 3）', () => {
+  it('表示モードを切り替えると地図と凡例に反映され、3D柱では格子を渡す', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    await screen.findByRole('button', { name: /架空酒場ひとつめ/ });
+    expect(screen.getByRole('region', { name: '凡例' })).toHaveTextContent('凡例：店舗マーカー');
+
+    await user.click(screen.getByRole('tab', { name: '地図の表示' }));
+    await user.click(screen.getByRole('radio', { name: '密度（ヒートマップ）' }));
+    expect(controller.setDisplayMode).toHaveBeenLastCalledWith('heatmap');
+    const legend = screen.getByRole('region', { name: '凡例' });
+    expect(legend).toHaveTextContent('凡例：密度（ヒートマップ）');
+    expect(legend).toHaveTextContent('調査済みエリアは未登録です');
+    expect(legend).toHaveTextContent('対象：検索条件に合う 2 件');
+
+    await user.click(screen.getByRole('radio', { name: '密度（3D柱）' }));
+    expect(controller.setDisplayMode).toHaveBeenLastCalledWith('grid');
+    const [grid, size] = vi.mocked(controller.setDensityGrid).mock.lastCall!;
+    expect(size).toBe(500);
+    expect(grid.features.reduce((n, f) => n + f.properties.count, 0)).toBe(2);
+    expect(screen.getByRole('region', { name: '凡例' })).toHaveTextContent('色なし：データなし（未調査）');
+
+    await user.selectOptions(screen.getByLabelText('マスの大きさ'), '1000');
+    expect(vi.mocked(controller.setDensityGrid).mock.lastCall![1]).toBe(1000);
+
+    await user.click(screen.getByRole('radio', { name: 'ジャンル別の分布' }));
+    expect(screen.getByRole('region', { name: '凡例' })).toHaveTextContent('焼きとん・焼き鳥（1）');
+    expect(screen.getByRole('radio', { name: /訪問済み店舗の分布/ })).toBeDisabled();
+  });
+
+  it('密度の集計に検索条件が反映される', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    await screen.findByRole('button', { name: /架空酒場ひとつめ/ });
+    await user.click(screen.getByRole('tab', { name: '地図の表示' }));
+    await user.click(screen.getByRole('radio', { name: '密度（3D柱）' }));
+    await user.type(screen.getByRole('searchbox', { name: '店名・住所で検索' }), '角打ち');
+    const [grid] = vi.mocked(controller.setDensityGrid).mock.lastCall!;
+    expect(grid.features.reduce((n, f) => n + f.properties.count, 0)).toBe(1);
+  });
+
+  it('駅の表示を切り替えられ、駅データを地図に渡す', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    expect(vi.mocked(controller.setStations).mock.lastCall![0].features).toHaveLength(2);
+    await user.click(screen.getByRole('tab', { name: '地図の表示' }));
+    await user.click(screen.getByRole('checkbox', { name: '駅（2駅）' }));
+    expect(controller.setStationsVisible).toHaveBeenLastCalledWith(true);
+  });
+
+  it('比較タブで市区町村別・駅周辺の件数を表示し、駅から店舗を探せる', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    await screen.findByRole('button', { name: /架空酒場ひとつめ/ });
+    await user.click(screen.getByRole('tab', { name: '比較・集計' }));
+    expect(screen.getByText(/登録済みの店舗の件数/)).toBeInTheDocument();
+    // 同名の市区町村でも都道府県ごとに分けて集計する
+    expect(screen.getAllByRole('cell', { name: /架空区/ })).toHaveLength(2);
+
+    const ranking = screen.getByRole('list', { name: '駅周辺の店舗数' });
+    expect(within(ranking).getByRole('button', { name: /架空.*1件/ })).toBeInTheDocument();
+    await user.click(within(ranking).getByRole('button', { name: /架空.*1件/ }));
+
+    // 店舗タブに戻り、駅を起点とした条件が適用される
+    expect(screen.getByRole('tab', { name: '店舗を探す' })).toHaveAttribute('aria-selected', 'true');
+    expect(screen.getByRole('button', { name: '架空駅から500m以内 ✕' })).toBeInTheDocument();
+    expect(screen.getByTestId('result-count')).toHaveTextContent('1');
+    expect(controller.flyToPoint).toHaveBeenLastCalledWith(testStation.latitude, testStation.longitude, 15);
+  });
+
+  it('調査済みエリアを駅から追加・削除でき、地図に渡す', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    await screen.findByRole('button', { name: /架空酒場ひとつめ/ });
+    await user.click(screen.getByRole('tab', { name: '比較・集計' }));
+    await user.click(screen.getByRole('button', { name: '＋ 調査済みエリアを追加' }));
+    const form = screen.getByRole('group', { name: '調査済みエリアの追加' });
+    await user.click(within(form).getByRole('button', { name: 'エリアを保存' }));
+    expect(within(form).getByRole('alert')).toHaveTextContent('エリア名は必須');
+
+    await user.selectOptions(within(form).getByLabelText('中心にする駅'), testStation.id);
+    expect(within(form).getByLabelText(/エリア名/)).toHaveValue('架空駅周辺');
+    await user.click(within(form).getByRole('button', { name: 'エリアを保存' }));
+    expect(surveyRepo.save).toHaveBeenCalledWith(
+      expect.objectContaining({ name: '架空駅周辺', centerLatitude: testStation.latitude, radiusM: 500 }),
+    );
+    expect(await screen.findByRole('button', { name: '架空駅周辺' })).toBeInTheDocument();
+    expect(vi.mocked(controller.setSurveyAreas).mock.lastCall![0].features).toHaveLength(1);
+
+    // 地図クリックで中心を選ぶモードは、店舗の位置選択と区別される
+    await user.click(screen.getByRole('button', { name: '＋ 調査済みエリアを追加' }));
+    await user.click(screen.getByRole('button', { name: '地図をクリックして中心を選択' }));
+    expect(screen.getByText(/調査済みエリアの中心をクリック/)).toBeInTheDocument();
+    act(() => handlers.onMapPick?.({ latitude: 35.8, longitude: 139.65 }));
+    expect(screen.getByLabelText('中心の緯度')).toHaveValue('35.800000');
+    await user.click(screen.getByRole('button', { name: 'キャンセル' }));
+
+    await user.click(screen.getByRole('button', { name: '削除' }));
+    await user.click(within(screen.getByRole('dialog')).getByRole('button', { name: '削除する' }));
+    expect(surveyRepo.delete).toHaveBeenCalled();
+    expect(screen.queryByRole('button', { name: '架空駅周辺' })).not.toBeInTheDocument();
+  });
+
+  it('店舗詳細に近くの駅（直線距離）を表示する', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    await user.click(await screen.findByRole('button', { name: /架空酒場ひとつめ/ }));
+    const detail = screen.getByRole('complementary', { name: '店舗の詳細' });
+    expect(within(detail).getByText(/架空（約140m）/)).toBeInTheDocument();
+    expect(within(detail).getByText('（直線距離・参考）')).toBeInTheDocument();
   });
 });

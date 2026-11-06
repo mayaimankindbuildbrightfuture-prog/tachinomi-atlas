@@ -1,4 +1,8034 @@
 {
   "schemaVersion": 1,
-  "stations": []
+  "attribution": "駅データは国土数値情報（鉄道データ N02 令和6年度・行政区域データ N03 令和7年）をもとに作成（国土交通省、CC BY 4.0）。scripts/build-stations.mjs で加工。",
+  "sourceId": "src-ksj-n02-2024",
+  "stations": [
+    {
+      "id": "ksj-n02-002934",
+      "name": "さいたま新都心",
+      "latitude": 35.893595,
+      "longitude": 139.6339,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市中央区",
+      "lines": ["東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-002856",
+      "name": "せんげん台",
+      "latitude": 35.935955,
+      "longitude": 139.774595,
+      "prefecture": "埼玉県",
+      "municipality": "越谷市",
+      "lines": ["東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-002594",
+      "name": "ソシオ流通センター",
+      "latitude": 36.136506,
+      "longitude": 139.424511,
+      "prefecture": "埼玉県",
+      "municipality": "熊谷市",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-002710",
+      "name": "つきのわ",
+      "latitude": 36.043515,
+      "longitude": 139.345565,
+      "prefecture": "埼玉県",
+      "municipality": "滑川町",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-002581",
+      "name": "ひろせ野鳥の森",
+      "latitude": 36.146165,
+      "longitude": 139.351865,
+      "prefecture": "埼玉県",
+      "municipality": "熊谷市",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-002601",
+      "name": "ふかや花園",
+      "latitude": 36.130704,
+      "longitude": 139.248367,
+      "prefecture": "埼玉県",
+      "municipality": "深谷市",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-002987",
+      "name": "ふじみ野",
+      "latitude": 35.860745,
+      "longitude": 139.52309,
+      "prefecture": "埼玉県",
+      "municipality": "富士見市",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-003025",
+      "name": "みずほ台",
+      "latitude": 35.8382,
+      "longitude": 139.550785,
+      "prefecture": "埼玉県",
+      "municipality": "富士見市",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-002640",
+      "name": "みなみ寄居",
+      "latitude": 36.091383,
+      "longitude": 139.236467,
+      "prefecture": "埼玉県",
+      "municipality": "寄居町",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-002791",
+      "name": "芦ヶ久保",
+      "latitude": 35.976405,
+      "longitude": 139.136,
+      "prefecture": "埼玉県",
+      "municipality": "横瀬町",
+      "lines": ["西武鉄道 西武秩父線"]
+    },
+    {
+      "id": "ksj-n02-002756",
+      "name": "伊奈中央",
+      "latitude": 35.999455,
+      "longitude": 139.61703,
+      "prefecture": "埼玉県",
+      "municipality": "伊奈町",
+      "lines": ["埼玉新都市交通 伊奈線"]
+    },
+    {
+      "id": "ksj-n02-002810",
+      "name": "一ノ割",
+      "latitude": 35.964875,
+      "longitude": 139.76604,
+      "prefecture": "埼玉県",
+      "municipality": "春日部市",
+      "lines": ["東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-002848",
+      "name": "一本松",
+      "latitude": 35.940215,
+      "longitude": 139.37008,
+      "prefecture": "埼玉県",
+      "municipality": "鶴ヶ島市",
+      "lines": ["東武鉄道 越生線"]
+    },
+    {
+      "id": "ksj-n02-003011",
+      "name": "稲荷山公園",
+      "latitude": 35.844645,
+      "longitude": 139.39939,
+      "prefecture": "埼玉県",
+      "municipality": "狭山市",
+      "lines": ["西武鉄道 池袋線"]
+    },
+    {
+      "id": "ksj-n02-002747",
+      "name": "羽貫",
+      "latitude": 36.00716,
+      "longitude": 139.60852,
+      "prefecture": "埼玉県",
+      "municipality": "伊奈町",
+      "lines": ["埼玉新都市交通 伊奈線"]
+    },
+    {
+      "id": "ksj-n02-002565",
+      "name": "羽生",
+      "latitude": 36.170317,
+      "longitude": 139.533818,
+      "prefecture": "埼玉県",
+      "municipality": "羽生市",
+      "lines": ["秩父鉄道 秩父本線", "東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-002811",
+      "name": "浦山口",
+      "latitude": 35.96392,
+      "longitude": 139.05814,
+      "prefecture": "埼玉県",
+      "municipality": "秩父市",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-002989",
+      "name": "浦和",
+      "latitude": 35.858565,
+      "longitude": 139.657145,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市浦和区",
+      "lines": ["東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-002933",
+      "name": "浦和美園",
+      "latitude": 35.893675,
+      "longitude": 139.727825,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市緑区",
+      "lines": ["埼玉高速鉄道 埼玉高速鉄道線"]
+    },
+    {
+      "id": "ksj-n02-002799",
+      "name": "影森",
+      "latitude": 35.971995,
+      "longitude": 139.068385,
+      "prefecture": "埼玉県",
+      "municipality": "秩父市",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-002597",
+      "name": "永田",
+      "latitude": 36.13538,
+      "longitude": 139.25951,
+      "prefecture": "埼玉県",
+      "municipality": "深谷市",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-002814",
+      "name": "越生",
+      "latitude": 35.962835,
+      "longitude": 139.299433,
+      "prefecture": "埼玉県",
+      "municipality": "越生町",
+      "lines": ["東日本旅客鉄道 八高線", "東武鉄道 越生線"]
+    },
+    {
+      "id": "ksj-n02-002942",
+      "name": "越谷",
+      "latitude": 35.88753,
+      "longitude": 139.786235,
+      "prefecture": "埼玉県",
+      "municipality": "越谷市",
+      "lines": ["東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-002957",
+      "name": "越谷レイクタウン",
+      "latitude": 35.876105,
+      "longitude": 139.82226,
+      "prefecture": "埼玉県",
+      "municipality": "越谷市",
+      "lines": ["東日本旅客鉄道 武蔵野線"]
+    },
+    {
+      "id": "ksj-n02-002778",
+      "name": "横瀬",
+      "latitude": 35.9845,
+      "longitude": 139.098275,
+      "prefecture": "埼玉県",
+      "municipality": "横瀬町",
+      "lines": ["西武鉄道 西武秩父線"]
+    },
+    {
+      "id": "ksj-n02-002541",
+      "name": "岡部",
+      "latitude": 36.20574,
+      "longitude": 139.23749,
+      "prefecture": "埼玉県",
+      "municipality": "深谷市",
+      "lines": ["東日本旅客鉄道 高崎線"]
+    },
+    {
+      "id": "ksj-n02-002761",
+      "name": "桶川",
+      "latitude": 35.998435,
+      "longitude": 139.564215,
+      "prefecture": "埼玉県",
+      "municipality": "桶川市",
+      "lines": ["東日本旅客鉄道 高崎線"]
+    },
+    {
+      "id": "ksj-n02-003148",
+      "name": "下山口",
+      "latitude": 35.779445,
+      "longitude": 139.441165,
+      "prefecture": "埼玉県",
+      "municipality": "所沢市",
+      "lines": ["西武鉄道 狭山線"]
+    },
+    {
+      "id": "ksj-n02-002606",
+      "name": "加須",
+      "latitude": 36.122955,
+      "longitude": 139.59557,
+      "prefecture": "埼玉県",
+      "municipality": "加須市",
+      "lines": ["東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-002857",
+      "name": "加茂宮",
+      "latitude": 35.93577,
+      "longitude": 139.616935,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市北区",
+      "lines": ["埼玉新都市交通 伊奈線"]
+    },
+    {
+      "id": "ksj-n02-002623",
+      "name": "花崎",
+      "latitude": 36.109945,
+      "longitude": 139.633595,
+      "prefecture": "埼玉県",
+      "municipality": "加須市",
+      "lines": ["東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-002874",
+      "name": "霞ヶ関",
+      "latitude": 35.925425,
+      "longitude": 139.444045,
+      "prefecture": "埼玉県",
+      "municipality": "川越市",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-002681",
+      "name": "皆野",
+      "latitude": 36.06862,
+      "longitude": 139.093995,
+      "prefecture": "埼玉県",
+      "municipality": "皆野町",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-002908",
+      "name": "笠幡",
+      "latitude": 35.90758,
+      "longitude": 139.40626,
+      "prefecture": "埼玉県",
+      "municipality": "川越市",
+      "lines": ["東日本旅客鉄道 川越線"]
+    },
+    {
+      "id": "ksj-n02-002977",
+      "name": "蒲生",
+      "latitude": 35.86689,
+      "longitude": 139.791765,
+      "prefecture": "埼玉県",
+      "municipality": "越谷市",
+      "lines": ["東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-002787",
+      "name": "丸山",
+      "latitude": 35.9796,
+      "longitude": 139.62454,
+      "prefecture": "埼玉県",
+      "municipality": "伊奈町",
+      "lines": ["埼玉新都市交通 伊奈線"]
+    },
+    {
+      "id": "ksj-n02-002833",
+      "name": "岩槻",
+      "latitude": 35.95025,
+      "longitude": 139.69313,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市岩槻区",
+      "lines": ["東武鉄道 野田線"]
+    },
+    {
+      "id": "ksj-n02-002611",
+      "name": "寄居",
+      "latitude": 36.117575,
+      "longitude": 139.193597,
+      "prefecture": "埼玉県",
+      "municipality": "寄居町",
+      "lines": ["秩父鉄道 秩父本線", "東日本旅客鉄道 八高線", "東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-002955",
+      "name": "吉川",
+      "latitude": 35.876625,
+      "longitude": 139.843235,
+      "prefecture": "埼玉県",
+      "municipality": "吉川市",
+      "lines": ["東日本旅客鉄道 武蔵野線"]
+    },
+    {
+      "id": "ksj-n02-002974",
+      "name": "吉川美南",
+      "latitude": 35.868087,
+      "longitude": 139.858121,
+      "prefecture": "埼玉県",
+      "municipality": "吉川市",
+      "lines": ["東日本旅客鉄道 武蔵野線"]
+    },
+    {
+      "id": "ksj-n02-002824",
+      "name": "吉野原",
+      "latitude": 35.95701,
+      "longitude": 139.620905,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市北区",
+      "lines": ["埼玉新都市交通 伊奈線"]
+    },
+    {
+      "id": "ksj-n02-002683",
+      "name": "久喜",
+      "latitude": 36.06568,
+      "longitude": 139.677493,
+      "prefecture": "埼玉県",
+      "municipality": "久喜市",
+      "lines": ["東日本旅客鉄道 東北線", "東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-002847",
+      "name": "宮原",
+      "latitude": 35.94053,
+      "longitude": 139.60952,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市北区",
+      "lines": ["東日本旅客鉄道 高崎線"]
+    },
+    {
+      "id": "ksj-n02-003068",
+      "name": "狭山ヶ丘",
+      "latitude": 35.810405,
+      "longitude": 139.41702,
+      "prefecture": "埼玉県",
+      "municipality": "所沢市",
+      "lines": ["西武鉄道 池袋線"]
+    },
+    {
+      "id": "ksj-n02-002991",
+      "name": "狭山市",
+      "latitude": 35.85726,
+      "longitude": 139.41339,
+      "prefecture": "埼玉県",
+      "municipality": "狭山市",
+      "lines": ["西武鉄道 新宿線"]
+    },
+    {
+      "id": "ksj-n02-002614",
+      "name": "玉淀",
+      "latitude": 36.116945,
+      "longitude": 139.20021,
+      "prefecture": "埼玉県",
+      "municipality": "寄居町",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-003067",
+      "name": "金子",
+      "latitude": 35.810815,
+      "longitude": 139.32861,
+      "prefecture": "埼玉県",
+      "municipality": "入間市",
+      "lines": ["東日本旅客鉄道 八高線"]
+    },
+    {
+      "id": "ksj-n02-002589",
+      "name": "熊谷",
+      "latitude": 36.139505,
+      "longitude": 139.389643,
+      "prefecture": "埼玉県",
+      "municipality": "熊谷市",
+      "lines": ["秩父鉄道 秩父本線", "東日本旅客鉄道 高崎線", "東日本旅客鉄道 上越新幹線"]
+    },
+    {
+      "id": "ksj-n02-002592",
+      "name": "栗橋",
+      "latitude": 36.136785,
+      "longitude": 139.69403,
+      "prefecture": "埼玉県",
+      "municipality": "久喜市",
+      "lines": ["東日本旅客鉄道 東北線", "東武鉄道 日光線"]
+    },
+    {
+      "id": "ksj-n02-003020",
+      "name": "元加治",
+      "latitude": 35.84056,
+      "longitude": 139.345365,
+      "prefecture": "埼玉県",
+      "municipality": "入間市",
+      "lines": ["西武鉄道 池袋線"]
+    },
+    {
+      "id": "ksj-n02-002812",
+      "name": "原市",
+      "latitude": 35.96384,
+      "longitude": 139.622185,
+      "prefecture": "埼玉県",
+      "municipality": "上尾市",
+      "lines": ["埼玉新都市交通 伊奈線"]
+    },
+    {
+      "id": "ksj-n02-002988",
+      "name": "戸塚安行",
+      "latitude": 35.85907,
+      "longitude": 139.753775,
+      "prefecture": "埼玉県",
+      "municipality": "川口市",
+      "lines": ["埼玉高速鉄道 埼玉高速鉄道線"]
+    },
+    {
+      "id": "ksj-n02-003052",
+      "name": "戸田",
+      "latitude": 35.817595,
+      "longitude": 139.66961,
+      "prefecture": "埼玉県",
+      "municipality": "戸田市",
+      "lines": ["東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-003072",
+      "name": "戸田公園",
+      "latitude": 35.807765,
+      "longitude": 139.67835,
+      "prefecture": "埼玉県",
+      "municipality": "戸田市",
+      "lines": ["東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-002904",
+      "name": "吾野",
+      "latitude": 35.908325,
+      "longitude": 139.225905,
+      "prefecture": "埼玉県",
+      "municipality": "飯能市",
+      "lines": ["西武鉄道 西武秩父線", "西武鉄道 池袋線"]
+    },
+    {
+      "id": "ksj-n02-002768",
+      "name": "御花畑",
+      "latitude": 35.99236,
+      "longitude": 139.083645,
+      "prefecture": "埼玉県",
+      "municipality": "秩父市",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-002672",
+      "name": "幸手",
+      "latitude": 36.07407,
+      "longitude": 139.71491,
+      "prefecture": "埼玉県",
+      "municipality": "幸手市",
+      "lines": ["東武鉄道 日光線"]
+    },
+    {
+      "id": "ksj-n02-003094",
+      "name": "航空公園",
+      "latitude": 35.79834,
+      "longitude": 139.46559,
+      "prefecture": "埼玉県",
+      "municipality": "所沢市",
+      "lines": ["西武鉄道 新宿線"]
+    },
+    {
+      "id": "ksj-n02-002619",
+      "name": "行田",
+      "latitude": 36.113895,
+      "longitude": 139.432085,
+      "prefecture": "埼玉県",
+      "municipality": "行田市",
+      "lines": ["東日本旅客鉄道 高崎線"]
+    },
+    {
+      "id": "ksj-n02-002583",
+      "name": "行田市",
+      "latitude": 36.14363,
+      "longitude": 139.4588,
+      "prefecture": "埼玉県",
+      "municipality": "行田市",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-002753",
+      "name": "高坂",
+      "latitude": 36.002955,
+      "longitude": 139.39768,
+      "prefecture": "埼玉県",
+      "municipality": "東松山市",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-002950",
+      "name": "高麗",
+      "latitude": 35.882025,
+      "longitude": 139.30438,
+      "prefecture": "埼玉県",
+      "municipality": "日高市",
+      "lines": ["西武鉄道 池袋線"]
+    },
+    {
+      "id": "ksj-n02-002927",
+      "name": "高麗川",
+      "latitude": 35.89637,
+      "longitude": 139.33813,
+      "prefecture": "埼玉県",
+      "municipality": "日高市",
+      "lines": ["東日本旅客鉄道 川越線", "東日本旅客鉄道 八高線"]
+    },
+    {
+      "id": "ksj-n02-002691",
+      "name": "鴻巣",
+      "latitude": 36.05924,
+      "longitude": 139.509585,
+      "prefecture": "埼玉県",
+      "municipality": "鴻巣市",
+      "lines": ["東日本旅客鉄道 高崎線"]
+    },
+    {
+      "id": "ksj-n02-002835",
+      "name": "今羽",
+      "latitude": 35.950005,
+      "longitude": 139.61961,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市北区",
+      "lines": ["埼玉新都市交通 伊奈線"]
+    },
+    {
+      "id": "ksj-n02-002822",
+      "name": "坂戸",
+      "latitude": 35.95715,
+      "longitude": 139.394103,
+      "prefecture": "埼玉県",
+      "municipality": "坂戸市",
+      "lines": ["東武鉄道 越生線", "東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-002604",
+      "name": "桜沢",
+      "latitude": 36.12872,
+      "longitude": 139.20824,
+      "prefecture": "埼玉県",
+      "municipality": "寄居町",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-003010",
+      "name": "三郷",
+      "latitude": 35.844835,
+      "longitude": 139.886835,
+      "prefecture": "埼玉県",
+      "municipality": "三郷市",
+      "lines": ["東日本旅客鉄道 武蔵野線"]
+    },
+    {
+      "id": "ksj-n02-003047",
+      "name": "三郷中央",
+      "latitude": 35.824485,
+      "longitude": 139.87837,
+      "prefecture": "埼玉県",
+      "municipality": "三郷市",
+      "lines": ["首都圏新都市鉄道 常磐新線"]
+    },
+    {
+      "id": "ksj-n02-002817",
+      "name": "三峰口",
+      "latitude": 35.960175,
+      "longitude": 138.97773,
+      "prefecture": "埼玉県",
+      "municipality": "秩父市",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-002770",
+      "name": "志久",
+      "latitude": 35.991025,
+      "longitude": 139.6222,
+      "prefecture": "埼玉県",
+      "municipality": "伊奈町",
+      "lines": ["埼玉新都市交通 伊奈線"]
+    },
+    {
+      "id": "ksj-n02-003049",
+      "name": "志木",
+      "latitude": 35.82217,
+      "longitude": 139.5753,
+      "prefecture": "埼玉県",
+      "municipality": "新座市",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-002891",
+      "name": "指扇",
+      "latitude": 35.916965,
+      "longitude": 139.56497,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市西区",
+      "lines": ["東日本旅客鉄道 川越線"]
+    },
+    {
+      "id": "ksj-n02-002549",
+      "name": "児玉",
+      "latitude": 36.19284,
+      "longitude": 139.135715,
+      "prefecture": "埼玉県",
+      "municipality": "本庄市",
+      "lines": ["東日本旅客鉄道 八高線"]
+    },
+    {
+      "id": "ksj-n02-002593",
+      "name": "持田",
+      "latitude": 36.137615,
+      "longitude": 139.4416,
+      "prefecture": "埼玉県",
+      "municipality": "行田市",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-002854",
+      "name": "七里",
+      "latitude": 35.93649,
+      "longitude": 139.66601,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市見沼区",
+      "lines": ["東武鉄道 野田線"]
+    },
+    {
+      "id": "ksj-n02-002837",
+      "name": "若葉",
+      "latitude": 35.94893,
+      "longitude": 139.40866,
+      "prefecture": "埼玉県",
+      "municipality": "鶴ヶ島市",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-002785",
+      "name": "春日部",
+      "latitude": 35.980073,
+      "longitude": 139.752505,
+      "prefecture": "埼玉県",
+      "municipality": "春日部市",
+      "lines": ["東武鉄道 伊勢崎線", "東武鉄道 野田線"]
+    },
+    {
+      "id": "ksj-n02-003131",
+      "name": "所沢",
+      "latitude": 35.786753,
+      "longitude": 139.473363,
+      "prefecture": "埼玉県",
+      "municipality": "所沢市",
+      "lines": ["西武鉄道 新宿線", "西武鉄道 池袋線"]
+    },
+    {
+      "id": "ksj-n02-003088",
+      "name": "小手指",
+      "latitude": 35.800585,
+      "longitude": 139.43804,
+      "prefecture": "埼玉県",
+      "municipality": "所沢市",
+      "lines": ["西武鉄道 池袋線"]
+    },
+    {
+      "id": "ksj-n02-002692",
+      "name": "小川町",
+      "latitude": 36.058863,
+      "longitude": 139.26067,
+      "prefecture": "埼玉県",
+      "municipality": "小川町",
+      "lines": ["東日本旅客鉄道 八高線", "東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-002603",
+      "name": "小前田",
+      "latitude": 36.12893,
+      "longitude": 139.22239,
+      "prefecture": "埼玉県",
+      "municipality": "深谷市",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-002563",
+      "name": "松久",
+      "latitude": 36.173065,
+      "longitude": 139.1821,
+      "prefecture": "埼玉県",
+      "municipality": "美里町",
+      "lines": ["東日本旅客鉄道 八高線"]
+    },
+    {
+      "id": "ksj-n02-002802",
+      "name": "沼南",
+      "latitude": 35.971025,
+      "longitude": 139.62352,
+      "prefecture": "埼玉県",
+      "municipality": "上尾市",
+      "lines": ["埼玉新都市交通 伊奈線"]
+    },
+    {
+      "id": "ksj-n02-002584",
+      "name": "上熊谷",
+      "latitude": 36.14308,
+      "longitude": 139.38079,
+      "prefecture": "埼玉県",
+      "municipality": "熊谷市",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-002650",
+      "name": "上長瀞",
+      "latitude": 36.086235,
+      "longitude": 139.113365,
+      "prefecture": "埼玉県",
+      "municipality": "長瀞町",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-002796",
+      "name": "上尾",
+      "latitude": 35.97302,
+      "longitude": 139.58881,
+      "prefecture": "埼玉県",
+      "municipality": "上尾市",
+      "lines": ["東日本旅客鉄道 高崎線"]
+    },
+    {
+      "id": "ksj-n02-002964",
+      "name": "上福岡",
+      "latitude": 35.87387,
+      "longitude": 139.51187,
+      "prefecture": "埼玉県",
+      "municipality": "ふじみ野市",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-003017",
+      "name": "新井宿",
+      "latitude": 35.84295,
+      "longitude": 139.738115,
+      "prefecture": "埼玉県",
+      "municipality": "川口市",
+      "lines": ["埼玉高速鉄道 埼玉高速鉄道線"]
+    },
+    {
+      "id": "ksj-n02-002960",
+      "name": "新越谷",
+      "latitude": 35.875565,
+      "longitude": 139.789815,
+      "prefecture": "埼玉県",
+      "municipality": "越谷市",
+      "lines": ["東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-002937",
+      "name": "新河岸",
+      "latitude": 35.89102,
+      "longitude": 139.4973,
+      "prefecture": "埼玉県",
+      "municipality": "川越市",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-002963",
+      "name": "新狭山",
+      "latitude": 35.874155,
+      "longitude": 139.43379,
+      "prefecture": "埼玉県",
+      "municipality": "狭山市",
+      "lines": ["西武鉄道 新宿線"]
+    },
+    {
+      "id": "ksj-n02-002564",
+      "name": "新郷",
+      "latitude": 36.17126,
+      "longitude": 139.510495,
+      "prefecture": "埼玉県",
+      "municipality": "羽生市",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-002550",
+      "name": "新古河",
+      "latitude": 36.1927,
+      "longitude": 139.687015,
+      "prefecture": "埼玉県",
+      "municipality": "加須市",
+      "lines": ["東武鉄道 日光線"]
+    },
+    {
+      "id": "ksj-n02-003081",
+      "name": "新座",
+      "latitude": 35.80378,
+      "longitude": 139.55629,
+      "prefecture": "埼玉県",
+      "municipality": "新座市",
+      "lines": ["東日本旅客鉄道 武蔵野線"]
+    },
+    {
+      "id": "ksj-n02-002990",
+      "name": "新三郷",
+      "latitude": 35.85839,
+      "longitude": 139.869535,
+      "prefecture": "埼玉県",
+      "municipality": "三郷市",
+      "lines": ["東日本旅客鉄道 武蔵野線"]
+    },
+    {
+      "id": "ksj-n02-003077",
+      "name": "新所沢",
+      "latitude": 35.805805,
+      "longitude": 139.45717,
+      "prefecture": "埼玉県",
+      "municipality": "所沢市",
+      "lines": ["西武鉄道 新宿線"]
+    },
+    {
+      "id": "ksj-n02-002994",
+      "name": "新田",
+      "latitude": 35.85411,
+      "longitude": 139.795425,
+      "prefecture": "埼玉県",
+      "municipality": "草加市",
+      "lines": ["東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-002716",
+      "name": "新白岡",
+      "latitude": 36.03825,
+      "longitude": 139.67189,
+      "prefecture": "埼玉県",
+      "municipality": "白岡市",
+      "lines": ["東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-002708",
+      "name": "森林公園",
+      "latitude": 36.045165,
+      "longitude": 139.37533,
+      "prefecture": "埼玉県",
+      "municipality": "滑川町",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-002553",
+      "name": "深谷",
+      "latitude": 36.191345,
+      "longitude": 139.281345,
+      "prefecture": "埼玉県",
+      "municipality": "深谷市",
+      "lines": ["東日本旅客鉄道 高崎線"]
+    },
+    {
+      "id": "ksj-n02-002484",
+      "name": "神保原",
+      "latitude": 36.253625,
+      "longitude": 139.149015,
+      "prefecture": "埼玉県",
+      "municipality": "上里町",
+      "lines": ["東日本旅客鉄道 高崎線"]
+    },
+    {
+      "id": "ksj-n02-002661",
+      "name": "親鼻",
+      "latitude": 36.077615,
+      "longitude": 139.10618,
+      "prefecture": "埼玉県",
+      "municipality": "皆野町",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-002627",
+      "name": "吹上",
+      "latitude": 36.10289,
+      "longitude": 139.453605,
+      "prefecture": "埼玉県",
+      "municipality": "鴻巣市",
+      "lines": ["東日本旅客鉄道 高崎線"]
+    },
+    {
+      "id": "ksj-n02-002700",
+      "name": "杉戸高野台",
+      "latitude": 36.05135,
+      "longitude": 139.714545,
+      "prefecture": "埼玉県",
+      "municipality": "杉戸町",
+      "lines": ["東武鉄道 日光線"]
+    },
+    {
+      "id": "ksj-n02-002849",
+      "name": "正丸",
+      "latitude": 35.9383,
+      "longitude": 139.181485,
+      "prefecture": "埼玉県",
+      "municipality": "飯能市",
+      "lines": ["西武鉄道 西武秩父線"]
+    },
+    {
+      "id": "ksj-n02-002560",
+      "name": "西羽生",
+      "latitude": 36.176585,
+      "longitude": 139.52446,
+      "prefecture": "埼玉県",
+      "municipality": "羽生市",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-003014",
+      "name": "西浦和",
+      "latitude": 35.844185,
+      "longitude": 139.627765,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市桜区",
+      "lines": ["東日本旅客鉄道 武蔵野線"]
+    },
+    {
+      "id": "ksj-n02-002871",
+      "name": "西吾野",
+      "latitude": 35.926995,
+      "longitude": 139.202415,
+      "prefecture": "埼玉県",
+      "municipality": "飯能市",
+      "lines": ["西武鉄道 西武秩父線"]
+    },
+    {
+      "id": "ksj-n02-003118",
+      "name": "西所沢",
+      "latitude": 35.78883,
+      "longitude": 139.45614,
+      "prefecture": "埼玉県",
+      "municipality": "所沢市",
+      "lines": ["西武鉄道 狭山線", "西武鉄道 池袋線"]
+    },
+    {
+      "id": "ksj-n02-002885",
+      "name": "西川越",
+      "latitude": 35.919095,
+      "longitude": 139.459935,
+      "prefecture": "埼玉県",
+      "municipality": "川越市",
+      "lines": ["東日本旅客鉄道 川越線"]
+    },
+    {
+      "id": "ksj-n02-003055",
+      "name": "西川口",
+      "latitude": 35.815515,
+      "longitude": 139.70436,
+      "prefecture": "埼玉県",
+      "municipality": "川口市",
+      "lines": ["東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-002860",
+      "name": "西大家",
+      "latitude": 35.93176,
+      "longitude": 139.35646,
+      "prefecture": "埼玉県",
+      "municipality": "坂戸市",
+      "lines": ["東武鉄道 越生線"]
+    },
+    {
+      "id": "ksj-n02-002877",
+      "name": "西大宮",
+      "latitude": 35.92196,
+      "longitude": 139.5789,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市西区",
+      "lines": ["東日本旅客鉄道 川越線"]
+    },
+    {
+      "id": "ksj-n02-003192",
+      "name": "西武園ゆうえんち",
+      "latitude": 35.76903,
+      "longitude": 139.44019,
+      "prefecture": "埼玉県",
+      "municipality": "所沢市",
+      "lines": ["西武鉄道 山口線"]
+    },
+    {
+      "id": "ksj-n02-003181",
+      "name": "西武球場前",
+      "latitude": 35.771178,
+      "longitude": 139.420338,
+      "prefecture": "埼玉県",
+      "municipality": "所沢市",
+      "lines": ["西武鉄道 狭山線", "西武鉄道 山口線"]
+    },
+    {
+      "id": "ksj-n02-002771",
+      "name": "西武秩父",
+      "latitude": 35.99001,
+      "longitude": 139.082995,
+      "prefecture": "埼玉県",
+      "municipality": "秩父市",
+      "lines": ["西武鉄道 西武秩父線"]
+    },
+    {
+      "id": "ksj-n02-002579",
+      "name": "石原",
+      "latitude": 36.14756,
+      "longitude": 139.369005,
+      "prefecture": "埼玉県",
+      "municipality": "熊谷市",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-002633",
+      "name": "折原",
+      "latitude": 36.096175,
+      "longitude": 139.195325,
+      "prefecture": "埼玉県",
+      "municipality": "寄居町",
+      "lines": ["東日本旅客鉄道 八高線"]
+    },
+    {
+      "id": "ksj-n02-002909",
+      "name": "川越",
+      "latitude": 35.906943,
+      "longitude": 139.483175,
+      "prefecture": "埼玉県",
+      "municipality": "川越市",
+      "lines": ["東日本旅客鉄道 川越線", "東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-002893",
+      "name": "川越市",
+      "latitude": 35.914135,
+      "longitude": 139.477095,
+      "prefecture": "埼玉県",
+      "municipality": "川越市",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-002850",
+      "name": "川角",
+      "latitude": 35.937605,
+      "longitude": 139.346475,
+      "prefecture": "埼玉県",
+      "municipality": "毛呂山町",
+      "lines": ["東武鉄道 越生線"]
+    },
+    {
+      "id": "ksj-n02-003086",
+      "name": "川口",
+      "latitude": 35.8018,
+      "longitude": 139.717455,
+      "prefecture": "埼玉県",
+      "municipality": "川口市",
+      "lines": ["東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-003092",
+      "name": "川口元郷",
+      "latitude": 35.80007,
+      "longitude": 139.72998,
+      "prefecture": "埼玉県",
+      "municipality": "川口市",
+      "lines": ["埼玉高速鉄道 埼玉高速鉄道線"]
+    },
+    {
+      "id": "ksj-n02-003040",
+      "name": "草加",
+      "latitude": 35.82838,
+      "longitude": 139.803455,
+      "prefecture": "埼玉県",
+      "municipality": "草加市",
+      "lines": ["東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-002914",
+      "name": "大宮",
+      "latitude": 35.906624,
+      "longitude": 139.623528,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市大宮区",
+      "lines": [
+        "埼玉新都市交通 伊奈線",
+        "東日本旅客鉄道 高崎線",
+        "東日本旅客鉄道 上越新幹線",
+        "東日本旅客鉄道 川越線",
+        "東日本旅客鉄道 東北新幹線",
+        "東日本旅客鉄道 東北線",
+        "東武鉄道 野田線"
+      ]
+    },
+    {
+      "id": "ksj-n02-002876",
+      "name": "大宮公園",
+      "latitude": 35.92388,
+      "longitude": 139.63308,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市大宮区",
+      "lines": ["東武鉄道 野田線"]
+    },
+    {
+      "id": "ksj-n02-002875",
+      "name": "大袋",
+      "latitude": 35.9246,
+      "longitude": 139.77794,
+      "prefecture": "埼玉県",
+      "municipality": "越谷市",
+      "lines": ["東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-002582",
+      "name": "大麻生",
+      "latitude": 36.144625,
+      "longitude": 139.331905,
+      "prefecture": "埼玉県",
+      "municipality": "熊谷市",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-002734",
+      "name": "大野原",
+      "latitude": 36.018645,
+      "longitude": 139.09411,
+      "prefecture": "埼玉県",
+      "municipality": "秩父市",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-002869",
+      "name": "大和田",
+      "latitude": 35.92935,
+      "longitude": 139.651015,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市見沼区",
+      "lines": ["東武鉄道 野田線"]
+    },
+    {
+      "id": "ksj-n02-003059",
+      "name": "谷塚",
+      "latitude": 35.81486,
+      "longitude": 139.801465,
+      "prefecture": "埼玉県",
+      "municipality": "草加市",
+      "lines": ["東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-002527",
+      "name": "丹荘",
+      "latitude": 36.216465,
+      "longitude": 139.102585,
+      "prefecture": "埼玉県",
+      "municipality": "神川町",
+      "lines": ["東日本旅客鉄道 八高線"]
+    },
+    {
+      "id": "ksj-n02-002626",
+      "name": "男衾",
+      "latitude": 36.107865,
+      "longitude": 139.234,
+      "prefecture": "埼玉県",
+      "municipality": "寄居町",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-002665",
+      "name": "竹沢",
+      "latitude": 36.0755,
+      "longitude": 139.22995,
+      "prefecture": "埼玉県",
+      "municipality": "小川町",
+      "lines": ["東日本旅客鉄道 八高線"]
+    },
+    {
+      "id": "ksj-n02-002758",
+      "name": "秩父",
+      "latitude": 35.998795,
+      "longitude": 139.086025,
+      "prefecture": "埼玉県",
+      "municipality": "秩父市",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-002995",
+      "name": "中浦和",
+      "latitude": 35.853825,
+      "longitude": 139.637395,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市南区",
+      "lines": ["東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-003097",
+      "name": "朝霞",
+      "latitude": 35.796765,
+      "longitude": 139.6003,
+      "prefecture": "埼玉県",
+      "municipality": "朝霞市",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-003061",
+      "name": "朝霞台",
+      "latitude": 35.814345,
+      "longitude": 139.5873,
+      "prefecture": "埼玉県",
+      "municipality": "朝霞市",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-002635",
+      "name": "長瀞",
+      "latitude": 36.0955,
+      "longitude": 139.11231,
+      "prefecture": "埼玉県",
+      "municipality": "長瀞町",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-002852",
+      "name": "鶴ヶ島",
+      "latitude": 35.93672,
+      "longitude": 139.42402,
+      "prefecture": "埼玉県",
+      "municipality": "川越市",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-003007",
+      "name": "鶴瀬",
+      "latitude": 35.8456,
+      "longitude": 139.539455,
+      "prefecture": "埼玉県",
+      "municipality": "富士見市",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-002889",
+      "name": "的場",
+      "latitude": 35.91754,
+      "longitude": 139.43541,
+      "prefecture": "埼玉県",
+      "municipality": "川越市",
+      "lines": ["東日本旅客鉄道 川越線"]
+    },
+    {
+      "id": "ksj-n02-002881",
+      "name": "鉄道博物館",
+      "latitude": 35.920265,
+      "longitude": 139.617825,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市大宮区",
+      "lines": ["埼玉新都市交通 伊奈線"]
+    },
+    {
+      "id": "ksj-n02-002859",
+      "name": "土呂",
+      "latitude": 35.931915,
+      "longitude": 139.632195,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市北区",
+      "lines": ["東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-002980",
+      "name": "東浦和",
+      "latitude": 35.864035,
+      "longitude": 139.70447,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市緑区",
+      "lines": ["東日本旅客鉄道 武蔵野線"]
+    },
+    {
+      "id": "ksj-n02-002813",
+      "name": "東岩槻",
+      "latitude": 35.96329,
+      "longitude": 139.71227,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市岩槻区",
+      "lines": ["東武鉄道 野田線"]
+    },
+    {
+      "id": "ksj-n02-002844",
+      "name": "東宮原",
+      "latitude": 35.942685,
+      "longitude": 139.618225,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市北区",
+      "lines": ["埼玉新都市交通 伊奈線"]
+    },
+    {
+      "id": "ksj-n02-002936",
+      "name": "東吾野",
+      "latitude": 35.89247,
+      "longitude": 139.260275,
+      "prefecture": "埼玉県",
+      "municipality": "飯能市",
+      "lines": ["西武鉄道 池袋線"]
+    },
+    {
+      "id": "ksj-n02-002580",
+      "name": "東行田",
+      "latitude": 36.14733,
+      "longitude": 139.468325,
+      "prefecture": "埼玉県",
+      "municipality": "行田市",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-003100",
+      "name": "東所沢",
+      "latitude": 35.79489,
+      "longitude": 139.51454,
+      "prefecture": "埼玉県",
+      "municipality": "所沢市",
+      "lines": ["東日本旅客鉄道 武蔵野線"]
+    },
+    {
+      "id": "ksj-n02-002717",
+      "name": "東松山",
+      "latitude": 36.03482,
+      "longitude": 139.40152,
+      "prefecture": "埼玉県",
+      "municipality": "東松山市",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-002956",
+      "name": "東川口",
+      "latitude": 35.875893,
+      "longitude": 139.74385,
+      "prefecture": "埼玉県",
+      "municipality": "川口市",
+      "lines": ["埼玉高速鉄道 埼玉高速鉄道線", "東日本旅客鉄道 武蔵野線"]
+    },
+    {
+      "id": "ksj-n02-002838",
+      "name": "東大宮",
+      "latitude": 35.94836,
+      "longitude": 139.64026,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市見沼区",
+      "lines": ["東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-002997",
+      "name": "東飯能",
+      "latitude": 35.85302,
+      "longitude": 139.326055,
+      "prefecture": "埼玉県",
+      "municipality": "飯能市",
+      "lines": ["西武鉄道 池袋線", "東日本旅客鉄道 八高線"]
+    },
+    {
+      "id": "ksj-n02-002666",
+      "name": "東武竹沢",
+      "latitude": 36.07537,
+      "longitude": 139.23762,
+      "prefecture": "埼玉県",
+      "municipality": "小川町",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-002728",
+      "name": "東武動物公園",
+      "latitude": 36.0247,
+      "longitude": 139.72689,
+      "prefecture": "埼玉県",
+      "municipality": "宮代町",
+      "lines": ["東武鉄道 伊勢崎線", "東武鉄道 日光線"]
+    },
+    {
+      "id": "ksj-n02-002839",
+      "name": "東毛呂",
+      "latitude": 35.94715,
+      "longitude": 139.31533,
+      "prefecture": "埼玉県",
+      "municipality": "毛呂山町",
+      "lines": ["東武鉄道 越生線"]
+    },
+    {
+      "id": "ksj-n02-002643",
+      "name": "東鷲宮",
+      "latitude": 36.089635,
+      "longitude": 139.679695,
+      "prefecture": "埼玉県",
+      "municipality": "久喜市",
+      "lines": ["東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-002784",
+      "name": "藤の牛島",
+      "latitude": 35.980335,
+      "longitude": 139.77807,
+      "prefecture": "埼玉県",
+      "municipality": "春日部市",
+      "lines": ["東武鉄道 野田線"]
+    },
+    {
+      "id": "ksj-n02-002742",
+      "name": "内宿",
+      "latitude": 36.013805,
+      "longitude": 139.59998,
+      "prefecture": "埼玉県",
+      "municipality": "伊奈町",
+      "lines": ["埼玉新都市交通 伊奈線"]
+    },
+    {
+      "id": "ksj-n02-002577",
+      "name": "南羽生",
+      "latitude": 36.149625,
+      "longitude": 139.556955,
+      "prefecture": "埼玉県",
+      "municipality": "羽生市",
+      "lines": ["東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-003004",
+      "name": "南浦和",
+      "latitude": 35.84796,
+      "longitude": 139.668778,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市南区",
+      "lines": ["東日本旅客鉄道 東北線", "東日本旅客鉄道 武蔵野線"]
+    },
+    {
+      "id": "ksj-n02-002958",
+      "name": "南越谷",
+      "latitude": 35.876045,
+      "longitude": 139.79115,
+      "prefecture": "埼玉県",
+      "municipality": "越谷市",
+      "lines": ["東日本旅客鉄道 武蔵野線"]
+    },
+    {
+      "id": "ksj-n02-002621",
+      "name": "南栗橋",
+      "latitude": 36.11314,
+      "longitude": 139.71283,
+      "prefecture": "埼玉県",
+      "municipality": "久喜市",
+      "lines": ["東武鉄道 日光線"]
+    },
+    {
+      "id": "ksj-n02-002919",
+      "name": "南古谷",
+      "latitude": 35.90318,
+      "longitude": 139.519155,
+      "prefecture": "埼玉県",
+      "municipality": "川越市",
+      "lines": ["東日本旅客鉄道 川越線"]
+    },
+    {
+      "id": "ksj-n02-002783",
+      "name": "南桜井",
+      "latitude": 35.9806,
+      "longitude": 139.808395,
+      "prefecture": "埼玉県",
+      "municipality": "春日部市",
+      "lines": ["東武鉄道 野田線"]
+    },
+    {
+      "id": "ksj-n02-002940",
+      "name": "南大塚",
+      "latitude": 35.889695,
+      "longitude": 139.45419,
+      "prefecture": "埼玉県",
+      "municipality": "川越市",
+      "lines": ["西武鉄道 新宿線"]
+    },
+    {
+      "id": "ksj-n02-003054",
+      "name": "南鳩ヶ谷",
+      "latitude": 35.81608,
+      "longitude": 139.736095,
+      "prefecture": "埼玉県",
+      "municipality": "川口市",
+      "lines": ["埼玉高速鉄道 埼玉高速鉄道線"]
+    },
+    {
+      "id": "ksj-n02-002975",
+      "name": "南与野",
+      "latitude": 35.867355,
+      "longitude": 139.631055,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市中央区",
+      "lines": ["東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-002862",
+      "name": "日進",
+      "latitude": 35.93153,
+      "longitude": 139.60606,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市北区",
+      "lines": ["東日本旅客鉄道 川越線"]
+    },
+    {
+      "id": "ksj-n02-003018",
+      "name": "入間市",
+      "latitude": 35.842805,
+      "longitude": 139.390265,
+      "prefecture": "埼玉県",
+      "municipality": "入間市",
+      "lines": ["西武鉄道 池袋線"]
+    },
+    {
+      "id": "ksj-n02-003033",
+      "name": "入曽",
+      "latitude": 35.832385,
+      "longitude": 139.427185,
+      "prefecture": "埼玉県",
+      "municipality": "狭山市",
+      "lines": ["西武鉄道 新宿線"]
+    },
+    {
+      "id": "ksj-n02-002605",
+      "name": "波久礼",
+      "latitude": 36.126805,
+      "longitude": 139.15812,
+      "prefecture": "埼玉県",
+      "municipality": "寄居町",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-002737",
+      "name": "白岡",
+      "latitude": 36.01778,
+      "longitude": 139.66688,
+      "prefecture": "埼玉県",
+      "municipality": "白岡市",
+      "lines": ["東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-002818",
+      "name": "白久",
+      "latitude": 35.958915,
+      "longitude": 138.99328,
+      "prefecture": "埼玉県",
+      "municipality": "秩父市",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-003073",
+      "name": "八潮",
+      "latitude": 35.807765,
+      "longitude": 139.844735,
+      "prefecture": "埼玉県",
+      "municipality": "八潮市",
+      "lines": ["首都圏新都市鉄道 常磐新線"]
+    },
+    {
+      "id": "ksj-n02-002790",
+      "name": "八木崎",
+      "latitude": 35.978575,
+      "longitude": 139.7423,
+      "prefecture": "埼玉県",
+      "municipality": "春日部市",
+      "lines": ["東武鉄道 野田線"]
+    },
+    {
+      "id": "ksj-n02-002620",
+      "name": "鉢形",
+      "latitude": 36.113725,
+      "longitude": 139.208635,
+      "prefecture": "埼玉県",
+      "municipality": "寄居町",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-003036",
+      "name": "鳩ヶ谷",
+      "latitude": 35.8308,
+      "longitude": 139.73616,
+      "prefecture": "埼玉県",
+      "municipality": "川口市",
+      "lines": ["埼玉高速鉄道 埼玉高速鉄道線"]
+    },
+    {
+      "id": "ksj-n02-002999",
+      "name": "飯能",
+      "latitude": 35.851215,
+      "longitude": 139.31883,
+      "prefecture": "埼玉県",
+      "municipality": "飯能市",
+      "lines": ["西武鉄道 池袋線"]
+    },
+    {
+      "id": "ksj-n02-002600",
+      "name": "樋口",
+      "latitude": 36.131075,
+      "longitude": 139.12262,
+      "prefecture": "埼玉県",
+      "municipality": "長瀞町",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-002750",
+      "name": "姫宮",
+      "latitude": 36.00442,
+      "longitude": 139.738685,
+      "prefecture": "埼玉県",
+      "municipality": "宮代町",
+      "lines": ["東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-002571",
+      "name": "武州荒木",
+      "latitude": 36.16253,
+      "longitude": 139.48857,
+      "prefecture": "埼玉県",
+      "municipality": "行田市",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-002820",
+      "name": "武州中川",
+      "latitude": 35.958375,
+      "longitude": 139.035435,
+      "prefecture": "埼玉県",
+      "municipality": "秩父市",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-002845",
+      "name": "武州長瀬",
+      "latitude": 35.941995,
+      "longitude": 139.32619,
+      "prefecture": "埼玉県",
+      "municipality": "毛呂山町",
+      "lines": ["東武鉄道 越生線"]
+    },
+    {
+      "id": "ksj-n02-002829",
+      "name": "武州唐沢",
+      "latitude": 35.95221,
+      "longitude": 139.30926,
+      "prefecture": "埼玉県",
+      "municipality": "越生町",
+      "lines": ["東武鉄道 越生線"]
+    },
+    {
+      "id": "ksj-n02-002826",
+      "name": "武州日野",
+      "latitude": 35.953865,
+      "longitude": 139.022015,
+      "prefecture": "埼玉県",
+      "municipality": "秩父市",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-002586",
+      "name": "武川",
+      "latitude": 36.142195,
+      "longitude": 139.28174,
+      "prefecture": "埼玉県",
+      "municipality": "深谷市",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-003006",
+      "name": "武蔵浦和",
+      "latitude": 35.845723,
+      "longitude": 139.647387,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市南区",
+      "lines": ["東日本旅客鉄道 東北線", "東日本旅客鉄道 武蔵野線"]
+    },
+    {
+      "id": "ksj-n02-002945",
+      "name": "武蔵横手",
+      "latitude": 35.885255,
+      "longitude": 139.28068,
+      "prefecture": "埼玉県",
+      "municipality": "日高市",
+      "lines": ["西武鉄道 池袋線"]
+    },
+    {
+      "id": "ksj-n02-002921",
+      "name": "武蔵高萩",
+      "latitude": 35.901685,
+      "longitude": 139.37112,
+      "prefecture": "埼玉県",
+      "municipality": "日高市",
+      "lines": ["東日本旅客鉄道 川越線"]
+    },
+    {
+      "id": "ksj-n02-003050",
+      "name": "武蔵藤沢",
+      "latitude": 35.82085,
+      "longitude": 139.412755,
+      "prefecture": "埼玉県",
+      "municipality": "入間市",
+      "lines": ["西武鉄道 池袋線"]
+    },
+    {
+      "id": "ksj-n02-002709",
+      "name": "武蔵嵐山",
+      "latitude": 36.044385,
+      "longitude": 139.32774,
+      "prefecture": "埼玉県",
+      "municipality": "嵐山町",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-002836",
+      "name": "武里",
+      "latitude": 35.94908,
+      "longitude": 139.77071,
+      "prefecture": "埼玉県",
+      "municipality": "春日部市",
+      "lines": ["東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-003028",
+      "name": "仏子",
+      "latitude": 35.837675,
+      "longitude": 139.36019,
+      "prefecture": "埼玉県",
+      "municipality": "入間市",
+      "lines": ["西武鉄道 池袋線"]
+    },
+    {
+      "id": "ksj-n02-002807",
+      "name": "豊春",
+      "latitude": 35.968035,
+      "longitude": 139.726185,
+      "prefecture": "埼玉県",
+      "municipality": "春日部市",
+      "lines": ["東武鉄道 野田線"]
+    },
+    {
+      "id": "ksj-n02-002968",
+      "name": "北浦和",
+      "latitude": 35.8722,
+      "longitude": 139.64575,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市浦和区",
+      "lines": ["東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-002920",
+      "name": "北越谷",
+      "latitude": 35.901715,
+      "longitude": 139.77987,
+      "prefecture": "埼玉県",
+      "municipality": "越谷市",
+      "lines": ["東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-003044",
+      "name": "北戸田",
+      "latitude": 35.826755,
+      "longitude": 139.661445,
+      "prefecture": "埼玉県",
+      "municipality": "戸田市",
+      "lines": ["東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-002652",
+      "name": "北鴻巣",
+      "latitude": 36.085495,
+      "longitude": 139.476955,
+      "prefecture": "埼玉県",
+      "municipality": "鴻巣市",
+      "lines": ["東日本旅客鉄道 高崎線"]
+    },
+    {
+      "id": "ksj-n02-002800",
+      "name": "北坂戸",
+      "latitude": 35.97198,
+      "longitude": 139.396845,
+      "prefecture": "埼玉県",
+      "municipality": "坂戸市",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-002772",
+      "name": "北春日部",
+      "latitude": 35.98994,
+      "longitude": 139.74432,
+      "prefecture": "埼玉県",
+      "municipality": "春日部市",
+      "lines": ["東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-002775",
+      "name": "北上尾",
+      "latitude": 35.98515,
+      "longitude": 139.577575,
+      "prefecture": "埼玉県",
+      "municipality": "上尾市",
+      "lines": ["東日本旅客鉄道 高崎線"]
+    },
+    {
+      "id": "ksj-n02-002887",
+      "name": "北大宮",
+      "latitude": 35.91794,
+      "longitude": 139.624805,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市大宮区",
+      "lines": ["東武鉄道 野田線"]
+    },
+    {
+      "id": "ksj-n02-003056",
+      "name": "北朝霞",
+      "latitude": 35.81547,
+      "longitude": 139.58723,
+      "prefecture": "埼玉県",
+      "municipality": "朝霞市",
+      "lines": ["東日本旅客鉄道 武蔵野線"]
+    },
+    {
+      "id": "ksj-n02-002720",
+      "name": "北本",
+      "latitude": 36.03218,
+      "longitude": 139.533545,
+      "prefecture": "埼玉県",
+      "municipality": "北本市",
+      "lines": ["東日本旅客鉄道 高崎線"]
+    },
+    {
+      "id": "ksj-n02-002938",
+      "name": "北与野",
+      "latitude": 35.890695,
+      "longitude": 139.628485,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市中央区",
+      "lines": ["東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-002503",
+      "name": "本庄",
+      "latitude": 36.2363,
+      "longitude": 139.188135,
+      "prefecture": "埼玉県",
+      "municipality": "本庄市",
+      "lines": ["東日本旅客鉄道 高崎線"]
+    },
+    {
+      "id": "ksj-n02-002525",
+      "name": "本庄早稲田",
+      "latitude": 36.218685,
+      "longitude": 139.179725,
+      "prefecture": "埼玉県",
+      "municipality": "本庄市",
+      "lines": ["東日本旅客鉄道 上越新幹線"]
+    },
+    {
+      "id": "ksj-n02-002895",
+      "name": "本川越",
+      "latitude": 35.913675,
+      "longitude": 139.48113,
+      "prefecture": "埼玉県",
+      "municipality": "川越市",
+      "lines": ["西武鉄道 新宿線"]
+    },
+    {
+      "id": "ksj-n02-002752",
+      "name": "明覚",
+      "latitude": 36.003565,
+      "longitude": 139.289215,
+      "prefecture": "埼玉県",
+      "municipality": "ときがわ町",
+      "lines": ["東日本旅客鉄道 八高線"]
+    },
+    {
+      "id": "ksj-n02-002585",
+      "name": "明戸",
+      "latitude": 36.1429,
+      "longitude": 139.30329,
+      "prefecture": "埼玉県",
+      "municipality": "深谷市",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-002846",
+      "name": "毛呂",
+      "latitude": 35.940735,
+      "longitude": 139.309335,
+      "prefecture": "埼玉県",
+      "municipality": "毛呂山町",
+      "lines": ["東日本旅客鉄道 八高線"]
+    },
+    {
+      "id": "ksj-n02-002622",
+      "name": "野上",
+      "latitude": 36.11161,
+      "longitude": 139.11087,
+      "prefecture": "埼玉県",
+      "municipality": "長瀞町",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-003038",
+      "name": "柳瀬川",
+      "latitude": 35.83056,
+      "longitude": 139.56246,
+      "prefecture": "埼玉県",
+      "municipality": "志木市",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-002539",
+      "name": "柳生",
+      "latitude": 36.20659,
+      "longitude": 139.659955,
+      "prefecture": "埼玉県",
+      "municipality": "加須市",
+      "lines": ["東武鉄道 日光線"]
+    },
+    {
+      "id": "ksj-n02-002947",
+      "name": "与野",
+      "latitude": 35.884375,
+      "longitude": 139.63899,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市浦和区",
+      "lines": ["東日本旅客鉄道 東北線", "東日本旅客鉄道 武蔵野線"]
+    },
+    {
+      "id": "ksj-n02-002951",
+      "name": "与野本町",
+      "latitude": 35.880925,
+      "longitude": 139.626005,
+      "prefecture": "埼玉県",
+      "municipality": "さいたま市中央区",
+      "lines": ["東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-002573",
+      "name": "用土",
+      "latitude": 36.15385,
+      "longitude": 139.20064,
+      "prefecture": "埼玉県",
+      "municipality": "寄居町",
+      "lines": ["東日本旅客鉄道 八高線"]
+    },
+    {
+      "id": "ksj-n02-002781",
+      "name": "蓮田",
+      "latitude": 35.981165,
+      "longitude": 139.652965,
+      "prefecture": "埼玉県",
+      "municipality": "蓮田市",
+      "lines": ["東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-002713",
+      "name": "和戸",
+      "latitude": 36.039645,
+      "longitude": 139.7011,
+      "prefecture": "埼玉県",
+      "municipality": "宮代町",
+      "lines": ["東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-003123",
+      "name": "和光市",
+      "latitude": 35.78835,
+      "longitude": 139.612865,
+      "prefecture": "埼玉県",
+      "municipality": "和光市",
+      "lines": ["東京地下鉄 8号線有楽町線", "東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-002707",
+      "name": "和銅黒谷",
+      "latitude": 36.04676,
+      "longitude": 139.101695,
+      "prefecture": "埼玉県",
+      "municipality": "秩父市",
+      "lines": ["秩父鉄道 秩父本線"]
+    },
+    {
+      "id": "ksj-n02-002632",
+      "name": "鷲宮",
+      "latitude": 36.096325,
+      "longitude": 139.65696,
+      "prefecture": "埼玉県",
+      "municipality": "久喜市",
+      "lines": ["東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-003041",
+      "name": "蕨",
+      "latitude": 35.82793,
+      "longitude": 139.690415,
+      "prefecture": "埼玉県",
+      "municipality": "蕨市",
+      "lines": ["東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-003016",
+      "name": "獨協大学前",
+      "latitude": 35.8433,
+      "longitude": 139.800675,
+      "prefecture": "埼玉県",
+      "municipality": "草加市",
+      "lines": ["東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-002561",
+      "name": "籠原",
+      "latitude": 36.17442,
+      "longitude": 139.33026,
+      "prefecture": "埼玉県",
+      "municipality": "熊谷市",
+      "lines": ["東日本旅客鉄道 高崎線"]
+    },
+    {
+      "id": "ksj-n02-003274",
+      "name": "お花茶屋",
+      "latitude": 35.747615,
+      "longitude": 139.839885,
+      "prefecture": "東京都",
+      "municipality": "葛飾区",
+      "lines": ["京成電鉄 本線"]
+    },
+    {
+      "id": "ksj-n02-004091",
+      "name": "お台場海浜公園",
+      "latitude": 35.629805,
+      "longitude": 139.77853,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["ゆりかもめ 東京臨海新交通臨海線"]
+    },
+    {
+      "id": "ksj-n02-004466",
+      "name": "すずかけ台",
+      "latitude": 35.517165,
+      "longitude": 139.48177,
+      "prefecture": "東京都",
+      "municipality": "町田市",
+      "lines": ["東急電鉄 田園都市線"]
+    },
+    {
+      "id": "ksj-n02-004441",
+      "name": "つくし野",
+      "latitude": 35.527065,
+      "longitude": 139.48494,
+      "prefecture": "東京都",
+      "municipality": "町田市",
+      "lines": ["東急電鉄 田園都市線"]
+    },
+    {
+      "id": "ksj-n02-003933",
+      "name": "つつじヶ丘",
+      "latitude": 35.658,
+      "longitude": 139.57519,
+      "prefecture": "東京都",
+      "municipality": "調布市",
+      "lines": ["京王電鉄 京王線"]
+    },
+    {
+      "id": "ksj-n02-004144",
+      "name": "テレコムセンター",
+      "latitude": 35.617725,
+      "longitude": 139.779665,
+      "prefecture": "東京都",
+      "municipality": "江東区",
+      "lines": ["ゆりかもめ 東京臨海新交通臨海線"]
+    },
+    {
+      "id": "ksj-n02-003524",
+      "name": "とうきょうスカイツリー",
+      "latitude": 35.710465,
+      "longitude": 139.809395,
+      "prefecture": "東京都",
+      "municipality": "墨田区",
+      "lines": ["東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-003223",
+      "name": "ときわ台",
+      "latitude": 35.758905,
+      "longitude": 139.68876,
+      "prefecture": "東京都",
+      "municipality": "板橋区",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-003242",
+      "name": "ひばりヶ丘",
+      "latitude": 35.75144,
+      "longitude": 139.545775,
+      "prefecture": "東京都",
+      "municipality": "西東京市",
+      "lines": ["西武鉄道 池袋線"]
+    },
+    {
+      "id": "ksj-n02-004019",
+      "name": "めじろ台",
+      "latitude": 35.643625,
+      "longitude": 139.308465,
+      "prefecture": "東京都",
+      "municipality": "八王子市",
+      "lines": ["京王電鉄 高尾線"]
+    },
+    {
+      "id": "ksj-n02-003946",
+      "name": "モノレール浜松町",
+      "latitude": 35.655745,
+      "longitude": 139.75667,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["東京モノレール 東京モノレール羽田線"]
+    },
+    {
+      "id": "ksj-n02-003574",
+      "name": "阿佐ヶ谷",
+      "latitude": 35.70488,
+      "longitude": 139.635855,
+      "prefecture": "東京都",
+      "municipality": "杉並区",
+      "lines": ["東日本旅客鉄道 中央線"]
+    },
+    {
+      "id": "ksj-n02-003832",
+      "name": "芦花公園",
+      "latitude": 35.67051,
+      "longitude": 139.608255,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["京王電鉄 京王線"]
+    },
+    {
+      "id": "ksj-n02-003214",
+      "name": "綾瀬",
+      "latitude": 35.762225,
+      "longitude": 139.824912,
+      "prefecture": "東京都",
+      "municipality": "足立区",
+      "lines": ["東京地下鉄 9号線千代田線", "東日本旅客鉄道 常磐線"]
+    },
+    {
+      "id": "ksj-n02-003642",
+      "name": "井の頭公園",
+      "latitude": 35.697295,
+      "longitude": 139.58312,
+      "prefecture": "東京都",
+      "municipality": "三鷹市",
+      "lines": ["京王電鉄 井の頭線"]
+    },
+    {
+      "id": "ksj-n02-003440",
+      "name": "井荻",
+      "latitude": 35.72466,
+      "longitude": 139.615615,
+      "prefecture": "東京都",
+      "municipality": "杉並区",
+      "lines": ["西武鉄道 新宿線"]
+    },
+    {
+      "id": "ksj-n02-003455",
+      "name": "一橋学園",
+      "latitude": 35.722105,
+      "longitude": 139.480065,
+      "prefecture": "東京都",
+      "municipality": "小平市",
+      "lines": ["西武鉄道 多摩湖線"]
+    },
+    {
+      "id": "ksj-n02-003724",
+      "name": "一之江",
+      "latitude": 35.68594,
+      "longitude": 139.88289,
+      "prefecture": "東京都",
+      "municipality": "江戸川区",
+      "lines": ["東京都 10号線新宿線"]
+    },
+    {
+      "id": "ksj-n02-003519",
+      "name": "稲荷町",
+      "latitude": 35.711385,
+      "longitude": 139.78221,
+      "prefecture": "東京都",
+      "municipality": "台東区",
+      "lines": ["東京地下鉄 3号線銀座線"]
+    },
+    {
+      "id": "ksj-n02-004056",
+      "name": "稲城",
+      "latitude": 35.636095,
+      "longitude": 139.50016,
+      "prefecture": "東京都",
+      "municipality": "稲城市",
+      "lines": ["京王電鉄 相模原線"]
+    },
+    {
+      "id": "ksj-n02-004011",
+      "name": "稲城長沼",
+      "latitude": 35.644275,
+      "longitude": 139.50261,
+      "prefecture": "東京都",
+      "municipality": "稲城市",
+      "lines": ["東日本旅客鉄道 南武線"]
+    },
+    {
+      "id": "ksj-n02-003226",
+      "name": "羽村",
+      "latitude": 35.75794,
+      "longitude": 139.3163,
+      "prefecture": "東京都",
+      "municipality": "羽村市",
+      "lines": ["東日本旅客鉄道 青梅線"]
+    },
+    {
+      "id": "ksj-n02-004368",
+      "name": "羽田空港第1・第2ターミナル",
+      "latitude": 35.549715,
+      "longitude": 139.78586,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["京浜急行電鉄 空港線"]
+    },
+    {
+      "id": "ksj-n02-004372",
+      "name": "羽田空港第1ターミナル",
+      "latitude": 35.549085,
+      "longitude": 139.784645,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["東京モノレール 東京モノレール羽田線"]
+    },
+    {
+      "id": "ksj-n02-004361",
+      "name": "羽田空港第2ターミナル",
+      "latitude": 35.550795,
+      "longitude": 139.7882,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["東京モノレール 東京モノレール羽田線"]
+    },
+    {
+      "id": "ksj-n02-004382",
+      "name": "羽田空港第3ターミナル",
+      "latitude": 35.544436,
+      "longitude": 139.767816,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["京浜急行電鉄 空港線", "東京モノレール 東京モノレール羽田線"]
+    },
+    {
+      "id": "ksj-n02-004299",
+      "name": "鵜の木",
+      "latitude": 35.575385,
+      "longitude": 139.68055,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["東急電鉄 東急多摩川線"]
+    },
+    {
+      "id": "ksj-n02-004181",
+      "name": "荏原中延",
+      "latitude": 35.6099,
+      "longitude": 139.71203,
+      "prefecture": "東京都",
+      "municipality": "品川区",
+      "lines": ["東急電鉄 池上線"]
+    },
+    {
+      "id": "ksj-n02-004225",
+      "name": "荏原町",
+      "latitude": 35.60381,
+      "longitude": 139.707545,
+      "prefecture": "東京都",
+      "municipality": "品川区",
+      "lines": ["東急電鉄 大井町線"]
+    },
+    {
+      "id": "ksj-n02-003479",
+      "name": "曳舟",
+      "latitude": 35.71831,
+      "longitude": 139.816675,
+      "prefecture": "東京都",
+      "municipality": "墨田区",
+      "lines": ["東武鉄道 伊勢崎線", "東武鉄道 亀戸線"]
+    },
+    {
+      "id": "ksj-n02-003253",
+      "name": "栄町",
+      "latitude": 35.75084,
+      "longitude": 139.74222,
+      "prefecture": "東京都",
+      "municipality": "北区",
+      "lines": ["東京都 荒川線"]
+    },
+    {
+      "id": "ksj-n02-003782",
+      "name": "永田町",
+      "latitude": 35.678232,
+      "longitude": 139.73998,
+      "prefecture": "東京都",
+      "municipality": "千代田区",
+      "lines": ["東京地下鉄 11号線半蔵門線", "東京地下鉄 7号線南北線", "東京地下鉄 8号線有楽町線"]
+    },
+    {
+      "id": "ksj-n02-003794",
+      "name": "永福町",
+      "latitude": 35.676225,
+      "longitude": 139.64267,
+      "prefecture": "東京都",
+      "municipality": "杉並区",
+      "lines": ["京王電鉄 井の頭線"]
+    },
+    {
+      "id": "ksj-n02-003859",
+      "name": "越中島",
+      "latitude": 35.668,
+      "longitude": 139.792495,
+      "prefecture": "東京都",
+      "municipality": "江東区",
+      "lines": ["東日本旅客鉄道 京葉線"]
+    },
+    {
+      "id": "ksj-n02-003069",
+      "name": "奥多摩",
+      "latitude": 35.809415,
+      "longitude": 139.09694,
+      "prefecture": "東京都",
+      "municipality": "奥多摩町",
+      "lines": ["東日本旅客鉄道 青梅線"]
+    },
+    {
+      "id": "ksj-n02-004223",
+      "name": "奥沢",
+      "latitude": 35.603945,
+      "longitude": 139.67241,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["東急電鉄 目黒線"]
+    },
+    {
+      "id": "ksj-n02-003526",
+      "name": "押上",
+      "latitude": 35.709345,
+      "longitude": 139.81308,
+      "prefecture": "東京都",
+      "municipality": "墨田区",
+      "lines": ["京成電鉄 押上線", "東京地下鉄 11号線半蔵門線", "東京都 1号線浅草線", "東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-003236",
+      "name": "王子",
+      "latitude": 35.753415,
+      "longitude": 139.737843,
+      "prefecture": "東京都",
+      "municipality": "北区",
+      "lines": ["東京地下鉄 7号線南北線", "東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-003239",
+      "name": "王子駅前",
+      "latitude": 35.752725,
+      "longitude": 139.73822,
+      "prefecture": "東京都",
+      "municipality": "北区",
+      "lines": ["東京都 荒川線"]
+    },
+    {
+      "id": "ksj-n02-003207",
+      "name": "王子神谷",
+      "latitude": 35.765295,
+      "longitude": 139.73565,
+      "prefecture": "東京都",
+      "municipality": "北区",
+      "lines": ["東京地下鉄 7号線南北線"]
+    },
+    {
+      "id": "ksj-n02-003575",
+      "name": "荻窪",
+      "latitude": 35.704303,
+      "longitude": 139.620003,
+      "prefecture": "東京都",
+      "municipality": "杉並区",
+      "lines": ["東京地下鉄 4号線丸ノ内線", "東日本旅客鉄道 中央線"]
+    },
+    {
+      "id": "ksj-n02-003444",
+      "name": "下井草",
+      "latitude": 35.72387,
+      "longitude": 139.624735,
+      "prefecture": "東京都",
+      "municipality": "杉並区",
+      "lines": ["西武鉄道 新宿線"]
+    },
+    {
+      "id": "ksj-n02-004310",
+      "name": "下丸子",
+      "latitude": 35.571325,
+      "longitude": 139.68549,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["東急電鉄 東急多摩川線"]
+    },
+    {
+      "id": "ksj-n02-003874",
+      "name": "下高井戸",
+      "latitude": 35.666015,
+      "longitude": 139.641795,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["京王電鉄 京王線", "東急電鉄 世田谷線"]
+    },
+    {
+      "id": "ksj-n02-004188",
+      "name": "下神明",
+      "latitude": 35.60871,
+      "longitude": 139.72631,
+      "prefecture": "東京都",
+      "municipality": "品川区",
+      "lines": ["東急電鉄 大井町線"]
+    },
+    {
+      "id": "ksj-n02-003184",
+      "name": "下赤塚",
+      "latitude": 35.770485,
+      "longitude": 139.64485,
+      "prefecture": "東京都",
+      "municipality": "板橋区",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-003285",
+      "name": "下板橋",
+      "latitude": 35.745,
+      "longitude": 139.715635,
+      "prefecture": "東京都",
+      "municipality": "豊島区",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-003908",
+      "name": "下北沢",
+      "latitude": 35.661525,
+      "longitude": 139.666958,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["京王電鉄 井の頭線", "小田急電鉄 小田原線"]
+    },
+    {
+      "id": "ksj-n02-003491",
+      "name": "下落合",
+      "latitude": 35.715705,
+      "longitude": 139.6953,
+      "prefecture": "東京都",
+      "municipality": "新宿区",
+      "lines": ["西武鉄道 新宿線"]
+    },
+    {
+      "id": "ksj-n02-003134",
+      "name": "河辺",
+      "latitude": 35.784775,
+      "longitude": 139.284055,
+      "prefecture": "東京都",
+      "municipality": "青梅市",
+      "lines": ["東日本旅客鉄道 青梅線"]
+    },
+    {
+      "id": "ksj-n02-003430",
+      "name": "花小金井",
+      "latitude": 35.726145,
+      "longitude": 139.51332,
+      "prefecture": "東京都",
+      "municipality": "小平市",
+      "lines": ["西武鉄道 新宿線"]
+    },
+    {
+      "id": "ksj-n02-003805",
+      "name": "霞ヶ関",
+      "latitude": 35.673557,
+      "longitude": 139.751837,
+      "prefecture": "東京都",
+      "municipality": "千代田区",
+      "lines": ["東京地下鉄 2号線日比谷線", "東京地下鉄 4号線丸ノ内線", "東京地下鉄 9号線千代田線"]
+    },
+    {
+      "id": "ksj-n02-003834",
+      "name": "外苑前",
+      "latitude": 35.670375,
+      "longitude": 139.717825,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["東京地下鉄 3号線銀座線"]
+    },
+    {
+      "id": "ksj-n02-004094",
+      "name": "学芸大学",
+      "latitude": 35.62877,
+      "longitude": 139.68524,
+      "prefecture": "東京都",
+      "municipality": "目黒区",
+      "lines": ["東急電鉄 東横線"]
+    },
+    {
+      "id": "ksj-n02-003490",
+      "name": "学習院下",
+      "latitude": 35.71575,
+      "longitude": 139.71231,
+      "prefecture": "東京都",
+      "municipality": "豊島区",
+      "lines": ["東京都 荒川線"]
+    },
+    {
+      "id": "ksj-n02-003246",
+      "name": "梶原",
+      "latitude": 35.75107,
+      "longitude": 139.7473,
+      "prefecture": "東京都",
+      "municipality": "北区",
+      "lines": ["東京都 荒川線"]
+    },
+    {
+      "id": "ksj-n02-003894",
+      "name": "葛西",
+      "latitude": 35.66362,
+      "longitude": 139.87253,
+      "prefecture": "東京都",
+      "municipality": "江戸川区",
+      "lines": ["東京地下鉄 5号線東西線"]
+    },
+    {
+      "id": "ksj-n02-004012",
+      "name": "葛西臨海公園",
+      "latitude": 35.64417,
+      "longitude": 139.861485,
+      "prefecture": "東京都",
+      "municipality": "江戸川区",
+      "lines": ["東日本旅客鉄道 京葉線"]
+    },
+    {
+      "id": "ksj-n02-004330",
+      "name": "蒲田",
+      "latitude": 35.561967,
+      "longitude": 139.715075,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["東急電鉄 池上線", "東急電鉄 東急多摩川線", "東日本旅客鉄道 東海道線"]
+    },
+    {
+      "id": "ksj-n02-003773",
+      "name": "茅場町",
+      "latitude": 35.67971,
+      "longitude": 139.779448,
+      "prefecture": "東京都",
+      "municipality": "中央区",
+      "lines": ["東京地下鉄 2号線日比谷線", "東京地下鉄 5号線東西線"]
+    },
+    {
+      "id": "ksj-n02-003655",
+      "name": "岩本町",
+      "latitude": 35.695575,
+      "longitude": 139.775185,
+      "prefecture": "東京都",
+      "municipality": "千代田区",
+      "lines": ["東京都 10号線新宿線"]
+    },
+    {
+      "id": "ksj-n02-004053",
+      "name": "喜多見",
+      "latitude": 35.636495,
+      "longitude": 139.58678,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["小田急電鉄 小田原線"]
+    },
+    {
+      "id": "ksj-n02-004219",
+      "name": "旗の台",
+      "latitude": 35.605033,
+      "longitude": 139.702763,
+      "prefecture": "東京都",
+      "municipality": "品川区",
+      "lines": ["東急電鉄 大井町線", "東急電鉄 池上線"]
+    },
+    {
+      "id": "ksj-n02-003468",
+      "name": "鬼子母神前",
+      "latitude": 35.72058,
+      "longitude": 139.715155,
+      "prefecture": "東京都",
+      "municipality": "豊島区",
+      "lines": ["東京都 荒川線"]
+    },
+    {
+      "id": "ksj-n02-003635",
+      "name": "亀戸",
+      "latitude": 35.697537,
+      "longitude": 139.826905,
+      "prefecture": "東京都",
+      "municipality": "江東区",
+      "lines": ["東日本旅客鉄道 総武線", "東武鉄道 亀戸線"]
+    },
+    {
+      "id": "ksj-n02-003610",
+      "name": "亀戸水神",
+      "latitude": 35.699945,
+      "longitude": 139.83339,
+      "prefecture": "東京都",
+      "municipality": "江東区",
+      "lines": ["東武鉄道 亀戸線"]
+    },
+    {
+      "id": "ksj-n02-003199",
+      "name": "亀有",
+      "latitude": 35.76653,
+      "longitude": 139.84756,
+      "prefecture": "東京都",
+      "municipality": "葛飾区",
+      "lines": ["東日本旅客鉄道 常磐線"]
+    },
+    {
+      "id": "ksj-n02-003709",
+      "name": "菊川",
+      "latitude": 35.68841,
+      "longitude": 139.806125,
+      "prefecture": "東京都",
+      "municipality": "墨田区",
+      "lines": ["東京都 10号線新宿線"]
+    },
+    {
+      "id": "ksj-n02-003584",
+      "name": "吉祥寺",
+      "latitude": 35.702715,
+      "longitude": 139.58006,
+      "prefecture": "東京都",
+      "municipality": "武蔵野市",
+      "lines": ["京王電鉄 井の頭線", "東日本旅客鉄道 中央線"]
+    },
+    {
+      "id": "ksj-n02-004292",
+      "name": "久が原",
+      "latitude": 35.579455,
+      "longitude": 139.68567,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["東急電鉄 池上線"]
+    },
+    {
+      "id": "ksj-n02-003710",
+      "name": "久我山",
+      "latitude": 35.68814,
+      "longitude": 139.599325,
+      "prefecture": "東京都",
+      "municipality": "杉並区",
+      "lines": ["京王電鉄 井の頭線"]
+    },
+    {
+      "id": "ksj-n02-003262",
+      "name": "久米川",
+      "latitude": 35.749525,
+      "longitude": 139.472695,
+      "prefecture": "東京都",
+      "municipality": "東村山市",
+      "lines": ["西武鉄道 新宿線"]
+    },
+    {
+      "id": "ksj-n02-003989",
+      "name": "宮の坂",
+      "latitude": 35.64755,
+      "longitude": 139.64492,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["東急電鉄 世田谷線"]
+    },
+    {
+      "id": "ksj-n02-003259",
+      "name": "宮ノ前",
+      "latitude": 35.749885,
+      "longitude": 139.765765,
+      "prefecture": "東京都",
+      "municipality": "荒川区",
+      "lines": ["東京都 荒川線"]
+    },
+    {
+      "id": "ksj-n02-003127",
+      "name": "宮ノ平",
+      "latitude": 35.78759,
+      "longitude": 139.237315,
+      "prefecture": "東京都",
+      "municipality": "青梅市",
+      "lines": ["東日本旅客鉄道 青梅線"]
+    },
+    {
+      "id": "ksj-n02-003602",
+      "name": "牛込神楽坂",
+      "latitude": 35.700915,
+      "longitude": 139.73604,
+      "prefecture": "東京都",
+      "municipality": "新宿区",
+      "lines": ["東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-003618",
+      "name": "牛込柳町",
+      "latitude": 35.69946,
+      "longitude": 139.72519,
+      "prefecture": "東京都",
+      "municipality": "新宿区",
+      "lines": ["東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-003288",
+      "name": "牛田",
+      "latitude": 35.744545,
+      "longitude": 139.81177,
+      "prefecture": "東京都",
+      "municipality": "足立区",
+      "lines": ["東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-003353",
+      "name": "牛浜",
+      "latitude": 35.734335,
+      "longitude": 139.33379,
+      "prefecture": "東京都",
+      "municipality": "福生市",
+      "lines": ["東日本旅客鉄道 青梅線"]
+    },
+    {
+      "id": "ksj-n02-004070",
+      "name": "京王よみうりランド",
+      "latitude": 35.632975,
+      "longitude": 139.51729,
+      "prefecture": "東京都",
+      "municipality": "稲城市",
+      "lines": ["京王電鉄 相模原線"]
+    },
+    {
+      "id": "ksj-n02-004086",
+      "name": "京王永山",
+      "latitude": 35.63024,
+      "longitude": 139.44821,
+      "prefecture": "東京都",
+      "municipality": "多摩市",
+      "lines": ["京王電鉄 相模原線"]
+    },
+    {
+      "id": "ksj-n02-004116",
+      "name": "京王多摩センター",
+      "latitude": 35.625225,
+      "longitude": 139.424165,
+      "prefecture": "東京都",
+      "municipality": "多摩市",
+      "lines": ["京王電鉄 相模原線"]
+    },
+    {
+      "id": "ksj-n02-004013",
+      "name": "京王多摩川",
+      "latitude": 35.6441,
+      "longitude": 139.536345,
+      "prefecture": "東京都",
+      "municipality": "調布市",
+      "lines": ["京王電鉄 相模原線"]
+    },
+    {
+      "id": "ksj-n02-003934",
+      "name": "京王八王子",
+      "latitude": 35.65802,
+      "longitude": 139.343055,
+      "prefecture": "東京都",
+      "municipality": "八王子市",
+      "lines": ["京王電鉄 京王線"]
+    },
+    {
+      "id": "ksj-n02-004009",
+      "name": "京王片倉",
+      "latitude": 35.64436,
+      "longitude": 139.33696,
+      "prefecture": "東京都",
+      "municipality": "八王子市",
+      "lines": ["京王電鉄 高尾線"]
+    },
+    {
+      "id": "ksj-n02-004120",
+      "name": "京王堀之内",
+      "latitude": 35.624475,
+      "longitude": 139.400325,
+      "prefecture": "東京都",
+      "municipality": "八王子市",
+      "lines": ["京王電鉄 相模原線"]
+    },
+    {
+      "id": "ksj-n02-004331",
+      "name": "京急蒲田",
+      "latitude": 35.561704,
+      "longitude": 139.724308,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["京浜急行電鉄 空港線", "京浜急行電鉄 本線"]
+    },
+    {
+      "id": "ksj-n02-003792",
+      "name": "京橋",
+      "latitude": 35.6767,
+      "longitude": 139.770115,
+      "prefecture": "東京都",
+      "municipality": "中央区",
+      "lines": ["東京地下鉄 3号線銀座線"]
+    },
+    {
+      "id": "ksj-n02-003477",
+      "name": "京成曳舟",
+      "latitude": 35.71864,
+      "longitude": 139.82028,
+      "prefecture": "東京都",
+      "municipality": "墨田区",
+      "lines": ["京成電鉄 押上線"]
+    },
+    {
+      "id": "ksj-n02-003290",
+      "name": "京成関屋",
+      "latitude": 35.743965,
+      "longitude": 139.81185,
+      "prefecture": "東京都",
+      "municipality": "足立区",
+      "lines": ["京成電鉄 本線"]
+    },
+    {
+      "id": "ksj-n02-003195",
+      "name": "京成金町",
+      "latitude": 35.76845,
+      "longitude": 139.87035,
+      "prefecture": "東京都",
+      "municipality": "葛飾区",
+      "lines": ["京成電鉄 金町線"]
+    },
+    {
+      "id": "ksj-n02-003248",
+      "name": "京成高砂",
+      "latitude": 35.75087,
+      "longitude": 139.86659,
+      "prefecture": "東京都",
+      "municipality": "葛飾区",
+      "lines": ["京成電鉄 金町線", "京成電鉄 成田空港線", "京成電鉄 本線", "北総鉄道 北総線"]
+    },
+    {
+      "id": "ksj-n02-003303",
+      "name": "京成小岩",
+      "latitude": 35.742215,
+      "longitude": 139.883615,
+      "prefecture": "東京都",
+      "municipality": "江戸川区",
+      "lines": ["京成電鉄 本線"]
+    },
+    {
+      "id": "ksj-n02-003521",
+      "name": "京成上野",
+      "latitude": 35.71131,
+      "longitude": 139.77351,
+      "prefecture": "東京都",
+      "municipality": "台東区",
+      "lines": ["京成電鉄 本線"]
+    },
+    {
+      "id": "ksj-n02-003323",
+      "name": "京成立石",
+      "latitude": 35.73819,
+      "longitude": 139.84816,
+      "prefecture": "東京都",
+      "municipality": "葛飾区",
+      "lines": ["京成電鉄 押上線"]
+    },
+    {
+      "id": "ksj-n02-003943",
+      "name": "競艇場前",
+      "latitude": 35.65621,
+      "longitude": 139.49966,
+      "prefecture": "東京都",
+      "municipality": "府中市",
+      "lines": ["西武鉄道 多摩川線"]
+    },
+    {
+      "id": "ksj-n02-004035",
+      "name": "狭間",
+      "latitude": 35.64059,
+      "longitude": 139.293645,
+      "prefecture": "東京都",
+      "municipality": "八王子市",
+      "lines": ["京王電鉄 高尾線"]
+    },
+    {
+      "id": "ksj-n02-004324",
+      "name": "玉川学園前",
+      "latitude": 35.56351,
+      "longitude": 139.46344,
+      "prefecture": "東京都",
+      "municipality": "町田市",
+      "lines": ["小田急電鉄 小田原線"]
+    },
+    {
+      "id": "ksj-n02-003371",
+      "name": "玉川上水",
+      "latitude": 35.731938,
+      "longitude": 139.418255,
+      "prefecture": "東京都",
+      "municipality": "立川市",
+      "lines": ["西武鉄道 拝島線", "多摩都市モノレール 多摩都市モノレール線"]
+    },
+    {
+      "id": "ksj-n02-003639",
+      "name": "錦糸町",
+      "latitude": 35.69708,
+      "longitude": 139.814638,
+      "prefecture": "東京都",
+      "municipality": "墨田区",
+      "lines": ["東京地下鉄 11号線半蔵門線", "東日本旅客鉄道 総武線"]
+    },
+    {
+      "id": "ksj-n02-003191",
+      "name": "金町",
+      "latitude": 35.76951,
+      "longitude": 139.87039,
+      "prefecture": "東京都",
+      "municipality": "葛飾区",
+      "lines": ["東日本旅客鉄道 常磐線"]
+    },
+    {
+      "id": "ksj-n02-003823",
+      "name": "銀座",
+      "latitude": 35.672238,
+      "longitude": 139.7644,
+      "prefecture": "東京都",
+      "municipality": "中央区",
+      "lines": ["東京地下鉄 2号線日比谷線", "東京地下鉄 3号線銀座線", "東京地下鉄 4号線丸ノ内線"]
+    },
+    {
+      "id": "ksj-n02-003801",
+      "name": "銀座一丁目",
+      "latitude": 35.67451,
+      "longitude": 139.76678,
+      "prefecture": "東京都",
+      "municipality": "中央区",
+      "lines": ["東京地下鉄 8号線有楽町線"]
+    },
+    {
+      "id": "ksj-n02-003657",
+      "name": "九段下",
+      "latitude": 35.695703,
+      "longitude": 139.751163,
+      "prefecture": "東京都",
+      "municipality": "千代田区",
+      "lines": ["東京地下鉄 11号線半蔵門線", "東京地下鉄 5号線東西線", "東京都 10号線新宿線"]
+    },
+    {
+      "id": "ksj-n02-004216",
+      "name": "九品仏",
+      "latitude": 35.605375,
+      "longitude": 139.66101,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["東急電鉄 大井町線"]
+    },
+    {
+      "id": "ksj-n02-003343",
+      "name": "駒込",
+      "latitude": 35.736383,
+      "longitude": 139.747475,
+      "prefecture": "東京都",
+      "municipality": "豊島区",
+      "lines": ["東京地下鉄 7号線南北線", "東日本旅客鉄道 山手線"]
+    },
+    {
+      "id": "ksj-n02-003929",
+      "name": "駒場東大前",
+      "latitude": 35.65867,
+      "longitude": 139.684075,
+      "prefecture": "東京都",
+      "municipality": "目黒区",
+      "lines": ["京王電鉄 井の頭線"]
+    },
+    {
+      "id": "ksj-n02-004069",
+      "name": "駒沢大学",
+      "latitude": 35.633035,
+      "longitude": 139.660965,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["東急電鉄 田園都市線"]
+    },
+    {
+      "id": "ksj-n02-003411",
+      "name": "熊川",
+      "latitude": 35.72829,
+      "longitude": 139.33573,
+      "prefecture": "東京都",
+      "municipality": "福生市",
+      "lines": ["東日本旅客鉄道 五日市線"]
+    },
+    {
+      "id": "ksj-n02-003266",
+      "name": "熊野前",
+      "latitude": 35.748713,
+      "longitude": 139.769603,
+      "prefecture": "東京都",
+      "municipality": "荒川区",
+      "lines": ["東京都 荒川線", "東京都 日暮里・舎人ライナー"]
+    },
+    {
+      "id": "ksj-n02-003074",
+      "name": "軍畑",
+      "latitude": 35.80758,
+      "longitude": 139.20765,
+      "prefecture": "東京都",
+      "municipality": "青梅市",
+      "lines": ["東日本旅客鉄道 青梅線"]
+    },
+    {
+      "id": "ksj-n02-003991",
+      "name": "恵比寿",
+      "latitude": 35.64688,
+      "longitude": 139.709393,
+      "prefecture": "東京都",
+      "municipality": "渋谷区",
+      "lines": ["東京地下鉄 2号線日比谷線", "東日本旅客鉄道 山手線"]
+    },
+    {
+      "id": "ksj-n02-003970",
+      "name": "経堂",
+      "latitude": 35.65119,
+      "longitude": 139.636675,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["小田急電鉄 小田原線"]
+    },
+    {
+      "id": "ksj-n02-004364",
+      "name": "穴守稲荷",
+      "latitude": 35.550345,
+      "longitude": 139.74669,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["京浜急行電鉄 空港線"]
+    },
+    {
+      "id": "ksj-n02-003889",
+      "name": "月島",
+      "latitude": 35.664303,
+      "longitude": 139.784245,
+      "prefecture": "東京都",
+      "municipality": "中央区",
+      "lines": ["東京地下鉄 8号線有楽町線", "東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-003060",
+      "name": "見沼代親水公園",
+      "latitude": 35.814605,
+      "longitude": 139.7707,
+      "prefecture": "東京都",
+      "municipality": "足立区",
+      "lines": ["東京都 日暮里・舎人ライナー"]
+    },
+    {
+      "id": "ksj-n02-003828",
+      "name": "原宿",
+      "latitude": 35.67131,
+      "longitude": 139.70273,
+      "prefecture": "東京都",
+      "municipality": "渋谷区",
+      "lines": ["東日本旅客鉄道 山手線"]
+    },
+    {
+      "id": "ksj-n02-003053",
+      "name": "古里",
+      "latitude": 35.81632,
+      "longitude": 139.15114,
+      "prefecture": "東京都",
+      "municipality": "奥多摩町",
+      "lines": ["東日本旅客鉄道 青梅線"]
+    },
+    {
+      "id": "ksj-n02-004161",
+      "name": "戸越",
+      "latitude": 35.614425,
+      "longitude": 139.716375,
+      "prefecture": "東京都",
+      "municipality": "品川区",
+      "lines": ["東京都 1号線浅草線"]
+    },
+    {
+      "id": "ksj-n02-004155",
+      "name": "戸越銀座",
+      "latitude": 35.61601,
+      "longitude": 139.715,
+      "prefecture": "東京都",
+      "municipality": "品川区",
+      "lines": ["東急電鉄 池上線"]
+    },
+    {
+      "id": "ksj-n02-004186",
+      "name": "戸越公園",
+      "latitude": 35.60893,
+      "longitude": 139.71839,
+      "prefecture": "東京都",
+      "municipality": "品川区",
+      "lines": ["東急電鉄 大井町線"]
+    },
+    {
+      "id": "ksj-n02-003835",
+      "name": "虎ノ門",
+      "latitude": 35.67016,
+      "longitude": 139.75012,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["東京地下鉄 3号線銀座線"]
+    },
+    {
+      "id": "ksj-n02-003866",
+      "name": "虎ノ門ヒルズ",
+      "latitude": 35.66733,
+      "longitude": 139.747775,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["東京地下鉄 2号線日比谷線"]
+    },
+    {
+      "id": "ksj-n02-004110",
+      "name": "五反田",
+      "latitude": 35.626125,
+      "longitude": 139.723903,
+      "prefecture": "東京都",
+      "municipality": "品川区",
+      "lines": ["東急電鉄 池上線", "東京都 1号線浅草線", "東日本旅客鉄道 山手線"]
+    },
+    {
+      "id": "ksj-n02-003200",
+      "name": "五反野",
+      "latitude": 35.765905,
+      "longitude": 139.80963,
+      "prefecture": "東京都",
+      "municipality": "足立区",
+      "lines": ["東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-003542",
+      "name": "後楽園",
+      "latitude": 35.70785,
+      "longitude": 139.751323,
+      "prefecture": "東京都",
+      "municipality": "文京区",
+      "lines": ["東京地下鉄 4号線丸ノ内線", "東京地下鉄 7号線南北線"]
+    },
+    {
+      "id": "ksj-n02-003114",
+      "name": "御岳山",
+      "latitude": 35.78963,
+      "longitude": 139.153765,
+      "prefecture": "東京都",
+      "municipality": "青梅市",
+      "lines": ["御岳登山鉄道 ケーブルカー"]
+    },
+    {
+      "id": "ksj-n02-003911",
+      "name": "御成門",
+      "latitude": 35.660985,
+      "longitude": 139.751485,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["東京都 6号線三田線"]
+    },
+    {
+      "id": "ksj-n02-003615",
+      "name": "御茶ノ水",
+      "latitude": 35.69988,
+      "longitude": 139.764822,
+      "prefecture": "東京都",
+      "municipality": "千代田区",
+      "lines": ["東京地下鉄 4号線丸ノ内線", "東日本旅客鉄道 総武線", "東日本旅客鉄道 中央線"]
+    },
+    {
+      "id": "ksj-n02-003555",
+      "name": "御徒町",
+      "latitude": 35.707195,
+      "longitude": 139.774715,
+      "prefecture": "東京都",
+      "municipality": "台東区",
+      "lines": ["東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-003087",
+      "name": "御嶽",
+      "latitude": 35.801415,
+      "longitude": 139.18263,
+      "prefecture": "東京都",
+      "municipality": "青梅市",
+      "lines": ["東日本旅客鉄道 青梅線"]
+    },
+    {
+      "id": "ksj-n02-004273",
+      "name": "御嶽山",
+      "latitude": 35.585225,
+      "longitude": 139.682385,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["東急電鉄 池上線"]
+    },
+    {
+      "id": "ksj-n02-003474",
+      "name": "護国寺",
+      "latitude": 35.71918,
+      "longitude": 139.72745,
+      "prefecture": "東京都",
+      "municipality": "文京区",
+      "lines": ["東京地下鉄 8号線有楽町線"]
+    },
+    {
+      "id": "ksj-n02-003225",
+      "name": "光が丘",
+      "latitude": 35.75847,
+      "longitude": 139.62924,
+      "prefecture": "東京都",
+      "municipality": "練馬区",
+      "lines": ["東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-003407",
+      "name": "向原",
+      "latitude": 35.728765,
+      "longitude": 139.724805,
+      "prefecture": "東京都",
+      "municipality": "豊島区",
+      "lines": ["東京都 荒川線"]
+    },
+    {
+      "id": "ksj-n02-003969",
+      "name": "広尾",
+      "latitude": 35.6515,
+      "longitude": 139.72221,
+      "prefecture": "東京都",
+      "municipality": "渋谷区",
+      "lines": ["東京地下鉄 2号線日比谷線"]
+    },
+    {
+      "id": "ksj-n02-003319",
+      "name": "庚申塚",
+      "latitude": 35.739125,
+      "longitude": 139.729555,
+      "prefecture": "東京都",
+      "municipality": "豊島区",
+      "lines": ["東京都 荒川線"]
+    },
+    {
+      "id": "ksj-n02-003337",
+      "name": "江古田",
+      "latitude": 35.737465,
+      "longitude": 139.672785,
+      "prefecture": "東京都",
+      "municipality": "練馬区",
+      "lines": ["西武鉄道 池袋線"]
+    },
+    {
+      "id": "ksj-n02-003331",
+      "name": "江戸川",
+      "latitude": 35.737855,
+      "longitude": 139.89576,
+      "prefecture": "東京都",
+      "municipality": "江戸川区",
+      "lines": ["京成電鉄 本線"]
+    },
+    {
+      "id": "ksj-n02-003534",
+      "name": "江戸川橋",
+      "latitude": 35.709295,
+      "longitude": 139.73413,
+      "prefecture": "東京都",
+      "municipality": "文京区",
+      "lines": ["東京地下鉄 8号線有楽町線"]
+    },
+    {
+      "id": "ksj-n02-003171",
+      "name": "江北",
+      "latitude": 35.773785,
+      "longitude": 139.770345,
+      "prefecture": "東京都",
+      "municipality": "足立区",
+      "lines": ["東京都 日暮里・舎人ライナー"]
+    },
+    {
+      "id": "ksj-n02-003783",
+      "name": "甲州街道",
+      "latitude": 35.67825,
+      "longitude": 139.409155,
+      "prefecture": "東京都",
+      "municipality": "日野市",
+      "lines": ["多摩都市モノレール 多摩都市モノレール線"]
+    },
+    {
+      "id": "ksj-n02-003357",
+      "name": "荒川一中前",
+      "latitude": 35.73369,
+      "longitude": 139.788805,
+      "prefecture": "東京都",
+      "municipality": "荒川区",
+      "lines": ["東京都 荒川線"]
+    },
+    {
+      "id": "ksj-n02-003350",
+      "name": "荒川区役所前",
+      "latitude": 35.735365,
+      "longitude": 139.78601,
+      "prefecture": "東京都",
+      "municipality": "荒川区",
+      "lines": ["東京都 荒川線"]
+    },
+    {
+      "id": "ksj-n02-003306",
+      "name": "荒川七丁目",
+      "latitude": 35.742,
+      "longitude": 139.784045,
+      "prefecture": "東京都",
+      "municipality": "荒川区",
+      "lines": ["東京都 荒川線"]
+    },
+    {
+      "id": "ksj-n02-003252",
+      "name": "荒川車庫前",
+      "latitude": 35.75086,
+      "longitude": 139.752805,
+      "prefecture": "東京都",
+      "municipality": "荒川区",
+      "lines": ["東京都 荒川線"]
+    },
+    {
+      "id": "ksj-n02-003322",
+      "name": "荒川二丁目",
+      "latitude": 35.7386,
+      "longitude": 139.78469,
+      "prefecture": "東京都",
+      "municipality": "荒川区",
+      "lines": ["東京都 荒川線"]
+    },
+    {
+      "id": "ksj-n02-003254",
+      "name": "荒川遊園地前",
+      "latitude": 35.75065,
+      "longitude": 139.757475,
+      "prefecture": "東京都",
+      "municipality": "荒川区",
+      "lines": ["東京都 荒川線"]
+    },
+    {
+      "id": "ksj-n02-003752",
+      "name": "高井戸",
+      "latitude": 35.68326,
+      "longitude": 139.61523,
+      "prefecture": "東京都",
+      "municipality": "杉並区",
+      "lines": ["京王電鉄 井の頭線"]
+    },
+    {
+      "id": "ksj-n02-003573",
+      "name": "高円寺",
+      "latitude": 35.705325,
+      "longitude": 139.6497,
+      "prefecture": "東京都",
+      "municipality": "杉並区",
+      "lines": ["東日本旅客鉄道 中央線"]
+    },
+    {
+      "id": "ksj-n02-003528",
+      "name": "高松",
+      "latitude": 35.710045,
+      "longitude": 139.413275,
+      "prefecture": "東京都",
+      "municipality": "立川市",
+      "lines": ["多摩都市モノレール 多摩都市モノレール線"]
+    },
+    {
+      "id": "ksj-n02-003508",
+      "name": "高田馬場",
+      "latitude": 35.712873,
+      "longitude": 139.704288,
+      "prefecture": "東京都",
+      "municipality": "新宿区",
+      "lines": ["西武鉄道 新宿線", "東京地下鉄 5号線東西線", "東日本旅客鉄道 山手線"]
+    },
+    {
+      "id": "ksj-n02-003117",
+      "name": "高島平",
+      "latitude": 35.788935,
+      "longitude": 139.661295,
+      "prefecture": "東京都",
+      "municipality": "板橋区",
+      "lines": ["東京都 6号線三田線"]
+    },
+    {
+      "id": "ksj-n02-003904",
+      "name": "高幡不動",
+      "latitude": 35.661947,
+      "longitude": 139.413812,
+      "prefecture": "東京都",
+      "municipality": "日野市",
+      "lines": ["京王電鉄 京王線", "京王電鉄 動物園線", "多摩都市モノレール 多摩都市モノレール線"]
+    },
+    {
+      "id": "ksj-n02-004029",
+      "name": "高尾",
+      "latitude": 35.642015,
+      "longitude": 139.282173,
+      "prefecture": "東京都",
+      "municipality": "八王子市",
+      "lines": ["京王電鉄 高尾線", "東日本旅客鉄道 中央線"]
+    },
+    {
+      "id": "ksj-n02-004084",
+      "name": "高尾山",
+      "latitude": 35.631075,
+      "longitude": 139.256075,
+      "prefecture": "東京都",
+      "municipality": "八王子市",
+      "lines": ["高尾登山電鉄 高尾鋼索線"]
+    },
+    {
+      "id": "ksj-n02-004075",
+      "name": "高尾山口",
+      "latitude": 35.63238,
+      "longitude": 139.269815,
+      "prefecture": "東京都",
+      "municipality": "八王子市",
+      "lines": ["京王電鉄 高尾線"]
+    },
+    {
+      "id": "ksj-n02-003196",
+      "name": "高野",
+      "latitude": 35.768255,
+      "longitude": 139.77072,
+      "prefecture": "東京都",
+      "municipality": "足立区",
+      "lines": ["東京都 日暮里・舎人ライナー"]
+    },
+    {
+      "id": "ksj-n02-004061",
+      "name": "高輪ゲートウェイ",
+      "latitude": 35.635379,
+      "longitude": 139.740644,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["東日本旅客鉄道 東海道線"]
+    },
+    {
+      "id": "ksj-n02-004079",
+      "name": "高輪台",
+      "latitude": 35.63168,
+      "longitude": 139.730365,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["東京都 1号線浅草線"]
+    },
+    {
+      "id": "ksj-n02-003960",
+      "name": "豪徳寺",
+      "latitude": 35.653775,
+      "longitude": 139.647085,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["小田急電鉄 小田原線"]
+    },
+    {
+      "id": "ksj-n02-003737",
+      "name": "麹町",
+      "latitude": 35.684785,
+      "longitude": 139.73735,
+      "prefecture": "東京都",
+      "municipality": "千代田区",
+      "lines": ["東京地下鉄 8号線有楽町線"]
+    },
+    {
+      "id": "ksj-n02-003799",
+      "name": "国会議事堂前",
+      "latitude": 35.674293,
+      "longitude": 139.744298,
+      "prefecture": "東京都",
+      "municipality": "千代田区",
+      "lines": ["東京地下鉄 4号線丸ノ内線", "東京地下鉄 9号線千代田線"]
+    },
+    {
+      "id": "ksj-n02-004065",
+      "name": "国際展示場",
+      "latitude": 35.63441,
+      "longitude": 139.791695,
+      "prefecture": "東京都",
+      "municipality": "江東区",
+      "lines": ["東京臨海高速鉄道 臨海副都心線"]
+    },
+    {
+      "id": "ksj-n02-003606",
+      "name": "国分寺",
+      "latitude": 35.700463,
+      "longitude": 139.480328,
+      "prefecture": "東京都",
+      "municipality": "国分寺市",
+      "lines": ["西武鉄道 国分寺線", "西武鉄道 多摩湖線", "東日本旅客鉄道 中央線"]
+    },
+    {
+      "id": "ksj-n02-003622",
+      "name": "国立",
+      "latitude": 35.699195,
+      "longitude": 139.446415,
+      "prefecture": "東京都",
+      "municipality": "国立市",
+      "lines": ["東日本旅客鉄道 中央線"]
+    },
+    {
+      "id": "ksj-n02-003775",
+      "name": "国立競技場",
+      "latitude": 35.679855,
+      "longitude": 139.714875,
+      "prefecture": "東京都",
+      "municipality": "新宿区",
+      "lines": ["東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-003973",
+      "name": "国領",
+      "latitude": 35.650185,
+      "longitude": 139.55843,
+      "prefecture": "東京都",
+      "municipality": "調布市",
+      "lines": ["京王電鉄 京王線"]
+    },
+    {
+      "id": "ksj-n02-004076",
+      "name": "狛江",
+      "latitude": 35.632225,
+      "longitude": 139.57738,
+      "prefecture": "東京都",
+      "municipality": "狛江市",
+      "lines": ["小田急電鉄 小田原線"]
+    },
+    {
+      "id": "ksj-n02-003483",
+      "name": "根津",
+      "latitude": 35.717325,
+      "longitude": 139.76575,
+      "prefecture": "東京都",
+      "municipality": "文京区",
+      "lines": ["東京地下鉄 9号線千代田線"]
+    },
+    {
+      "id": "ksj-n02-003447",
+      "name": "砂川七番",
+      "latitude": 35.723385,
+      "longitude": 139.418105,
+      "prefecture": "東京都",
+      "municipality": "立川市",
+      "lines": ["多摩都市モノレール 多摩都市モノレール線"]
+    },
+    {
+      "id": "ksj-n02-003451",
+      "name": "鷺ノ宮",
+      "latitude": 35.72262,
+      "longitude": 139.639845,
+      "prefecture": "東京都",
+      "municipality": "中野区",
+      "lines": ["西武鉄道 新宿線"]
+    },
+    {
+      "id": "ksj-n02-003320",
+      "name": "桜街道",
+      "latitude": 35.739035,
+      "longitude": 139.416555,
+      "prefecture": "東京都",
+      "municipality": "東大和市",
+      "lines": ["多摩都市モノレール 多摩都市モノレール線"]
+    },
+    {
+      "id": "ksj-n02-003862",
+      "name": "桜上水",
+      "latitude": 35.66764,
+      "longitude": 139.631465,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["京王電鉄 京王線"]
+    },
+    {
+      "id": "ksj-n02-004078",
+      "name": "桜新町",
+      "latitude": 35.63169,
+      "longitude": 139.64547,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["東急電鉄 田園都市線"]
+    },
+    {
+      "id": "ksj-n02-003321",
+      "name": "桜台",
+      "latitude": 35.738745,
+      "longitude": 139.6624,
+      "prefecture": "東京都",
+      "municipality": "練馬区",
+      "lines": ["西武鉄道 池袋線"]
+    },
+    {
+      "id": "ksj-n02-003787",
+      "name": "桜田門",
+      "latitude": 35.677465,
+      "longitude": 139.751885,
+      "prefecture": "東京都",
+      "municipality": "千代田区",
+      "lines": ["東京地下鉄 8号線有楽町線"]
+    },
+    {
+      "id": "ksj-n02-003806",
+      "name": "笹塚",
+      "latitude": 35.67366,
+      "longitude": 139.667175,
+      "prefecture": "東京都",
+      "municipality": "渋谷区",
+      "lines": ["京王電鉄 京王線"]
+    },
+    {
+      "id": "ksj-n02-003471",
+      "name": "雑司が谷",
+      "latitude": 35.7202,
+      "longitude": 139.714715,
+      "prefecture": "東京都",
+      "municipality": "豊島区",
+      "lines": ["東京地下鉄 13号線副都心線"]
+    },
+    {
+      "id": "ksj-n02-004367",
+      "name": "雑色",
+      "latitude": 35.549775,
+      "longitude": 139.715035,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["京浜急行電鉄 本線"]
+    },
+    {
+      "id": "ksj-n02-004220",
+      "name": "鮫洲",
+      "latitude": 35.60507,
+      "longitude": 139.742445,
+      "prefecture": "東京都",
+      "municipality": "品川区",
+      "lines": ["京浜急行電鉄 本線"]
+    },
+    {
+      "id": "ksj-n02-003399",
+      "name": "三ノ輪",
+      "latitude": 35.729285,
+      "longitude": 139.791165,
+      "prefecture": "東京都",
+      "municipality": "台東区",
+      "lines": ["東京地下鉄 2号線日比谷線"]
+    },
+    {
+      "id": "ksj-n02-003370",
+      "name": "三ノ輪橋",
+      "latitude": 35.73222,
+      "longitude": 139.791505,
+      "prefecture": "東京都",
+      "municipality": "荒川区",
+      "lines": ["東京都 荒川線"]
+    },
+    {
+      "id": "ksj-n02-003716",
+      "name": "三越前",
+      "latitude": 35.686052,
+      "longitude": 139.773332,
+      "prefecture": "東京都",
+      "municipality": "中央区",
+      "lines": ["東京地下鉄 11号線半蔵門線", "東京地下鉄 3号線銀座線"]
+    },
+    {
+      "id": "ksj-n02-003359",
+      "name": "三河島",
+      "latitude": 35.733385,
+      "longitude": 139.777075,
+      "prefecture": "東京都",
+      "municipality": "荒川区",
+      "lines": ["東日本旅客鉄道 常磐線"]
+    },
+    {
+      "id": "ksj-n02-004016",
+      "name": "三軒茶屋",
+      "latitude": 35.643698,
+      "longitude": 139.670215,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["東急電鉄 世田谷線", "東急電鉄 田園都市線"]
+    },
+    {
+      "id": "ksj-n02-003587",
+      "name": "三鷹",
+      "latitude": 35.702695,
+      "longitude": 139.56064,
+      "prefecture": "東京都",
+      "municipality": "三鷹市",
+      "lines": ["東日本旅客鉄道 中央線"]
+    },
+    {
+      "id": "ksj-n02-003674",
+      "name": "三鷹台",
+      "latitude": 35.69205,
+      "longitude": 139.589295,
+      "prefecture": "東京都",
+      "municipality": "三鷹市",
+      "lines": ["京王電鉄 井の頭線"]
+    },
+    {
+      "id": "ksj-n02-003986",
+      "name": "三田",
+      "latitude": 35.64801,
+      "longitude": 139.749185,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["東京都 1号線浅草線", "東京都 6号線三田線"]
+    },
+    {
+      "id": "ksj-n02-003778",
+      "name": "参宮橋",
+      "latitude": 35.678605,
+      "longitude": 139.693585,
+      "prefecture": "東京都",
+      "municipality": "渋谷区",
+      "lines": ["小田急電鉄 小田原線"]
+    },
+    {
+      "id": "ksj-n02-003957",
+      "name": "山下",
+      "latitude": 35.654185,
+      "longitude": 139.646415,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["東急電鉄 世田谷線"]
+    },
+    {
+      "id": "ksj-n02-004010",
+      "name": "山田",
+      "latitude": 35.644355,
+      "longitude": 139.320755,
+      "prefecture": "東京都",
+      "municipality": "八王子市",
+      "lines": ["京王電鉄 高尾線"]
+    },
+    {
+      "id": "ksj-n02-003728",
+      "name": "四ツ谷",
+      "latitude": 35.685305,
+      "longitude": 139.73008,
+      "prefecture": "東京都",
+      "municipality": "千代田区",
+      "lines": ["東京地下鉄 4号線丸ノ内線", "東京地下鉄 7号線南北線", "東日本旅客鉄道 中央線"]
+    },
+    {
+      "id": "ksj-n02-003376",
+      "name": "四ツ木",
+      "latitude": 35.731715,
+      "longitude": 139.834655,
+      "prefecture": "東京都",
+      "municipality": "葛飾区",
+      "lines": ["京成電鉄 押上線"]
+    },
+    {
+      "id": "ksj-n02-003713",
+      "name": "四谷三丁目",
+      "latitude": 35.687835,
+      "longitude": 139.719325,
+      "prefecture": "東京都",
+      "municipality": "新宿区",
+      "lines": ["東京地下鉄 4号線丸ノ内線"]
+    },
+    {
+      "id": "ksj-n02-003671",
+      "name": "市ヶ谷",
+      "latitude": 35.692031,
+      "longitude": 139.736469,
+      "prefecture": "東京都",
+      "municipality": "千代田区",
+      "lines": ["東京地下鉄 7号線南北線", "東京地下鉄 8号線有楽町線", "東京都 10号線新宿線", "東日本旅客鉄道 中央線"]
+    },
+    {
+      "id": "ksj-n02-004001",
+      "name": "市場前",
+      "latitude": 35.64569,
+      "longitude": 139.78565,
+      "prefecture": "東京都",
+      "municipality": "江東区",
+      "lines": ["ゆりかもめ 東京臨海新交通臨海線"]
+    },
+    {
+      "id": "ksj-n02-003165",
+      "name": "志村坂上",
+      "latitude": 35.77634,
+      "longitude": 139.69473,
+      "prefecture": "東京都",
+      "municipality": "板橋区",
+      "lines": ["東京都 6号線三田線"]
+    },
+    {
+      "id": "ksj-n02-003158",
+      "name": "志村三丁目",
+      "latitude": 35.777465,
+      "longitude": 139.68586,
+      "prefecture": "東京都",
+      "municipality": "板橋区",
+      "lines": ["東京都 6号線三田線"]
+    },
+    {
+      "id": "ksj-n02-003153",
+      "name": "志茂",
+      "latitude": 35.778025,
+      "longitude": 139.7325,
+      "prefecture": "東京都",
+      "municipality": "北区",
+      "lines": ["東京地下鉄 7号線南北線"]
+    },
+    {
+      "id": "ksj-n02-004196",
+      "name": "自由が丘",
+      "latitude": 35.607333,
+      "longitude": 139.668835,
+      "prefecture": "東京都",
+      "municipality": "目黒区",
+      "lines": ["東急電鉄 大井町線", "東急電鉄 東横線"]
+    },
+    {
+      "id": "ksj-n02-003887",
+      "name": "汐留",
+      "latitude": 35.66395,
+      "longitude": 139.760673,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["ゆりかもめ 東京臨海新交通臨海線", "東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-003565",
+      "name": "篠崎",
+      "latitude": 35.70612,
+      "longitude": 139.903885,
+      "prefecture": "東京都",
+      "municipality": "江戸川区",
+      "lines": ["東京都 10号線新宿線"]
+    },
+    {
+      "id": "ksj-n02-003959",
+      "name": "柴崎",
+      "latitude": 35.65399,
+      "longitude": 139.566625,
+      "prefecture": "東京都",
+      "municipality": "調布市",
+      "lines": ["京王電鉄 京王線"]
+    },
+    {
+      "id": "ksj-n02-003697",
+      "name": "柴崎体育館",
+      "latitude": 35.6898,
+      "longitude": 139.40928,
+      "prefecture": "東京都",
+      "municipality": "立川市",
+      "lines": ["多摩都市モノレール 多摩都市モノレール線"]
+    },
+    {
+      "id": "ksj-n02-003232",
+      "name": "柴又",
+      "latitude": 35.756435,
+      "longitude": 139.875275,
+      "prefecture": "東京都",
+      "municipality": "葛飾区",
+      "lines": ["京成電鉄 金町線"]
+    },
+    {
+      "id": "ksj-n02-004030",
+      "name": "芝浦ふ頭",
+      "latitude": 35.64222,
+      "longitude": 139.75787,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["ゆりかもめ 東京臨海新交通臨海線"]
+    },
+    {
+      "id": "ksj-n02-003962",
+      "name": "芝公園",
+      "latitude": 35.653455,
+      "longitude": 139.74972,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["東京都 6号線三田線"]
+    },
+    {
+      "id": "ksj-n02-003078",
+      "name": "舎人",
+      "latitude": 35.80572,
+      "longitude": 139.770135,
+      "prefecture": "東京都",
+      "municipality": "足立区",
+      "lines": ["東京都 日暮里・舎人ライナー"]
+    },
+    {
+      "id": "ksj-n02-003098",
+      "name": "舎人公園",
+      "latitude": 35.796665,
+      "longitude": 139.77012,
+      "prefecture": "東京都",
+      "municipality": "足立区",
+      "lines": ["東京都 日暮里・舎人ライナー"]
+    },
+    {
+      "id": "ksj-n02-003623",
+      "name": "若松河田",
+      "latitude": 35.699165,
+      "longitude": 139.718185,
+      "prefecture": "東京都",
+      "municipality": "新宿区",
+      "lines": ["東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-003996",
+      "name": "若林",
+      "latitude": 35.645925,
+      "longitude": 139.65991,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["東急電鉄 世田谷線"]
+    },
+    {
+      "id": "ksj-n02-003413",
+      "name": "秋川",
+      "latitude": 35.72805,
+      "longitude": 139.28675,
+      "prefecture": "東京都",
+      "municipality": "あきる野市",
+      "lines": ["東日本旅客鉄道 五日市線"]
+    },
+    {
+      "id": "ksj-n02-003151",
+      "name": "秋津",
+      "latitude": 35.778475,
+      "longitude": 139.496905,
+      "prefecture": "東京都",
+      "municipality": "清瀬市",
+      "lines": ["西武鉄道 池袋線"]
+    },
+    {
+      "id": "ksj-n02-003624",
+      "name": "秋葉原",
+      "latitude": 35.698472,
+      "longitude": 139.774009,
+      "prefecture": "東京都",
+      "municipality": "千代田区",
+      "lines": [
+        "首都圏新都市鉄道 常磐新線",
+        "東京地下鉄 2号線日比谷線",
+        "東日本旅客鉄道 総武線",
+        "東日本旅客鉄道 東北線"
+      ]
+    },
+    {
+      "id": "ksj-n02-003704",
+      "name": "住吉",
+      "latitude": 35.688828,
+      "longitude": 139.815708,
+      "prefecture": "東京都",
+      "municipality": "江東区",
+      "lines": ["東京地下鉄 11号線半蔵門線", "東京都 10号線新宿線"]
+    },
+    {
+      "id": "ksj-n02-003218",
+      "name": "十条",
+      "latitude": 35.76039,
+      "longitude": 139.72225,
+      "prefecture": "東京都",
+      "municipality": "北区",
+      "lines": ["東日本旅客鉄道 赤羽線"]
+    },
+    {
+      "id": "ksj-n02-003922",
+      "name": "渋谷",
+      "latitude": 35.658985,
+      "longitude": 139.701639,
+      "prefecture": "東京都",
+      "municipality": "渋谷区",
+      "lines": [
+        "京王電鉄 井の頭線",
+        "東急電鉄 田園都市線",
+        "東急電鉄 東横線",
+        "東京地下鉄 11号線半蔵門線",
+        "東京地下鉄 13号線副都心線",
+        "東京地下鉄 3号線銀座線",
+        "東日本旅客鉄道 山手線"
+      ]
+    },
+    {
+      "id": "ksj-n02-003529",
+      "name": "春日",
+      "latitude": 35.709222,
+      "longitude": 139.752708,
+      "prefecture": "東京都",
+      "municipality": "文京区",
+      "lines": ["東京都 12号線大江戸線", "東京都 6号線三田線"]
+    },
+    {
+      "id": "ksj-n02-003764",
+      "name": "初台",
+      "latitude": 35.68142,
+      "longitude": 139.68827,
+      "prefecture": "東京都",
+      "municipality": "渋谷区",
+      "lines": ["京王電鉄 京王線"]
+    },
+    {
+      "id": "ksj-n02-003673",
+      "name": "曙橋",
+      "latitude": 35.69233,
+      "longitude": 139.72258,
+      "prefecture": "東京都",
+      "municipality": "新宿区",
+      "lines": ["東京都 10号線新宿線"]
+    },
+    {
+      "id": "ksj-n02-003927",
+      "name": "勝どき",
+      "latitude": 35.658945,
+      "longitude": 139.777155,
+      "prefecture": "東京都",
+      "municipality": "中央区",
+      "lines": ["東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-003360",
+      "name": "小岩",
+      "latitude": 35.73333,
+      "longitude": 139.88185,
+      "prefecture": "東京都",
+      "municipality": "江戸川区",
+      "lines": ["東日本旅客鉄道 総武線"]
+    },
+    {
+      "id": "ksj-n02-003726",
+      "name": "小宮",
+      "latitude": 35.68591,
+      "longitude": 139.36843,
+      "prefecture": "東京都",
+      "municipality": "八王子市",
+      "lines": ["東日本旅客鉄道 八高線"]
+    },
+    {
+      "id": "ksj-n02-003168",
+      "name": "小作",
+      "latitude": 35.776055,
+      "longitude": 139.302275,
+      "prefecture": "東京都",
+      "municipality": "羽村市",
+      "lines": ["東日本旅客鉄道 青梅線"]
+    },
+    {
+      "id": "ksj-n02-003224",
+      "name": "小菅",
+      "latitude": 35.758685,
+      "longitude": 139.81265,
+      "prefecture": "東京都",
+      "municipality": "足立区",
+      "lines": ["東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-003333",
+      "name": "小川",
+      "latitude": 35.737565,
+      "longitude": 139.463495,
+      "prefecture": "東京都",
+      "municipality": "小平市",
+      "lines": ["西武鉄道 国分寺線", "西武鉄道 拝島線"]
+    },
+    {
+      "id": "ksj-n02-003659",
+      "name": "小川町",
+      "latitude": 35.695215,
+      "longitude": 139.76686,
+      "prefecture": "東京都",
+      "municipality": "千代田区",
+      "lines": ["東京都 10号線新宿線"]
+    },
+    {
+      "id": "ksj-n02-003525",
+      "name": "小村井",
+      "latitude": 35.71032,
+      "longitude": 139.82761,
+      "prefecture": "東京都",
+      "municipality": "墨田区",
+      "lines": ["東武鉄道 亀戸線"]
+    },
+    {
+      "id": "ksj-n02-003255",
+      "name": "小台",
+      "latitude": 35.75049,
+      "longitude": 139.761735,
+      "prefecture": "東京都",
+      "municipality": "荒川区",
+      "lines": ["東京都 荒川線"]
+    },
+    {
+      "id": "ksj-n02-003294",
+      "name": "小竹向原",
+      "latitude": 35.743395,
+      "longitude": 139.67952,
+      "prefecture": "東京都",
+      "municipality": "練馬区",
+      "lines": ["西武鉄道 西武有楽町線", "東京地下鉄 13号線副都心線", "東京地下鉄 8号線有楽町線"]
+    },
+    {
+      "id": "ksj-n02-003692",
+      "name": "小伝馬町",
+      "latitude": 35.690425,
+      "longitude": 139.77876,
+      "prefecture": "東京都",
+      "municipality": "中央区",
+      "lines": ["東京地下鉄 2号線日比谷線"]
+    },
+    {
+      "id": "ksj-n02-004090",
+      "name": "小田急永山",
+      "latitude": 35.629915,
+      "longitude": 139.44806,
+      "prefecture": "東京都",
+      "municipality": "多摩市",
+      "lines": ["小田急電鉄 多摩線"]
+    },
+    {
+      "id": "ksj-n02-004118",
+      "name": "小田急多摩センター",
+      "latitude": 35.62493,
+      "longitude": 139.424375,
+      "prefecture": "東京都",
+      "municipality": "多摩市",
+      "lines": ["小田急電鉄 多摩線"]
+    },
+    {
+      "id": "ksj-n02-003340",
+      "name": "小平",
+      "latitude": 35.736915,
+      "longitude": 139.488445,
+      "prefecture": "東京都",
+      "municipality": "小平市",
+      "lines": ["西武鉄道 新宿線", "西武鉄道 拝島線"]
+    },
+    {
+      "id": "ksj-n02-003507",
+      "name": "昭島",
+      "latitude": 35.71322,
+      "longitude": 139.361635,
+      "prefecture": "東京都",
+      "municipality": "昭島市",
+      "lines": ["東日本旅客鉄道 青梅線"]
+    },
+    {
+      "id": "ksj-n02-004312",
+      "name": "昭和島",
+      "latitude": 35.57062,
+      "longitude": 139.749915,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["東京モノレール 東京モノレール羽田線"]
+    },
+    {
+      "id": "ksj-n02-004077",
+      "name": "松が谷",
+      "latitude": 35.631795,
+      "longitude": 139.422035,
+      "prefecture": "東京都",
+      "municipality": "八王子市",
+      "lines": ["多摩都市モノレール 多摩都市モノレール線"]
+    },
+    {
+      "id": "ksj-n02-004017",
+      "name": "松陰神社前",
+      "latitude": 35.643885,
+      "longitude": 139.65499,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["東急電鉄 世田谷線"]
+    },
+    {
+      "id": "ksj-n02-003915",
+      "name": "松原",
+      "latitude": 35.6602,
+      "longitude": 139.641895,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["東急電鉄 世田谷線"]
+    },
+    {
+      "id": "ksj-n02-003475",
+      "name": "沼袋",
+      "latitude": 35.71916,
+      "longitude": 139.66484,
+      "prefecture": "東京都",
+      "municipality": "中野区",
+      "lines": ["西武鉄道 新宿線"]
+    },
+    {
+      "id": "ksj-n02-004279",
+      "name": "沼部",
+      "latitude": 35.58249,
+      "longitude": 139.67317,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["東急電鉄 東急多摩川線"]
+    },
+    {
+      "id": "ksj-n02-003355",
+      "name": "鐘ヶ淵",
+      "latitude": 35.73376,
+      "longitude": 139.82037,
+      "prefecture": "東京都",
+      "municipality": "墨田区",
+      "lines": ["東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-003437",
+      "name": "上井草",
+      "latitude": 35.725255,
+      "longitude": 139.602955,
+      "prefecture": "東京都",
+      "municipality": "杉並区",
+      "lines": ["西武鉄道 新宿線"]
+    },
+    {
+      "id": "ksj-n02-003427",
+      "name": "上石神井",
+      "latitude": 35.726195,
+      "longitude": 139.59229,
+      "prefecture": "東京都",
+      "municipality": "練馬区",
+      "lines": ["西武鉄道 新宿線"]
+    },
+    {
+      "id": "ksj-n02-003277",
+      "name": "上中里",
+      "latitude": 35.74709,
+      "longitude": 139.74593,
+      "prefecture": "東京都",
+      "municipality": "北区",
+      "lines": ["東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-004020",
+      "name": "上町",
+      "latitude": 35.643615,
+      "longitude": 139.64641,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["東急電鉄 世田谷線"]
+    },
+    {
+      "id": "ksj-n02-003212",
+      "name": "上板橋",
+      "latitude": 35.763615,
+      "longitude": 139.676205,
+      "prefecture": "東京都",
+      "municipality": "板橋区",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-003283",
+      "name": "上北台",
+      "latitude": 35.74576,
+      "longitude": 139.415865,
+      "prefecture": "東京都",
+      "municipality": "東大和市",
+      "lines": ["多摩都市モノレール 多摩都市モノレール線"]
+    },
+    {
+      "id": "ksj-n02-003849",
+      "name": "上北沢",
+      "latitude": 35.668845,
+      "longitude": 139.623415,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["京王電鉄 京王線"]
+    },
+    {
+      "id": "ksj-n02-003505",
+      "name": "上野",
+      "latitude": 35.713201,
+      "longitude": 139.776804,
+      "prefecture": "東京都",
+      "municipality": "台東区",
+      "lines": [
+        "東京地下鉄 2号線日比谷線",
+        "東京地下鉄 3号線銀座線",
+        "東日本旅客鉄道 東北新幹線",
+        "東日本旅客鉄道 東北線"
+      ]
+    },
+    {
+      "id": "ksj-n02-003543",
+      "name": "上野御徒町",
+      "latitude": 35.70796,
+      "longitude": 139.773065,
+      "prefecture": "東京都",
+      "municipality": "台東区",
+      "lines": ["東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-003545",
+      "name": "上野広小路",
+      "latitude": 35.70777,
+      "longitude": 139.773,
+      "prefecture": "東京都",
+      "municipality": "台東区",
+      "lines": ["東京地下鉄 3号線銀座線"]
+    },
+    {
+      "id": "ksj-n02-004175",
+      "name": "上野毛",
+      "latitude": 35.61198,
+      "longitude": 139.63893,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["東急電鉄 大井町線"]
+    },
+    {
+      "id": "ksj-n02-003774",
+      "name": "信濃町",
+      "latitude": 35.679965,
+      "longitude": 139.7211,
+      "prefecture": "東京都",
+      "municipality": "新宿区",
+      "lines": ["東日本旅客鉄道 中央線"]
+    },
+    {
+      "id": "ksj-n02-003489",
+      "name": "新井薬師前",
+      "latitude": 35.715785,
+      "longitude": 139.672595,
+      "prefecture": "東京都",
+      "municipality": "中野区",
+      "lines": ["西武鉄道 新宿線"]
+    },
+    {
+      "id": "ksj-n02-003872",
+      "name": "新橋",
+      "latitude": 35.666062,
+      "longitude": 139.758865,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": [
+        "ゆりかもめ 東京臨海新交通臨海線",
+        "東京地下鉄 3号線銀座線",
+        "東京都 1号線浅草線",
+        "東日本旅客鉄道 東海道線"
+      ]
+    },
+    {
+      "id": "ksj-n02-003645",
+      "name": "新御茶ノ水",
+      "latitude": 35.696925,
+      "longitude": 139.76545,
+      "prefecture": "東京都",
+      "municipality": "千代田区",
+      "lines": ["東京地下鉄 9号線千代田線"]
+    },
+    {
+      "id": "ksj-n02-003556",
+      "name": "新御徒町",
+      "latitude": 35.706943,
+      "longitude": 139.782125,
+      "prefecture": "東京都",
+      "municipality": "台東区",
+      "lines": ["首都圏新都市鉄道 常磐新線", "東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-003310",
+      "name": "新庚申塚",
+      "latitude": 35.741105,
+      "longitude": 139.73035,
+      "prefecture": "東京都",
+      "municipality": "豊島区",
+      "lines": ["東京都 荒川線"]
+    },
+    {
+      "id": "ksj-n02-003367",
+      "name": "新江古田",
+      "latitude": 35.73249,
+      "longitude": 139.670565,
+      "prefecture": "東京都",
+      "municipality": "練馬区",
+      "lines": ["東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-003632",
+      "name": "新高円寺",
+      "latitude": 35.69786,
+      "longitude": 139.64851,
+      "prefecture": "東京都",
+      "municipality": "杉並区",
+      "lines": ["東京地下鉄 4号線丸ノ内線"]
+    },
+    {
+      "id": "ksj-n02-003112",
+      "name": "新高島平",
+      "latitude": 35.79022,
+      "longitude": 139.65433,
+      "prefecture": "東京都",
+      "municipality": "板橋区",
+      "lines": ["東京都 6号線三田線"]
+    },
+    {
+      "id": "ksj-n02-003311",
+      "name": "新桜台",
+      "latitude": 35.74104,
+      "longitude": 139.66865,
+      "prefecture": "東京都",
+      "municipality": "練馬区",
+      "lines": ["西武鉄道 西武有楽町線"]
+    },
+    {
+      "id": "ksj-n02-003339",
+      "name": "新三河島",
+      "latitude": 35.73727,
+      "longitude": 139.77405,
+      "prefecture": "東京都",
+      "municipality": "荒川区",
+      "lines": ["京成電鉄 本線"]
+    },
+    {
+      "id": "ksj-n02-003244",
+      "name": "新柴又",
+      "latitude": 35.75135,
+      "longitude": 139.87982,
+      "prefecture": "東京都",
+      "municipality": "葛飾区",
+      "lines": ["北総鉄道 北総線"]
+    },
+    {
+      "id": "ksj-n02-003152",
+      "name": "新秋津",
+      "latitude": 35.77831,
+      "longitude": 139.493755,
+      "prefecture": "東京都",
+      "municipality": "東村山市",
+      "lines": ["東日本旅客鉄道 武蔵野線"]
+    },
+    {
+      "id": "ksj-n02-003700",
+      "name": "新宿",
+      "latitude": 35.689789,
+      "longitude": 139.69993,
+      "prefecture": "東京都",
+      "municipality": "新宿区",
+      "lines": [
+        "京王電鉄 京王線",
+        "小田急電鉄 小田原線",
+        "東京地下鉄 4号線丸ノ内線",
+        "東京都 10号線新宿線",
+        "東京都 12号線大江戸線",
+        "東日本旅客鉄道 山手線",
+        "東日本旅客鉄道 中央線"
+      ]
+    },
+    {
+      "id": "ksj-n02-003707",
+      "name": "新宿御苑前",
+      "latitude": 35.688525,
+      "longitude": 139.710915,
+      "prefecture": "東京都",
+      "municipality": "新宿区",
+      "lines": ["東京地下鉄 4号線丸ノ内線"]
+    },
+    {
+      "id": "ksj-n02-003689",
+      "name": "新宿三丁目",
+      "latitude": 35.690875,
+      "longitude": 139.705217,
+      "prefecture": "東京都",
+      "municipality": "新宿区",
+      "lines": ["東京地下鉄 13号線副都心線", "東京地下鉄 4号線丸ノ内線", "東京都 10号線新宿線"]
+    },
+    {
+      "id": "ksj-n02-003669",
+      "name": "新宿西口",
+      "latitude": 35.69316,
+      "longitude": 139.69916,
+      "prefecture": "東京都",
+      "municipality": "新宿区",
+      "lines": ["東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-003486",
+      "name": "新小岩",
+      "latitude": 35.716785,
+      "longitude": 139.85765,
+      "prefecture": "東京都",
+      "municipality": "葛飾区",
+      "lines": ["東日本旅客鉄道 総武線"]
+    },
+    {
+      "id": "ksj-n02-003653",
+      "name": "新小金井",
+      "latitude": 35.69592,
+      "longitude": 139.526745,
+      "prefecture": "東京都",
+      "municipality": "小金井市",
+      "lines": ["西武鉄道 多摩川線"]
+    },
+    {
+      "id": "ksj-n02-003385",
+      "name": "新小平",
+      "latitude": 35.73092,
+      "longitude": 139.4705,
+      "prefecture": "東京都",
+      "municipality": "小平市",
+      "lines": ["東日本旅客鉄道 武蔵野線"]
+    },
+    {
+      "id": "ksj-n02-004393",
+      "name": "新整備場",
+      "latitude": 35.54283,
+      "longitude": 139.7868,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["東京モノレール 東京モノレール羽田線"]
+    },
+    {
+      "id": "ksj-n02-003901",
+      "name": "新代田",
+      "latitude": 35.662495,
+      "longitude": 139.66139,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["京王電鉄 井の頭線"]
+    },
+    {
+      "id": "ksj-n02-003601",
+      "name": "新大久保",
+      "latitude": 35.70093,
+      "longitude": 139.700255,
+      "prefecture": "東京都",
+      "municipality": "新宿区",
+      "lines": ["東日本旅客鉄道 山手線"]
+    },
+    {
+      "id": "ksj-n02-003431",
+      "name": "新大塚",
+      "latitude": 35.72613,
+      "longitude": 139.729355,
+      "prefecture": "東京都",
+      "municipality": "豊島区",
+      "lines": ["東京地下鉄 4号線丸ノ内線"]
+    },
+    {
+      "id": "ksj-n02-003638",
+      "name": "新中野",
+      "latitude": 35.697475,
+      "longitude": 139.66951,
+      "prefecture": "東京都",
+      "municipality": "中野区",
+      "lines": ["東京地下鉄 4号線丸ノ内線"]
+    },
+    {
+      "id": "ksj-n02-003703",
+      "name": "新日本橋",
+      "latitude": 35.68904,
+      "longitude": 139.774295,
+      "prefecture": "東京都",
+      "municipality": "中央区",
+      "lines": ["東日本旅客鉄道 総武線"]
+    },
+    {
+      "id": "ksj-n02-004153",
+      "name": "新馬場",
+      "latitude": 35.61658,
+      "longitude": 139.741515,
+      "prefecture": "東京都",
+      "municipality": "品川区",
+      "lines": ["京浜急行電鉄 本線"]
+    },
+    {
+      "id": "ksj-n02-003268",
+      "name": "新板橋",
+      "latitude": 35.74884,
+      "longitude": 139.719365,
+      "prefecture": "東京都",
+      "municipality": "板橋区",
+      "lines": ["東京都 6号線三田線"]
+    },
+    {
+      "id": "ksj-n02-003833",
+      "name": "新富町",
+      "latitude": 35.67053,
+      "longitude": 139.773595,
+      "prefecture": "東京都",
+      "municipality": "中央区",
+      "lines": ["東京地下鉄 8号線有楽町線"]
+    },
+    {
+      "id": "ksj-n02-003981",
+      "name": "新豊洲",
+      "latitude": 35.64871,
+      "longitude": 139.790115,
+      "prefecture": "東京都",
+      "municipality": "江東区",
+      "lines": ["ゆりかもめ 東京臨海新交通臨海線"]
+    },
+    {
+      "id": "ksj-n02-003997",
+      "name": "新木場",
+      "latitude": 35.645868,
+      "longitude": 139.826683,
+      "prefecture": "東京都",
+      "municipality": "江東区",
+      "lines": ["東京地下鉄 8号線有楽町線", "東京臨海高速鉄道 臨海副都心線", "東日本旅客鉄道 京葉線"]
+    },
+    {
+      "id": "ksj-n02-003711",
+      "name": "森下",
+      "latitude": 35.68803,
+      "longitude": 139.798198,
+      "prefecture": "東京都",
+      "municipality": "江東区",
+      "lines": ["東京都 10号線新宿線", "東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-003578",
+      "name": "神楽坂",
+      "latitude": 35.703865,
+      "longitude": 139.73452,
+      "prefecture": "東京都",
+      "municipality": "新宿区",
+      "lines": ["東京地下鉄 5号線東西線"]
+    },
+    {
+      "id": "ksj-n02-003938",
+      "name": "神泉",
+      "latitude": 35.65718,
+      "longitude": 139.69313,
+      "prefecture": "東京都",
+      "municipality": "渋谷区",
+      "lines": ["京王電鉄 井の頭線"]
+    },
+    {
+      "id": "ksj-n02-003900",
+      "name": "神谷町",
+      "latitude": 35.662625,
+      "longitude": 139.744725,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["東京地下鉄 2号線日比谷線"]
+    },
+    {
+      "id": "ksj-n02-003677",
+      "name": "神田",
+      "latitude": 35.692418,
+      "longitude": 139.77088,
+      "prefecture": "東京都",
+      "municipality": "千代田区",
+      "lines": ["東京地下鉄 3号線銀座線", "東日本旅客鉄道 中央線", "東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-003651",
+      "name": "神保町",
+      "latitude": 35.695636,
+      "longitude": 139.758011,
+      "prefecture": "東京都",
+      "municipality": "千代田区",
+      "lines": ["東京地下鉄 11号線半蔵門線", "東京都 10号線新宿線", "東京都 6号線三田線"]
+    },
+    {
+      "id": "ksj-n02-003721",
+      "name": "人形町",
+      "latitude": 35.686305,
+      "longitude": 139.782255,
+      "prefecture": "東京都",
+      "municipality": "中央区",
+      "lines": ["東京地下鉄 2号線日比谷線", "東京都 1号線浅草線"]
+    },
+    {
+      "id": "ksj-n02-003753",
+      "name": "水天宮前",
+      "latitude": 35.682995,
+      "longitude": 139.785165,
+      "prefecture": "東京都",
+      "municipality": "中央区",
+      "lines": ["東京地下鉄 11号線半蔵門線"]
+    },
+    {
+      "id": "ksj-n02-003580",
+      "name": "水道橋",
+      "latitude": 35.70282,
+      "longitude": 139.754433,
+      "prefecture": "東京都",
+      "municipality": "文京区",
+      "lines": ["東京都 6号線三田線", "東日本旅客鉄道 中央線"]
+    },
+    {
+      "id": "ksj-n02-003667",
+      "name": "瑞江",
+      "latitude": 35.69339,
+      "longitude": 139.89781,
+      "prefecture": "東京都",
+      "municipality": "江戸川区",
+      "lines": ["東京都 10号線新宿線"]
+    },
+    {
+      "id": "ksj-n02-004021",
+      "name": "世田谷",
+      "latitude": 35.643495,
+      "longitude": 139.65084,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["東急電鉄 世田谷線"]
+    },
+    {
+      "id": "ksj-n02-003931",
+      "name": "世田谷代田",
+      "latitude": 35.658355,
+      "longitude": 139.6616,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["小田急電鉄 小田原線"]
+    },
+    {
+      "id": "ksj-n02-003944",
+      "name": "是政",
+      "latitude": 35.656185,
+      "longitude": 139.48864,
+      "prefecture": "東京都",
+      "municipality": "府中市",
+      "lines": ["西武鉄道 多摩川線"]
+    },
+    {
+      "id": "ksj-n02-004036",
+      "name": "成城学園前",
+      "latitude": 35.640135,
+      "longitude": 139.59908,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["小田急電鉄 小田原線"]
+    },
+    {
+      "id": "ksj-n02-004414",
+      "name": "成瀬",
+      "latitude": 35.53541,
+      "longitude": 139.472905,
+      "prefecture": "東京都",
+      "municipality": "町田市",
+      "lines": ["東日本旅客鉄道 横浜線"]
+    },
+    {
+      "id": "ksj-n02-003156",
+      "name": "成増",
+      "latitude": 35.77756,
+      "longitude": 139.63294,
+      "prefecture": "東京都",
+      "municipality": "板橋区",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-004348",
+      "name": "整備場",
+      "latitude": 35.5551,
+      "longitude": 139.75336,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["東京モノレール 東京モノレール羽田線"]
+    },
+    {
+      "id": "ksj-n02-003754",
+      "name": "清澄白河",
+      "latitude": 35.682533,
+      "longitude": 139.799253,
+      "prefecture": "東京都",
+      "municipality": "江東区",
+      "lines": ["東京地下鉄 11号線半蔵門線", "東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-003179",
+      "name": "清瀬",
+      "latitude": 35.771965,
+      "longitude": 139.519895,
+      "prefecture": "東京都",
+      "municipality": "清瀬市",
+      "lines": ["西武鉄道 池袋線"]
+    },
+    {
+      "id": "ksj-n02-004083",
+      "name": "清滝",
+      "latitude": 35.63108,
+      "longitude": 139.2667,
+      "prefecture": "東京都",
+      "municipality": "八王子市",
+      "lines": ["高尾登山電鉄 高尾鋼索線"]
+    },
+    {
+      "id": "ksj-n02-003971",
+      "name": "聖蹟桜ヶ丘",
+      "latitude": 35.6508,
+      "longitude": 139.44696,
+      "prefecture": "東京都",
+      "municipality": "多摩市",
+      "lines": ["京王電鉄 京王線"]
+    },
+    {
+      "id": "ksj-n02-003279",
+      "name": "西ヶ原",
+      "latitude": 35.745945,
+      "longitude": 139.74226,
+      "prefecture": "東京都",
+      "municipality": "北区",
+      "lines": ["東京地下鉄 7号線南北線"]
+    },
+    {
+      "id": "ksj-n02-003289",
+      "name": "西ヶ原四丁目",
+      "latitude": 35.744235,
+      "longitude": 139.732685,
+      "prefecture": "東京都",
+      "municipality": "北区",
+      "lines": ["東京都 荒川線"]
+    },
+    {
+      "id": "ksj-n02-003777",
+      "name": "西永福",
+      "latitude": 35.678875,
+      "longitude": 139.635155,
+      "prefecture": "東京都",
+      "municipality": "杉並区",
+      "lines": ["京王電鉄 井の頭線"]
+    },
+    {
+      "id": "ksj-n02-003579",
+      "name": "西荻窪",
+      "latitude": 35.703785,
+      "longitude": 139.59945,
+      "prefecture": "東京都",
+      "municipality": "杉並区",
+      "lines": ["東日本旅客鉄道 中央線"]
+    },
+    {
+      "id": "ksj-n02-003890",
+      "name": "西葛西",
+      "latitude": 35.66456,
+      "longitude": 139.8596,
+      "prefecture": "東京都",
+      "municipality": "江戸川区",
+      "lines": ["東京地下鉄 5号線東西線"]
+    },
+    {
+      "id": "ksj-n02-003104",
+      "name": "西高島平",
+      "latitude": 35.791895,
+      "longitude": 139.645685,
+      "prefecture": "東京都",
+      "municipality": "板橋区",
+      "lines": ["東京都 6号線三田線"]
+    },
+    {
+      "id": "ksj-n02-003611",
+      "name": "西国分寺",
+      "latitude": 35.69982,
+      "longitude": 139.465955,
+      "prefecture": "東京都",
+      "municipality": "国分寺市",
+      "lines": ["東日本旅客鉄道 中央線", "東日本旅客鉄道 武蔵野線"]
+    },
+    {
+      "id": "ksj-n02-003665",
+      "name": "西国立",
+      "latitude": 35.69379,
+      "longitude": 139.423905,
+      "prefecture": "東京都",
+      "municipality": "立川市",
+      "lines": ["東日本旅客鉄道 南武線"]
+    },
+    {
+      "id": "ksj-n02-004157",
+      "name": "西小山",
+      "latitude": 35.615435,
+      "longitude": 139.69871,
+      "prefecture": "東京都",
+      "municipality": "品川区",
+      "lines": ["東急電鉄 目黒線"]
+    },
+    {
+      "id": "ksj-n02-003159",
+      "name": "西新井",
+      "latitude": 35.77728,
+      "longitude": 139.790365,
+      "prefecture": "東京都",
+      "municipality": "足立区",
+      "lines": ["東武鉄道 伊勢崎線", "東武鉄道 大師線"]
+    },
+    {
+      "id": "ksj-n02-003144",
+      "name": "西新井大師西",
+      "latitude": 35.78116,
+      "longitude": 139.77014,
+      "prefecture": "東京都",
+      "municipality": "足立区",
+      "lines": ["東京都 日暮里・舎人ライナー"]
+    },
+    {
+      "id": "ksj-n02-003662",
+      "name": "西新宿",
+      "latitude": 35.694515,
+      "longitude": 139.69256,
+      "prefecture": "東京都",
+      "municipality": "新宿区",
+      "lines": ["東京地下鉄 4号線丸ノ内線"]
+    },
+    {
+      "id": "ksj-n02-003696",
+      "name": "西新宿五丁目",
+      "latitude": 35.6899,
+      "longitude": 139.684665,
+      "prefecture": "東京都",
+      "municipality": "新宿区",
+      "lines": ["東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-003544",
+      "name": "西早稲田",
+      "latitude": 35.7078,
+      "longitude": 139.70915,
+      "prefecture": "東京都",
+      "municipality": "新宿区",
+      "lines": ["東京地下鉄 13号線副都心線"]
+    },
+    {
+      "id": "ksj-n02-003293",
+      "name": "西巣鴨",
+      "latitude": 35.743415,
+      "longitude": 139.728725,
+      "prefecture": "東京都",
+      "municipality": "豊島区",
+      "lines": ["東京都 6号線三田線"]
+    },
+    {
+      "id": "ksj-n02-004006",
+      "name": "西太子堂",
+      "latitude": 35.64452,
+      "longitude": 139.66635,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["東急電鉄 世田谷線"]
+    },
+    {
+      "id": "ksj-n02-003128",
+      "name": "西台",
+      "latitude": 35.78708,
+      "longitude": 139.67268,
+      "prefecture": "東京都",
+      "municipality": "板橋区",
+      "lines": ["東京都 6号線三田線"]
+    },
+    {
+      "id": "ksj-n02-004235",
+      "name": "西大井",
+      "latitude": 35.6017,
+      "longitude": 139.721605,
+      "prefecture": "東京都",
+      "municipality": "品川区",
+      "lines": ["東日本旅客鉄道 東海道線"]
+    },
+    {
+      "id": "ksj-n02-003702",
+      "name": "西大島",
+      "latitude": 35.689335,
+      "longitude": 139.82632,
+      "prefecture": "東京都",
+      "municipality": "江東区",
+      "lines": ["東京都 10号線新宿線"]
+    },
+    {
+      "id": "ksj-n02-003937",
+      "name": "西調布",
+      "latitude": 35.65732,
+      "longitude": 139.529505,
+      "prefecture": "東京都",
+      "municipality": "調布市",
+      "lines": ["京王電鉄 京王線"]
+    },
+    {
+      "id": "ksj-n02-003368",
+      "name": "西日暮里",
+      "latitude": 35.732707,
+      "longitude": 139.767265,
+      "prefecture": "東京都",
+      "municipality": "荒川区",
+      "lines": ["東京地下鉄 9号線千代田線", "東京都 日暮里・舎人ライナー", "東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-004270",
+      "name": "西馬込",
+      "latitude": 35.587305,
+      "longitude": 139.70632,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["東京都 1号線浅草線"]
+    },
+    {
+      "id": "ksj-n02-003942",
+      "name": "西八王子",
+      "latitude": 35.656275,
+      "longitude": 139.312005,
+      "prefecture": "東京都",
+      "municipality": "八王子市",
+      "lines": ["東日本旅客鉄道 中央線"]
+    },
+    {
+      "id": "ksj-n02-003831",
+      "name": "西府",
+      "latitude": 35.670935,
+      "longitude": 139.45739,
+      "prefecture": "東京都",
+      "municipality": "府中市",
+      "lines": ["東日本旅客鉄道 南武線"]
+    },
+    {
+      "id": "ksj-n02-003197",
+      "name": "西武園",
+      "latitude": 35.767735,
+      "longitude": 139.448895,
+      "prefecture": "東京都",
+      "municipality": "東村山市",
+      "lines": ["西武鉄道 西武園線"]
+    },
+    {
+      "id": "ksj-n02-003648",
+      "name": "西武新宿",
+      "latitude": 35.69617,
+      "longitude": 139.70008,
+      "prefecture": "東京都",
+      "municipality": "新宿区",
+      "lines": ["西武鉄道 新宿線"]
+    },
+    {
+      "id": "ksj-n02-003409",
+      "name": "西武柳沢",
+      "latitude": 35.72858,
+      "longitude": 139.5524,
+      "prefecture": "東京都",
+      "municipality": "西東京市",
+      "lines": ["西武鉄道 新宿線"]
+    },
+    {
+      "id": "ksj-n02-003428",
+      "name": "西武立川",
+      "latitude": 35.72618,
+      "longitude": 139.369655,
+      "prefecture": "東京都",
+      "municipality": "立川市",
+      "lines": ["西武鉄道 拝島線"]
+    },
+    {
+      "id": "ksj-n02-003581",
+      "name": "西立川",
+      "latitude": 35.70362,
+      "longitude": 139.39316,
+      "prefecture": "東京都",
+      "municipality": "昭島市",
+      "lines": ["東日本旅客鉄道 青梅線"]
+    },
+    {
+      "id": "ksj-n02-003177",
+      "name": "青井",
+      "latitude": 35.772,
+      "longitude": 139.820245,
+      "prefecture": "東京都",
+      "municipality": "足立区",
+      "lines": ["首都圏新都市鉄道 常磐新線"]
+    },
+    {
+      "id": "ksj-n02-004119",
+      "name": "青海",
+      "latitude": 35.6248,
+      "longitude": 139.781315,
+      "prefecture": "東京都",
+      "municipality": "江東区",
+      "lines": ["ゆりかもめ 東京臨海新交通臨海線"]
+    },
+    {
+      "id": "ksj-n02-003812",
+      "name": "青山一丁目",
+      "latitude": 35.672888,
+      "longitude": 139.724067,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["東京地下鉄 11号線半蔵門線", "東京地下鉄 3号線銀座線", "東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-003280",
+      "name": "青砥",
+      "latitude": 35.74587,
+      "longitude": 139.85627,
+      "prefecture": "東京都",
+      "municipality": "葛飾区",
+      "lines": ["京成電鉄 押上線", "京成電鉄 本線"]
+    },
+    {
+      "id": "ksj-n02-003110",
+      "name": "青梅",
+      "latitude": 35.790545,
+      "longitude": 139.258125,
+      "prefecture": "東京都",
+      "municipality": "青梅市",
+      "lines": ["東日本旅客鉄道 青梅線"]
+    },
+    {
+      "id": "ksj-n02-003382",
+      "name": "青梅街道",
+      "latitude": 35.73099,
+      "longitude": 139.47657,
+      "prefecture": "東京都",
+      "municipality": "小平市",
+      "lines": ["西武鉄道 多摩湖線"]
+    },
+    {
+      "id": "ksj-n02-004184",
+      "name": "青物横丁",
+      "latitude": 35.60919,
+      "longitude": 139.743135,
+      "prefecture": "東京都",
+      "municipality": "品川区",
+      "lines": ["京浜急行電鉄 本線"]
+    },
+    {
+      "id": "ksj-n02-003292",
+      "name": "石神井公園",
+      "latitude": 35.74364,
+      "longitude": 139.606555,
+      "prefecture": "東京都",
+      "municipality": "練馬区",
+      "lines": ["西武鉄道 池袋線"]
+    },
+    {
+      "id": "ksj-n02-003096",
+      "name": "石神前",
+      "latitude": 35.79683,
+      "longitude": 139.225135,
+      "prefecture": "東京都",
+      "municipality": "青梅市",
+      "lines": ["東日本旅客鉄道 青梅線"]
+    },
+    {
+      "id": "ksj-n02-004247",
+      "name": "石川台",
+      "latitude": 35.59686,
+      "longitude": 139.68509,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["東急電鉄 池上線"]
+    },
+    {
+      "id": "ksj-n02-003155",
+      "name": "赤羽",
+      "latitude": 35.777668,
+      "longitude": 139.720935,
+      "prefecture": "東京都",
+      "municipality": "北区",
+      "lines": ["東日本旅客鉄道 赤羽線", "東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-003141",
+      "name": "赤羽岩淵",
+      "latitude": 35.783355,
+      "longitude": 139.72211,
+      "prefecture": "東京都",
+      "municipality": "北区",
+      "lines": ["埼玉高速鉄道 埼玉高速鉄道線", "東京地下鉄 7号線南北線"]
+    },
+    {
+      "id": "ksj-n02-003954",
+      "name": "赤羽橋",
+      "latitude": 35.65497,
+      "longitude": 139.744195,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-003822",
+      "name": "赤坂",
+      "latitude": 35.67208,
+      "longitude": 139.736435,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["東京地下鉄 9号線千代田線"]
+    },
+    {
+      "id": "ksj-n02-003788",
+      "name": "赤坂見附",
+      "latitude": 35.676865,
+      "longitude": 139.737385,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["東京地下鉄 3号線銀座線", "東京地下鉄 4号線丸ノ内線"]
+    },
+    {
+      "id": "ksj-n02-003298",
+      "name": "赤土小学校前",
+      "latitude": 35.74306,
+      "longitude": 139.76913,
+      "prefecture": "東京都",
+      "municipality": "荒川区",
+      "lines": ["東京都 日暮里・舎人ライナー"]
+    },
+    {
+      "id": "ksj-n02-004259",
+      "name": "雪が谷大塚",
+      "latitude": 35.591965,
+      "longitude": 139.681125,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["東急電鉄 池上線"]
+    },
+    {
+      "id": "ksj-n02-003903",
+      "name": "仙川",
+      "latitude": 35.662375,
+      "longitude": 139.58524,
+      "prefecture": "東京都",
+      "municipality": "調布市",
+      "lines": ["京王電鉄 京王線"]
+    },
+    {
+      "id": "ksj-n02-003861",
+      "name": "千歳烏山",
+      "latitude": 35.667835,
+      "longitude": 139.600375,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["京王電鉄 京王線"]
+    },
+    {
+      "id": "ksj-n02-003988",
+      "name": "千歳船橋",
+      "latitude": 35.647675,
+      "longitude": 139.62453,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["小田急電鉄 小田原線"]
+    },
+    {
+      "id": "ksj-n02-003301",
+      "name": "千住大橋",
+      "latitude": 35.74241,
+      "longitude": 139.79705,
+      "prefecture": "東京都",
+      "municipality": "足立区",
+      "lines": ["京成電鉄 本線"]
+    },
+    {
+      "id": "ksj-n02-003415",
+      "name": "千石",
+      "latitude": 35.727965,
+      "longitude": 139.744745,
+      "prefecture": "東京都",
+      "municipality": "文京区",
+      "lines": ["東京都 6号線三田線"]
+    },
+    {
+      "id": "ksj-n02-003324",
+      "name": "千川",
+      "latitude": 35.738175,
+      "longitude": 139.6894,
+      "prefecture": "東京都",
+      "municipality": "豊島区",
+      "lines": ["東京地下鉄 13号線副都心線", "東京地下鉄 8号線有楽町線"]
+    },
+    {
+      "id": "ksj-n02-003767",
+      "name": "千駄ヶ谷",
+      "latitude": 35.681195,
+      "longitude": 139.71153,
+      "prefecture": "東京都",
+      "municipality": "渋谷区",
+      "lines": ["東日本旅客鉄道 中央線"]
+    },
+    {
+      "id": "ksj-n02-003434",
+      "name": "千駄木",
+      "latitude": 35.725745,
+      "longitude": 139.763305,
+      "prefecture": "東京都",
+      "municipality": "文京区",
+      "lines": ["東京地下鉄 9号線千代田線"]
+    },
+    {
+      "id": "ksj-n02-004305",
+      "name": "千鳥町",
+      "latitude": 35.573,
+      "longitude": 139.69142,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["東急電鉄 池上線"]
+    },
+    {
+      "id": "ksj-n02-003062",
+      "name": "川井",
+      "latitude": 35.813765,
+      "longitude": 139.164225,
+      "prefecture": "東京都",
+      "municipality": "奥多摩町",
+      "lines": ["東日本旅客鉄道 青梅線"]
+    },
+    {
+      "id": "ksj-n02-003209",
+      "name": "扇大橋",
+      "latitude": 35.764135,
+      "longitude": 139.77085,
+      "prefecture": "東京都",
+      "municipality": "足立区",
+      "lines": ["東京都 日暮里・舎人ライナー"]
+    },
+    {
+      "id": "ksj-n02-004042",
+      "name": "泉岳寺",
+      "latitude": 35.63813,
+      "longitude": 139.73973,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["京浜急行電鉄 本線", "東京都 1号線浅草線"]
+    },
+    {
+      "id": "ksj-n02-003476",
+      "name": "泉体育館",
+      "latitude": 35.718845,
+      "longitude": 139.419565,
+      "prefecture": "東京都",
+      "municipality": "立川市",
+      "lines": ["多摩都市モノレール 多摩都市モノレール線"]
+    },
+    {
+      "id": "ksj-n02-003502",
+      "name": "浅草",
+      "latitude": 35.71393,
+      "longitude": 139.792455,
+      "prefecture": "東京都",
+      "municipality": "台東区",
+      "lines": ["首都圏新都市鉄道 常磐新線"]
+    },
+    {
+      "id": "ksj-n02-003522",
+      "name": "浅草",
+      "latitude": 35.710572,
+      "longitude": 139.797562,
+      "prefecture": "東京都",
+      "municipality": "台東区",
+      "lines": ["東京地下鉄 3号線銀座線", "東京都 1号線浅草線", "東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-003636",
+      "name": "浅草橋",
+      "latitude": 35.697498,
+      "longitude": 139.785473,
+      "prefecture": "東京都",
+      "municipality": "台東区",
+      "lines": ["東京都 1号線浅草線", "東日本旅客鉄道 総武線"]
+    },
+    {
+      "id": "ksj-n02-004180",
+      "name": "洗足",
+      "latitude": 35.61009,
+      "longitude": 139.694105,
+      "prefecture": "東京都",
+      "municipality": "目黒区",
+      "lines": ["東急電鉄 目黒線"]
+    },
+    {
+      "id": "ksj-n02-004239",
+      "name": "洗足池",
+      "latitude": 35.599675,
+      "longitude": 139.690925,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["東急電鉄 池上線"]
+    },
+    {
+      "id": "ksj-n02-003745",
+      "name": "船堀",
+      "latitude": 35.683785,
+      "longitude": 139.863855,
+      "prefecture": "東京都",
+      "municipality": "江戸川区",
+      "lines": ["東京都 10号線新宿線"]
+    },
+    {
+      "id": "ksj-n02-004024",
+      "name": "祖師ヶ谷大蔵",
+      "latitude": 35.643265,
+      "longitude": 139.609795,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["小田急電鉄 小田原線"]
+    },
+    {
+      "id": "ksj-n02-003514",
+      "name": "早稲田",
+      "latitude": 35.711875,
+      "longitude": 139.719055,
+      "prefecture": "東京都",
+      "municipality": "新宿区",
+      "lines": ["東京都 荒川線"]
+    },
+    {
+      "id": "ksj-n02-003570",
+      "name": "早稲田",
+      "latitude": 35.70568,
+      "longitude": 139.72219,
+      "prefecture": "東京都",
+      "municipality": "新宿区",
+      "lines": ["東京地下鉄 5号線東西線"]
+    },
+    {
+      "id": "ksj-n02-003354",
+      "name": "巣鴨",
+      "latitude": 35.73375,
+      "longitude": 139.739193,
+      "prefecture": "東京都",
+      "municipality": "豊島区",
+      "lines": ["東京都 6号線三田線", "東日本旅客鉄道 山手線"]
+    },
+    {
+      "id": "ksj-n02-003351",
+      "name": "巣鴨新田",
+      "latitude": 35.73516,
+      "longitude": 139.72791,
+      "prefecture": "東京都",
+      "municipality": "豊島区",
+      "lines": ["東京都 荒川線"]
+    },
+    {
+      "id": "ksj-n02-004206",
+      "name": "相原",
+      "latitude": 35.60693,
+      "longitude": 139.33168,
+      "prefecture": "東京都",
+      "municipality": "町田市",
+      "lines": ["東日本旅客鉄道 横浜線"]
+    },
+    {
+      "id": "ksj-n02-003571",
+      "name": "蔵前",
+      "latitude": 35.704323,
+      "longitude": 139.791553,
+      "prefecture": "東京都",
+      "municipality": "台東区",
+      "lines": ["東京都 12号線大江戸線", "東京都 1号線浅草線"]
+    },
+    {
+      "id": "ksj-n02-003235",
+      "name": "足立小台",
+      "latitude": 35.754635,
+      "longitude": 139.770205,
+      "prefecture": "東京都",
+      "municipality": "足立区",
+      "lines": ["東京都 日暮里・舎人ライナー"]
+    },
+    {
+      "id": "ksj-n02-004121",
+      "name": "多摩センター",
+      "latitude": 35.623855,
+      "longitude": 139.422785,
+      "prefecture": "東京都",
+      "municipality": "多摩市",
+      "lines": ["多摩都市モノレール 多摩都市モノレール線"]
+    },
+    {
+      "id": "ksj-n02-004234",
+      "name": "多摩境",
+      "latitude": 35.60174,
+      "longitude": 139.366925,
+      "prefecture": "東京都",
+      "municipality": "町田市",
+      "lines": ["京王電鉄 相模原線"]
+    },
+    {
+      "id": "ksj-n02-003201",
+      "name": "多摩湖",
+      "latitude": 35.765785,
+      "longitude": 139.442715,
+      "prefecture": "東京都",
+      "municipality": "東村山市",
+      "lines": ["西武鉄道 山口線", "西武鉄道 多摩湖線"]
+    },
+    {
+      "id": "ksj-n02-004261",
+      "name": "多摩川",
+      "latitude": 35.589645,
+      "longitude": 139.66869,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["東急電鉄 東横線", "東急電鉄 東急多摩川線"]
+    },
+    {
+      "id": "ksj-n02-003977",
+      "name": "多摩動物公園",
+      "latitude": 35.64903,
+      "longitude": 139.404668,
+      "prefecture": "東京都",
+      "municipality": "日野市",
+      "lines": ["京王電鉄 動物園線", "多摩都市モノレール 多摩都市モノレール線"]
+    },
+    {
+      "id": "ksj-n02-003790",
+      "name": "多磨",
+      "latitude": 35.676825,
+      "longitude": 139.51715,
+      "prefecture": "東京都",
+      "municipality": "府中市",
+      "lines": ["西武鉄道 多摩川線"]
+    },
+    {
+      "id": "ksj-n02-003871",
+      "name": "多磨霊園",
+      "latitude": 35.66636,
+      "longitude": 139.50212,
+      "prefecture": "東京都",
+      "municipality": "府中市",
+      "lines": ["京王電鉄 京王線"]
+    },
+    {
+      "id": "ksj-n02-003743",
+      "name": "代々木",
+      "latitude": 35.68379,
+      "longitude": 139.701982,
+      "prefecture": "東京都",
+      "municipality": "渋谷区",
+      "lines": ["東京都 12号線大江戸線", "東日本旅客鉄道 山手線", "東日本旅客鉄道 中央線"]
+    },
+    {
+      "id": "ksj-n02-003845",
+      "name": "代々木公園",
+      "latitude": 35.6691,
+      "longitude": 139.68979,
+      "prefecture": "東京都",
+      "municipality": "渋谷区",
+      "lines": ["東京地下鉄 9号線千代田線"]
+    },
+    {
+      "id": "ksj-n02-003847",
+      "name": "代々木上原",
+      "latitude": 35.669015,
+      "longitude": 139.679885,
+      "prefecture": "東京都",
+      "municipality": "渋谷区",
+      "lines": ["小田急電鉄 小田原線", "東京地下鉄 9号線千代田線"]
+    },
+    {
+      "id": "ksj-n02-003837",
+      "name": "代々木八幡",
+      "latitude": 35.66976,
+      "longitude": 139.689035,
+      "prefecture": "東京都",
+      "municipality": "渋谷区",
+      "lines": ["小田急電鉄 小田原線"]
+    },
+    {
+      "id": "ksj-n02-003985",
+      "name": "代官山",
+      "latitude": 35.64825,
+      "longitude": 139.70349,
+      "prefecture": "東京都",
+      "municipality": "渋谷区",
+      "lines": ["東急電鉄 東横線"]
+    },
+    {
+      "id": "ksj-n02-003830",
+      "name": "代田橋",
+      "latitude": 35.671075,
+      "longitude": 139.659395,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["京王電鉄 京王線"]
+    },
+    {
+      "id": "ksj-n02-004112",
+      "name": "台場",
+      "latitude": 35.62587,
+      "longitude": 139.771375,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["ゆりかもめ 東京臨海新交通臨海線"]
+    },
+    {
+      "id": "ksj-n02-004197",
+      "name": "大井町",
+      "latitude": 35.607298,
+      "longitude": 139.734498,
+      "prefecture": "東京都",
+      "municipality": "品川区",
+      "lines": ["東急電鉄 大井町線", "東京臨海高速鉄道 臨海副都心線", "東日本旅客鉄道 東海道線"]
+    },
+    {
+      "id": "ksj-n02-004200",
+      "name": "大岡山",
+      "latitude": 35.60711,
+      "longitude": 139.684755,
+      "prefecture": "東京都",
+      "municipality": "目黒区",
+      "lines": ["東急電鉄 大井町線", "東急電鉄 目黒線"]
+    },
+    {
+      "id": "ksj-n02-003604",
+      "name": "大久保",
+      "latitude": 35.700635,
+      "longitude": 139.697445,
+      "prefecture": "東京都",
+      "municipality": "新宿区",
+      "lines": ["東日本旅客鉄道 中央線"]
+    },
+    {
+      "id": "ksj-n02-004135",
+      "name": "大崎",
+      "latitude": 35.619848,
+      "longitude": 139.72807,
+      "prefecture": "東京都",
+      "municipality": "品川区",
+      "lines": ["東京臨海高速鉄道 臨海副都心線", "東日本旅客鉄道 山手線"]
+    },
+    {
+      "id": "ksj-n02-004127",
+      "name": "大崎広小路",
+      "latitude": 35.622305,
+      "longitude": 139.722355,
+      "prefecture": "東京都",
+      "municipality": "品川区",
+      "lines": ["東急電鉄 池上線"]
+    },
+    {
+      "id": "ksj-n02-003269",
+      "name": "大山",
+      "latitude": 35.748395,
+      "longitude": 139.702665,
+      "prefecture": "東京都",
+      "municipality": "板橋区",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-003150",
+      "name": "大師前",
+      "latitude": 35.77895,
+      "longitude": 139.781655,
+      "prefecture": "東京都",
+      "municipality": "足立区",
+      "lines": ["東武鉄道 大師線"]
+    },
+    {
+      "id": "ksj-n02-003719",
+      "name": "大手町",
+      "latitude": 35.685527,
+      "longitude": 139.764607,
+      "prefecture": "東京都",
+      "municipality": "千代田区",
+      "lines": [
+        "東京地下鉄 11号線半蔵門線",
+        "東京地下鉄 4号線丸ノ内線",
+        "東京地下鉄 5号線東西線",
+        "東京地下鉄 9号線千代田線",
+        "東京都 6号線三田線"
+      ]
+    },
+    {
+      "id": "ksj-n02-004264",
+      "name": "大森",
+      "latitude": 35.588915,
+      "longitude": 139.72815,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["東日本旅客鉄道 東海道線"]
+    },
+    {
+      "id": "ksj-n02-004268",
+      "name": "大森海岸",
+      "latitude": 35.58758,
+      "longitude": 139.735335,
+      "prefecture": "東京都",
+      "municipality": "品川区",
+      "lines": ["京浜急行電鉄 本線"]
+    },
+    {
+      "id": "ksj-n02-004307",
+      "name": "大森町",
+      "latitude": 35.5725,
+      "longitude": 139.73201,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["京浜急行電鉄 本線"]
+    },
+    {
+      "id": "ksj-n02-003263",
+      "name": "大泉学園",
+      "latitude": 35.74934,
+      "longitude": 139.5868,
+      "prefecture": "東京都",
+      "municipality": "練馬区",
+      "lines": ["西武鉄道 池袋線"]
+    },
+    {
+      "id": "ksj-n02-004356",
+      "name": "大鳥居",
+      "latitude": 35.55232,
+      "longitude": 139.740225,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["京浜急行電鉄 空港線"]
+    },
+    {
+      "id": "ksj-n02-003375",
+      "name": "大塚",
+      "latitude": 35.731785,
+      "longitude": 139.72794,
+      "prefecture": "東京都",
+      "municipality": "豊島区",
+      "lines": ["東日本旅客鉄道 山手線"]
+    },
+    {
+      "id": "ksj-n02-004051",
+      "name": "大塚・帝京大学",
+      "latitude": 35.63686,
+      "longitude": 139.416445,
+      "prefecture": "東京都",
+      "municipality": "八王子市",
+      "lines": ["多摩都市モノレール 多摩都市モノレール線"]
+    },
+    {
+      "id": "ksj-n02-003378",
+      "name": "大塚駅前",
+      "latitude": 35.73162,
+      "longitude": 139.729455,
+      "prefecture": "東京都",
+      "municipality": "豊島区",
+      "lines": ["東京都 荒川線"]
+    },
+    {
+      "id": "ksj-n02-003698",
+      "name": "大島",
+      "latitude": 35.689765,
+      "longitude": 139.83436,
+      "prefecture": "東京都",
+      "municipality": "江東区",
+      "lines": ["東京都 10号線新宿線"]
+    },
+    {
+      "id": "ksj-n02-003939",
+      "name": "大門",
+      "latitude": 35.656662,
+      "longitude": 139.755193,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["東京都 12号線大江戸線", "東京都 1号線浅草線"]
+    },
+    {
+      "id": "ksj-n02-003450",
+      "name": "鷹の台",
+      "latitude": 35.72301,
+      "longitude": 139.46106,
+      "prefecture": "東京都",
+      "municipality": "小平市",
+      "lines": ["西武鉄道 国分寺線"]
+    },
+    {
+      "id": "ksj-n02-003099",
+      "name": "滝本",
+      "latitude": 35.79603,
+      "longitude": 139.16155,
+      "prefecture": "東京都",
+      "municipality": "青梅市",
+      "lines": ["御岳登山鉄道 ケーブルカー"]
+    },
+    {
+      "id": "ksj-n02-003276",
+      "name": "滝野川一丁目",
+      "latitude": 35.7473,
+      "longitude": 139.735415,
+      "prefecture": "東京都",
+      "municipality": "北区",
+      "lines": ["東京都 荒川線"]
+    },
+    {
+      "id": "ksj-n02-003076",
+      "name": "沢井",
+      "latitude": 35.80595,
+      "longitude": 139.1934,
+      "prefecture": "東京都",
+      "municipality": "青梅市",
+      "lines": ["東日本旅客鉄道 青梅線"]
+    },
+    {
+      "id": "ksj-n02-003999",
+      "name": "辰巳",
+      "latitude": 35.645775,
+      "longitude": 139.81033,
+      "prefecture": "東京都",
+      "municipality": "江東区",
+      "lines": ["東京地下鉄 8号線有楽町線"]
+    },
+    {
+      "id": "ksj-n02-003120",
+      "name": "谷在家",
+      "latitude": 35.78868,
+      "longitude": 139.7701,
+      "prefecture": "東京都",
+      "municipality": "足立区",
+      "lines": ["東京都 日暮里・舎人ライナー"]
+    },
+    {
+      "id": "ksj-n02-003765",
+      "name": "谷保",
+      "latitude": 35.68138,
+      "longitude": 139.44678,
+      "prefecture": "東京都",
+      "municipality": "国立市",
+      "lines": ["東日本旅客鉄道 南武線"]
+    },
+    {
+      "id": "ksj-n02-003661",
+      "name": "淡路町",
+      "latitude": 35.69487,
+      "longitude": 139.767455,
+      "prefecture": "東京都",
+      "municipality": "千代田区",
+      "lines": ["東京地下鉄 4号線丸ノ内線"]
+    },
+    {
+      "id": "ksj-n02-003163",
+      "name": "地下鉄成増",
+      "latitude": 35.77674,
+      "longitude": 139.63117,
+      "prefecture": "東京都",
+      "municipality": "板橋区",
+      "lines": ["東京地下鉄 8号線有楽町線"]
+    },
+    {
+      "id": "ksj-n02-003186",
+      "name": "地下鉄赤塚",
+      "latitude": 35.76998,
+      "longitude": 139.644,
+      "prefecture": "東京都",
+      "municipality": "練馬区",
+      "lines": ["東京地下鉄 8号線有楽町線"]
+    },
+    {
+      "id": "ksj-n02-003914",
+      "name": "池ノ上",
+      "latitude": 35.66037,
+      "longitude": 139.673455,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["京王電鉄 井の頭線"]
+    },
+    {
+      "id": "ksj-n02-004309",
+      "name": "池上",
+      "latitude": 35.571945,
+      "longitude": 139.70282,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["東急電鉄 池上線"]
+    },
+    {
+      "id": "ksj-n02-003972",
+      "name": "池尻大橋",
+      "latitude": 35.650735,
+      "longitude": 139.68476,
+      "prefecture": "東京都",
+      "municipality": "目黒区",
+      "lines": ["東急電鉄 田園都市線"]
+    },
+    {
+      "id": "ksj-n02-003379",
+      "name": "池袋",
+      "latitude": 35.73148,
+      "longitude": 139.70772,
+      "prefecture": "東京都",
+      "municipality": "豊島区",
+      "lines": ["東京地下鉄 13号線副都心線"]
+    },
+    {
+      "id": "ksj-n02-003390",
+      "name": "池袋",
+      "latitude": 35.729808,
+      "longitude": 139.711077,
+      "prefecture": "東京都",
+      "municipality": "豊島区",
+      "lines": [
+        "西武鉄道 池袋線",
+        "東京地下鉄 4号線丸ノ内線",
+        "東京地下鉄 8号線有楽町線",
+        "東日本旅客鉄道 山手線",
+        "東日本旅客鉄道 赤羽線",
+        "東武鉄道 東上本線"
+      ]
+    },
+    {
+      "id": "ksj-n02-003860",
+      "name": "築地",
+      "latitude": 35.667925,
+      "longitude": 139.772475,
+      "prefecture": "東京都",
+      "municipality": "中央区",
+      "lines": ["東京地下鉄 2号線日比谷線"]
+    },
+    {
+      "id": "ksj-n02-003886",
+      "name": "築地市場",
+      "latitude": 35.66496,
+      "longitude": 139.76675,
+      "prefecture": "東京都",
+      "municipality": "中央区",
+      "lines": ["東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-003101",
+      "name": "竹ノ塚",
+      "latitude": 35.79437,
+      "longitude": 139.79072,
+      "prefecture": "東京都",
+      "municipality": "足立区",
+      "lines": ["東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-003691",
+      "name": "竹橋",
+      "latitude": 35.69044,
+      "longitude": 139.75767,
+      "prefecture": "東京都",
+      "municipality": "千代田区",
+      "lines": ["東京地下鉄 5号線東西線"]
+    },
+    {
+      "id": "ksj-n02-003958",
+      "name": "竹芝",
+      "latitude": 35.654065,
+      "longitude": 139.762015,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["ゆりかもめ 東京臨海新交通臨海線"]
+    },
+    {
+      "id": "ksj-n02-003495",
+      "name": "中井",
+      "latitude": 35.714468,
+      "longitude": 139.686478,
+      "prefecture": "東京都",
+      "municipality": "新宿区",
+      "lines": ["西武鉄道 新宿線", "東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-004215",
+      "name": "中延",
+      "latitude": 35.605448,
+      "longitude": 139.71307,
+      "prefecture": "東京都",
+      "municipality": "品川区",
+      "lines": ["東急電鉄 大井町線", "東京都 1号線浅草線"]
+    },
+    {
+      "id": "ksj-n02-004031",
+      "name": "中央大学・明星大学",
+      "latitude": 35.641885,
+      "longitude": 139.408725,
+      "prefecture": "東京都",
+      "municipality": "八王子市",
+      "lines": ["多摩都市モノレール 多摩都市モノレール線"]
+    },
+    {
+      "id": "ksj-n02-003920",
+      "name": "中河原",
+      "latitude": 35.659535,
+      "longitude": 139.457695,
+      "prefecture": "東京都",
+      "municipality": "府中市",
+      "lines": ["京王電鉄 京王線"]
+    },
+    {
+      "id": "ksj-n02-003536",
+      "name": "中神",
+      "latitude": 35.709,
+      "longitude": 139.37571,
+      "prefecture": "東京都",
+      "municipality": "昭島市",
+      "lines": ["東日本旅客鉄道 青梅線"]
+    },
+    {
+      "id": "ksj-n02-003345",
+      "name": "中村橋",
+      "latitude": 35.73667,
+      "longitude": 139.63717,
+      "prefecture": "東京都",
+      "municipality": "練馬区",
+      "lines": ["西武鉄道 池袋線"]
+    },
+    {
+      "id": "ksj-n02-003233",
+      "name": "中板橋",
+      "latitude": 35.75628,
+      "longitude": 139.694385,
+      "prefecture": "東京都",
+      "municipality": "板橋区",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-004014",
+      "name": "中目黒",
+      "latitude": 35.644105,
+      "longitude": 139.698835,
+      "prefecture": "東京都",
+      "municipality": "目黒区",
+      "lines": ["東急電鉄 東横線", "東京地下鉄 2号線日比谷線"]
+    },
+    {
+      "id": "ksj-n02-003568",
+      "name": "中野",
+      "latitude": 35.705748,
+      "longitude": 139.66572,
+      "prefecture": "東京都",
+      "municipality": "中野区",
+      "lines": ["東京地下鉄 5号線東西線", "東日本旅客鉄道 中央線"]
+    },
+    {
+      "id": "ksj-n02-003643",
+      "name": "中野坂上",
+      "latitude": 35.697348,
+      "longitude": 139.682457,
+      "prefecture": "東京都",
+      "municipality": "中野区",
+      "lines": ["東京地下鉄 4号線丸ノ内線", "東京地下鉄 4号線丸ノ内線分岐線", "東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-003679",
+      "name": "中野新橋",
+      "latitude": 35.691715,
+      "longitude": 139.67398,
+      "prefecture": "東京都",
+      "municipality": "中野区",
+      "lines": ["東京地下鉄 4号線丸ノ内線分岐線"]
+    },
+    {
+      "id": "ksj-n02-003688",
+      "name": "中野富士見町",
+      "latitude": 35.69082,
+      "longitude": 139.668155,
+      "prefecture": "東京都",
+      "municipality": "中野区",
+      "lines": ["東京地下鉄 4号線丸ノ内線分岐線"]
+    },
+    {
+      "id": "ksj-n02-003560",
+      "name": "仲御徒町",
+      "latitude": 35.706655,
+      "longitude": 139.77619,
+      "prefecture": "東京都",
+      "municipality": "台東区",
+      "lines": ["東京地下鉄 2号線日比谷線"]
+    },
+    {
+      "id": "ksj-n02-003928",
+      "name": "潮見",
+      "latitude": 35.658865,
+      "longitude": 139.81717,
+      "prefecture": "東京都",
+      "municipality": "江東区",
+      "lines": ["東日本旅客鉄道 京葉線"]
+    },
+    {
+      "id": "ksj-n02-003302",
+      "name": "町屋",
+      "latitude": 35.742188,
+      "longitude": 139.780785,
+      "prefecture": "東京都",
+      "municipality": "荒川区",
+      "lines": ["京成電鉄 本線", "東京地下鉄 9号線千代田線"]
+    },
+    {
+      "id": "ksj-n02-003299",
+      "name": "町屋駅前",
+      "latitude": 35.742775,
+      "longitude": 139.780775,
+      "prefecture": "東京都",
+      "municipality": "荒川区",
+      "lines": ["東京都 荒川線"]
+    },
+    {
+      "id": "ksj-n02-003291",
+      "name": "町屋二丁目",
+      "latitude": 35.743915,
+      "longitude": 139.776425,
+      "prefecture": "東京都",
+      "municipality": "荒川区",
+      "lines": ["東京都 荒川線"]
+    },
+    {
+      "id": "ksj-n02-004387",
+      "name": "町田",
+      "latitude": 35.54273,
+      "longitude": 139.445838,
+      "prefecture": "東京都",
+      "municipality": "町田市",
+      "lines": ["小田急電鉄 小田原線", "東日本旅客鉄道 横浜線"]
+    },
+    {
+      "id": "ksj-n02-003966",
+      "name": "調布",
+      "latitude": 35.65177,
+      "longitude": 139.544735,
+      "prefecture": "東京都",
+      "municipality": "調布市",
+      "lines": ["京王電鉄 京王線", "京王電鉄 相模原線"]
+    },
+    {
+      "id": "ksj-n02-004232",
+      "name": "長原",
+      "latitude": 35.60223,
+      "longitude": 139.69797,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["東急電鉄 池上線"]
+    },
+    {
+      "id": "ksj-n02-004027",
+      "name": "長沼",
+      "latitude": 35.64278,
+      "longitude": 139.36588,
+      "prefecture": "東京都",
+      "municipality": "八王子市",
+      "lines": ["京王電鉄 京王線"]
+    },
+    {
+      "id": "ksj-n02-003426",
+      "name": "椎名町",
+      "latitude": 35.726495,
+      "longitude": 139.694315,
+      "prefecture": "東京都",
+      "municipality": "豊島区",
+      "lines": ["西武鉄道 池袋線"]
+    },
+    {
+      "id": "ksj-n02-004278",
+      "name": "鶴川",
+      "latitude": 35.58311,
+      "longitude": 139.481825,
+      "prefecture": "東京都",
+      "municipality": "町田市",
+      "lines": ["小田急電鉄 小田原線"]
+    },
+    {
+      "id": "ksj-n02-003950",
+      "name": "程久保",
+      "latitude": 35.65523,
+      "longitude": 139.410755,
+      "prefecture": "東京都",
+      "municipality": "日野市",
+      "lines": ["多摩都市モノレール 多摩都市モノレール線"]
+    },
+    {
+      "id": "ksj-n02-004123",
+      "name": "天王洲アイル",
+      "latitude": 35.621795,
+      "longitude": 139.750895,
+      "prefecture": "東京都",
+      "municipality": "品川区",
+      "lines": ["東京モノレール 東京モノレール羽田線", "東京臨海高速鉄道 臨海副都心線"]
+    },
+    {
+      "id": "ksj-n02-004373",
+      "name": "天空橋",
+      "latitude": 35.548285,
+      "longitude": 139.754565,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["京浜急行電鉄 空港線", "東京モノレール 東京モノレール羽田線"]
+    },
+    {
+      "id": "ksj-n02-004245",
+      "name": "田園調布",
+      "latitude": 35.59729,
+      "longitude": 139.667285,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["東急電鉄 東横線", "東急電鉄 目黒線"]
+    },
+    {
+      "id": "ksj-n02-003530",
+      "name": "田原町",
+      "latitude": 35.70991,
+      "longitude": 139.790305,
+      "prefecture": "東京都",
+      "municipality": "台東区",
+      "lines": ["東京地下鉄 3号線銀座線"]
+    },
+    {
+      "id": "ksj-n02-003335",
+      "name": "田端",
+      "latitude": 35.737475,
+      "longitude": 139.761575,
+      "prefecture": "東京都",
+      "municipality": "北区",
+      "lines": ["東日本旅客鉄道 山手線", "東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-004000",
+      "name": "田町",
+      "latitude": 35.64574,
+      "longitude": 139.747605,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["東日本旅客鉄道 東海道線"]
+    },
+    {
+      "id": "ksj-n02-003423",
+      "name": "田無",
+      "latitude": 35.727195,
+      "longitude": 139.538985,
+      "prefecture": "東京都",
+      "municipality": "西東京市",
+      "lines": ["西武鉄道 新宿線"]
+    },
+    {
+      "id": "ksj-n02-003690",
+      "name": "都庁前",
+      "latitude": 35.69059,
+      "longitude": 139.692625,
+      "prefecture": "東京都",
+      "municipality": "新宿区",
+      "lines": ["東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-003443",
+      "name": "都電雑司ヶ谷",
+      "latitude": 35.724075,
+      "longitude": 139.71783,
+      "prefecture": "東京都",
+      "municipality": "豊島区",
+      "lines": ["東京都 荒川線"]
+    },
+    {
+      "id": "ksj-n02-003453",
+      "name": "都立家政",
+      "latitude": 35.72219,
+      "longitude": 139.64543,
+      "prefecture": "東京都",
+      "municipality": "中野区",
+      "lines": ["西武鉄道 新宿線"]
+    },
+    {
+      "id": "ksj-n02-004143",
+      "name": "都立大学",
+      "latitude": 35.61785,
+      "longitude": 139.67644,
+      "prefecture": "東京都",
+      "municipality": "目黒区",
+      "lines": ["東急電鉄 東横線"]
+    },
+    {
+      "id": "ksj-n02-004154",
+      "name": "唐木田",
+      "latitude": 35.616565,
+      "longitude": 139.411675,
+      "prefecture": "東京都",
+      "municipality": "多摩市",
+      "lines": ["小田急電鉄 多摩線"]
+    },
+    {
+      "id": "ksj-n02-003548",
+      "name": "東あずま",
+      "latitude": 35.707375,
+      "longitude": 139.831595,
+      "prefecture": "東京都",
+      "municipality": "墨田区",
+      "lines": ["東武鉄道 亀戸線"]
+    },
+    {
+      "id": "ksj-n02-004034",
+      "name": "東雲",
+      "latitude": 35.64082,
+      "longitude": 139.80416,
+      "prefecture": "東京都",
+      "municipality": "江東区",
+      "lines": ["東京臨海高速鉄道 臨海副都心線"]
+    },
+    {
+      "id": "ksj-n02-003217",
+      "name": "東久留米",
+      "latitude": 35.76045,
+      "longitude": 139.53375,
+      "prefecture": "東京都",
+      "municipality": "東久留米市",
+      "lines": ["西武鉄道 池袋線"]
+    },
+    {
+      "id": "ksj-n02-003766",
+      "name": "東京",
+      "latitude": 35.681318,
+      "longitude": 139.766708,
+      "prefecture": "東京都",
+      "municipality": "千代田区",
+      "lines": [
+        "東海旅客鉄道 東海道新幹線",
+        "東京地下鉄 4号線丸ノ内線",
+        "東日本旅客鉄道 総武線",
+        "東日本旅客鉄道 東海道線",
+        "東日本旅客鉄道 東北新幹線",
+        "東日本旅客鉄道 東北線"
+      ]
+    },
+    {
+      "id": "ksj-n02-003785",
+      "name": "東京",
+      "latitude": 35.677685,
+      "longitude": 139.765235,
+      "prefecture": "東京都",
+      "municipality": "千代田区",
+      "lines": ["東日本旅客鉄道 京葉線"]
+    },
+    {
+      "id": "ksj-n02-004108",
+      "name": "東京テレポート",
+      "latitude": 35.627085,
+      "longitude": 139.77806,
+      "prefecture": "東京都",
+      "municipality": "江東区",
+      "lines": ["東京臨海高速鉄道 臨海副都心線"]
+    },
+    {
+      "id": "ksj-n02-004087",
+      "name": "東京ビッグサイト",
+      "latitude": 35.63021,
+      "longitude": 139.7913,
+      "prefecture": "東京都",
+      "municipality": "江東区",
+      "lines": ["ゆりかもめ 東京臨海新交通臨海線"]
+    },
+    {
+      "id": "ksj-n02-004128",
+      "name": "東京国際クルーズターミナル",
+      "latitude": 35.621357,
+      "longitude": 139.773103,
+      "prefecture": "東京都",
+      "municipality": "江東区",
+      "lines": ["ゆりかもめ 東京臨海新交通臨海線"]
+    },
+    {
+      "id": "ksj-n02-003838",
+      "name": "東銀座",
+      "latitude": 35.669393,
+      "longitude": 139.76738,
+      "prefecture": "東京都",
+      "municipality": "中央区",
+      "lines": ["東京地下鉄 2号線日比谷線", "東京都 1号線浅草線"]
+    },
+    {
+      "id": "ksj-n02-003442",
+      "name": "東向島",
+      "latitude": 35.724355,
+      "longitude": 139.819335,
+      "prefecture": "東京都",
+      "municipality": "墨田区",
+      "lines": ["東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-003628",
+      "name": "東高円寺",
+      "latitude": 35.697965,
+      "longitude": 139.658295,
+      "prefecture": "東京都",
+      "municipality": "杉並区",
+      "lines": ["東京地下鉄 4号線丸ノ内線"]
+    },
+    {
+      "id": "ksj-n02-003433",
+      "name": "東秋留",
+      "latitude": 35.725935,
+      "longitude": 139.311675,
+      "prefecture": "東京都",
+      "municipality": "あきる野市",
+      "lines": ["東日本旅客鉄道 五日市線"]
+    },
+    {
+      "id": "ksj-n02-003210",
+      "name": "東十条",
+      "latitude": 35.763855,
+      "longitude": 139.726755,
+      "prefecture": "東京都",
+      "municipality": "北区",
+      "lines": ["東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-003594",
+      "name": "東小金井",
+      "latitude": 35.70156,
+      "longitude": 139.52376,
+      "prefecture": "東京都",
+      "municipality": "小金井市",
+      "lines": ["東日本旅客鉄道 中央線"]
+    },
+    {
+      "id": "ksj-n02-003899",
+      "name": "東松原",
+      "latitude": 35.662665,
+      "longitude": 139.65569,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["京王電鉄 井の頭線"]
+    },
+    {
+      "id": "ksj-n02-003612",
+      "name": "東新宿",
+      "latitude": 35.698863,
+      "longitude": 139.707765,
+      "prefecture": "東京都",
+      "municipality": "新宿区",
+      "lines": ["東京地下鉄 13号線副都心線", "東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-003113",
+      "name": "東青梅",
+      "latitude": 35.789815,
+      "longitude": 139.272805,
+      "prefecture": "東京都",
+      "municipality": "青梅市",
+      "lines": ["東日本旅客鉄道 青梅線"]
+    },
+    {
+      "id": "ksj-n02-003220",
+      "name": "東村山",
+      "latitude": 35.759965,
+      "longitude": 139.46586,
+      "prefecture": "東京都",
+      "municipality": "東村山市",
+      "lines": ["西武鉄道 国分寺線", "西武鉄道 新宿線", "西武鉄道 西武園線"]
+    },
+    {
+      "id": "ksj-n02-003481",
+      "name": "東大前",
+      "latitude": 35.717985,
+      "longitude": 139.75782,
+      "prefecture": "東京都",
+      "municipality": "文京区",
+      "lines": ["東京地下鉄 7号線南北線"]
+    },
+    {
+      "id": "ksj-n02-003695",
+      "name": "東大島",
+      "latitude": 35.68979,
+      "longitude": 139.847265,
+      "prefecture": "東京都",
+      "municipality": "江東区",
+      "lines": ["東京都 10号線新宿線"]
+    },
+    {
+      "id": "ksj-n02-003365",
+      "name": "東大和市",
+      "latitude": 35.732905,
+      "longitude": 139.434295,
+      "prefecture": "東京都",
+      "municipality": "東大和市",
+      "lines": ["西武鉄道 拝島線"]
+    },
+    {
+      "id": "ksj-n02-003432",
+      "name": "東池袋",
+      "latitude": 35.72595,
+      "longitude": 139.718865,
+      "prefecture": "東京都",
+      "municipality": "豊島区",
+      "lines": ["東京地下鉄 8号線有楽町線"]
+    },
+    {
+      "id": "ksj-n02-003436",
+      "name": "東池袋四丁目",
+      "latitude": 35.7255,
+      "longitude": 139.720735,
+      "prefecture": "東京都",
+      "municipality": "豊島区",
+      "lines": ["東京都 荒川線"]
+    },
+    {
+      "id": "ksj-n02-003562",
+      "name": "東中神",
+      "latitude": 35.706275,
+      "longitude": 139.384595,
+      "prefecture": "東京都",
+      "municipality": "昭島市",
+      "lines": ["東日本旅客鉄道 青梅線"]
+    },
+    {
+      "id": "ksj-n02-003549",
+      "name": "東中野",
+      "latitude": 35.70681,
+      "longitude": 139.684165,
+      "prefecture": "東京都",
+      "municipality": "中野区",
+      "lines": ["東京都 12号線大江戸線", "東日本旅客鉄道 中央線"]
+    },
+    {
+      "id": "ksj-n02-003393",
+      "name": "東長崎",
+      "latitude": 35.72997,
+      "longitude": 139.683185,
+      "prefecture": "東京都",
+      "municipality": "豊島区",
+      "lines": ["西武鉄道 池袋線"]
+    },
+    {
+      "id": "ksj-n02-003676",
+      "name": "東日本橋",
+      "latitude": 35.69178,
+      "longitude": 139.7848,
+      "prefecture": "東京都",
+      "municipality": "中央区",
+      "lines": ["東京都 1号線浅草線"]
+    },
+    {
+      "id": "ksj-n02-003284",
+      "name": "東尾久三丁目",
+      "latitude": 35.745625,
+      "longitude": 139.77385,
+      "prefecture": "東京都",
+      "municipality": "荒川区",
+      "lines": ["東京都 荒川線"]
+    },
+    {
+      "id": "ksj-n02-003850",
+      "name": "東府中",
+      "latitude": 35.66877,
+      "longitude": 139.4954,
+      "prefecture": "東京都",
+      "municipality": "府中市",
+      "lines": ["京王電鉄 京王線", "京王電鉄 競馬場線"]
+    },
+    {
+      "id": "ksj-n02-003194",
+      "name": "東武練馬",
+      "latitude": 35.76865,
+      "longitude": 139.66254,
+      "prefecture": "東京都",
+      "municipality": "板橋区",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-003408",
+      "name": "東伏見",
+      "latitude": 35.728755,
+      "longitude": 139.563575,
+      "prefecture": "東京都",
+      "municipality": "西東京市",
+      "lines": ["西武鉄道 新宿線"]
+    },
+    {
+      "id": "ksj-n02-003282",
+      "name": "東福生",
+      "latitude": 35.74583,
+      "longitude": 139.335905,
+      "prefecture": "東京都",
+      "municipality": "福生市",
+      "lines": ["東日本旅客鉄道 八高線"]
+    },
+    {
+      "id": "ksj-n02-003880",
+      "name": "東北沢",
+      "latitude": 35.66544,
+      "longitude": 139.67304,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["小田急電鉄 小田原線"]
+    },
+    {
+      "id": "ksj-n02-003839",
+      "name": "東陽町",
+      "latitude": 35.66959,
+      "longitude": 139.81768,
+      "prefecture": "東京都",
+      "municipality": "江東区",
+      "lines": ["東京地下鉄 5号線東西線"]
+    },
+    {
+      "id": "ksj-n02-003558",
+      "name": "湯島",
+      "latitude": 35.706805,
+      "longitude": 139.76998,
+      "prefecture": "東京都",
+      "municipality": "文京区",
+      "lines": ["東京地下鉄 9号線千代田線"]
+    },
+    {
+      "id": "ksj-n02-004191",
+      "name": "等々力",
+      "latitude": 35.60837,
+      "longitude": 139.64796,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["東急電鉄 大井町線"]
+    },
+    {
+      "id": "ksj-n02-003842",
+      "name": "内幸町",
+      "latitude": 35.669175,
+      "longitude": 139.75534,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["東京都 6号線三田線"]
+    },
+    {
+      "id": "ksj-n02-003619",
+      "name": "南阿佐ヶ谷",
+      "latitude": 35.699455,
+      "longitude": 139.635575,
+      "prefecture": "東京都",
+      "municipality": "杉並区",
+      "lines": ["東京地下鉄 4号線丸ノ内線"]
+    },
+    {
+      "id": "ksj-n02-003854",
+      "name": "南砂町",
+      "latitude": 35.668415,
+      "longitude": 139.831695,
+      "prefecture": "東京都",
+      "municipality": "江東区",
+      "lines": ["東京地下鉄 5号線東西線"]
+    },
+    {
+      "id": "ksj-n02-003750",
+      "name": "南新宿",
+      "latitude": 35.683555,
+      "longitude": 139.69865,
+      "prefecture": "東京都",
+      "municipality": "渋谷区",
+      "lines": ["小田急電鉄 小田原線"]
+    },
+    {
+      "id": "ksj-n02-003363",
+      "name": "南千住",
+      "latitude": 35.733313,
+      "longitude": 139.799172,
+      "prefecture": "東京都",
+      "municipality": "荒川区",
+      "lines": ["首都圏新都市鉄道 常磐新線", "東京地下鉄 2号線日比谷線", "東日本旅客鉄道 常磐線"]
+    },
+    {
+      "id": "ksj-n02-003980",
+      "name": "南多摩",
+      "latitude": 35.649215,
+      "longitude": 139.489545,
+      "prefecture": "東京都",
+      "municipality": "稲城市",
+      "lines": ["東日本旅客鉄道 南武線"]
+    },
+    {
+      "id": "ksj-n02-004163",
+      "name": "南大沢",
+      "latitude": 35.614095,
+      "longitude": 139.379825,
+      "prefecture": "東京都",
+      "municipality": "八王子市",
+      "lines": ["京王電鉄 相模原線"]
+    },
+    {
+      "id": "ksj-n02-004484",
+      "name": "南町田グランベリーパーク",
+      "latitude": 35.511515,
+      "longitude": 139.47044,
+      "prefecture": "東京都",
+      "municipality": "町田市",
+      "lines": ["東急電鉄 田園都市線"]
+    },
+    {
+      "id": "ksj-n02-003952",
+      "name": "南平",
+      "latitude": 35.65514,
+      "longitude": 139.392575,
+      "prefecture": "東京都",
+      "municipality": "日野市",
+      "lines": ["京王電鉄 京王線"]
+    },
+    {
+      "id": "ksj-n02-004177",
+      "name": "二子玉川",
+      "latitude": 35.611325,
+      "longitude": 139.6264,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["東急電鉄 大井町線", "東急電鉄 田園都市線"]
+    },
+    {
+      "id": "ksj-n02-003772",
+      "name": "二重橋前",
+      "latitude": 35.680505,
+      "longitude": 139.76178,
+      "prefecture": "東京都",
+      "municipality": "千代田区",
+      "lines": ["東京地下鉄 9号線千代田線"]
+    },
+    {
+      "id": "ksj-n02-003080",
+      "name": "二俣尾",
+      "latitude": 35.803945,
+      "longitude": 139.216145,
+      "prefecture": "東京都",
+      "municipality": "青梅市",
+      "lines": ["東日本旅客鉄道 青梅線"]
+    },
+    {
+      "id": "ksj-n02-003979",
+      "name": "日の出",
+      "latitude": 35.64926,
+      "longitude": 139.75916,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["ゆりかもめ 東京臨海新交通臨海線"]
+    },
+    {
+      "id": "ksj-n02-003121",
+      "name": "日向和田",
+      "latitude": 35.788645,
+      "longitude": 139.229535,
+      "prefecture": "東京都",
+      "municipality": "青梅市",
+      "lines": ["東日本旅客鉄道 青梅線"]
+    },
+    {
+      "id": "ksj-n02-003802",
+      "name": "日比谷",
+      "latitude": 35.674948,
+      "longitude": 139.759837,
+      "prefecture": "東京都",
+      "municipality": "千代田区",
+      "lines": ["東京地下鉄 2号線日比谷線", "東京地下鉄 9号線千代田線", "東京都 6号線三田線"]
+    },
+    {
+      "id": "ksj-n02-003417",
+      "name": "日暮里",
+      "latitude": 35.727975,
+      "longitude": 139.771266,
+      "prefecture": "東京都",
+      "municipality": "荒川区",
+      "lines": ["京成電鉄 本線", "東京都 日暮里・舎人ライナー", "東日本旅客鉄道 常磐線", "東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-003756",
+      "name": "日本橋",
+      "latitude": 35.681948,
+      "longitude": 139.774402,
+      "prefecture": "東京都",
+      "municipality": "中央区",
+      "lines": ["東京地下鉄 3号線銀座線", "東京地下鉄 5号線東西線", "東京都 1号線浅草線"]
+    },
+    {
+      "id": "ksj-n02-003779",
+      "name": "日野",
+      "latitude": 35.678545,
+      "longitude": 139.39343,
+      "prefecture": "東京都",
+      "municipality": "日野市",
+      "lines": ["東日本旅客鉄道 中央線"]
+    },
+    {
+      "id": "ksj-n02-003469",
+      "name": "入谷",
+      "latitude": 35.72057,
+      "longitude": 139.78446,
+      "prefecture": "東京都",
+      "municipality": "台東区",
+      "lines": ["東京地下鉄 2号線日比谷線"]
+    },
+    {
+      "id": "ksj-n02-003868",
+      "name": "乃木坂",
+      "latitude": 35.666615,
+      "longitude": 139.72621,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["東京地下鉄 9号線千代田線"]
+    },
+    {
+      "id": "ksj-n02-003675",
+      "name": "馬喰横山",
+      "latitude": 35.69201,
+      "longitude": 139.782925,
+      "prefecture": "東京都",
+      "municipality": "中央区",
+      "lines": ["東京都 10号線新宿線"]
+    },
+    {
+      "id": "ksj-n02-003668",
+      "name": "馬喰町",
+      "latitude": 35.69337,
+      "longitude": 139.782435,
+      "prefecture": "東京都",
+      "municipality": "中央区",
+      "lines": ["東日本旅客鉄道 総武線"]
+    },
+    {
+      "id": "ksj-n02-004248",
+      "name": "馬込",
+      "latitude": 35.596445,
+      "longitude": 139.71185,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["東京都 1号線浅草線"]
+    },
+    {
+      "id": "ksj-n02-003462",
+      "name": "拝島",
+      "latitude": 35.721198,
+      "longitude": 139.343718,
+      "prefecture": "東京都",
+      "municipality": "福生市",
+      "lines": ["西武鉄道 拝島線", "東日本旅客鉄道 五日市線", "東日本旅客鉄道 青梅線", "東日本旅客鉄道 八高線"]
+    },
+    {
+      "id": "ksj-n02-003945",
+      "name": "梅ヶ丘",
+      "latitude": 35.65602,
+      "longitude": 139.65355,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["小田急電鉄 小田原線"]
+    },
+    {
+      "id": "ksj-n02-004319",
+      "name": "梅屋敷",
+      "latitude": 35.566785,
+      "longitude": 139.72817,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["京浜急行電鉄 本線"]
+    },
+    {
+      "id": "ksj-n02-003176",
+      "name": "梅島",
+      "latitude": 35.772345,
+      "longitude": 139.798075,
+      "prefecture": "東京都",
+      "municipality": "足立区",
+      "lines": ["東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-003312",
+      "name": "萩山",
+      "latitude": 35.74078,
+      "longitude": 139.476825,
+      "prefecture": "東京都",
+      "municipality": "東村山市",
+      "lines": ["西武鉄道 多摩湖線", "西武鉄道 拝島線"]
+    },
+    {
+      "id": "ksj-n02-003065",
+      "name": "白丸",
+      "latitude": 35.81172,
+      "longitude": 139.11483,
+      "prefecture": "東京都",
+      "municipality": "奥多摩町",
+      "lines": ["東日本旅客鉄道 青梅線"]
+    },
+    {
+      "id": "ksj-n02-004025",
+      "name": "白金高輪",
+      "latitude": 35.643145,
+      "longitude": 139.734285,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["東京地下鉄 7号線南北線", "東京都 6号線三田線"]
+    },
+    {
+      "id": "ksj-n02-004044",
+      "name": "白金台",
+      "latitude": 35.63777,
+      "longitude": 139.72586,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["東京地下鉄 7号線南北線", "東京都 6号線三田線"]
+    },
+    {
+      "id": "ksj-n02-003461",
+      "name": "白山",
+      "latitude": 35.721335,
+      "longitude": 139.75221,
+      "prefecture": "東京都",
+      "municipality": "文京区",
+      "lines": ["東京都 6号線三田線"]
+    },
+    {
+      "id": "ksj-n02-003873",
+      "name": "白糸台",
+      "latitude": 35.666305,
+      "longitude": 139.509525,
+      "prefecture": "東京都",
+      "municipality": "府中市",
+      "lines": ["西武鉄道 多摩川線"]
+    },
+    {
+      "id": "ksj-n02-003180",
+      "name": "箱根ヶ崎",
+      "latitude": 35.771695,
+      "longitude": 139.346735,
+      "prefecture": "東京都",
+      "municipality": "瑞穂町",
+      "lines": ["東日本旅客鉄道 八高線"]
+    },
+    {
+      "id": "ksj-n02-003791",
+      "name": "幡ヶ谷",
+      "latitude": 35.67676,
+      "longitude": 139.67772,
+      "prefecture": "東京都",
+      "municipality": "渋谷区",
+      "lines": ["京王電鉄 京王線"]
+    },
+    {
+      "id": "ksj-n02-003947",
+      "name": "八王子",
+      "latitude": 35.655352,
+      "longitude": 139.339297,
+      "prefecture": "東京都",
+      "municipality": "八王子市",
+      "lines": ["東日本旅客鉄道 横浜線", "東日本旅客鉄道 中央線", "東日本旅客鉄道 八高線"]
+    },
+    {
+      "id": "ksj-n02-004082",
+      "name": "八王子みなみ野",
+      "latitude": 35.63129,
+      "longitude": 139.33098,
+      "prefecture": "東京都",
+      "municipality": "八王子市",
+      "lines": ["東日本旅客鉄道 横浜線"]
+    },
+    {
+      "id": "ksj-n02-003422",
+      "name": "八広",
+      "latitude": 35.727195,
+      "longitude": 139.82834,
+      "prefecture": "東京都",
+      "municipality": "墨田区",
+      "lines": ["京成電鉄 押上線"]
+    },
+    {
+      "id": "ksj-n02-003287",
+      "name": "八坂",
+      "latitude": 35.74489,
+      "longitude": 139.46775,
+      "prefecture": "東京都",
+      "municipality": "東村山市",
+      "lines": ["西武鉄道 多摩湖線"]
+    },
+    {
+      "id": "ksj-n02-003797",
+      "name": "八丁堀",
+      "latitude": 35.674993,
+      "longitude": 139.777665,
+      "prefecture": "東京都",
+      "municipality": "中央区",
+      "lines": ["東京地下鉄 2号線日比谷線", "東日本旅客鉄道 京葉線"]
+    },
+    {
+      "id": "ksj-n02-003836",
+      "name": "八幡山",
+      "latitude": 35.670075,
+      "longitude": 139.61448,
+      "prefecture": "東京都",
+      "municipality": "杉並区",
+      "lines": ["京王電鉄 京王線"]
+    },
+    {
+      "id": "ksj-n02-003058",
+      "name": "鳩ノ巣",
+      "latitude": 35.815105,
+      "longitude": 139.12894,
+      "prefecture": "東京都",
+      "municipality": "奥多摩町",
+      "lines": ["東日本旅客鉄道 青梅線"]
+    },
+    {
+      "id": "ksj-n02-003729",
+      "name": "半蔵門",
+      "latitude": 35.68538,
+      "longitude": 139.741695,
+      "prefecture": "東京都",
+      "municipality": "千代田区",
+      "lines": ["東京地下鉄 11号線半蔵門線"]
+    },
+    {
+      "id": "ksj-n02-003286",
+      "name": "板橋",
+      "latitude": 35.74499,
+      "longitude": 139.719175,
+      "prefecture": "東京都",
+      "municipality": "豊島区",
+      "lines": ["東日本旅客鉄道 赤羽線"]
+    },
+    {
+      "id": "ksj-n02-003245",
+      "name": "板橋区役所前",
+      "latitude": 35.751305,
+      "longitude": 139.710055,
+      "prefecture": "東京都",
+      "municipality": "板橋区",
+      "lines": ["東京都 6号線三田線"]
+    },
+    {
+      "id": "ksj-n02-003216",
+      "name": "板橋本町",
+      "latitude": 35.7611,
+      "longitude": 139.705605,
+      "prefecture": "東京都",
+      "municipality": "板橋区",
+      "lines": ["東京都 6号線三田線"]
+    },
+    {
+      "id": "ksj-n02-003595",
+      "name": "飯田橋",
+      "latitude": 35.701499,
+      "longitude": 139.74458,
+      "prefecture": "東京都",
+      "municipality": "千代田区",
+      "lines": [
+        "東京地下鉄 5号線東西線",
+        "東京地下鉄 7号線南北線",
+        "東京地下鉄 8号線有楽町線",
+        "東京都 12号線大江戸線",
+        "東日本旅客鉄道 中央線"
+      ]
+    },
+    {
+      "id": "ksj-n02-003256",
+      "name": "飛鳥山",
+      "latitude": 35.750065,
+      "longitude": 139.73732,
+      "prefecture": "東京都",
+      "municipality": "北区",
+      "lines": ["東京都 荒川線"]
+    },
+    {
+      "id": "ksj-n02-003916",
+      "name": "飛田給",
+      "latitude": 35.659985,
+      "longitude": 139.52366,
+      "prefecture": "東京都",
+      "municipality": "調布市",
+      "lines": ["京王電鉄 京王線"]
+    },
+    {
+      "id": "ksj-n02-003278",
+      "name": "尾久",
+      "latitude": 35.746795,
+      "longitude": 139.75387,
+      "prefecture": "東京都",
+      "municipality": "北区",
+      "lines": ["東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-004205",
+      "name": "尾山台",
+      "latitude": 35.606935,
+      "longitude": 139.65412,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["東急電鉄 大井町線"]
+    },
+    {
+      "id": "ksj-n02-003936",
+      "name": "百草園",
+      "latitude": 35.657375,
+      "longitude": 139.431375,
+      "prefecture": "東京都",
+      "municipality": "日野市",
+      "lines": ["京王電鉄 京王線"]
+    },
+    {
+      "id": "ksj-n02-003261",
+      "name": "氷川台",
+      "latitude": 35.74962,
+      "longitude": 139.66547,
+      "prefecture": "東京都",
+      "municipality": "練馬区",
+      "lines": ["東京地下鉄 8号線有楽町線"]
+    },
+    {
+      "id": "ksj-n02-003883",
+      "name": "表参道",
+      "latitude": 35.66528,
+      "longitude": 139.712065,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["東京地下鉄 11号線半蔵門線", "東京地下鉄 3号線銀座線", "東京地下鉄 9号線千代田線"]
+    },
+    {
+      "id": "ksj-n02-004095",
+      "name": "品川",
+      "latitude": 35.628512,
+      "longitude": 139.739,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["京浜急行電鉄 本線", "東海旅客鉄道 東海道新幹線", "東日本旅客鉄道 山手線", "東日本旅客鉄道 東海道線"]
+    },
+    {
+      "id": "ksj-n02-004182",
+      "name": "品川シーサイド",
+      "latitude": 35.60979,
+      "longitude": 139.749795,
+      "prefecture": "東京都",
+      "municipality": "品川区",
+      "lines": ["東京臨海高速鉄道 臨海副都心線"]
+    },
+    {
+      "id": "ksj-n02-003949",
+      "name": "浜松町",
+      "latitude": 35.65541,
+      "longitude": 139.757125,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["東日本旅客鉄道 東海道線"]
+    },
+    {
+      "id": "ksj-n02-003706",
+      "name": "浜町",
+      "latitude": 35.68859,
+      "longitude": 139.788125,
+      "prefecture": "東京都",
+      "municipality": "中央区",
+      "lines": ["東京都 10号線新宿線"]
+    },
+    {
+      "id": "ksj-n02-003763",
+      "name": "浜田山",
+      "latitude": 35.681575,
+      "longitude": 139.627575,
+      "prefecture": "東京都",
+      "municipality": "杉並区",
+      "lines": ["京王電鉄 井の頭線"]
+    },
+    {
+      "id": "ksj-n02-004114",
+      "name": "不動前",
+      "latitude": 35.625455,
+      "longitude": 139.713205,
+      "prefecture": "東京都",
+      "municipality": "品川区",
+      "lines": ["東急電鉄 目黒線"]
+    },
+    {
+      "id": "ksj-n02-003736",
+      "name": "富士見ヶ丘",
+      "latitude": 35.684825,
+      "longitude": 139.6072,
+      "prefecture": "東京都",
+      "municipality": "杉並区",
+      "lines": ["京王電鉄 井の頭線"]
+    },
+    {
+      "id": "ksj-n02-003349",
+      "name": "富士見台",
+      "latitude": 35.73585,
+      "longitude": 139.629815,
+      "prefecture": "東京都",
+      "municipality": "練馬区",
+      "lines": ["西武鉄道 池袋線"]
+    },
+    {
+      "id": "ksj-n02-003975",
+      "name": "布田",
+      "latitude": 35.64986,
+      "longitude": 139.551715,
+      "prefecture": "東京都",
+      "municipality": "調布市",
+      "lines": ["京王電鉄 京王線"]
+    },
+    {
+      "id": "ksj-n02-003821",
+      "name": "府中",
+      "latitude": 35.67219,
+      "longitude": 139.4801,
+      "prefecture": "東京都",
+      "municipality": "府中市",
+      "lines": ["京王電鉄 京王線"]
+    },
+    {
+      "id": "ksj-n02-003856",
+      "name": "府中競馬正門前",
+      "latitude": 35.668355,
+      "longitude": 139.485165,
+      "prefecture": "東京都",
+      "municipality": "府中市",
+      "lines": ["京王電鉄 競馬場線"]
+    },
+    {
+      "id": "ksj-n02-003876",
+      "name": "府中本町",
+      "latitude": 35.665853,
+      "longitude": 139.477165,
+      "prefecture": "東京都",
+      "municipality": "府中市",
+      "lines": ["東日本旅客鉄道 南武線", "東日本旅客鉄道 武蔵野線"]
+    },
+    {
+      "id": "ksj-n02-003107",
+      "name": "浮間舟渡",
+      "latitude": 35.79134,
+      "longitude": 139.69141,
+      "prefecture": "東京都",
+      "municipality": "北区",
+      "lines": ["東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-003395",
+      "name": "武蔵引田",
+      "latitude": 35.72969,
+      "longitude": 139.270085,
+      "prefecture": "東京都",
+      "municipality": "あきる野市",
+      "lines": ["東日本旅客鉄道 五日市線"]
+    },
+    {
+      "id": "ksj-n02-003419",
+      "name": "武蔵関",
+      "latitude": 35.727615,
+      "longitude": 139.576365,
+      "prefecture": "東京都",
+      "municipality": "練馬区",
+      "lines": ["西武鉄道 新宿線"]
+    },
+    {
+      "id": "ksj-n02-003590",
+      "name": "武蔵境",
+      "latitude": 35.702,
+      "longitude": 139.54391,
+      "prefecture": "東京都",
+      "municipality": "武蔵野市",
+      "lines": ["西武鉄道 多摩川線", "東日本旅客鉄道 中央線"]
+    },
+    {
+      "id": "ksj-n02-003372",
+      "name": "武蔵五日市",
+      "latitude": 35.732145,
+      "longitude": 139.22812,
+      "prefecture": "東京都",
+      "municipality": "あきる野市",
+      "lines": ["東日本旅客鉄道 五日市線"]
+    },
+    {
+      "id": "ksj-n02-003404",
+      "name": "武蔵砂川",
+      "latitude": 35.728825,
+      "longitude": 139.392345,
+      "prefecture": "東京都",
+      "municipality": "立川市",
+      "lines": ["西武鉄道 拝島線"]
+    },
+    {
+      "id": "ksj-n02-003600",
+      "name": "武蔵小金井",
+      "latitude": 35.701035,
+      "longitude": 139.50593,
+      "prefecture": "東京都",
+      "municipality": "小金井市",
+      "lines": ["東日本旅客鉄道 中央線"]
+    },
+    {
+      "id": "ksj-n02-004133",
+      "name": "武蔵小山",
+      "latitude": 35.62051,
+      "longitude": 139.70447,
+      "prefecture": "東京都",
+      "municipality": "品川区",
+      "lines": ["東急電鉄 目黒線"]
+    },
+    {
+      "id": "ksj-n02-004317",
+      "name": "武蔵新田",
+      "latitude": 35.567755,
+      "longitude": 139.692435,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["東急電鉄 東急多摩川線"]
+    },
+    {
+      "id": "ksj-n02-003383",
+      "name": "武蔵増戸",
+      "latitude": 35.730955,
+      "longitude": 139.256305,
+      "prefecture": "東京都",
+      "municipality": "あきる野市",
+      "lines": ["東日本旅客鉄道 五日市線"]
+    },
+    {
+      "id": "ksj-n02-003231",
+      "name": "武蔵大和",
+      "latitude": 35.756435,
+      "longitude": 139.44404,
+      "prefecture": "東京都",
+      "municipality": "東村山市",
+      "lines": ["西武鉄道 多摩湖線"]
+    },
+    {
+      "id": "ksj-n02-003891",
+      "name": "武蔵野台",
+      "latitude": 35.664135,
+      "longitude": 139.511305,
+      "prefecture": "東京都",
+      "municipality": "府中市",
+      "lines": ["京王電鉄 京王線"]
+    },
+    {
+      "id": "ksj-n02-003300",
+      "name": "福生",
+      "latitude": 35.742485,
+      "longitude": 139.327745,
+      "prefecture": "東京都",
+      "municipality": "福生市",
+      "lines": ["東日本旅客鉄道 青梅線"]
+    },
+    {
+      "id": "ksj-n02-003853",
+      "name": "分倍河原",
+      "latitude": 35.66826,
+      "longitude": 139.46864,
+      "prefecture": "東京都",
+      "municipality": "府中市",
+      "lines": ["京王電鉄 京王線", "東日本旅客鉄道 南武線"]
+    },
+    {
+      "id": "ksj-n02-003561",
+      "name": "平井",
+      "latitude": 35.70645,
+      "longitude": 139.842385,
+      "prefecture": "東京都",
+      "municipality": "江戸川区",
+      "lines": ["東日本旅客鉄道 総武線"]
+    },
+    {
+      "id": "ksj-n02-003990",
+      "name": "平山城址公園",
+      "latitude": 35.64731,
+      "longitude": 139.379895,
+      "prefecture": "東京都",
+      "municipality": "日野市",
+      "lines": ["京王電鉄 京王線"]
+    },
+    {
+      "id": "ksj-n02-003228",
+      "name": "平和台",
+      "latitude": 35.757555,
+      "longitude": 139.6543,
+      "prefecture": "東京都",
+      "municipality": "練馬区",
+      "lines": ["東京地下鉄 8号線有楽町線"]
+    },
+    {
+      "id": "ksj-n02-004294",
+      "name": "平和島",
+      "latitude": 35.5787,
+      "longitude": 139.734915,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["京浜急行電鉄 本線"]
+    },
+    {
+      "id": "ksj-n02-004038",
+      "name": "片倉",
+      "latitude": 35.639675,
+      "longitude": 139.341165,
+      "prefecture": "東京都",
+      "municipality": "八王子市",
+      "lines": ["東日本旅客鉄道 横浜線"]
+    },
+    {
+      "id": "ksj-n02-003271",
+      "name": "保谷",
+      "latitude": 35.74824,
+      "longitude": 139.568035,
+      "prefecture": "東京都",
+      "municipality": "西東京市",
+      "lines": ["西武鉄道 池袋線"]
+    },
+    {
+      "id": "ksj-n02-003796",
+      "name": "宝町",
+      "latitude": 35.67567,
+      "longitude": 139.772115,
+      "prefecture": "東京都",
+      "municipality": "中央区",
+      "lines": ["東京都 1号線浅草線"]
+    },
+    {
+      "id": "ksj-n02-003751",
+      "name": "方南町",
+      "latitude": 35.683515,
+      "longitude": 139.657935,
+      "prefecture": "東京都",
+      "municipality": "杉並区",
+      "lines": ["東京地下鉄 4号線丸ノ内線分岐線"]
+    },
+    {
+      "id": "ksj-n02-003951",
+      "name": "豊洲",
+      "latitude": 35.65443,
+      "longitude": 139.795715,
+      "prefecture": "東京都",
+      "municipality": "江東区",
+      "lines": ["ゆりかもめ 東京臨海新交通臨海線", "東京地下鉄 8号線有楽町線"]
+    },
+    {
+      "id": "ksj-n02-003921",
+      "name": "豊田",
+      "latitude": 35.65945,
+      "longitude": 139.381455,
+      "prefecture": "東京都",
+      "municipality": "日野市",
+      "lines": ["東日本旅客鉄道 中央線"]
+    },
+    {
+      "id": "ksj-n02-003305",
+      "name": "豊島園",
+      "latitude": 35.741823,
+      "longitude": 139.648613,
+      "prefecture": "東京都",
+      "municipality": "練馬区",
+      "lines": ["西武鉄道 豊島線", "東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-003162",
+      "name": "北綾瀬",
+      "latitude": 35.77689,
+      "longitude": 139.832095,
+      "prefecture": "東京都",
+      "municipality": "足立区",
+      "lines": ["東京地下鉄 9号線千代田線"]
+    },
+    {
+      "id": "ksj-n02-003780",
+      "name": "北参道",
+      "latitude": 35.678485,
+      "longitude": 139.705435,
+      "prefecture": "東京都",
+      "municipality": "渋谷区",
+      "lines": ["東京地下鉄 13号線副都心線"]
+    },
+    {
+      "id": "ksj-n02-003130",
+      "name": "北赤羽",
+      "latitude": 35.78703,
+      "longitude": 139.705795,
+      "prefecture": "東京都",
+      "municipality": "北区",
+      "lines": ["東日本旅客鉄道 東北線"]
+    },
+    {
+      "id": "ksj-n02-003260",
+      "name": "北千住",
+      "latitude": 35.749544,
+      "longitude": 139.80508,
+      "prefecture": "東京都",
+      "municipality": "足立区",
+      "lines": [
+        "首都圏新都市鉄道 常磐新線",
+        "東京地下鉄 2号線日比谷線",
+        "東京地下鉄 9号線千代田線",
+        "東日本旅客鉄道 常磐線",
+        "東武鉄道 伊勢崎線"
+      ]
+    },
+    {
+      "id": "ksj-n02-004212",
+      "name": "北千束",
+      "latitude": 35.60628,
+      "longitude": 139.69327,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["東急電鉄 大井町線"]
+    },
+    {
+      "id": "ksj-n02-003315",
+      "name": "北池袋",
+      "latitude": 35.740335,
+      "longitude": 139.716395,
+      "prefecture": "東京都",
+      "municipality": "豊島区",
+      "lines": ["東武鉄道 東上本線"]
+    },
+    {
+      "id": "ksj-n02-003841",
+      "name": "北八王子",
+      "latitude": 35.669275,
+      "longitude": 139.3634,
+      "prefecture": "東京都",
+      "municipality": "八王子市",
+      "lines": ["東日本旅客鉄道 八高線"]
+    },
+    {
+      "id": "ksj-n02-004125",
+      "name": "北品川",
+      "latitude": 35.62245,
+      "longitude": 139.73933,
+      "prefecture": "東京都",
+      "municipality": "品川区",
+      "lines": ["京浜急行電鉄 本線"]
+    },
+    {
+      "id": "ksj-n02-003771",
+      "name": "北府中",
+      "latitude": 35.680855,
+      "longitude": 139.471795,
+      "prefecture": "東京都",
+      "municipality": "府中市",
+      "lines": ["東日本旅客鉄道 武蔵野線"]
+    },
+    {
+      "id": "ksj-n02-004007",
+      "name": "北野",
+      "latitude": 35.644485,
+      "longitude": 139.35418,
+      "prefecture": "東京都",
+      "municipality": "八王子市",
+      "lines": ["京王電鉄 京王線", "京王電鉄 高尾線"]
+    },
+    {
+      "id": "ksj-n02-003297",
+      "name": "堀切",
+      "latitude": 35.743345,
+      "longitude": 139.81738,
+      "prefecture": "東京都",
+      "municipality": "足立区",
+      "lines": ["東武鉄道 伊勢崎線"]
+    },
+    {
+      "id": "ksj-n02-003273",
+      "name": "堀切菖蒲園",
+      "latitude": 35.74765,
+      "longitude": 139.82754,
+      "prefecture": "東京都",
+      "municipality": "葛飾区",
+      "lines": ["京成電鉄 本線"]
+    },
+    {
+      "id": "ksj-n02-003546",
+      "name": "本郷三丁目",
+      "latitude": 35.707133,
+      "longitude": 139.760375,
+      "prefecture": "東京都",
+      "municipality": "文京区",
+      "lines": ["東京地下鉄 4号線丸ノ内線", "東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-003441",
+      "name": "本駒込",
+      "latitude": 35.724365,
+      "longitude": 139.753815,
+      "prefecture": "東京都",
+      "municipality": "文京区",
+      "lines": ["東京地下鉄 7号線南北線"]
+    },
+    {
+      "id": "ksj-n02-003538",
+      "name": "本所吾妻橋",
+      "latitude": 35.708595,
+      "longitude": 139.80456,
+      "prefecture": "東京都",
+      "municipality": "墨田区",
+      "lines": ["東京都 1号線浅草線"]
+    },
+    {
+      "id": "ksj-n02-003193",
+      "name": "本蓮沼",
+      "latitude": 35.768985,
+      "longitude": 139.70211,
+      "prefecture": "東京都",
+      "municipality": "板橋区",
+      "lines": ["東京都 6号線三田線"]
+    },
+    {
+      "id": "ksj-n02-003941",
+      "name": "麻布十番",
+      "latitude": 35.65565,
+      "longitude": 139.736575,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["東京地下鉄 7号線南北線", "東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-003586",
+      "name": "末広町",
+      "latitude": 35.70278,
+      "longitude": 139.771765,
+      "prefecture": "東京都",
+      "municipality": "千代田区",
+      "lines": ["東京地下鉄 3号線銀座線"]
+    },
+    {
+      "id": "ksj-n02-003829",
+      "name": "万願寺",
+      "latitude": 35.671315,
+      "longitude": 139.41986,
+      "prefecture": "東京都",
+      "municipality": "日野市",
+      "lines": ["多摩都市モノレール 多摩都市モノレール線"]
+    },
+    {
+      "id": "ksj-n02-003844",
+      "name": "明治神宮前",
+      "latitude": 35.66866,
+      "longitude": 139.70459,
+      "prefecture": "東京都",
+      "municipality": "渋谷区",
+      "lines": ["東京地下鉄 13号線副都心線", "東京地下鉄 9号線千代田線"]
+    },
+    {
+      "id": "ksj-n02-003846",
+      "name": "明大前",
+      "latitude": 35.668723,
+      "longitude": 139.650468,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["京王電鉄 井の頭線", "京王電鉄 京王線"]
+    },
+    {
+      "id": "ksj-n02-003509",
+      "name": "面影橋",
+      "latitude": 35.712855,
+      "longitude": 139.714675,
+      "prefecture": "東京都",
+      "municipality": "新宿区",
+      "lines": ["東京都 荒川線"]
+    },
+    {
+      "id": "ksj-n02-003840",
+      "name": "木場",
+      "latitude": 35.66935,
+      "longitude": 139.807115,
+      "prefecture": "東京都",
+      "municipality": "江東区",
+      "lines": ["東京地下鉄 5号線東西線"]
+    },
+    {
+      "id": "ksj-n02-004072",
+      "name": "目黒",
+      "latitude": 35.632599,
+      "longitude": 139.71572,
+      "prefecture": "東京都",
+      "municipality": "品川区",
+      "lines": ["東急電鉄 目黒線", "東京地下鉄 7号線南北線", "東京都 6号線三田線", "東日本旅客鉄道 山手線"]
+    },
+    {
+      "id": "ksj-n02-003470",
+      "name": "目白",
+      "latitude": 35.72039,
+      "longitude": 139.70628,
+      "prefecture": "東京都",
+      "municipality": "豊島区",
+      "lines": ["東日本旅客鉄道 山手線"]
+    },
+    {
+      "id": "ksj-n02-003818",
+      "name": "門前仲町",
+      "latitude": 35.672333,
+      "longitude": 139.795603,
+      "prefecture": "東京都",
+      "municipality": "江東区",
+      "lines": ["東京地下鉄 5号線東西線", "東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-003473",
+      "name": "野方",
+      "latitude": 35.71958,
+      "longitude": 139.653515,
+      "prefecture": "東京都",
+      "municipality": "中野区",
+      "lines": ["西武鉄道 新宿線"]
+    },
+    {
+      "id": "ksj-n02-004329",
+      "name": "矢口渡",
+      "latitude": 35.56245,
+      "longitude": 139.70034,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["東急電鉄 東急多摩川線"]
+    },
+    {
+      "id": "ksj-n02-003733",
+      "name": "矢川",
+      "latitude": 35.685075,
+      "longitude": 139.43159,
+      "prefecture": "東京都",
+      "municipality": "国立市",
+      "lines": ["東日本旅客鉄道 南武線"]
+    },
+    {
+      "id": "ksj-n02-004032",
+      "name": "矢野口",
+      "latitude": 35.641735,
+      "longitude": 139.520435,
+      "prefecture": "東京都",
+      "municipality": "稲城市",
+      "lines": ["東日本旅客鉄道 南武線"]
+    },
+    {
+      "id": "ksj-n02-003795",
+      "name": "有楽町",
+      "latitude": 35.675505,
+      "longitude": 139.762772,
+      "prefecture": "東京都",
+      "municipality": "千代田区",
+      "lines": ["東京地下鉄 8号線有楽町線", "東日本旅客鉄道 東海道線"]
+    },
+    {
+      "id": "ksj-n02-004064",
+      "name": "有明",
+      "latitude": 35.63455,
+      "longitude": 139.79334,
+      "prefecture": "東京都",
+      "municipality": "江東区",
+      "lines": ["ゆりかもめ 東京臨海新交通臨海線"]
+    },
+    {
+      "id": "ksj-n02-004037",
+      "name": "有明テニスの森",
+      "latitude": 35.63998,
+      "longitude": 139.788895,
+      "prefecture": "東京都",
+      "municipality": "江東区",
+      "lines": ["ゆりかもめ 東京臨海新交通臨海線"]
+    },
+    {
+      "id": "ksj-n02-004050",
+      "name": "祐天寺",
+      "latitude": 35.63717,
+      "longitude": 139.69075,
+      "prefecture": "東京都",
+      "municipality": "目黒区",
+      "lines": ["東急電鉄 東横線"]
+    },
+    {
+      "id": "ksj-n02-004109",
+      "name": "用賀",
+      "latitude": 35.626535,
+      "longitude": 139.634295,
+      "prefecture": "東京都",
+      "municipality": "世田谷区",
+      "lines": ["東急電鉄 田園都市線"]
+    },
+    {
+      "id": "ksj-n02-003361",
+      "name": "要町",
+      "latitude": 35.733215,
+      "longitude": 139.69848,
+      "prefecture": "東京都",
+      "municipality": "豊島区",
+      "lines": ["東京地下鉄 13号線副都心線", "東京地下鉄 8号線有楽町線"]
+    },
+    {
+      "id": "ksj-n02-003523",
+      "name": "落合",
+      "latitude": 35.710635,
+      "longitude": 139.685965,
+      "prefecture": "東京都",
+      "municipality": "中野区",
+      "lines": ["東京地下鉄 5号線東西線"]
+    },
+    {
+      "id": "ksj-n02-003448",
+      "name": "落合南長崎",
+      "latitude": 35.723385,
+      "longitude": 139.68351,
+      "prefecture": "東京都",
+      "municipality": "新宿区",
+      "lines": ["東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-004244",
+      "name": "立会川",
+      "latitude": 35.598505,
+      "longitude": 139.738945,
+      "prefecture": "東京都",
+      "municipality": "品川区",
+      "lines": ["京浜急行電鉄 本線"]
+    },
+    {
+      "id": "ksj-n02-003634",
+      "name": "立川",
+      "latitude": 35.697926,
+      "longitude": 139.413953,
+      "prefecture": "東京都",
+      "municipality": "立川市",
+      "lines": ["東日本旅客鉄道 青梅線", "東日本旅客鉄道 中央線", "東日本旅客鉄道 南武線"]
+    },
+    {
+      "id": "ksj-n02-003649",
+      "name": "立川南",
+      "latitude": 35.69617,
+      "longitude": 139.412575,
+      "prefecture": "東京都",
+      "municipality": "立川市",
+      "lines": ["多摩都市モノレール 多摩都市モノレール線"]
+    },
+    {
+      "id": "ksj-n02-003617",
+      "name": "立川北",
+      "latitude": 35.699525,
+      "longitude": 139.412665,
+      "prefecture": "東京都",
+      "municipality": "立川市",
+      "lines": ["多摩都市モノレール 多摩都市モノレール線"]
+    },
+    {
+      "id": "ksj-n02-003499",
+      "name": "立飛",
+      "latitude": 35.71427,
+      "longitude": 139.41707,
+      "prefecture": "東京都",
+      "municipality": "立川市",
+      "lines": ["多摩都市モノレール 多摩都市モノレール線"]
+    },
+    {
+      "id": "ksj-n02-004285",
+      "name": "流通センター",
+      "latitude": 35.581445,
+      "longitude": 139.749185,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["東京モノレール 東京モノレール羽田線"]
+    },
+    {
+      "id": "ksj-n02-003810",
+      "name": "溜池山王",
+      "latitude": 35.672303,
+      "longitude": 139.74162,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["東京地下鉄 3号線銀座線", "東京地下鉄 7号線南北線"]
+    },
+    {
+      "id": "ksj-n02-003646",
+      "name": "両国",
+      "latitude": 35.69677,
+      "longitude": 139.79743,
+      "prefecture": "東京都",
+      "municipality": "墨田区",
+      "lines": ["東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-003654",
+      "name": "両国",
+      "latitude": 35.695755,
+      "longitude": 139.79335,
+      "prefecture": "東京都",
+      "municipality": "墨田区",
+      "lines": ["東日本旅客鉄道 総武線"]
+    },
+    {
+      "id": "ksj-n02-004210",
+      "name": "緑が丘",
+      "latitude": 35.606475,
+      "longitude": 139.67915,
+      "prefecture": "東京都",
+      "municipality": "目黒区",
+      "lines": ["東急電鉄 大井町線"]
+    },
+    {
+      "id": "ksj-n02-003520",
+      "name": "恋ヶ窪",
+      "latitude": 35.71135,
+      "longitude": 139.46389,
+      "prefecture": "東京都",
+      "municipality": "国分寺市",
+      "lines": ["西武鉄道 国分寺線"]
+    },
+    {
+      "id": "ksj-n02-003328",
+      "name": "練馬",
+      "latitude": 35.73778,
+      "longitude": 139.654473,
+      "prefecture": "東京都",
+      "municipality": "練馬区",
+      "lines": ["西武鉄道 西武有楽町線", "西武鉄道 池袋線", "西武鉄道 豊島線", "東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-003314",
+      "name": "練馬高野台",
+      "latitude": 35.740615,
+      "longitude": 139.616835,
+      "prefecture": "東京都",
+      "municipality": "練馬区",
+      "lines": ["西武鉄道 池袋線"]
+    },
+    {
+      "id": "ksj-n02-003243",
+      "name": "練馬春日町",
+      "latitude": 35.75136,
+      "longitude": 139.64076,
+      "prefecture": "東京都",
+      "municipality": "練馬区",
+      "lines": ["東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-003140",
+      "name": "蓮根",
+      "latitude": 35.784055,
+      "longitude": 139.67906,
+      "prefecture": "東京都",
+      "municipality": "板橋区",
+      "lines": ["東京都 6号線三田線"]
+    },
+    {
+      "id": "ksj-n02-004323",
+      "name": "蓮沼",
+      "latitude": 35.56396,
+      "longitude": 139.7086,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["東急電鉄 池上線"]
+    },
+    {
+      "id": "ksj-n02-004399",
+      "name": "六郷土手",
+      "latitude": 35.54053,
+      "longitude": 139.707565,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["京浜急行電鉄 本線"]
+    },
+    {
+      "id": "ksj-n02-003133",
+      "name": "六町",
+      "latitude": 35.78478,
+      "longitude": 139.821805,
+      "prefecture": "東京都",
+      "municipality": "足立区",
+      "lines": ["首都圏新都市鉄道 常磐新線"]
+    },
+    {
+      "id": "ksj-n02-003892",
+      "name": "六本木",
+      "latitude": 35.663433,
+      "longitude": 139.731215,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["東京地下鉄 2号線日比谷線", "東京都 12号線大江戸線"]
+    },
+    {
+      "id": "ksj-n02-003884",
+      "name": "六本木一丁目",
+      "latitude": 35.665075,
+      "longitude": 139.7389,
+      "prefecture": "東京都",
+      "municipality": "港区",
+      "lines": ["東京地下鉄 7号線南北線"]
+    },
+    {
+      "id": "ksj-n02-004105",
+      "name": "和泉多摩川",
+      "latitude": 35.627415,
+      "longitude": 139.57372,
+      "prefecture": "東京都",
+      "municipality": "狛江市",
+      "lines": ["小田急電鉄 小田原線"]
+    },
+    {
+      "id": "ksj-n02-004349",
+      "name": "糀谷",
+      "latitude": 35.55445,
+      "longitude": 139.72959,
+      "prefecture": "東京都",
+      "municipality": "大田区",
+      "lines": ["京浜急行電鉄 空港線"]
+    },
+    {
+      "id": "ksj-n02-003484",
+      "name": "茗荷谷",
+      "latitude": 35.7172,
+      "longitude": 139.736895,
+      "prefecture": "東京都",
+      "municipality": "文京区",
+      "lines": ["東京地下鉄 4号線丸ノ内線"]
+    },
+    {
+      "id": "ksj-n02-003460",
+      "name": "鶯谷",
+      "latitude": 35.721455,
+      "longitude": 139.77803,
+      "prefecture": "東京都",
+      "municipality": "台東区",
+      "lines": ["東日本旅客鉄道 東北線"]
+    }
+  ]
 }

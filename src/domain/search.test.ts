@@ -38,7 +38,7 @@ const shops = [
 ];
 
 const f = (patch: Partial<ShopFilter>): ShopFilter => ({ ...EMPTY_FILTER, ...patch });
-const ids = (filter: ShopFilter) => filterShops(shops, filter).map((s) => s.id);
+const ids = (filter: ShopFilter) => filterShops(shops, filter, [testStation]).map((s) => s.id);
 
 describe('filterShops', () => {
   it('条件なしは全件', () => {
@@ -54,7 +54,18 @@ describe('filterShops', () => {
   it('都道府県・市区町村・駅', () => {
     expect(ids(f({ prefectures: ['埼玉県'] }))).toEqual(['b']);
     expect(ids(f({ municipality: '北区' }))).toEqual(['a']);
-    expect(ids(f({ stationId: testStation.id }))).toEqual(['a']);
+    expect(ids(f({ stationId: testStation.id }))).toEqual(['a', 'b']);
+  });
+
+  it('駅を起点に、最寄り駅の登録または駅からの直線距離で絞り込む', () => {
+    const far = makeShop({ id: 'far', latitude: 35.75, longitude: 139.75 });
+    const near = makeShop({ id: 'near', latitude: 35.7035, longitude: 139.701 }); // 架空駅から約280m
+    const registered = makeShop({ id: 'reg', latitude: 35.8, longitude: 139.8, stationIds: [testStation.id] });
+    const list = [far, near, registered];
+    const run = (radius: number) =>
+      filterShops(list, f({ stationId: testStation.id, stationRadiusM: radius }), [testStation]).map((s) => s.id);
+    expect(run(500)).toEqual(['near', 'reg']);
+    expect(run(200)).toEqual(['reg']);
   });
 
   it('ジャンル・酒・予算帯はいずれかに一致', () => {
@@ -95,7 +106,7 @@ describe('activeFilterChips', () => {
       openTime: '18:00',
     });
     const chips = activeFilterChips(filter, [testStation]);
-    expect(chips.map((c) => c.label)).toEqual(['「酒場」', '架空駅', 'おでん', '金曜 18:00に営業']);
+    expect(chips.map((c) => c.label)).toEqual(['「酒場」', '架空駅から500m以内', 'おでん', '金曜 18:00に営業']);
     const cleared = chips[3]!.clear(filter);
     expect(cleared.openDay).toBeNull();
     expect(cleared.openTime).toBe('');

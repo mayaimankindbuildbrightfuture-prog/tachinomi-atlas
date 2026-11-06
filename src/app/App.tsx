@@ -5,11 +5,22 @@ import { MapStatusBanner } from '../components/MapStatusBanner/MapStatusBanner';
 import { MapView } from '../components/MapView/MapView';
 import { ShopDetail } from '../components/ShopDetail/ShopDetail';
 import { ShopEditor } from '../components/ShopEditor/ShopEditor';
-import { Sidebar } from '../components/Sidebar/Sidebar';
+import { ComparePanel } from '../components/ComparePanel/ComparePanel';
+import { DensityLegend } from '../components/DensityLegend/DensityLegend';
+import { Sidebar, type SidebarTab } from '../components/Sidebar/Sidebar';
 import { StatusBar } from '../components/StatusBar/StatusBar';
 import { EMPTY_FILTER, filterShops, type ShopFilter } from '../domain/search';
-import { createEmptyShop, type DataSource, type Shop } from '../domain/shop';
+import { buildDensityGrid, DEFAULT_GRID_SIZE_M, type GridSizeM } from '../domain/density';
+import { createEmptyShop, primaryCategory, type DataSource, type Shop } from '../domain/shop';
+import type { SurveyArea } from '../domain/survey';
 import { useShopStore, type ShopStore } from '../hooks/useShopStore';
+import { useSurveyAreas, type SurveyAreaStore } from '../hooks/useSurveyAreas';
+import {
+  EMPTY_GRID,
+  stationsToFeatureCollection,
+  surveyAreasToFeatureCollection,
+  type DisplayMode,
+} from '../services/map/densityLayers';
 import type { BuildingsAvailability, CameraState, MapController, MapStatus } from '../services/map/mapAdapter';
 import {
   DEFAULT_STYLE_ID,
@@ -29,10 +40,16 @@ type LatLng = { latitude: number; longitude: number };
 type Props = {
   /** テスト用に差し替え可能な店舗ストア */
   useStore?: () => ShopStore;
+  /** テスト用に差し替え可能な調査済みエリアのストア */
+  useSurveyStore?: () => SurveyAreaStore;
 };
 
-export function App({ useStore = useShopStore }: Props) {
+/** 地図クリックで位置を選ぶ対象 */
+type PickTarget = 'shop' | 'survey' | null;
+
+export function App({ useStore = useShopStore, useSurveyStore = useSurveyAreas }: Props) {
   const store = useStore();
+  const survey = useSurveyStore();
   const controllerRef = useRef<MapController | null>(null);
   const [status, setStatus] = useState<MapStatus>('loading');
   const [issue, setIssue] = useState<MapIssue | null>(null);
@@ -44,8 +61,16 @@ export function App({ useStore = useShopStore }: Props) {
   const [regionId, setRegionId] = useState<RegionId | ''>('');
   const [filter, setFilter] = useState<ShopFilter>(EMPTY_FILTER);
   const [panel, setPanel] = useState<Panel>({ kind: 'none' });
-  const [pickMode, setPickMode] = useState(false);
+  const [pickTarget, setPickTarget] = useState<PickTarget>(null);
+  const pickMode = pickTarget !== null;
+  const setPickMode = useCallback((enabled: boolean) => setPickTarget(enabled ? 'shop' : null), []);
   const [pickedPosition, setPickedPosition] = useState<LatLng | null>(null);
+  const [pickedSurveyPosition, setPickedSurveyPosition] = useState<LatLng | null>(null);
+  const [sidebarTab, setSidebarTab] = useState<SidebarTab>('shops');
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('markers');
+  const [gridSizeM, setGridSizeM] = useState<GridSizeM>(DEFAULT_GRID_SIZE_M);
+  const [showStations, setShowStations] = useState(false);
+  const [surveyDeleteTarget, setSurveyDeleteTarget] = useState<SurveyArea | null>(null);
   const [draftPosition, setDraftPosition] = useState<LatLng | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<Shop | null>(null);
   const [deleting, setDeleting] = useState(false);
@@ -53,8 +78,28 @@ export function App({ useStore = useShopStore }: Props) {
   const mapUsable = status !== 'failed';
 
   // 検索条件や店舗データが変わったときだけ再計算する（地図の移動では再計算しない）
-  const results = useMemo(() => filterShops(store.shops, filter), [store.shops, filter]);
+  const results = useMemo(
+    () => filterShops(store.shops, filter, store.stations),
+    [store.shops, filter, store.stations],
+  );
   const featureCollection = useMemo(() => shopsToFeatureCollection(results), [results]);
+  // 密度の集計も検索条件を反映する。格子は3D柱表示のときだけ計算する
+  const densityGrid = useMemo(
+    () => (displayMode === 'grid' ? buildDensityGrid(results, gridSizeM, survey.areas) : EMPTY_GRID),
+    [displayMode, results, gridSizeM, survey.areas],
+  );
+  const surveyFeatures = useMemo(() => surveyAreasToFeatureCollection(survey.areas), [survey.areas]);
+  const stationFeatures = useMemo(() => stationsToFeatureCollection(store.stations), [store.stations]);
+  const legendCounts = useMemo(() => {
+    const categoryCounts: Record<string, number> = {};
+    const priceCounts: Record<string, number> = {};
+    for (const s of results) {
+      const c = primaryCategory(s);
+      categoryCounts[c] = (categoryCounts[c] ?? 0) + 1;
+      priceCounts[s.priceLevel] = (priceCounts[s.priceLevel] ?? 0) + 1;
+    }
+    return { categoryCounts, priceCounts };
+  }, [results]);
 
   const selectedShopId =
     panel.kind === 'detail' ? panel.shopId : panel.kind === 'edit' && panel.mode === 'edit' ? panel.base.id : null;
@@ -74,10 +119,10 @@ export function App({ useStore = useShopStore }: Props) {
   }, [rightPanelOpen, sidebarOpen]);
 
   // 詳細パネルを開くと地図の幅が変わるため、移動はレイアウト確定後（effect）で行う
-  const [flyTarget, setFlyTarget] = useState<{ latitude: number; longitude: number } | null>(null);
+  const [flyTarget, setFlyTarget] = useState<{ latitude: number; longitude: number; zoom?: number } | null>(null);
   useEffect(() => {
     if (!flyTarget) return;
-    controllerRef.current?.flyToPoint(flyTarget.latitude, flyTarget.longitude);
+    controllerRef.current?.flyToPoint(flyTarget.latitude, flyTarget.longitude, flyTarget.zoom);
   }, [flyTarget]);
 
   const showShop = useCallback(
@@ -112,10 +157,33 @@ export function App({ useStore = useShopStore }: Props) {
     [store],
   );
 
-  const handleMapPick = useCallback((p: LatLng) => {
-    setPickedPosition(p);
-    setPickMode(false);
-  }, []);
+  const handleMapPick = useCallback(
+    (p: LatLng) => {
+      if (pickTarget === 'survey') setPickedSurveyPosition(p);
+      else setPickedPosition(p);
+      setPickTarget(null);
+    },
+    [pickTarget],
+  );
+
+  const exploreStation = useCallback(
+    (stationId: string, radiusM: number) => {
+      const station = store.stations.find((s) => s.id === stationId);
+      setFilter((f) => ({ ...f, stationId, stationRadiusM: radiusM }));
+      setSidebarTab('shops');
+      if (station) setFlyTarget({ latitude: station.latitude, longitude: station.longitude, zoom: 15 });
+    },
+    [store.stations],
+  );
+
+  const confirmSurveyDelete = async () => {
+    if (!surveyDeleteTarget) return;
+    try {
+      await survey.remove(surveyDeleteTarget.id);
+    } finally {
+      setSurveyDeleteTarget(null);
+    }
+  };
 
   const confirmDelete = async () => {
     if (!deleteTarget) return;
@@ -191,6 +259,29 @@ export function App({ useStore = useShopStore }: Props) {
       <Sidebar
         open={sidebarOpen}
         onToggle={() => setSidebarOpen((o) => !o)}
+        tab={sidebarTab}
+        onTabChange={setSidebarTab}
+        displayMode={displayMode}
+        onDisplayModeChange={setDisplayMode}
+        gridSizeM={gridSizeM}
+        onGridSizeChange={setGridSizeM}
+        showStations={showStations}
+        onShowStationsChange={setShowStations}
+        stationCount={store.stations.length}
+        comparePanel={
+          <ComparePanel
+            shops={results}
+            stations={store.stations}
+            surveyAreas={survey.areas}
+            onSaveSurveyArea={survey.save}
+            onDeleteSurveyArea={setSurveyDeleteTarget}
+            onExploreStation={exploreStation}
+            onFlyTo={(p) => setFlyTarget({ ...p, zoom: 15 })}
+            pickMode={pickTarget === 'survey'}
+            onPickModeChange={(on) => setPickTarget(on ? 'survey' : null)}
+            pickedPosition={pickedSurveyPosition}
+          />
+        }
         showBuildings={showBuildings}
         onShowBuildingsChange={setShowBuildings}
         buildingsAvailability={buildingsAvailability}
@@ -224,6 +315,12 @@ export function App({ useStore = useShopStore }: Props) {
           selectedShopId={selectedShopId}
           pickMode={pickMode}
           draftPosition={panel.kind === 'edit' ? draftPosition : null}
+          displayMode={displayMode}
+          densityGrid={densityGrid}
+          gridSizeM={gridSizeM}
+          surveyAreas={surveyFeatures}
+          stations={stationFeatures}
+          showStations={showStations}
           controllerRef={controllerRef}
           onStatusChange={setStatus}
           onIssue={setIssue}
@@ -240,13 +337,28 @@ export function App({ useStore = useShopStore }: Props) {
           onRetry={() => controllerRef.current?.retry()}
           onDismiss={() => setIssue(null)}
         />
+        <DensityLegend
+          mode={displayMode}
+          shownCount={results.length}
+          categoryCounts={legendCounts.categoryCounts}
+          priceCounts={legendCounts.priceCounts}
+          gridSizeM={gridSizeM}
+          surveyAreaCount={survey.areas.length}
+        />
         {pickMode && (
           <div className="pick-hint" role="status">
-            地図上で店舗の位置をクリックしてください（中止はフォームのボタンから）
+            {pickTarget === 'survey'
+              ? '地図上で調査済みエリアの中心をクリックしてください（中止はフォームのボタンから）'
+              : '地図上で店舗の位置をクリックしてください（中止はフォームのボタンから）'}
           </div>
         )}
-        {(store.error || store.dataIssues.length > 0) && (
+        {(store.error || survey.error || store.dataIssues.length > 0) && (
           <div className="app-notices">
+            {survey.error && (
+              <div className="notice notice--danger" role="alert">
+                <p>{survey.error}</p>
+              </div>
+            )}
             {store.error && (
               <div className="notice notice--danger" role="alert">
                 <p>{store.error}</p>
@@ -301,7 +413,7 @@ export function App({ useStore = useShopStore }: Props) {
               existingShops={store.shops}
               sources={store.sources}
               stations={store.stations}
-              pickMode={pickMode}
+              pickMode={pickTarget === 'shop'}
               onPickModeChange={setPickMode}
               pickedPosition={pickedPosition}
               onDraftPositionChange={setDraftPosition}
@@ -313,6 +425,18 @@ export function App({ useStore = useShopStore }: Props) {
       )}
 
       <StatusBar camera={camera} status={status} />
+
+      {surveyDeleteTarget && (
+        <ConfirmDialog
+          title="調査済みエリアを削除しますか？"
+          confirmLabel="削除する"
+          danger
+          onConfirm={confirmSurveyDelete}
+          onCancel={() => setSurveyDeleteTarget(null)}
+        >
+          <p>「{surveyDeleteTarget.name}」を削除します。店舗データは削除されません。</p>
+        </ConfirmDialog>
+      )}
 
       {deleteTarget && (
         <ConfirmDialog

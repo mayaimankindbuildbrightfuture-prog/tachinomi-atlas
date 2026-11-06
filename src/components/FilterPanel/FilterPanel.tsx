@@ -1,3 +1,5 @@
+import { STATION_RADII_M } from '../../domain/density';
+import { StationSelect } from '../StationSelect/StationSelect';
 import { useMemo } from 'react';
 import {
   activeFilterChips,
@@ -110,22 +112,25 @@ export function FilterPanel({
               ))}
             </select>
           </label>
-          <label className="form-field">
-            <span className="form-field__label">最寄り駅</span>
-            <select
-              value={filter.stationId}
-              onChange={(e) => set('stationId', e.target.value)}
-              disabled={stations.length === 0}
-            >
-              <option value="">指定なし</option>
-              {stations.map((s) => (
-                <option key={s.id} value={s.id}>
-                  {s.name}
-                </option>
-              ))}
-            </select>
-            {stations.length === 0 && <span className="hint">駅データは未登録です。</span>}
-          </label>
+          <StationSelect
+            label="駅を起点に探す"
+            stations={stations}
+            value={filter.stationId}
+            onChange={(id) => set('stationId', id)}
+          />
+          {filter.stationId && (
+            <label className="form-field form-field--inline">
+              <span className="form-field__label">駅からの直線距離</span>
+              <select value={filter.stationRadiusM} onChange={(e) => set('stationRadiusM', Number(e.target.value))}>
+                {STATION_RADII_M.map((r) => (
+                  <option key={r} value={r}>
+                    {r}m以内
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
+          <p className="hint">最寄り駅として登録された店舗と、駅から指定距離（直線）以内の店舗が対象です。</p>
         </fieldset>
 
         <fieldset className="filter-group">

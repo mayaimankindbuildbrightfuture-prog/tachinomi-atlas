@@ -43,6 +43,15 @@ describe('同梱の初期データの品質', () => {
     }
   });
 
+  it('駅データは東京都・埼玉県の駅で、IDが一意', async () => {
+    const stations = parseStationsJson((await import('../data/stations.json')).default).items;
+    expect(stations.length).toBeGreaterThan(800);
+    expect(new Set(stations.map((s) => s.id)).size).toBe(stations.length);
+    for (const s of stations) expect(['東京都', '埼玉県']).toContain(s.prefecture);
+    const omiya = stations.find((s) => s.name === '大宮');
+    expect(omiya?.municipality).toBe('さいたま市大宮区');
+  });
+
   it('確認済みでない店舗に確認日を付けていない', async () => {
     const shops = parseShopsJson((await import('../data/shops.json')).default).items;
     for (const shop of shops.filter((s) => s.status !== 'verified')) expect(shop.lastVerifiedAt, shop.name).toBeNull();

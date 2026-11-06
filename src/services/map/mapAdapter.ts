@@ -12,6 +12,7 @@ import {
   NavigationControl,
   ScaleControl,
   setWorkerUrl,
+  Popup,
   type ErrorEvent,
   type GeoJSONSource,
   type MapMouseEvent,
@@ -64,6 +65,29 @@ import {
   selectedFilter,
   type ShopFeatureCollection,
 } from './shopLayers';
+import {
+  DENSITY_LAYER_IDS,
+  EMPTY_GRID,
+  GRID_SOURCE_ID,
+  RAW_SOURCE_ID,
+  STATION_SOURCE_ID,
+  SURVEY_SOURCE_ID,
+  buildCategoryPointLayer,
+  buildGrid3dLayer,
+  buildGridZeroLayer,
+  buildHeatmapLayer,
+  buildPricePointLayer,
+  buildStationLabelLayer,
+  buildStationLayer,
+  buildSurveyFillLayer,
+  buildSurveyLineLayer,
+  clickableShopLayers,
+  layerVisibility,
+  type DisplayMode,
+  type StationFeatureCollection,
+  type SurveyAreaFeatureCollection,
+} from './densityLayers';
+import type { GridFeatureCollection } from '../../domain/density';
 
 export type CameraState = {
   lng: number;
@@ -114,6 +138,13 @@ export interface MapController {
   setDraftPosition(position: { latitude: number; longitude: number } | null): void;
   /** パネルの開閉で地図の大きさが変わったとき、地図の中心地点を保ったまま大きさを反映する */
   resizeKeepingCenter(): void;
+  /** 表示モード（店舗マーカー・密度・分布）を切り替える */
+  setDisplayMode(mode: DisplayMode): void;
+  /** 密度（3D柱）表示用の格子データ。sizeM はマス1辺の長さ */
+  setDensityGrid(data: GridFeatureCollection, sizeM: number): void;
+  setSurveyAreas(data: SurveyAreaFeatureCollection): void;
+  setStations(data: StationFeatureCollection): void;
+  setStationsVisible(visible: boolean): void;
   destroy(): void;
 }
 
@@ -165,6 +196,13 @@ export function createMapController(
   let selectedShopId: string | null = null;
   let pickMode = false;
   let draftMarker: Marker | null = null;
+  let displayMode: DisplayMode = 'markers';
+  let gridData: GridFeatureCollection = EMPTY_GRID;
+  let gridSizeM = 500;
+  let surveyData: SurveyAreaFeatureCollection = { type: 'FeatureCollection', features: [] };
+  let stationData: StationFeatureCollection = { type: 'FeatureCollection', features: [] };
+  let showStations = false;
+  const popup = new Popup({ closeButton: true, closeOnClick: true, maxWidth: '260px' });
 
   const online = () => (typeof navigator === 'undefined' ? true : navigator.onLine !== false);
 
@@ -202,10 +240,37 @@ export function createMapController(
     }
   };
 
-  /** 店舗レイヤーを追加する。スタイルを切り替えるとレイヤーと画像は消えるため、読み込みのたびに呼ぶ */
+  const applyLayerVisibility = () => {
+    for (const [id, visible] of Object.entries(layerVisibility(displayMode, showStations))) {
+      if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', visible ? 'visible' : 'none');
+    }
+  };
+
+  const setSourceData = (id: string, data: GeoJSON.GeoJSON) => {
+    map.getSource<GeoJSONSource>(id)?.setData(data);
+  };
+
+  /**
+   * 店舗・密度・駅のレイヤーを追加する。スタイルを切り替えるとレイヤーと画像は消えるため、読み込みのたびに呼ぶ。
+   * 追加順が描画順になる（調査済みエリア → 密度 → 駅 → 分布の点 → 店舗マーカー）。
+   */
   const addShopLayers = () => {
     if (map.getLayer(SHOP_LAYER_IDS.points)) return;
     const style = map.getStyle();
+    map.addSource(SURVEY_SOURCE_ID, { type: 'geojson', data: surveyData });
+    map.addSource(GRID_SOURCE_ID, { type: 'geojson', data: gridData });
+    map.addSource(RAW_SOURCE_ID, { type: 'geojson', data: shopData });
+    map.addSource(STATION_SOURCE_ID, { type: 'geojson', data: stationData });
+    map.addLayer(buildSurveyFillLayer());
+    map.addLayer(buildSurveyLineLayer());
+    map.addLayer(buildGridZeroLayer());
+    map.addLayer(buildGrid3dLayer());
+    map.addLayer(buildHeatmapLayer());
+    map.addLayer(buildStationLayer());
+    if (style.glyphs) map.addLayer(buildStationLabelLayer(pickTextFont(style.layers)));
+    map.addLayer(buildCategoryPointLayer());
+    map.addLayer(buildPricePointLayer());
+
     const pixelRatio = typeof window !== 'undefined' ? Math.min(window.devicePixelRatio || 1, 3) : 1;
     for (const icon of CATEGORY_ICONS) {
       if (map.hasImage(icon.id)) continue;
@@ -221,6 +286,7 @@ export function createMapController(
     map.addLayer(buildPointLayer());
     map.addLayer(buildHitLayer());
     if (style.glyphs) map.addLayer(buildLabelLayer(textFont));
+    applyLayerVisibility();
   };
 
   /** スタイル読み込み完了ごとに、日本語ラベル化と3D建物レイヤーの追加を行う */
@@ -294,10 +360,25 @@ export function createMapController(
     if (!usingFallback) handlers.onIssue?.(unknownIssue(error));
   });
 
-  const shopFeatureAt = (e: MapMouseEvent) => {
-    const layers = [SHOP_LAYER_IDS.hit, SHOP_LAYER_IDS.clusters].filter((id) => map.getLayer(id));
+  const featureAt = (e: MapMouseEvent, layerIds: string[]) => {
+    const layers = layerIds.filter((id) => map.getLayer(id));
     if (layers.length === 0) return undefined;
     return map.queryRenderedFeatures(e.point, { layers })[0];
+  };
+  const shopFeatureAt = (e: MapMouseEvent) => featureAt(e, clickableShopLayers(displayMode));
+  const gridFeatureAt = (e: MapMouseEvent) =>
+    displayMode === 'grid' ? featureAt(e, [DENSITY_LAYER_IDS.grid3d, DENSITY_LAYER_IDS.gridZero]) : undefined;
+
+  /** 格子のマスをクリックしたときの説明（文字列のみ。HTMLは使わない） */
+  const showGridPopup = (e: MapMouseEvent, props: Record<string, unknown>) => {
+    const count = typeof props.count === 'number' ? props.count : 0;
+    const surveyed = props.surveyed === true;
+    const size = gridSizeM >= 1000 ? `${gridSizeM / 1000}km` : `${gridSizeM}m`;
+    const text =
+      count > 0
+        ? `このマス（約${size}四方）の登録店舗：${count}件${surveyed ? '（調査済みエリア内）' : '（網羅的な調査ではありません）'}`
+        : `このマス（約${size}四方）：調査済みで登録店舗0件`;
+    popup.setLngLat(e.lngLat).setText(text).addTo(map);
   };
 
   map.on('click', (e) => {
@@ -307,7 +388,11 @@ export function createMapController(
       return;
     }
     const feature = shopFeatureAt(e);
-    if (!feature) return;
+    if (!feature) {
+      const cell = gridFeatureAt(e);
+      if (cell) showGridPopup(e, cell.properties as Record<string, unknown>);
+      return;
+    }
     const props = feature.properties as Record<string, unknown>;
     if (typeof props.cluster_id === 'number' && feature.geometry.type === 'Point') {
       const center = feature.geometry.coordinates as [number, number];
@@ -323,7 +408,7 @@ export function createMapController(
 
   map.on('mousemove', (e) => {
     if (destroyed) return;
-    map.getCanvas().style.cursor = pickMode ? 'crosshair' : shopFeatureAt(e) ? 'pointer' : '';
+    map.getCanvas().style.cursor = pickMode ? 'crosshair' : shopFeatureAt(e) || gridFeatureAt(e) ? 'pointer' : '';
   });
 
   // カメラ情報は操作終了時のみ通知し、ドラッグ中に React の再描画を繰り返さない
@@ -374,7 +459,31 @@ export function createMapController(
     },
     setShops(data) {
       shopData = data;
-      map.getSource<GeoJSONSource>(SHOP_SOURCE_ID)?.setData(data);
+      setSourceData(SHOP_SOURCE_ID, data);
+      setSourceData(RAW_SOURCE_ID, data);
+    },
+    setDisplayMode(mode) {
+      displayMode = mode;
+      popup.remove();
+      applyLayerVisibility();
+    },
+    setDensityGrid(data, sizeM) {
+      gridData = data;
+      gridSizeM = sizeM;
+      popup.remove();
+      setSourceData(GRID_SOURCE_ID, data);
+    },
+    setSurveyAreas(data) {
+      surveyData = data;
+      setSourceData(SURVEY_SOURCE_ID, data);
+    },
+    setStations(data) {
+      stationData = data;
+      setSourceData(STATION_SOURCE_ID, data);
+    },
+    setStationsVisible(visible) {
+      showStations = visible;
+      applyLayerVisibility();
     },
     setSelectedShop(shopId) {
       selectedShopId = shopId;
@@ -418,6 +527,7 @@ export function createMapController(
     destroy() {
       destroyed = true;
       draftMarker?.remove();
+      popup.remove();
       map.remove();
     },
   };

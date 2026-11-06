@@ -1,4 +1,5 @@
 import { formatDay, formatHoursEntry, entryForDay, openStateAt, tokyoNow, type TokyoNow } from '../../domain/hours';
+import { nearestStations } from '../../domain/density';
 import { formatDate, formatDateTime, formatTriState, formatYen, hostnameOf } from '../../domain/format';
 import {
   PRICE_LEVEL_LABELS,
@@ -53,6 +54,7 @@ export function ShopDetail({
   const shopSources = shop.sourceIds.map((id) => sourceById.get(id) ?? null);
   const stationNames = shop.stationIds.map((id) => stations.find((s) => s.id === id)?.name ?? `不明な駅（${id}）`);
   const openState = openStateAt(shop.openingHours, now.day, now.minutes);
+  const nearby = nearestStations(shop, stations, 3);
 
   return (
     <article className="detail" aria-labelledby="shop-detail-title">
@@ -102,6 +104,17 @@ export function ShopDetail({
         </dd>
         <dt>最寄り駅</dt>
         <dd>{stationNames.length ? stationNames.join('、') : <Unknown />}</dd>
+        <dt>近くの駅</dt>
+        <dd>
+          {nearby.length ? (
+            <>
+              {nearby.map((n) => `${n.station.name}（約${Math.round(n.distanceM / 10) * 10}m）`).join('、')}
+              <span className="hint">（直線距離・参考）</span>
+            </>
+          ) : (
+            <span className="hint">2km以内に駅データがありません</span>
+          )}
+        </dd>
         <dt>立ち呑み形式</dt>
         <dd>
           {formatTriState(shop.standingOnly, '立ち呑み専業', '立ち呑み専業ではない')}／
