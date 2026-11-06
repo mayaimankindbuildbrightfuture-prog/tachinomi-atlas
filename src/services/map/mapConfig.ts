@@ -136,9 +136,9 @@ export function getRegionPreset(id: RegionId): RegionPreset {
 
 /** 3D建物の配色（濃色・淡色スタイルのどちらでも周囲と区別できる色） */
 export const BUILDING_COLORS = {
-  low: '#4a5160',
-  mid: '#6b6f7d',
-  high: '#9a8f7a',
+  low: '#6b7385',
+  mid: '#8a90a0',
+  high: '#b8a98a',
   outline: '#2a2e36',
 } as const;
 

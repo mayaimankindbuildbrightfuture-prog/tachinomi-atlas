@@ -2,12 +2,7 @@
  * MapLibre のエラーを利用者向けの日本語メッセージに分類する。
  */
 
-export type MapIssueKind =
-  | 'webgl_unavailable'
-  | 'style_load_failed'
-  | 'tiles_failed'
-  | 'offline'
-  | 'unknown';
+export type MapIssueKind = 'webgl_unavailable' | 'style_load_failed' | 'tiles_failed' | 'offline' | 'unknown';
 
 export type MapIssue = {
   kind: MapIssueKind;
@@ -49,7 +44,12 @@ function detailText(d: { message: string; status: number | null; url: string | n
 /** URL の見た目からタイル系リクエストかどうかを判定する */
 export function isTileLikeUrl(url: string | null): boolean {
   if (!url) return false;
-  return /\.(pbf|mvt|png|jpe?g|webp)(\?|$)/i.test(url) || /\/\d+\/\d+\/\d+/.test(url) || /\/fonts?\//.test(url) || /sprite/.test(url);
+  return (
+    /\.(pbf|mvt|png|jpe?g|webp)(\?|$)/i.test(url) ||
+    /\/\d+\/\d+\/\d+/.test(url) ||
+    /\/fonts?\//.test(url) ||
+    /sprite/.test(url)
+  );
 }
 
 export function webglUnavailableIssue(error: unknown): MapIssue {

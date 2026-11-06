@@ -21,7 +21,10 @@ describe('isTileLikeUrl', () => {
 });
 
 describe('MapIssue の生成', () => {
-  const ajaxLike = Object.assign(new Error('Failed to fetch'), { status: 503, url: 'https://tiles.openfreemap.org/styles/dark' });
+  const ajaxLike = Object.assign(new Error('Failed to fetch'), {
+    status: 503,
+    url: 'https://tiles.openfreemap.org/styles/dark',
+  });
 
   it('スタイル取得失敗: 原因・対処・詳細を含む', () => {
     const issue = styleLoadFailedIssue(ajaxLike, true);

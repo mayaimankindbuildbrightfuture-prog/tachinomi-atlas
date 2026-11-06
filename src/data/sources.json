@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "attribution": "店舗の名称・位置・住所は OpenStreetMap より取得（© OpenStreetMap contributors、ODbL 1.0 / https://www.openstreetmap.org/copyright）。取得日 2026-10-29。",
+  "sources": [
+    {
+      "id": "src-official-banpaiya-musashino",
+      "type": "official_site",
+      "name": "晩杯屋 公式サイト（株式会社アクティブソース）店舗一覧・武蔵野市",
+      "url": "https://active-source.co.jp/area/musashino-shi/",
+      "accessedAt": "2026-10-29",
+      "notes": "店名・住所・営業時間・電話番号を確認。"
+    },
+    {
+      "id": "src-official-yakitorihidaka-brand",
+      "type": "official_site",
+      "name": "ハイデイ日高 公式サイト 焼鳥日高 業態紹介",
+      "url": "https://hidakaya.hiday.co.jp/service/yakitorihidaka.html",
+      "accessedAt": "2026-10-29",
+      "notes": "「ランチも立ち飲みも気軽に入れる日高屋の焼き鳥」との記載を確認（各店が立ち呑み専業かどうかの記載はない）。"
+    },
+    {
+      "id": "src-official-yakitorihidaka-omiya-ichibangai",
+      "type": "official_site",
+      "name": "ハイデイ日高 公式サイト 店舗情報（焼鳥日高 大宮一番街店）",
+      "url": "https://hidakaya.hiday.co.jp/hits/ja/shop/6/detail/266.html",
+      "accessedAt": "2026-10-29",
+      "notes": "店名・住所・曜日別営業時間を確認。特別営業時間：2026/11/03・2026/11/23 は 11:00-23:00。"
+    },
+    {
+      "id": "src-official-yakitorihidaka-omiya-suzuran",
+      "type": "official_site",
+      "name": "ハイデイ日高 公式サイト 店舗情報（焼鳥日高 大宮すずらん通店）",
+      "url": "https://hidakaya.hiday.co.jp/hits/ja/shop/6/detail/200.html",
+      "accessedAt": "2026-10-29",
+      "notes": "店名・住所・曜日別営業時間を確認。"
+    },
+    {
+      "id": "src-osm-node-10130572550",
+      "type": "open_data",
+      "name": "OpenStreetMap（立ち飲み 勝）",
+      "url": "https://www.openstreetmap.org/node/10130572550",
+      "accessedAt": "2026-10-29",
+      "notes": "OSM要素 node 10130572550（版1、最終編集 2022-10-26）。データ © OpenStreetMap contributors（ODbL 1.0）"
+    },
+    {
+      "id": "src-osm-node-1130419715",
+      "type": "open_data",
+      "name": "OpenStreetMap（立ち飲み 鶴川）",
+      "url": "https://www.openstreetmap.org/node/1130419715",
+      "accessedAt": "2026-10-29",
+      "notes": "OSM要素 node 1130419715（版2、最終編集 2011-02-01）。データ © OpenStreetMap contributors（ODbL 1.0）"
+    },
+    {
+      "id": "src-osm-node-11403074383",
+      "type": "open_data",
+      "name": "OpenStreetMap（立ち呑み 山寅）",
+      "url": "https://www.openstreetmap.org/node/11403074383",
+      "accessedAt": "2026-10-29",
+      "notes": "OSM要素 node 11403074383（版1、最終編集 2023-12-08）。データ © OpenStreetMap contributors（ODbL 1.0）"
+    },
+    {
+      "id": "src-osm-node-11811371062",
+      "type": "open_data",
+      "name": "OpenStreetMap（立ち呑み 粋）",
+      "url": "https://www.openstreetmap.org/node/11811371062",
+      "accessedAt": "2026-10-29",
+      "notes": "OSM要素 node 11811371062（版2、最終編集 2025-11-08）。データ © OpenStreetMap contributors（ODbL 1.0）"
+    },
+    {
+      "id": "src-osm-node-12878617519",
+      "type": "open_data",
+      "name": "OpenStreetMap（立呑 寅屋）",
+      "url": "https://www.openstreetmap.org/node/12878617519",
+      "accessedAt": "2026-10-29",
+      "notes": "OSM要素 node 12878617519（版1、最終編集 2025-06-01）。データ © OpenStreetMap contributors（ODbL 1.0）"
+    },
+    {
+      "id": "src-osm-node-13285092518",
+      "type": "open_data",
+      "name": "OpenStreetMap（立ち飲み ひらめいた）",
+      "url": "https://www.openstreetmap.org/node/13285092518",
+      "accessedAt": "2026-10-29",
+      "notes": "OSM要素 node 13285092518（版1、最終編集 2025-11-06）。データ © OpenStreetMap contributors（ODbL 1.0）"
+    },
+    {
+      "id": "src-osm-node-14065412306",
+      "type": "open_data",
+      "name": "OpenStreetMap（立ち呑み処 秀）",
+      "url": "https://www.openstreetmap.org/node/14065412306",
+      "accessedAt": "2026-10-29",
+      "notes": "OSM要素 node 14065412306（版1、最終編集 2026-08-01）。データ © OpenStreetMap contributors（ODbL 1.0）"
+    },
+    {
+      "id": "src-osm-node-14134404904",
+      "type": "open_data",
+      "name": "OpenStreetMap（立呑み晩杯屋）",
+      "url": "https://www.openstreetmap.org/node/14134404904",
+      "accessedAt": "2026-10-29",
+      "notes": "OSM要素 node 14134404904（版1、最終編集 2026-08-30）。データ © OpenStreetMap contributors（ODbL 1.0）"
+    },
+    {
+      "id": "src-osm-node-14173060827",
+      "type": "open_data",
+      "name": "OpenStreetMap（角打ち屋）",
+      "url": "https://www.openstreetmap.org/node/14173060827",
+      "accessedAt": "2026-10-29",
+      "notes": "OSM要素 node 14173060827（版1、最終編集 2026-09-11）。データ © OpenStreetMap contributors（ODbL 1.0）。OSM上の現地確認日（check_date）: 2026-09-11"
+    },
+    {
+      "id": "src-osm-node-2383032943",
+      "type": "open_data",
+      "name": "OpenStreetMap（立ち呑み 串吟）",
+      "url": "https://www.openstreetmap.org/node/2383032943",
+      "accessedAt": "2026-10-29",
+      "notes": "OSM要素 node 2383032943（版5、最終編集 2024-08-23）。データ © OpenStreetMap contributors（ODbL 1.0）。OSM上の現地確認日（check_date）: 2024-08-23。OSMでの情報源の記載（source）: http://www.ekiten.jp/shop_2903719/map.html"
+    },
+    {
+      "id": "src-osm-node-5151350785",
+      "type": "open_data",
+      "name": "OpenStreetMap（立呑み さいごう）",
+      "url": "https://www.openstreetmap.org/node/5151350785",
+      "accessedAt": "2026-10-29",
+      "notes": "OSM要素 node 5151350785（版2、最終編集 2025-11-29）。データ © OpenStreetMap contributors（ODbL 1.0）"
+    },
+    {
+      "id": "src-osm-node-5246789886",
+      "type": "open_data",
+      "name": "OpenStreetMap（立飲み たきおか）",
+      "url": "https://www.openstreetmap.org/node/5246789886",
+      "accessedAt": "2026-10-29",
+      "notes": "OSM要素 node 5246789886（版2、最終編集 2025-11-29）。データ © OpenStreetMap contributors（ODbL 1.0）。OSMでの情報源の記載（source）: survey"
+    },
+    {
+      "id": "src-osm-node-540816357",
+      "type": "open_data",
+      "name": "OpenStreetMap（立飲み多楽福）",
+      "url": "https://www.openstreetmap.org/node/540816357",
+      "accessedAt": "2026-10-29",
+      "notes": "OSM要素 node 540816357（版1、最終編集 2009-10-26）。データ © OpenStreetMap contributors（ODbL 1.0）"
+    },
+    {
+      "id": "src-osm-node-5677086207",
+      "type": "open_data",
+      "name": "OpenStreetMap（酒屋お酒立飲み (株)内田屋西山福之助商店）",
+      "url": "https://www.openstreetmap.org/node/5677086207",
+      "accessedAt": "2026-10-29",
+      "notes": "OSM要素 node 5677086207（版2、最終編集 2022-01-10）。データ © OpenStreetMap contributors（ODbL 1.0）"
+    },
+    {
+      "id": "src-osm-node-5861166285",
+      "type": "open_data",
+      "name": "OpenStreetMap（立ち飲み日高）",
+      "url": "https://www.openstreetmap.org/node/5861166285",
+      "accessedAt": "2026-10-29",
+      "notes": "OSM要素 node 5861166285（版1、最終編集 2018-08-27）。データ © OpenStreetMap contributors（ODbL 1.0）"
+    },
+    {
+      "id": "src-osm-node-6028951389",
+      "type": "open_data",
+      "name": "OpenStreetMap（まるや 新橋立ち呑み）",
+      "url": "https://www.openstreetmap.org/node/6028951389",
+      "accessedAt": "2026-10-29",
+      "notes": "OSM要素 node 6028951389（版1、最終編集 2018-11-01）。データ © OpenStreetMap contributors（ODbL 1.0）"
+    },
+    {
+      "id": "src-osm-node-6919578585",
+      "type": "open_data",
+      "name": "OpenStreetMap（立ち飲み なぎ）",
+      "url": "https://www.openstreetmap.org/node/6919578585",
+      "accessedAt": "2026-10-29",
+      "notes": "OSM要素 node 6919578585（版1、最終編集 2019-10-27）。データ © OpenStreetMap contributors（ODbL 1.0）"
+    },
+    {
+      "id": "src-osm-node-7473026944",
+      "type": "open_data",
+      "name": "OpenStreetMap（立ち飲み日高）",
+      "url": "https://www.openstreetmap.org/node/7473026944",
+      "accessedAt": "2026-10-29",
+      "notes": "OSM要素 node 7473026944（版1、最終編集 2020-05-02）。データ © OpenStreetMap contributors（ODbL 1.0）"
+    },
+    {
+      "id": "src-osm-node-7909088673",
+      "type": "open_data",
+      "name": "OpenStreetMap（立ち飲み いこい）",
+      "url": "https://www.openstreetmap.org/node/7909088673",
+      "accessedAt": "2026-10-29",
+      "notes": "OSM要素 node 7909088673（版1、最終編集 2020-09-15）。データ © OpenStreetMap contributors（ODbL 1.0）。OSMでの情報源の記載（source）: survey"
+    },
+    {
+      "id": "src-osm-node-9364756650",
+      "type": "open_data",
+      "name": "OpenStreetMap（立ち呑み 呑べえ）",
+      "url": "https://www.openstreetmap.org/node/9364756650",
+      "accessedAt": "2026-10-29",
+      "notes": "OSM要素 node 9364756650（版1、最終編集 2021-12-25）。データ © OpenStreetMap contributors（ODbL 1.0）"
+    },
+    {
+      "id": "src-osm-node-9459285069",
+      "type": "open_data",
+      "name": "OpenStreetMap（立ち飲み釧路）",
+      "url": "https://www.openstreetmap.org/node/9459285069",
+      "accessedAt": "2026-10-29",
+      "notes": "OSM要素 node 9459285069（版2、最終編集 2022-03-05）。データ © OpenStreetMap contributors（ODbL 1.0）。OSMでの情報源の記載（source）: survey"
+    },
+    {
+      "id": "src-osm-node-9556441533",
+      "type": "open_data",
+      "name": "OpenStreetMap（立呑み いっさ）",
+      "url": "https://www.openstreetmap.org/node/9556441533",
+      "accessedAt": "2026-10-29",
+      "notes": "OSM要素 node 9556441533（版1、最終編集 2022-03-05）。データ © OpenStreetMap contributors（ODbL 1.0）"
+    }
+  ]
+}
